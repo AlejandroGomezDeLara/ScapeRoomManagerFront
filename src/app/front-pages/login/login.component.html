@@ -2,37 +2,43 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-10 offset-lg-1">
-              <h3 class="mb-3">ScapeRoomManagerV1</h3>
+                <h3 class="mb-3">ScapeRoomManagerV1</h3>
                 <div class="bg-white shadow rounded">
                     <div class="row">
                         <div class="col-md-7 pe-0">
                             <div class="form-left h-100 py-5 px-5">
-                                <form action="" class="row g-4">
-                                        <div class="col-12">
-                                            <label>Email<span class="text-danger">*</span></label>
-                                            <div class="input-group">
-                                                <div class="input-group-text"><i class="bi bi-person-fill"></i></div>
-                                                <input type="text" class="form-control" placeholder="Introducir email">
-                                            </div>
+                                <form class="form" class="row g-4" *ngIf="form" [formGroup]="form"
+                                    (ngSubmit)="submitForm()">
+                                    <div class="col-12">
+                                        <label>Email<span class="text-danger">*</span></label>
+                                        <div class="input-group">
+                                            <div class="input-group-text"> <i class="sidenav-link-icon"
+                                                    class="fal fa-user"></i> </div>
+                                            <input type="text" class="form-control" placeholder="Introducir email"
+                                                formControlName="email">
                                         </div>
+                                    </div>
 
-                                        <div class="col-12">
-                                            <label>Contraseña<span class="text-danger">*</span></label>
-                                            <div class="input-group">
-                                                <div class="input-group-text"><i class="bi bi-lock-fill"></i></div>
-                                                <input type="text" class="form-control" placeholder="Introducir contraseña">
-                                            </div>
+                                    <div class="col-12">
+                                        <label>Contraseña<span class="text-danger">*</span></label>
+                                        <div class="input-group">
+                                            <div class="input-group-text"><i class="sidenav-link-icon"
+                                                class="fal fa-cog"></i></div>
+                                            <input type="password" class="form-control"
+                                                placeholder="Introducir contraseña" formControlName="password">
                                         </div>
+                                    </div>
 
-    
 
-                                        <div class="col-sm-6">
-                                            <a href="#" class="float-end text-primary">Olvidaste la contraseña?</a>
-                                        </div>
 
-                                        <div class="col-12">
-                                            <button type="submit" class="btn px-4 float-end mt-4" routerLink="/intranet">Entrar</button>
-                                        </div>
+                                    <div class="col-sm-6">
+                                        <a href="#" class="float-end text-primary">Olvidaste la contraseña?</a>
+                                    </div>
+
+                                    <div class="col-12">
+                                        <button type="submit" class="btn px-4 float-end mt-4"
+                                            [disabled]="!form.valid">Entrar</button>
+                                    </div>
                                 </form>
                             </div>
                         </div>

@@ -12,7 +12,10 @@ body {
     position: relative;
     font-family: 'Roboto', sans-serif;
 }
-
+button{
+    color:white !important;
+    background:var(--dark-background) !important;
+}
 .card {
     display: flex;
     flex-direction: column;

@@ -16,7 +16,7 @@ import { IntranetModule } from './intranet/intranet.module';
     HttpClientModule,
     BrowserAnimationsModule,
     AppRoutingModule,
-    IntranetModule
+    IntranetModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
