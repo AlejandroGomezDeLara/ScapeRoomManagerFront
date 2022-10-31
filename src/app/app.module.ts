@@ -4,29 +4,19 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { BodyComponent } from './dashboard-pages/body/body.component';
-import { SidenavComponent } from './dashboard-pages/sidenav/sidenav.component';
-import { DashboardComponent } from './dashboard-pages/dashboard/dashboard.component';
-import { ProductsComponent } from './dashboard-pages/products/products.component';
-import { StatisticsComponent } from './dashboard-pages/statistics/statistics.component';
-import { CoupensComponent } from './dashboard-pages/coupens/coupens.component';
-import { SettingsComponent } from './dashboard-pages/settings/settings.component';
+import { HttpClientModule } from '@angular/common/http';
+import { IntranetModule } from './intranet/intranet.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    BodyComponent,
-    SidenavComponent,
-    DashboardComponent,
-    ProductsComponent,
-    StatisticsComponent,
-    CoupensComponent,
-    SettingsComponent
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     BrowserAnimationsModule,
-    AppRoutingModule
+    AppRoutingModule,
+    IntranetModule
   ],
   providers: [],
   bootstrap: [AppComponent]
