@@ -8,8 +8,10 @@ import { StatisticsComponent } from './intranet-pages/statistics/statistics.comp
 import { IntranetComponent } from './intranet/intranet.component';
 
 const routes: Routes = [
-  {path: '', redirectTo: 'login', pathMatch: 'full'},
+  { path: '', loadChildren: () => import('./front-pages/scape-list/scape-list.module').then(m => m.ScapeListModule) },
   { path: 'login', loadChildren: () => import('./front-pages/login/login.module').then(m => m.LoginModule) },
+  { path: 'register', loadChildren: () => import('./front-pages/register/register.module').then(m => m.RegisterModule) },
+  { path: 'scape', loadChildren: () => import('./front-pages/scape/scape.module').then(m => m.ScapeModule) },
   {
     path: 'intranet',
     component: IntranetComponent,
