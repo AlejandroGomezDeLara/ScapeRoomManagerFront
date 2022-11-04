@@ -1,0 +1,32 @@
+<div class="scape row">
+    <div class="scape-logo col-md-3">
+        <img [src]="scape.image" alt="">
+    </div>
+    <div class="scape-content col-md-9">
+        <div class="title row">
+            <p>{{scape.name}}</p>
+        </div>
+
+        <div class="rating row">
+            <div class="stars col-md-2">
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+            </div>
+            <div class="ratings col-md-10">
+                <p>{{scape.reviews}} opiniones</p>
+            </div>
+
+
+        </div>
+        <div class="address row">
+            <p>{{scape.address}}</p>
+        </div>
+        <div class="data row">
+            <p>{{scape.description}}</p>
+        </div>
+    </div>
+
+</div>

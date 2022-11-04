@@ -7,10 +7,27 @@ a {
     display: inline-block;
     display: flex;
     align-items: center;
+    video{
+        width: 100vw;
+        object-fit: cover;
+        height: 100%;
+        z-index: 1;
+        position: absolute;
+    }
+    .container{
+        z-index: 99;
+        .shadow{
+            background:white;
+        }
+    }
+    .title{
+        color:white;
+        font-size: 30px;
+    }
 }
 .form-right,button{
     color:white;
-    background:var(--sidebar-background);
+    background:var(--color-primary);
 }
 .form-right i {
     font-size: 100px;

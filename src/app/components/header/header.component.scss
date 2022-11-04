@@ -1,0 +1,13 @@
+
+.navbar{
+    height: 10vh;
+    background: white;
+    .nav-item{
+        font-size: 16px;
+    }
+}
+.navbar-brand{
+    font-size: 28px;
+    font-weight: bold;
+    color:var(--color-primary);
+}
