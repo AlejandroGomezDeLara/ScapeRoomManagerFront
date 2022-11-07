@@ -7,6 +7,7 @@
         width: 100%;
         height: 100%;
         object-fit: cover;
+        
     }
     .scape-content{
         .title{
@@ -54,4 +55,8 @@
             font-weight: bold;
         }
     }
+}
+.scape:hover{
+    background-color: rgba(33,33,33,0.05);
+    cursor: pointer;
 }

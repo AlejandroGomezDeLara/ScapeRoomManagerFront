@@ -4,16 +4,16 @@
     </div>
     <div class="scape-content col-md-9">
         <div class="title row">
-            <p>{{scape.name}}</p>
+            <p [style.color]="scape.category?.color">{{scape.name}}</p>
         </div>
 
         <div class="rating row">
             <div class="stars">
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa-regular fa-star"></i>
+                <i class="fa fa-star" [style.color]="scape.category?.color"></i>
+                <i class="fa fa-star" [style.color]="scape.category?.color"></i>
+                <i class="fa fa-star" [style.color]="scape.category?.color"></i>
+                <i class="fa fa-star" [style.color]="scape.category?.color"></i>
+                <i class="fa-regular fa-star" [style.color]="scape.category?.color"></i>
             </div>
             <div class="ratings">
                 <p>{{scape.reviews}} Opiniones</p>
@@ -21,10 +21,10 @@
 
         </div>
         <div class="categories row">
-            <span [style.background-color]="'var(--color-primary-light)'" [style.color]="'var(--color-primary)'">
-                ScapeRoom </span>
-            <span [style.background-color]="'var(--laser-tag-category-background)'"
-                [style.color]="'var(--laser-tag-category-color)'"> Aventuras </span>
+            <span [style.background-color]="scape.category?.background_color" [style.color]="scape.category?.color">
+                {{scape.category?.name}} </span>
+            <span [style.background-color]="scape.subcategory?.background_color" [style.color]="scape.subcategory?.color">
+                {{scape.subcategory?.name}} </span>
 
         </div>
         <div class="address row">

@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { ScapeRoom } from 'src/app/models/ScapeRoom';
+import { Game } from 'src/app/models/Game';
 
 @Component({
   selector: 'app-scape-item',
@@ -8,7 +8,7 @@ import { ScapeRoom } from 'src/app/models/ScapeRoom';
 })
 export class ScapeItemComponent implements OnInit {
 
-  @Input() scape!:ScapeRoom;
+  @Input() scape!:Game;
 
   constructor() { }
 
