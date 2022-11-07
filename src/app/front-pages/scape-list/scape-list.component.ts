@@ -49,4 +49,9 @@ export class ScapeListComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  public searchGames(places:google.maps.places.PlaceResult):void{
+    alert(places);
+  }
+  
+
 }

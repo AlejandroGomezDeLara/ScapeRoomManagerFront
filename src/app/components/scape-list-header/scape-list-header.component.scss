@@ -13,6 +13,12 @@
     }
     .logo{
         z-index: 99;
+        .subtitle,.subtitle2{
+            color:white;
+            margin-bottom: 10px;
+            font-size: 18px;
+        }
+        
     }
     .logo h1{
         font-weight: bold;
@@ -24,8 +30,9 @@
         overflow: hidden; /* Ensures the content is not revealed until the animation */
         white-space: nowrap; /* Keeps the content on a single line */
         margin: 0 auto; /* Gives that scrolling effect as the typing happens */
+        margin-bottom: 20px;
         animation: 
-          typing 2s steps(40, end),
+          typing 5s steps(80, end),
           blink-caret .75s step-end infinite;
       }
       
@@ -41,27 +48,11 @@
         50% { border-color: white }
       }
       
-    .searchbar{
-        z-index: 99;
-        input{
-            border-radius: 25px;
-            border:1px solid #ccc;
-            width: 70%;
-            padding: 15px;
-            font-size: 14px;
-            margin-right: 10px;
-        }
-        input:focus{
-            outline: none;
-        }
-        button{
-            background-color:var(--color-primary) !important;
-            font-size: 16px;
-            font-weight: bold;
-            padding: 15px;
-            border:none;
-            border-radius: 25px;
-            width: 150px;
-        }
+    .searchbar-container{
+        width: 100vw;
+        position: relative;
+        z-index: 999;
+        
+       
     }
 }

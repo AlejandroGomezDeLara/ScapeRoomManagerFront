@@ -10,6 +10,8 @@ import { ScapeListHeaderComponent } from 'src/app/components/scape-list-header/s
 import { ScapeListPaginationComponent } from 'src/app/components/scape-list-pagination/scape-list-pagination.component';
 import { ScapeListFiltersComponent } from 'src/app/components/scape-list-filters/scape-list-filters.component';
 import { ScapeListFooterComponent } from 'src/app/components/scape-list-footer/scape-list-footer.component';
+import { FormsModule } from '@angular/forms';
+import { AutocompleteSearchbarComponent } from 'src/app/components/autocomplete-searchbar/autocomplete-searchbar.component';
 
 const routes: Routes = [
   {
@@ -25,12 +27,14 @@ const routes: Routes = [
     ScapeListHeaderComponent,
     ScapeListPaginationComponent,
     ScapeListFiltersComponent,
-    ScapeListFooterComponent
+    ScapeListFooterComponent,
+    AutocompleteSearchbarComponent
 ],
   imports: [
     CommonModule,
     ScapeListRoutingModule,
     MatCardModule,
+    FormsModule,
     RouterModule.forChild(routes)
   ]
 })

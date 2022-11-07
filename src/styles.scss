@@ -14,6 +14,41 @@ body {
   
     font-family: 'Poppins' !important;
 }
+
+//Estilos autocomplete google 
+.pac-container{
+    margin-top: -25px;
+    z-index: 999;
+    box-shadow: none;
+    padding:25px;
+    border-radius: 0px 0px 25px 25px;
+    border:none;
+}
+.pac-item-query{
+    font-size: 14px;
+    font-family: 'Poppins' !important;
+    border:none;
+}
+.pac-item:hover{
+    cursor: pointer;
+    background: rgba(107, 27, 145, 0.1);
+    color:var(--color-primary);
+}
+.pac-container:after {
+    /* Disclaimer: not needed to show 'powered by Google' if also a Google Map is shown */
+
+    background-image: none !important;
+    height: 0px;
+}
+.pac-item{
+    color:var(--color-primary);
+    border:none;
+}
+.pac-matched{
+    border:none;
+    color:var(--color-primary);
+
+}
 button{
     color:white !important;
     background:var(--color-primary) !important;

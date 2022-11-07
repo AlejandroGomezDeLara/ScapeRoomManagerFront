@@ -1,0 +1,25 @@
+.searchbar{
+    margin: 0 auto;
+    width: 70%;
+    position: relative;
+    input{
+        border-radius: 25px;
+        padding: 20px;
+        padding-left: 50px;
+        font-size: 14px;
+        margin-right: 10px;
+        border: none;
+        width:100%;
+    }
+    input:focus{
+        outline: none;
+    }
+    .search-icon{
+        position: absolute;
+        left: 2%;
+        top: 30%;
+        font-size: 18px;
+        color:var(--color-primary);
+    }
+}
+

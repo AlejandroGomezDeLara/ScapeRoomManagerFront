@@ -2,12 +2,12 @@
     <video autoplay loop>
         <source src="assets/videos/neon.mp4" type="video/mp4" />
     </video>
-    <div class="logo col-md-5 text-center my-auto ">
-        <h1>Encuentra tu Ocio.</h1>
+    <div class="logo text-center my-auto ">
+        <h1 class="title">Encuentra tu Ocio.</h1>
+        <p class="subtitle">¿No tienes nada que hacer hoy?, Sal de la rutina con OcioVisor!</p>
     </div>
-    <div class="searchbar offset-1 col-md-6 align-self-center">
-        <input type="searchbar" placeholder="Buscar ScapeRoom , LaserTag ...">
-        <button>Buscar</button>
+    <div class="searchbar-container">
+        <app-autocomplete-searchbar (places)="getPlaces($event)"></app-autocomplete-searchbar>
     </div>
-    
+
 </div>
