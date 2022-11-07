@@ -8,7 +8,7 @@ import { Game } from 'src/app/models/Game';
 })
 export class ScapeItemComponent implements OnInit {
 
-  @Input() scape!:Game;
+  @Input() game!:Game;
 
   constructor() { }
 

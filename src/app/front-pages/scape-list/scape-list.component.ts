@@ -8,7 +8,7 @@ import { Game } from 'src/app/models/Game';
 })
 export class ScapeListComponent implements OnInit {
 
-  public scapes:Game[]=[
+  public games:Game[]=[
     {
       id:1,
       name:'Dadoo Scape Room',
@@ -17,6 +17,11 @@ export class ScapeListComponent implements OnInit {
       address:'C/Alberto Durán Tejera nº5, Rota, Cádiz',
       description:'Este es el mejor Scape que existe porque es de miedo jaja',
       image:'assets/imgs/scape.jpeg',
+      min_people:2,
+      max_people:6,
+      min_duration:20,
+      max_duration:60,
+      min_price:12,
       category:{
         name:'Scape Room',
         color:'#6b1b91',
@@ -35,6 +40,11 @@ export class ScapeListComponent implements OnInit {
       address:'Avenida La Marina nº5, Jerez, Cádiz',
       description:'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Inventore hic, excepturi ratione officiis doloremque blanditiis consequatur eaque dicta illum debitis corporis dolore ullam mollitia et saepe expedita molestias. Et, quis.',
       image:'assets/imgs/laser-tag.jpeg',
+      min_people:4,
+      max_people:20,
+      min_duration:50,
+      max_duration:60,
+      min_price:20,
       category:{
         name:'Laser Tag',
         color:'#2a26ac',
@@ -48,6 +58,11 @@ export class ScapeListComponent implements OnInit {
       address:'Avenida La Marina nº5, Jerez, Cádiz',
       description:'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Inventore hic, excepturi ratione officiis doloremque blanditiis consequatur eaque dicta illum debitis corporis dolore ullam mollitia et saepe expedita molestias. Et, quis.',
       image:'assets/imgs/carts.jpeg',
+      min_people:10,
+      max_people:30,
+      min_duration:60,
+      max_duration:120,
+      min_price:25,
       category:{
         name:'Carts',
         color:'#234f0f',

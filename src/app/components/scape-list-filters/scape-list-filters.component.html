@@ -1,5 +1,8 @@
 <div class="filters">
-    <p class="filters-title">Filtros</p>
+    <p class="filters-title">
+        FILTRAR POR <i class="fa fa-sliders"></i></p>
+    <p class="filter">  Precio <span class="filter-range-option">{{min_price}}€ - {{price_selected}}€</span></p>
+    <input  class="filter-range" type="range" [min]="min_price" [max]="max_price" (input)="changePrice($event)" ([ngModel])="price_selected">
     <p>Ciudad</p>
     <p>Opiniones</p>
     <p>Recientes</p>

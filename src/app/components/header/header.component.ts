@@ -25,6 +25,10 @@ export class HeaderComponent implements OnInit {
       route:'/'
     },
     {
+      name:'Mapa',
+      route:'/login'
+    },
+    {
       name:'¿Eres una empresa?',
       route:'/login'
     }

@@ -1,37 +1,40 @@
-<div class="scape row">
-    <div class="scape-logo col-md-3">
-        <img [src]="scape.image" alt="">
+<div class="game row">
+    <div class="game-logo col-md-3">
+        <img [src]="game.image" alt="">
     </div>
-    <div class="scape-content col-md-9">
+    <div class="game-content col-md-9">
         <div class="title row">
-            <p [style.color]="scape.category?.color">{{scape.name}}</p>
+            <p [style.color]="game.category?.color">{{game.name}} <span class="people">({{game?.min_people}} a {{game?.max_people}} personas)</span> </p>
         </div>
+        <span class="game-price">Desde <span class="price" [style.color]="game.category?.color">{{game?.min_price}}€</span>/persona</span>
+        <span class="game-duration">Duración <span class="duration" [style.color]="game.category?.color">{{game?.min_duration}} </span>  a  <span class="duration" [style.color]="game.category?.color">  {{game?.max_duration}}</span> min</span>
 
         <div class="rating row">
             <div class="stars">
-                <i class="fa fa-star" [style.color]="scape.category?.color"></i>
-                <i class="fa fa-star" [style.color]="scape.category?.color"></i>
-                <i class="fa fa-star" [style.color]="scape.category?.color"></i>
-                <i class="fa fa-star" [style.color]="scape.category?.color"></i>
-                <i class="fa-regular fa-star" [style.color]="scape.category?.color"></i>
+                <i class="fa fa-star" [style.color]="game.category?.color"></i>
+                <i class="fa fa-star" [style.color]="game.category?.color"></i>
+                <i class="fa fa-star" [style.color]="game.category?.color"></i>
+                <i class="fa fa-star" [style.color]="game.category?.color"></i>
+                <i class="fa-regular fa-star" [style.color]="game.category?.color"></i>
             </div>
             <div class="ratings">
-                <p>{{scape.reviews}} Opiniones</p>
+                <p> <b>{{game.reviews}}</b> Opiniones</p>
             </div>
 
         </div>
         <div class="categories row">
-            <span [style.background-color]="scape.category?.background_color" [style.color]="scape.category?.color">
-                {{scape.category?.name}} </span>
-            <span [style.background-color]="scape.subcategory?.background_color" [style.color]="scape.subcategory?.color">
-                {{scape.subcategory?.name}} </span>
+            <span [style.background-color]="game.category?.background_color" [style.color]="game.category?.color">
+                {{game.category?.name}} </span>
+            <span [style.background-color]="game.subcategory?.background_color"
+                [style.color]="game.subcategory?.color">
+                {{game.subcategory?.name}} </span>
 
         </div>
         <div class="address row">
-            <p>{{scape.address}}</p>
+            <p>{{game.address}}</p>
         </div>
         <div class="data row">
-            <p>{{scape.description}}</p>
+            <p>{{game.description}}</p>
         </div>
     </div>
 

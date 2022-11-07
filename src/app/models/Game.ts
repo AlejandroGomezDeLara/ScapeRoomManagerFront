@@ -10,5 +10,11 @@ export interface Game{
     description?:string,
     image?:string,
     category?:GameCategory,
-    subcategory?:GameSubcategory
+    subcategory?:GameSubcategory,
+    min_people?:number,
+    max_people?:number,
+    min_duration?:number,
+    max_duration?:number,
+    min_price?:number
+    
 }
