@@ -12,6 +12,7 @@ import { ScapeListFiltersComponent } from 'src/app/components/scape-list-filters
 import { ScapeListFooterComponent } from 'src/app/components/scape-list-footer/scape-list-footer.component';
 import { FormsModule } from '@angular/forms';
 import { AutocompleteSearchbarComponent } from 'src/app/components/autocomplete-searchbar/autocomplete-searchbar.component';
+import { NpnSliderModule } from "npn-slider";
 
 const routes: Routes = [
   {
@@ -35,6 +36,7 @@ const routes: Routes = [
     ScapeListRoutingModule,
     MatCardModule,
     FormsModule,
+    NpnSliderModule,
     RouterModule.forChild(routes)
   ]
 })

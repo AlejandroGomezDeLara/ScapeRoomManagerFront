@@ -6,8 +6,13 @@
 <div class="filters">
     <p class="filters-title">
         FILTRAR POR <i class="fa fa-sliders"></i></p>
-    <p class="filter">  Precio <span class="filter-range-option">{{min_price}}€ - {{price_selected}}€</span></p>
-    <input  class="filter-range" step="1" type="range" [min]="min_price" [max]="max_price" (input)="changePrice($event)" ([ngModel])="price_selected">
+
+    <!-- Filtro precio -->
+    <div class="filter">
+        <p class="filter"> Precio <span class="filter-range-option">{{min_price_selected}}€ - {{max_price_selected}}€</span></p>
+        <npn-slider [min]="min_price" [max]="max_price" (onChange)="changePrice($event)"></npn-slider>
+    </div>
+
     <p>Ciudad</p>
     <p>Opiniones</p>
     <p>Recientes</p>
