@@ -57,6 +57,10 @@ html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 
+.form-check-input:checked{
+  background-color: var(--color-primary);
+  border-color: var(--color-primary);
+}
 /* Estilos para input type range */
 .slider{
   margin: 10px 0px 20px 0px !important;

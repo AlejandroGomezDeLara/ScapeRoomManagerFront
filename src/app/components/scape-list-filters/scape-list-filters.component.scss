@@ -10,6 +10,19 @@
         text-align: center;
         margin-bottom: 30px;
         font-size: 16px;
+        .filter-by{
+            margin-bottom: 10px;
+        }
+        .order-by{
+            margin: 10px;
+        }
+        .form-check{
+            text-align: left;
+            font-weight: lighter;
+            color:black;
+            font-size: 14px;
+        }
+        border-bottom: 1px solid #ccc;
     }
     .filter{
         font-size: 14px;
@@ -22,7 +35,6 @@
     }
     background: white;
     border: 1px solid #ccc;
-    height: 500px;
 }
 .map{
     border: 1px solid #ccc;
