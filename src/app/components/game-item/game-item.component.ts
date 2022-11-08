@@ -2,11 +2,11 @@ import { Component, Input, OnInit } from '@angular/core';
 import { Game } from 'src/app/models/Game';
 
 @Component({
-  selector: 'app-scape-item',
-  templateUrl: './scape-item.component.html',
-  styleUrls: ['./scape-item.component.scss']
+  selector: 'app-game-item',
+  templateUrl: './game-item.component.html',
+  styleUrls: ['./game-item.component.scss']
 })
-export class ScapeItemComponent implements OnInit {
+export class GameItemComponent implements OnInit {
 
   @Input() game!:Game;
 

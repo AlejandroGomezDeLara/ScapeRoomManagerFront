@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ScapeListComponent } from './scape-list.component';
+import { GameItemComponent } from './game-item.component';
 
-describe('ScapeListComponent', () => {
-  let component: ScapeListComponent;
-  let fixture: ComponentFixture<ScapeListComponent>;
+describe('ScapeItemComponent', () => {
+  let component: GameItemComponent;
+  let fixture: ComponentFixture<GameItemComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ScapeListComponent ]
+      declarations: [ GameItemComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(ScapeListComponent);
+    fixture = TestBed.createComponent(GameItemComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

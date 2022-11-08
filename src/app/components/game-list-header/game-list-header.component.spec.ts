@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ScapeItemComponent } from './scape-item.component';
+import { GameListHeaderComponent } from './game-list-header.component';
 
-describe('ScapeItemComponent', () => {
-  let component: ScapeItemComponent;
-  let fixture: ComponentFixture<ScapeItemComponent>;
+describe('GameListHeaderComponent', () => {
+  let component: GameListHeaderComponent;
+  let fixture: ComponentFixture<GameListHeaderComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ScapeItemComponent ]
+      declarations: [ GameListHeaderComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(ScapeItemComponent);
+    fixture = TestBed.createComponent(GameListHeaderComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

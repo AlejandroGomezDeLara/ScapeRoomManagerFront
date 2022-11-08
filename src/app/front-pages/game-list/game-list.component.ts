@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { Game } from 'src/app/models/Game';
 
 @Component({
-  selector: 'app-scape-list',
-  templateUrl: './scape-list.component.html',
-  styleUrls: ['./scape-list.component.scss']
+  selector: 'app-game-list',
+  templateUrl: './game-list.component.html',
+  styleUrls: ['./game-list.component.scss']
 })
-export class ScapeListComponent implements OnInit {
+export class GameListComponent implements OnInit {
 
   public games:Game[]=[
     {

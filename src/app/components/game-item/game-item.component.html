@@ -10,14 +10,14 @@
             <p><i class="fa fa-location-dot"></i> {{game.address}}</p>
         </div>
         <span class="game-price">Desde <span class="price"
-                [style.color]="game.category?.color">{{game?.min_price}}€</span>/persona</span>
+                [style.color]="game.category?.color">{{game.min_price}}€</span>/persona</span>
         <span class="game-duration">Duración <span class="duration"
-                [style.color]="game.category?.color">{{game?.min_duration}} </span> a <span class="duration"
-                [style.color]="game.category?.color"> {{game?.max_duration}}</span> min</span>
+                [style.color]="game.category?.color">{{game.min_duration}} </span> a <span class="duration"
+                [style.color]="game.category?.color"> {{game.max_duration}}</span> min</span>
         <button class="reservation-button" [style.background-color]="game.category?.background_color"
             [style.color]="game.category?.color">Reservar <i class="fa fa-arrow-right"></i></button>
-        <p [style.color]="game.category?.color" class="people"><i class="fa fa-user-group"></i> {{game?.min_people}} -
-            {{game?.max_people}} personas </p>
+        <p [style.color]="game.category?.color" class="people"><i class="fa fa-user-group"></i> {{game.min_people}} -
+            {{game.max_people}} personas </p>
         <div class="rating row">
             <div class="stars">
                 <i class="fa fa-star" [style.color]="game.category?.color"></i>

@@ -1,11 +1,11 @@
 import { AfterViewInit, Component, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
 
 @Component({
-  selector: 'app-scape-list-header',
-  templateUrl: './scape-list-header.component.html',
-  styleUrls: ['./scape-list-header.component.scss']
+  selector: 'app-game-list-header',
+  templateUrl: './game-list-header.component.html',
+  styleUrls: ['./game-list-header.component.scss']
 })
-export class ScapeListHeaderComponent implements OnInit {
+export class GameListHeaderComponent implements OnInit {
   
   @Output() places = new EventEmitter<google.maps.places.PlaceResult>();
 
