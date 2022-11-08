@@ -2,7 +2,9 @@
 
     <app-scape-list-header (places)="searchGames($event)"></app-scape-list-header>
 
+    
     <div class="scape-list-container row">
+        <h1>Servicios de ocio en España: ¡Reserva ya!</h1>
         <div class="row">
             <div class="scape-list col-9">
                 <app-scape-item *ngFor="let game of games" [game]="game"></app-scape-item>

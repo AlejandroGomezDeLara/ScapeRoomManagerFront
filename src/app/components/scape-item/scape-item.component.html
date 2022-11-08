@@ -4,11 +4,20 @@
     </div>
     <div class="game-content col-md-9">
         <div class="title row">
-            <p [style.color]="game.category?.color">{{game.name}} <span class="people">({{game?.min_people}} a {{game?.max_people}} personas)</span> </p>
+            <p [style.color]="game.category?.color">{{game.name}} </p>
         </div>
-        <span class="game-price">Desde <span class="price" [style.color]="game.category?.color">{{game?.min_price}}€</span>/persona</span>
-        <span class="game-duration">Duración <span class="duration" [style.color]="game.category?.color">{{game?.min_duration}} </span>  a  <span class="duration" [style.color]="game.category?.color">  {{game?.max_duration}}</span> min</span>
-
+        <div class="address row">
+            <p><i class="fa fa-location-dot"></i> {{game.address}}</p>
+        </div>
+        <span class="game-price">Desde <span class="price"
+                [style.color]="game.category?.color">{{game?.min_price}}€</span>/persona</span>
+        <span class="game-duration">Duración <span class="duration"
+                [style.color]="game.category?.color">{{game?.min_duration}} </span> a <span class="duration"
+                [style.color]="game.category?.color"> {{game?.max_duration}}</span> min</span>
+        <button class="reservation-button" [style.background-color]="game.category?.background_color"
+            [style.color]="game.category?.color">Reservar <i class="fa fa-arrow-right"></i></button>
+        <p [style.color]="game.category?.color" class="people"><i class="fa fa-user-group"></i> {{game?.min_people}} -
+            {{game?.max_people}} personas </p>
         <div class="rating row">
             <div class="stars">
                 <i class="fa fa-star" [style.color]="game.category?.color"></i>
@@ -25,14 +34,11 @@
         <div class="categories row">
             <span [style.background-color]="game.category?.background_color" [style.color]="game.category?.color">
                 {{game.category?.name}} </span>
-            <span [style.background-color]="game.subcategory?.background_color"
-                [style.color]="game.subcategory?.color">
+            <span [style.background-color]="game.subcategory?.background_color" [style.color]="game.subcategory?.color">
                 {{game.subcategory?.name}} </span>
 
         </div>
-        <div class="address row">
-            <p>{{game.address}}</p>
-        </div>
+       
         <div class="data row">
             <p>{{game.description}}</p>
         </div>

@@ -12,6 +12,16 @@
 
     .game-content{
         position: relative;
+        .reservation-button{
+            position: absolute;
+            top:85px;
+            right:5px;    
+            border-radius: 25px;
+            font-weight: bold;
+            background-color: var(--color-primary-light);
+            padding:10px 20px 10px 20px;
+            border:none;
+        }
         .game-price{
             position: absolute;
             top: 0px;
@@ -32,12 +42,17 @@
                 font-weight: bold;
             }
         }
+        .people{
+            position: absolute;
+            right: 10px;
+            top: 55px;
+            font-size: 14px;
+            font-weight: bold;
+        }
         .title{
             font-size: 22px;
             color:var(--color-primary);
-            .people{
-                font-size: 14px;
-            }
+            
         }
         .rating i{
             margin-bottom: 10px;

@@ -23,7 +23,7 @@ export class ScapeListComponent implements OnInit {
       max_duration:60,
       min_price:12,
       category:{
-        name:'Scape Room',
+        name:'Scape Room ',
         color:'#6b1b91',
         background_color:'#e8c1fa'
       },

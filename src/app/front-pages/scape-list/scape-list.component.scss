@@ -4,6 +4,11 @@
     
     .scape-list-container{
         padding:40px;
+        h1{
+            margin-bottom: 25px;
+            color: var(--color-primary);
+            font-weight: bold;
+        }
         .scape-list{
             background: white;
             border: 0.5px solid #ccc;
