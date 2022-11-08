@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { User } from 'src/app/models/User';
 import { ApiService } from 'src/app/services/api.service';
 import { AuthenticationService } from 'src/app/services/authentication.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-login',
@@ -14,7 +15,8 @@ export class LoginComponent implements OnInit {
 
   form: FormGroup = new FormGroup({});
   isSubmit: boolean = false;
-
+  appName=environment.appName;
+  
   constructor(private readonly formBuilder: FormBuilder,
     private apiService:ApiService,
     private router:Router,

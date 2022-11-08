@@ -3,6 +3,7 @@
     height: 10vh;
     background: white;
     .nav-item{
+        cursor: pointer;
         font-size: 16px;
     }
     .user{
@@ -13,14 +14,12 @@
             object-fit: cover;
             border-radius: 50%;
         }
-        .avatar-placeholder{
-            filter: invert(15%) sepia(69%) saturate(3288%) hue-rotate(271deg) brightness(90%) contrast(100%);
-        }
+        
         .name{
-            color:var(--color-primary);
             margin: 0;
             font-weight:bold;
             padding: 0;
+            margin-right: 20px;
         }
     }
     

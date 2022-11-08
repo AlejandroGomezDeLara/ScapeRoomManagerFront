@@ -27,7 +27,7 @@ export class AppComponent implements OnInit {
           this.redirectFromRoleId(user.role_id);
       } else if (token == 'logout') {
       
-        this.router.navigateByUrl('/login');
+        this.router.navigateByUrl('/');
 
       } else {
         console.log("primera vez");

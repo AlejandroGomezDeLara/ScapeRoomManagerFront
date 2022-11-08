@@ -9,8 +9,8 @@
                 <li class="nav-item" *ngFor="let page of pages">
                     <a class="nav-link active" aria-current="page" [routerLink]="page?.route">{{page?.name}}</a>
                 </li>
-                <li>
-                    <a href="#" (click)="logout()">Cerrar sesion</a>
+                <li class="nav-item" *ngIf="!utilities.isEmptyObject(user)">
+                    <a class="nav-link active" (click)="logout()">Cerrar sesion</a>
                 </li>
             </ul>
             <div class="row user" *ngIf="!utilities.isEmptyObject(user)" routerLink="/profile">
