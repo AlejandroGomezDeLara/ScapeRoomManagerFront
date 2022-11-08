@@ -8,7 +8,7 @@ export interface Game{
     reviews?:number,
     address?:string,
     description?:string,
-    image?:string,
+    images?:string,
     category?:GameCategory,
     subcategory?:GameSubcategory,
     min_people?:number,

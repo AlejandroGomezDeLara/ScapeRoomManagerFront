@@ -1,80 +1,52 @@
-<div class="login-page bg-light">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-10 offset-lg-1">
-                <h3 class="mb-3">Registro</h3>
-                <div class="bg-white shadow rounded">
-                    <div class="row">
-                        <div class="col-md-7 pe-0">
-                            <div class="form-left h-100 py-5 px-5">
-                                <form class="form" class="row g-4" *ngIf="form" [formGroup]="form"
-                                    (ngSubmit)="submitForm()">
+<div class="login-page">
+    <video autoplay muted loop>
+        <source src="assets/videos/neon.mp4" type="video/mp4" />
+    </video>
+    <div class="container text-center">
 
-                                    <div class="col-12">
-                                        <label>Nombre<span class="text-danger">*</span></label>
-                                        <div class="input-group">
-                                            <div class="input-group-text"> <i class="sidenav-link-icon"
-                                                    class="fal fa-user"></i> </div>
-                                            <input type="text" class="form-control" placeholder="Introducir tu nombre"
-                                                formControlName="name">
-                                        </div>
-                                    </div>
-
-                                    <div class="col-12">
-                                        <label>Email<span class="text-danger">*</span></label>
-                                        <div class="input-group">
-                                            <div class="input-group-text"> <i class="sidenav-link-icon"
-                                                    class="fal fa-user"></i> </div>
-                                            <input type="text" class="form-control" placeholder="Introducir email"
-                                                formControlName="email">
-                                        </div>
-                                    </div>
-
-                                    <div class="col-12">
-                                        <label>Contraseña<span class="text-danger">*</span></label>
-                                        <div class="input-group">
-                                            <div class="input-group-text"><i class="sidenav-link-icon"
-                                                    class="fal fa-cog"></i></div>
-                                            <input type="password" class="form-control"
-                                                placeholder="Introducir contraseña" formControlName="password">
-                                        </div>
-                                    </div>
-
-                                    <div class="col-12">
-                                        <label>Confirmar contraseña<span class="text-danger">*</span></label>
-                                        <div class="input-group">
-                                            <div class="input-group-text"><i class="sidenav-link-icon"
-                                                    class="fal fa-cog"></i></div>
-                                            <input type="password" class="form-control"
-                                                placeholder="Introducir contraseña" formControlName="password_confirmation">
-                                        </div>
-                                    </div>
+        <p class="title">Diviértete con OcioVisor</p>
 
 
-
-                                    <div class="row">
-                                        <div class="col-8 my-auto">
-                                            <a href="/login">Ya tengo cuenta</a>
-                                        </div>
-                                        <div class="col-4">
-                                            <button type="submit" class="btn px-4 float-end mt-4"
-                                                [disabled]="!form.valid">Registrarse</button>
-                                        </div>
-                                        
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                        <div class="col-md-5 ps-0 d-none d-md-block">
-                            <div class="form-right h-100 text-white text-center pt-5">
-                                <i class="bi bi-bootstrap"></i>
-                                <h2 class="fs-1">ScapeRoomManagerV1</h2>
-                            </div>
-                        </div>
-                    </div>
+        <form class="form row g-4" *ngIf="form" [formGroup]="form" (ngSubmit)="submitForm()">
+            <div class="col-12">
+                <div class="input-group">
+                    <div class="input-group-text"> <i class="form-icon fa fa-user"></i> </div>
+                    <input type="text" class="form-control" placeholder="Introducir nombre" formControlName="name">
                 </div>
-                <p class="text-end text-secondary mt-3">Yami 2022</p>
             </div>
-        </div>
+
+            <div class="col-12">
+                <div class="input-group">
+                    <div class="input-group-text"> <i class="form-icon fa fa-envelope"></i> </div>
+                    <input type="text" class="form-control" placeholder="Introducir email" formControlName="email">
+                </div>
+            </div>
+
+            <div class="col-12">
+                <div class="input-group">
+                    <div class="input-group-text"><i class="form-icon fa fa-lock"></i></div>
+                    <input type="password" class="form-control" placeholder="Introducir contraseña"
+                        formControlName="password">
+                </div>
+            </div>
+
+            <div class="col-12">
+                <div class="input-group">
+                    <div class="input-group-text"><i class="form-icon fa fa-lock-open"></i></div>
+                    <input type="password" class="form-control" placeholder="Confirmar contraseña"
+                        formControlName="password_confirmation">
+                </div>
+            </div>
+
+            <div class="col-12">
+                <div class="input-group">
+                    <button type="submit" class="btn-submit" [disabled]="!form.valid">Registrarse</button>
+                </div>
+            </div>
+
+            <div class="col-12 text-center">
+                <p>¿Ya tienes una cuenta? <u routerLink="/login"> Login</u></p>
+            </div>
+        </form>
     </div>
 </div>
