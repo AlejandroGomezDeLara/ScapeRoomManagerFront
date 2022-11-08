@@ -35,18 +35,7 @@ export class RegisterComponent implements OnInit {
   public submitForm(): void {
     this.isSubmit = true;
     //We process the data
-    if (this.form.valid) {
-      this.apiService.login(this.form.value).subscribe((user:User)=>{
-        console.log(user);
-        if(user.api_token)
-          this.auth.login(user.api_token);
-      },error=>{
-        alert("Error de autentificación")
-      });
-      this.resetForm();
-    } else {
-      console.log(this.form.errors);
-    }
+   
     //Then we reset the form
   }
 

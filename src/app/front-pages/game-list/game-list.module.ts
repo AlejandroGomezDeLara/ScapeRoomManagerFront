@@ -12,6 +12,7 @@ import { GameListFooterComponent } from 'src/app/components/game-list-footer/gam
 import { FormsModule } from '@angular/forms';
 import { AutocompleteSearchbarComponent } from 'src/app/components/autocomplete-searchbar/autocomplete-searchbar.component';
 import { NpnSliderModule } from "npn-slider";
+import { AppLoadingComponent } from 'src/app/components/app-loading/app-loading.component';
 
 const routes: Routes = [
   {
@@ -27,7 +28,8 @@ const routes: Routes = [
     GameListHeaderComponent,
     GameListFiltersComponent,
     GameListFooterComponent,
-    AutocompleteSearchbarComponent
+    AutocompleteSearchbarComponent,
+    AppLoadingComponent
 ],
   imports: [
     CommonModule,

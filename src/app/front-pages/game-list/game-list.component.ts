@@ -1,13 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { Game } from 'src/app/models/Game';
+import { ApiService } from 'src/app/services/api.service';
 
 @Component({
   selector: 'app-game-list',
   templateUrl: './game-list.component.html',
   styleUrls: ['./game-list.component.scss']
 })
-export class GameListComponent implements OnInit {
+export class GameListComponent implements OnInit,AfterViewInit {
 
+  public isLoading:boolean=true;
   public games:Game[]=[
     {
       id:1,
@@ -89,13 +91,29 @@ export class GameListComponent implements OnInit {
     }
   ];
 
-  constructor() { }
+  constructor(private apiService:ApiService) { }
+
+  ngAfterViewInit(): void {
+    this.getGames();
+  }
 
   ngOnInit(): void {
   }
 
+
   public searchGames(places:google.maps.places.PlaceResult):void{
-    alert(places);
+    console.log(places);
+  }
+
+  public getGames():void{
+    this.apiService.getEntity('games').subscribe((games:Game[])=>{
+      console.log(games);
+      this.games=games;
+      this.isLoading=false;
+    },(error:Error)=>{
+      this.isLoading=false;
+      console.log(error);
+    });
   }
   
 

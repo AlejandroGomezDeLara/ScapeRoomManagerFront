@@ -5,6 +5,25 @@
     .nav-item{
         font-size: 16px;
     }
+    .user{
+        cursor: pointer;
+        .avatar,.avatar-placeholder{
+            width: 50px;
+            height: 50px;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+        .avatar-placeholder{
+            filter: invert(15%) sepia(69%) saturate(3288%) hue-rotate(271deg) brightness(90%) contrast(100%);
+        }
+        .name{
+            color:var(--color-primary);
+            margin: 0;
+            font-weight:bold;
+            padding: 0;
+        }
+    }
+    
 }
 .navbar-brand{
     font-size: 28px;

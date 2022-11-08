@@ -9,7 +9,24 @@
                 <li class="nav-item" *ngFor="let page of pages">
                     <a class="nav-link active" aria-current="page" [routerLink]="page?.route">{{page?.name}}</a>
                 </li>
-            </ul>    
+            </ul>
+            <div class="row user" *ngIf="!utilities.isEmptyObject(user)" routerLink="/profile">
+                <div class="col-3 my-auto">
+                    <img class="avatar" [src]="user?.avatar" alt="">
+                </div>
+                <div class="col-8 offset-1 my-auto">
+                    <p class="name">{{user?.name}}</p>
+                </div>
+            </div>
+
+            <div class="row user" *ngIf="utilities.isEmptyObject(user)" routerLink="/login">
+                <div class="col-3 my-auto">
+                    <img class="avatar-placeholder" src="assets/imgs/user.png" alt="">
+                </div>
+                <div class="col-8 offset-1 my-auto">
+                    <p class="name">Iniciar Sesión</p>
+                </div>
+            </div>
         </div>
     </div>
 </nav>
