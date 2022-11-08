@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { User } from 'src/app/models/User';
 import { ApiService } from 'src/app/services/api.service';
 import { AuthenticationService } from 'src/app/services/authentication.service';
+import { confirmPassword } from 'src/app/utils/utils';
 
 @Component({
   selector: 'app-register',
@@ -27,15 +28,22 @@ export class RegisterComponent implements OnInit {
 
   public initForm(): FormGroup {
     return this.formBuilder.group({
+      name: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required],
+      password_confirmation: ['', [Validators.required, confirmPassword]]
     });
   }
 
   public submitForm(): void {
     this.isSubmit = true;
     //We process the data
-   
+    
+    this.apiService.register(this.form.value).subscribe(res=>{
+      console.log(res);
+    },error=>{
+      console.log(error);
+    });
     //Then we reset the form
   }
 

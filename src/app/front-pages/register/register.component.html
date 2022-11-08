@@ -9,6 +9,17 @@
                             <div class="form-left h-100 py-5 px-5">
                                 <form class="form" class="row g-4" *ngIf="form" [formGroup]="form"
                                     (ngSubmit)="submitForm()">
+
+                                    <div class="col-12">
+                                        <label>Nombre<span class="text-danger">*</span></label>
+                                        <div class="input-group">
+                                            <div class="input-group-text"> <i class="sidenav-link-icon"
+                                                    class="fal fa-user"></i> </div>
+                                            <input type="text" class="form-control" placeholder="Introducir tu nombre"
+                                                formControlName="name">
+                                        </div>
+                                    </div>
+
                                     <div class="col-12">
                                         <label>Email<span class="text-danger">*</span></label>
                                         <div class="input-group">
@@ -29,17 +40,27 @@
                                         </div>
                                     </div>
 
-
-
-                                    <div class="col-sm-6">
-                                        <a href="#" class="float-end text-primary">Olvidaste la contraseña?</a>
+                                    <div class="col-12">
+                                        <label>Confirmar contraseña<span class="text-danger">*</span></label>
+                                        <div class="input-group">
+                                            <div class="input-group-text"><i class="sidenav-link-icon"
+                                                    class="fal fa-cog"></i></div>
+                                            <input type="password" class="form-control"
+                                                placeholder="Introducir contraseña" formControlName="password_confirmation">
+                                        </div>
                                     </div>
 
-                                    <div class="col-12">
-                                        <button type="submit" class="btn px-4 float-end mt-4"
-                                            [disabled]="!form.valid">Entrar</button>
-                                            <button type="submit" class="btn px-4 float-end mt-4" routerLink="/register">Register</button>
 
+
+                                    <div class="row">
+                                        <div class="col-8 my-auto">
+                                            <a href="/login">Ya tengo cuenta</a>
+                                        </div>
+                                        <div class="col-4">
+                                            <button type="submit" class="btn px-4 float-end mt-4"
+                                                [disabled]="!form.valid">Registrarse</button>
+                                        </div>
+                                        
                                     </div>
                                 </form>
                             </div>

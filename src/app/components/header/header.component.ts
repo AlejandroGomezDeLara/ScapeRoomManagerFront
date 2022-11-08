@@ -28,12 +28,8 @@ export class HeaderComponent implements OnInit,AfterViewInit {
       route:'/'
     },
     {
-      name:'Mapa',
-      route:'/login'
-    },
-    {
       name:'¿Eres una empresa?',
-      route:'/login'
+      route:'/register'
     }
 
   ];
@@ -55,6 +51,9 @@ export class HeaderComponent implements OnInit,AfterViewInit {
   }
 
 
+  public logout():void{
+    this.auth.logout();
+  }
 
   
 
