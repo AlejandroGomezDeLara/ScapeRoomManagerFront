@@ -1,6 +1,8 @@
 <nav class="navbar sticky-top navbar-expand-lg navbar-light ">
     <div class="container-fluid">
-        <a class="navbar-brand" href="#">OcioVisor</a>
+        <a class="navbar-brand" href="#">
+            <img src="assets/imgs/logo-transparent.png" alt="">
+        </a>
         <button class="navbar-toggler" type="button" aria-expanded="false" aria-label="Toggle navigation">
             <i class="fas fa-bars"></i>
         </button>
@@ -15,10 +17,10 @@
             </ul>
             <div class="row user" *ngIf="!utilities.isEmptyObject(user)" routerLink="/profile">
                 <div class="col-3 my-auto">
-                    <img class="avatar" [src]="user?.avatar" alt="">
+                    <img class="avatar" [src]="user.avatar" alt="">
                 </div>
                 <div class="col-7 offset-2 my-auto">
-                    <p class="name">{{user?.name}}</p>
+                    <p class="name">{{user.name}}</p>
                 </div>
             </div>
 

@@ -1,6 +1,5 @@
 
 .navbar{
-    height: 10vh;
     background: white;
     .nav-item{
         cursor: pointer;
@@ -30,7 +29,9 @@
     
 }
 .navbar-brand{
-    font-size: 28px;
-    font-weight: bold;
-    color:var(--color-primary);
+    img{
+        width: 150px;
+    }
+    
+    
 }

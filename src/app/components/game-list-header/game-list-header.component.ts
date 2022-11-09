@@ -1,4 +1,5 @@
 import { AfterViewInit, Component, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-game-list-header',
@@ -7,6 +8,9 @@ import { AfterViewInit, Component, EventEmitter, OnInit, Output, ViewChild } fro
 })
 export class GameListHeaderComponent implements OnInit {
   
+  title:string='Se acabó la rutina.';
+  subtitle:string='Encuentra tu diversión con la plataforma Nº1 de ocio en España!';
+
   @Output() places = new EventEmitter<google.maps.places.PlaceResult>();
 
   constructor() { }

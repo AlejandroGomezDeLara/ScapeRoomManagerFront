@@ -3,8 +3,8 @@
         <source src="assets/videos/neon.mp4" type="video/mp4" />
     </video>
     <div class="logo text-center">
-        <h1 class="title">Encuentra tu Ocio.</h1>
-        <p class="subtitle">¿No tienes nada que hacer hoy?, Sal de la rutina con OcioVisor!</p>
+        <h1 class="title">{{title}}</h1>
+        <p class="subtitle">{{subtitle}}</p>
     </div>
     <div class="searchbar-container">
         <app-autocomplete-searchbar (places)="getPlaces($event)"></app-autocomplete-searchbar>

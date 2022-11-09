@@ -21,11 +21,16 @@ a {
         padding:0px;
         border-radius: 15px;
         z-index: 99;
+        .logo{
+            margin-top: 20px;
+            padding:10px;
+            width: 100px;
+        }
         .form-icon{
             color:var(--color-primary);
           }
         .form{
-            padding:40px;
+            padding:25px;
             .input-group{
                 width: 70%;
                 margin: 0 auto;
@@ -72,9 +77,8 @@ a {
     .title{
         color:var(--color-primary);
         font-weight: bold;
-        font-size: 30px;
-        margin-bottom: 10px;
-        margin-top: 50px;
+        margin-top: 14px;
+        font-size: 24px;
     }
 }
 .form-right,button{

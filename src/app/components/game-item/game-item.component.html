@@ -13,8 +13,7 @@
         <!-- Data -->
         <span class="game-price">Desde <span class="price"
                 [style.color]="game.category?.color">{{game.min_price}}€</span>/persona</span>
-        <span class="game-duration">Duración <span class="duration"
-                [style.color]="game.category?.color">{{game.min_duration}} </span> a <span class="duration"
+        <span class="game-duration"><i class="fa-regular fa-clock" [style.color]="game.category?.color"></i> <span class="duration"
                 [style.color]="game.category?.color"> {{game.max_duration}}</span> min</span>
         <button class="reservation-button" [style.background-color]="game.category?.background_color"
             [style.color]="game.category?.color">Reservar <i class="fa fa-arrow-right"></i></button>
