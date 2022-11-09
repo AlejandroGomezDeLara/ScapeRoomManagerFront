@@ -1,15 +1,24 @@
 <div class="content">
 
-    <app-game-list-header (places)="searchGames($event)"></app-game-list-header>
+    <app-game-list-header (places)="filterGamesByAddress($event)" (removeAddress)="removeAddress()"></app-game-list-header>
 
 
     <div class="game-list-container row">
-        <h1>Resultados de ocio en {{address_selected}} ¡Reserva ya!</h1>
         <div class="row">
             <div class="game-list col-9">
-                <ng-container *ngIf="!isLoading">
+                <ng-container *ngIf="!isLoading && filteredGames.length> 0">
+                    <app-game-item *ngFor="let game of filteredGames" [game]="game"></app-game-item>
+                </ng-container>
+                <ng-container *ngIf="!isLoading && filteredGames.length<= 0">
+                    <h1>Lo sentimos no hay eventos disponibles en {{address_selected}}, aquí tienes resultados similares</h1>
                     <app-game-item *ngFor="let game of games" [game]="game"></app-game-item>
                 </ng-container>
+
+                <ng-container *ngIf="!isLoading && filteredGames.length< 3 && filteredGames.length>0">
+                    <h1 style="margin-bottom: 100px">Resultados similares</h1>
+                    <app-game-item *ngFor="let game of games" [game]="game"></app-game-item>
+                </ng-container>
+
                 <app-loading *ngIf="isLoading"></app-loading>
 
             </div>

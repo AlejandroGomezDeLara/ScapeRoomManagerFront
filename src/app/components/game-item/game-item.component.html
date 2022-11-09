@@ -5,10 +5,9 @@
     <div class="game-content col-md-9">
         <div class="title row">
             <p [style.color]="game.category?.color">{{game.name}} </p>
+            <p class="enterprise"><i class="fa-solid fa-building" [style.color]="game.category?.color"></i> {{game.user?.name}}</p>
         </div>
-        <div class="address row">
-            <p><i class="fa fa-location-dot"></i> {{game.address}}</p>
-        </div>
+        
 
         <!-- Data -->
         <span class="game-price">Desde <span class="price"
@@ -23,13 +22,18 @@
        <!--  Componente rating -->
         <app-rating [color]="game.category?.color" [reviews]="game.reviews" [rating]="game.rating!"></app-rating>
 
+        
+
         <!-- Categorias -->
         <div class="categories row">
             <span [style.background-color]="game.category?.background_color" [style.color]="game.category?.color">
                 {{game.category?.name}} </span>
             <span [style.background-color]="game.subcategory?.background_color" [style.color]="game.subcategory?.color">
                 {{game.subcategory?.name}} </span>
+        </div>
 
+        <div class="address row">
+            <p><i class="fa fa-location-dot"></i> {{game.address}}</p>
         </div>
 
         <div class="data row">

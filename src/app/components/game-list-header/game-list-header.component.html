@@ -1,17 +1,19 @@
-<div class="header row">
-    <div class="city-selected">
+<div class="header row" [style.height]="address_selected ? '50vh' : '50vh'">
+    <div class="city-selected my-auto" *ngIf="address_selected" (click)="removeAddressSelected()">
         <p> <i class="search-icon fa fa-location-dot"></i>
-            {{address_selected}}</p>
+            Mostrando resultados en {{address_selected}}
+        <button class="change-city-btn">Cambiar ciudad</button>
     </div>
     <video autoplay loop>
         <source src="assets/videos/neon.mp4" type="video/mp4" />
     </video>
-    <div class="logo text-center">
-        <h1 class="title">{{title}}</h1>
-        <p class="subtitle">{{subtitle}}</p>
-    </div>
-    <div class="searchbar-container">
-        <app-autocomplete-searchbar (places)="getPlaces($event)"></app-autocomplete-searchbar>
-    </div>
-
+    <ng-container *ngIf="!address_selected">
+        <div class="logo text-center">
+            <h1 class="title">{{title}}</h1>
+            <p class="subtitle">{{subtitle}}</p>
+        </div>
+        <div class="searchbar-container">
+            <app-autocomplete-searchbar (places)="getPlaces($event)"></app-autocomplete-searchbar>
+        </div>
+    </ng-container>
 </div>

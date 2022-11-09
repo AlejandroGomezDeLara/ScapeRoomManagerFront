@@ -1,10 +1,13 @@
 import { GameCategory } from "./GameCategory";
 import { GameSubcategory } from "./GameSubcategory";
+import { User } from "./User";
 
 export interface Game{
     id?:number;
     name?:string;
     rating?:number,
+    user?:User,
+    city?:string,
     reviews?:number,
     address?:string,
     description?:string,

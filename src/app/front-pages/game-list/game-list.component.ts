@@ -12,6 +12,7 @@ export class GameListComponent implements OnInit,AfterViewInit {
 
   public isLoading:boolean=true;
   public address_selected:string='España';
+  public filteredGames:Game[]=[];
   public games:Game[]=[
     {
       id:1,
@@ -103,16 +104,31 @@ export class GameListComponent implements OnInit,AfterViewInit {
   }
 
 
-  public searchGames(places:google.maps.places.PlaceResult):void{
+  public filterGamesByAddress(places:google.maps.places.PlaceResult):void{
     this.address_selected=places.address_components![0].long_name;
     console.log(places);
-    
+    this.filteredGames=this.games.filter(x=>{
+      if(this.address_selected.includes(x.address!)
+      || this.address_selected.includes(x.name!)
+      || this.address_selected.includes(x.city!)){
+        return true;
+      }
+
+      else return false;
+    },(error:Error)=>{
+      console.log(error);
+    });
+  }
+
+  public removeAddress():void{
+    this.filteredGames=[...this.games];
   }
 
   public getGames():void{
     this.apiService.getEntity('games').subscribe((games:Game[])=>{
       console.log(games);
       this.games=games;
+      this.filteredGames=[...games];
       this.isLoading=false;
     },(error:Error)=>{
       this.isLoading=false;
@@ -120,5 +136,6 @@ export class GameListComponent implements OnInit,AfterViewInit {
     });
   }
   
+
 
 }
