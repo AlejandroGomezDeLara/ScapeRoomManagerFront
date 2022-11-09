@@ -8,6 +8,7 @@ import { environment } from 'src/environments/environment';
 })
 export class GameListHeaderComponent implements OnInit {
   
+  address_selected:string='Madrid, España'
   title:string='Se acabó la rutina.';
   subtitle:string='Encuentra tu diversión con la plataforma Nº1 de ocio en España!';
 
@@ -20,5 +21,7 @@ export class GameListHeaderComponent implements OnInit {
 
   public getPlaces(places:google.maps.places.PlaceResult):void{
     this.places.emit(places);
+    this.address_selected=places.formatted_address!;
+    
   }
 }

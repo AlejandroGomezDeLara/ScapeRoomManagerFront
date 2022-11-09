@@ -1,4 +1,5 @@
 import { AfterViewInit, Component, OnInit } from '@angular/core';
+import { ChildActivationStart } from '@angular/router';
 import { Game } from 'src/app/models/Game';
 import { ApiService } from 'src/app/services/api.service';
 
@@ -10,6 +11,7 @@ import { ApiService } from 'src/app/services/api.service';
 export class GameListComponent implements OnInit,AfterViewInit {
 
   public isLoading:boolean=true;
+  public address_selected:string='España';
   public games:Game[]=[
     {
       id:1,
@@ -102,7 +104,9 @@ export class GameListComponent implements OnInit,AfterViewInit {
 
 
   public searchGames(places:google.maps.places.PlaceResult):void{
+    this.address_selected=places.address_components![0].long_name;
     console.log(places);
+    
   }
 
   public getGames():void{

@@ -25,8 +25,8 @@ export class AutocompleteSearchbarComponent implements OnInit,AfterViewInit {
     const autocomplete = new google.maps.places.Autocomplete(this.addresstext.nativeElement,
         {
             componentRestrictions: { country: 'ES' },
-            types: [this.adressType]  // 'establishment' / 'address' / 'geocode'
-        });
+            types: ['(cities)'],
+          });
     google.maps.event.addListener(autocomplete, 'place_changed', () => {
         const place = autocomplete.getPlace();
         this.places.emit(place);

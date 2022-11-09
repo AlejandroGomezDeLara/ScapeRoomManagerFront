@@ -70,7 +70,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     .right-handle,.left-handle{
       .handle-tooltip{
         border:1px solid var(--color-primary) !important;
-        color:var(--color-primary) !important;
+        color:white !important;
         background:var(--color-primary-light) !important;
       }
       .handle-tooltip::before{

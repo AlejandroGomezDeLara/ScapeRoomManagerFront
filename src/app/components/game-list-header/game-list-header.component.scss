@@ -2,7 +2,21 @@
     border-bottom: 0.5px solid #ccc;
     height: 50vh;
     position: relative;
-    
+    .city-selected{
+        position: absolute;
+        top: 60px !important;
+        left: 55px;
+        z-index: 99999;
+        i{
+            color: var(--color-primary);
+        }
+        p{
+            color:white;
+            font-size: 18px;
+            font-weight: bold;
+        }
+       
+    }
     video{
         filter: brightness(40%);
         width: 100%;
@@ -56,6 +70,33 @@
         width: 100vw;
         position: relative;
         z-index: 999;
+        .searchbar{
+            margin: 0 auto;
+            width: 20vw;
+            position: relative;
+            float: left;
+            box-shadow: var(--item-box-shadow);
+            input{
+                border-radius: 25px;
+                padding: 20px;
+                padding-left: 30px;
+                font-size: 14px;
+                margin-right: 10px;
+                border: none;
+                width:100%;
+            }
+            input:focus{
+                outline: none;
+            }
+            .search-icon{
+                position: absolute;
+                left: 2%;
+                top: 35%;
+                font-size: 18px;
+                color:var(--color-primary);
+            }
+        }
+        
         
        
     }
