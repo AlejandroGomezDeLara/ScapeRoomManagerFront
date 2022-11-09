@@ -10,7 +10,7 @@
                     <app-game-item *ngFor="let game of filteredGames" [game]="game"></app-game-item>
                 </ng-container>
                 <ng-container *ngIf="!isLoading && filteredGames.length<= 0">
-                    <h1>Lo sentimos no hay eventos disponibles en {{address_selected}}, aquí tienes resultados similares</h1>
+                    <h1 style="margin-bottom: 150px;">Lo sentimos no hay eventos con esos filtros, aquí tienes resultados similares</h1>
                     <app-game-item *ngFor="let game of games" [game]="game"></app-game-item>
                 </ng-container>
 
@@ -24,7 +24,7 @@
             </div>
 
             <div class="filters col-3">
-                <app-game-list-filters></app-game-list-filters>
+                <app-game-list-filters (filter)="applyFilters($event)"></app-game-list-filters>
             </div>
         </div>
 

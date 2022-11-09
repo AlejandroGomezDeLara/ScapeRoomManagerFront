@@ -1,6 +1,8 @@
-import { AfterViewInit, Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, NgZone, OnInit } from '@angular/core';
 import { ChildActivationStart } from '@angular/router';
 import { Game } from 'src/app/models/Game';
+import { GameCategory } from 'src/app/models/GameCategory';
+import { GameSubcategory } from 'src/app/models/GameSubcategory';
 import { ApiService } from 'src/app/services/api.service';
 
 @Component({
@@ -13,115 +15,17 @@ export class GameListComponent implements OnInit,AfterViewInit {
   public isLoading:boolean=true;
   public address_selected:string='España';
   public filteredGames:Game[]=[];
-  public games:Game[]=[
-    {
-      id:1,
-      name:'Dadoo Scape Room',
-      rating:4,
-      reviews:123,
-      address:'C/Alberto Durán Tejera nº5, Rota, Cádiz',
-      description:'Este es el mejor Scape que existe porque es de miedo jaja',
-      images:'assets/imgs/scape.jpeg',
-      min_people:2,
-      max_people:6,
-      min_duration:20,
-      max_duration:60,
-      min_price:12,
-      category:{
-        name:'Scape Room ',
-        color:'#6b1b91',
-        background_color:'#e8c1fa'
-      },
-      subcategory:{
-        name:'Miedo',
-        color:'#343a40',
-        background_color:'#cfd2d2'
-      },
-    },
-    {
-      id:2,
-      name:'Laser Tag Jerez de la frontera',
-      reviews:42,
-      address:'Avenida La Marina nº5, Jerez, Cádiz',
-      description:'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Inventore hic, excepturi ratione officiis doloremque blanditiis consequatur eaque dicta illum debitis corporis dolore ullam mollitia et saepe expedita molestias. Et, quis.',
-      images:'assets/imgs/laser-tag.jpeg',
-      min_people:4,
-      max_people:20,
-      min_duration:50,
-      max_duration:60,
-      min_price:20,
-      category:{
-        name:'Laser Tag',
-        color:'#2a26ac',
-        background_color:'#adabf7'
-      },
-    },
-    {
-      id:3,
-      name:'Carts Área Sur Jerez',
-      reviews:54,
-      address:'Avenida La Marina nº5, Jerez, Cádiz',
-      description:'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Inventore hic, excepturi ratione officiis doloremque blanditiis consequatur eaque dicta illum debitis corporis dolore ullam mollitia et saepe expedita molestias. Et, quis.',
-      images:'assets/imgs/carts.jpeg',
-      min_people:10,
-      max_people:30,
-      min_duration:60,
-      max_duration:120,
-      min_price:25,
-      category:{
-        name:'Carts',
-        color:'#234f0f',
-        background_color:'#c4f5ae'
-      },
-      subcategory:{
-        name:'Interior',
-        color:'#343a40',
-        background_color:'#cfd2d2'
-      },
-    },
-    {
-      id:4,
-      name:'San Fernando Scape Room',
-      reviews:54,
-      address:'Avenida La Marina nº5, Jerez, Cádiz',
-      description:'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Inventore hic, excepturi ratione officiis doloremque blanditiis consequatur eaque dicta illum debitis corporis dolore ullam mollitia et saepe expedita molestias. Et, quis.',
-      images:'assets/imgs/scape.jpeg',
-      category:{
-        name:'Scape Room',
-        color:'#6b1b91',
-        background_color:'#e8c1fa'
-      },
-    }
-  ];
+  public games:Game[]=[];
 
-  constructor(private apiService:ApiService) { }
+
+  constructor(private apiService:ApiService,
+    private ngZone:NgZone) { }
 
   ngAfterViewInit(): void {
     this.getGames();
   }
 
   ngOnInit(): void {
-  }
-
-
-  public filterGamesByAddress(places:google.maps.places.PlaceResult):void{
-    this.address_selected=places.address_components![0].long_name;
-    console.log(places);
-    this.filteredGames=this.games.filter(x=>{
-      if(this.address_selected.includes(x.address!)
-      || this.address_selected.includes(x.name!)
-      || this.address_selected.includes(x.city!)){
-        return true;
-      }
-
-      else return false;
-    },(error:Error)=>{
-      console.log(error);
-    });
-  }
-
-  public removeAddress():void{
-    this.filteredGames=[...this.games];
   }
 
   public getGames():void{
@@ -135,7 +39,48 @@ export class GameListComponent implements OnInit,AfterViewInit {
       console.log(error);
     });
   }
+
   
+  public removeAddress():void{
+    this.filteredGames=[...this.games];
+  }
+
+ 
+  public filterGamesByAddress(places:google.maps.places.PlaceResult):void{
+    this.address_selected=places.address_components![0].long_name;
+    console.log(places);
+    this.filteredGames=this.filteredGames.filter(x=>{
+      if(this.address_selected.includes(x.address!)
+      || this.address_selected.includes(x.name!)
+      || this.address_selected.includes(x.city!)){
+        return true;
+      }
+      else return false;
+    },(error:Error)=>{
+      console.log(error);
+    });
+  }
+
+  
+
+  public applyFilters(event:any):void{
+    
+    let min_price=event.min_price;
+    let max_price=event.max_price;
+    let min_people=event.min_people;
+    let max_people=event.max_people;
+    let min_duration=event.min_duration;
+    let max_duration=event.max_duration;
+    
+    this.ngZone.run(()=>{
+      this.filteredGames=this.games.filter(x=>{
+        if((x.min_price! <= max_price && x.min_price! >= min_price) &&
+          (x.max_duration! >= min_duration && x.max_duration! <= max_duration) &&
+          (x.min_people! <= min_people && x.max_people! <=max_people && x.max_people! >=min_people)) return true;
+        else return false;
+      });
+    });
+  }
 
 
 }
