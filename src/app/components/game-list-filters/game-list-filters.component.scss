@@ -1,8 +1,19 @@
 .filters{
+    box-shadow: var(--item-box-shadow);
+    position: relative;
+    border-radius: 10px;
+    background: white;
     margin-left: 25px;
     padding:15px;
     p{
         margin: 0;
+    }
+    .form-check-label{
+        font-weight: bold;
+    }
+    .form-check-input{
+        transform: scale(1.2);
+
     }
     .filters-title{
         color:var(--color-primary);
@@ -19,6 +30,7 @@
         .form-check{
             text-align: left;
             font-weight: lighter;
+            
             color:black;
             font-size: 14px;
         }
@@ -33,17 +45,17 @@
         font-weight: bold;
         color:var(--color-primary);
     }
-    background: white;
-    border: 1px solid #ccc;
 }
 .map{
-    border: 1px solid #ccc;
-    background-color: white;
+    box-shadow: var(--item-box-shadow);
+    border-radius: 10px;
+    background: white;
     height: auto;
     margin-bottom: 20px;
     margin-left: 25px;
     position: relative;
     img{
+        border-radius: 10px 10px 0px 0px;
         width: 100%;
         height: 100px;
         object-fit: cover;
@@ -59,5 +71,6 @@
     }
 }
 .map:hover{
+    background-color: rgba(33,33,33,0.05);
     cursor: pointer;
 }

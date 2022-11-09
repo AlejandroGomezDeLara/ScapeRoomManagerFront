@@ -16,6 +16,19 @@
         <npn-slider [min]="min_price" [max]="max_price" (onChange)="changePrice($event)"></npn-slider>
     </div>
 
+    <div class="filter">
+        <p> Personas <span class="filter-range-option">{{min_people_selected}} -
+                {{max_people_selected}}</span></p>
+        <npn-slider [min]="1" [max]="30" (onChange)="changePeople($event)"></npn-slider>
+    </div>
+
+    <div class="filter">
+        <p> Duración <span class="filter-range-option">{{min_duration_selected}} -
+                {{max_duration_selected}} min</span></p>
+        <npn-slider [min]="10" [max]="180" (onChange)="changeDuration($event)"></npn-slider>
+    </div>
+
+
     <div class="filters-title">
         <p class="order-by">CATEGORIAS <i class="fa fa-list"></i></p>
     </div>
@@ -23,8 +36,9 @@
     <div class="form-check">
         <label class="form-check-label" for="nombre">
             Scape Room
+            <input class="form-check-input" name="Nombre" type="checkbox" id="1">
         </label>
-        <input class="form-check-input" name="Nombre" type="checkbox" id="1">
+        
     </div>
     <div class="form-check">
         <input class="form-check-input" name="Nombre" type="checkbox" id="1">

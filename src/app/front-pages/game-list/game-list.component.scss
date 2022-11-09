@@ -1,5 +1,5 @@
 .content{
-    background: var(--light-background);
+    background: white;
     width: 100vw;
     
     .game-list-container{
@@ -10,8 +10,8 @@
             font-weight: bold;
         }
         .game-list{
-            background: white;
-            border: 0.5px solid #ccc;
+         /*    background: white;
+            border: 0.5px solid #ccc; */
             margin-bottom: 25px;
             
         }
