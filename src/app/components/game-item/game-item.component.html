@@ -9,6 +9,8 @@
         <div class="address row">
             <p><i class="fa fa-location-dot"></i> {{game.address}}</p>
         </div>
+
+        <!-- Data -->
         <span class="game-price">Desde <span class="price"
                 [style.color]="game.category?.color">{{game.min_price}}€</span>/persona</span>
         <span class="game-duration">Duración <span class="duration"
@@ -18,19 +20,11 @@
             [style.color]="game.category?.color">Reservar <i class="fa fa-arrow-right"></i></button>
         <p [style.color]="game.category?.color" class="people"><i class="fa fa-user-group"></i> {{game.min_people}} -
             {{game.max_people}} personas </p>
-        <div class="rating row">
-            <div class="stars">
-                <i class="fa fa-star" [style.color]="game.category?.color"></i>
-                <i class="fa fa-star" [style.color]="game.category?.color"></i>
-                <i class="fa fa-star" [style.color]="game.category?.color"></i>
-                <i class="fa fa-star-half-stroke" [style.color]="game.category?.color"></i>
-                <i class="fa-regular fa-star" [style.color]="game.category?.color"></i>
-            </div>
-            <div class="ratings">
-                <p> <b>{{game.reviews}}</b> Opiniones</p>
-            </div>
 
-        </div>
+       <!--  Componente rating -->
+        <app-rating [color]="game.category?.color" [reviews]="game.reviews" [rating]="game.rating!"></app-rating>
+
+        <!-- Categorias -->
         <div class="categories row">
             <span [style.background-color]="game.category?.background_color" [style.color]="game.category?.color">
                 {{game.category?.name}} </span>
@@ -38,7 +32,7 @@
                 {{game.subcategory?.name}} </span>
 
         </div>
-       
+
         <div class="data row">
             <p>{{game.description}}</p>
         </div>

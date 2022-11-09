@@ -13,6 +13,7 @@ import { FormsModule } from '@angular/forms';
 import { AutocompleteSearchbarComponent } from 'src/app/components/autocomplete-searchbar/autocomplete-searchbar.component';
 import { NpnSliderModule } from "npn-slider";
 import { AppLoadingComponent } from 'src/app/components/app-loading/app-loading.component';
+import { RatingComponent } from 'src/app/components/rating/rating.component';
 
 const routes: Routes = [
   {
@@ -29,7 +30,8 @@ const routes: Routes = [
     GameListFiltersComponent,
     GameListFooterComponent,
     AutocompleteSearchbarComponent,
-    AppLoadingComponent
+    AppLoadingComponent,
+    RatingComponent,
 ],
   imports: [
     CommonModule,
