@@ -6,12 +6,17 @@
         cursor: pointer;
         font-size: 16px;
     }
+    .nav-item a:hover{
+        color: var(--color-primary);
+    }
     .user{
         cursor: pointer;
         .avatar,.avatar-placeholder{
             width: 50px;
             height: 50px;
             object-fit: cover;
+            border:0.5px solid #ccc;
+            box-shadow: var(--item-box-shadow);
             border-radius: 50%;
         }
         
