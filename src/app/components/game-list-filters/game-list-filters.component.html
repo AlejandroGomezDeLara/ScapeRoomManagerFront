@@ -8,12 +8,12 @@
         <p class="filter-by"> FILTRAR POR <i class="fa fa-sliders"></i></p>
     </div>
 
-
+    
     <!-- Filtro precio -->
     <div class="filter">
         <p> Precio <span class="filter-range-option">{{min_price_selected}}€ -
                 {{max_price_selected}}€</span></p>
-        <npn-slider [min]="min_price" [max]="max_price" (onChange)="changePrice($event)"></npn-slider>
+        <npn-slider [min]="0" [max]="50" (onChange)="changePrice($event)"></npn-slider>
     </div>
 
     <div class="filter">
@@ -33,65 +33,28 @@
         <p class="order-by">EVENTOS <i class="fa fa-list"></i></p>
     </div>
 
-    <div class="form-check">
+    <div class="form-check" *ngFor="let category of categories">
         <label class="form-check-label" for="nombre">
-            Scape Room <i class="fa-solid fa-box"></i>
-            <input class="form-check-input" name="Nombre" type="checkbox" id="1">
+            {{category.name}}
+            <input class="form-check-input" name="Nombre" type="checkbox" value="{{category.id}}" (click)="selectCategory(category.id!)">
         </label>
         
     </div>
-    <div class="form-check">
-        <input class="form-check-input" name="Nombre" type="checkbox" id="1">
-        <label class="form-check-label" for="nombre">
-            Laser Tag <i class="fa-solid fa-gun"></i>
-        </label>
-    </div>
-    <div class="form-check">
-        <input class="form-check-input" name="Nombre" type="checkbox" id="1">
-        <label class="form-check-label" for="nombre">
-            Carts <i class="fa-solid fa-car"></i>
-        </label>
-    </div>
-    <div class="form-check">
-        <input class="form-check-input" name="Nombre" type="checkbox" id="1">
-        <label class="form-check-label" for="nombre">
-            Otro
-        </label>
-    </div>
+    
 
     <div class="filters-title">
         <p class="order-by">TEMÁTICA <i class="fa fa-list"></i></p>
     </div>
 
-    <div class="form-check">
+    <div class="form-check" *ngFor="let subcategory of subcategories">
         <label class="form-check-label" for="nombre">
-            Miedo
-            <input class="form-check-input" name="Nombre" type="checkbox" id="1">
+            {{subcategory.name}}
+            <input class="form-check-input" name="Nombre" type="checkbox" value="{{subcategory.id}}" (click)="selectSubcategory(subcategory.id!)">
         </label>
         
     </div>
-    <div class="form-check">
-        <input class="form-check-input" name="Nombre" type="checkbox" id="1">
-        <label class="form-check-label" for="nombre">
-            Acción
-        </label>
-    </div>
-    <div class="form-check">
-        <input class="form-check-input" name="Nombre" type="checkbox" id="1">
-        <label class="form-check-label" for="nombre">
-            Aventura
-        </label>
-    </div>
-    <div class="form-check">
-        <input class="form-check-input" name="Nombre" type="checkbox" id="1">
-        <label class="form-check-label" for="nombre">
-            Misterio
-        </label>
-    </div>
 
-
-
-    <div class="filters-title">
+    <!-- <div class="filters-title">
         <p class="order-by">ORDENAR POR <i class="fa fa-sort"></i></p>
     </div>
 
@@ -119,6 +82,6 @@
             Abierto ahora
         </label>
     </div>
-
+ -->
 
 </div>

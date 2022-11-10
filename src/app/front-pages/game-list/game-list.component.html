@@ -6,15 +6,15 @@
     <div class="game-list-container row">
         <div class="row">
             <div class="game-list col-9">
-                <ng-container *ngIf="!isLoading && filteredGames.length> 0">
+                <ng-container *ngIf="!isLoading && filteredGames.length> 0 && games">
                     <app-game-item *ngFor="let game of filteredGames" [game]="game"></app-game-item>
                 </ng-container>
-                <ng-container *ngIf="!isLoading && filteredGames.length<= 0">
+                <ng-container *ngIf="!isLoading && filteredGames.length<= 0" && games>
                     <h1 style="margin-bottom: 150px;">Lo sentimos no hay eventos con esos filtros, aquí tienes resultados similares</h1>
                     <app-game-item *ngFor="let game of games" [game]="game"></app-game-item>
                 </ng-container>
 
-                <ng-container *ngIf="!isLoading && filteredGames.length< 3 && filteredGames.length>0">
+                <ng-container *ngIf="!isLoading && filteredGames.length< 3 && filteredGames.length>0" && games>
                     <h1 style="margin-bottom: 100px">Resultados similares</h1>
                     <app-game-item *ngFor="let game of games" [game]="game"></app-game-item>
                 </ng-container>
@@ -24,7 +24,7 @@
             </div>
 
             <div class="filters col-3">
-                <app-game-list-filters (filter)="applyFilters($event)" [game]></app-game-list-filters>
+                <app-game-list-filters (filter)="applyFilters($event)" ></app-game-list-filters>
             </div>
         </div>
 

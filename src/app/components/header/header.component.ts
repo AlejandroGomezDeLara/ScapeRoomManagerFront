@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, OnInit } from '@angular/core';
+import { AfterContentInit, AfterViewInit, Component, OnInit } from '@angular/core';
 import { User } from 'src/app/models/User';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { UtilitiesService } from 'src/app/services/utilities.service';
@@ -9,7 +9,7 @@ import { environment } from 'src/environments/environment';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })
-export class HeaderComponent implements OnInit,AfterViewInit {
+export class HeaderComponent implements OnInit,AfterContentInit {
 
   public appName=environment.appName;
   public pages=[
@@ -45,7 +45,7 @@ export class HeaderComponent implements OnInit,AfterViewInit {
   constructor(private auth:AuthenticationService,
     public utilities:UtilitiesService) { }
 
-  ngAfterViewInit(): void {
+  ngAfterContentInit(): void {
     this.user=this.auth.getStorageUser();
   }
 

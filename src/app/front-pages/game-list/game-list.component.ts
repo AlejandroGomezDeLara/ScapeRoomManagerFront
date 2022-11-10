@@ -10,34 +10,48 @@ import { ApiService } from 'src/app/services/api.service';
   templateUrl: './game-list.component.html',
   styleUrls: ['./game-list.component.scss']
 })
-export class GameListComponent implements OnInit,AfterViewInit {
+export class GameListComponent implements OnInit {
 
   public isLoading:boolean=true;
   public address_selected:string='España';
   public filteredGames:Game[]=[];
+  public regionFilteredGames:Game[]=[];
   public games:Game[]=[];
 
 
   constructor(private apiService:ApiService,
     private ngZone:NgZone) { }
 
-  ngAfterViewInit(): void {
-    this.getGames();
-  }
 
   ngOnInit(): void {
   }
 
-  public getGames():void{
-    this.apiService.getEntity('games').subscribe((games:Game[])=>{
-      console.log(games);
-      this.games=games;
-      this.filteredGames=[...games];
-      this.isLoading=false;
+  public getGames(filters?:any):void{
+    let url='games';
+    if(filters){
+        url+='?min_price='+filters.min_price;
+        url+='&max_price='+filters.max_price;
+        url+='&min_people='+filters.min_people;
+        url+='&max_people='+filters.max_people;
+        url+='&min_duration='+filters.min_duration;
+        url+='&max_duration='+filters.max_duration;
+        url+='&selected_categories='+filters.selected_categories;
+        url+='&selected_subcategories='+filters.selected_subcategories;
+    }
+    
+    this.apiService.getEntity(url).subscribe((games:Game[])=>{
+      if(Object.prototype.toString.call(games) === '[object Array]') {
+        this.games=games;
+        this.filteredGames=[...games];
+        this.isLoading=false;
+      }
+      
+     
     },(error:Error)=>{
       this.isLoading=false;
       console.log(error);
     });
+
   }
 
   
@@ -48,8 +62,10 @@ export class GameListComponent implements OnInit,AfterViewInit {
  
   public filterGamesByAddress(places:google.maps.places.PlaceResult):void{
     this.address_selected=places.address_components![0].long_name;
-    console.log(places);
-    this.filteredGames=this.filteredGames.filter(x=>{
+
+
+
+    this.regionFilteredGames=this.games.filter(x=>{
       if(this.address_selected.includes(x.address!)
       || this.address_selected.includes(x.name!)
       || this.address_selected.includes(x.city!)){
@@ -59,28 +75,16 @@ export class GameListComponent implements OnInit,AfterViewInit {
     },(error:Error)=>{
       console.log(error);
     });
+
+    this.filteredGames=[...this.regionFilteredGames];
   }
 
   
 
-  public applyFilters(event:any):void{
-    
-    let min_price=event.min_price;
-    let max_price=event.max_price;
-    let min_people=event.min_people;
-    let max_people=event.max_people;
-    let min_duration=event.min_duration;
-    let max_duration=event.max_duration;
-    
-    this.ngZone.run(()=>{
-      this.filteredGames=this.games.filter(x=>{
-        if((x.min_price! <= max_price && x.min_price! >= min_price) &&
-          (x.max_duration! >= min_duration && x.max_duration! <= max_duration) &&
-          (x.min_people! <= min_people && x.max_people! <=max_people && x.max_people! >=min_people)) return true;
-        else return false;
-      });
-    });
+  public applyFilters(filters:any):void{   
+    console.log("FILTROS",filters);
+    this.getGames(filters);
   }
-
+  
 
 }
