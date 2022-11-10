@@ -1,5 +1,12 @@
 <div class="searchbar">
-    <input class="input" type="text" [(ngModel)]="autocompleteInput" #addresstext
-    placeholder="Introduce tu ciudad o región">
-    <i class="search-icon fa fa-location-dot"></i>
+    <div>
+        <input class="input" type="text" [(ngModel)]="autocompleteInput" #addresstext placeholder="Ciudad o región" [(ngModel)]="selected_address" (input)="checkAddressEmpty()">
+        <i class="search-icon fa fa-location-dot"></i>
+    </div>
+    <div style="position: relative;overflow: hidden; width: 48%;">
+        <img class="name-icon" src="assets/imgs/box-transparent.png">
+        <input class="input name" type="text" placeholder="¿Qué buscas?" [(ngModel)]="selected_name" (input)="checkNameEmpty()">
+    </div>
+
 </div>
+<button class="change-city-btn" (click)="search()"><i class="fa fa-search"></i> Buscar Funly </button>

@@ -8,8 +8,10 @@ import { AfterViewInit, Component, EventEmitter, OnInit, Output, ViewChild } fro
 export class AutocompleteSearchbarComponent implements OnInit,AfterViewInit {
 
   @ViewChild('addresstext') addresstext: any;
-  @Output() places = new EventEmitter<google.maps.places.PlaceResult>();
-  adressType:string ="address"
+  @Output() searchFilter = new EventEmitter<[string,string]>();
+
+  selected_name:string ="";
+  selected_address:string ="";
   autocompleteInput!: string;
 
   constructor() { }
@@ -25,12 +27,23 @@ export class AutocompleteSearchbarComponent implements OnInit,AfterViewInit {
     const autocomplete = new google.maps.places.Autocomplete(this.addresstext.nativeElement,
         {
             componentRestrictions: { country: 'ES' },
-            types: ['(cities)'],
+            types: ['(regions)'],
           });
-    google.maps.event.addListener(autocomplete, 'place_changed', () => {
+        google.maps.event.addListener(autocomplete, 'place_changed', () => {
         const place = autocomplete.getPlace();
-        this.places.emit(place);
+        this.selected_address=place.address_components![0].long_name;
     });
   }
 
+  public search():void{    
+    this.searchFilter.emit([this.selected_address,this.selected_name]);
+  }
+
+  public checkNameEmpty():void{
+    if(this.selected_name == "")this.search();
+  }
+
+  public checkAddressEmpty():void{    
+    if(this.selected_address == "")this.search();
+  }
 }

@@ -1,5 +1,6 @@
 import { AfterViewInit, Component, NgZone, OnInit } from '@angular/core';
 import { ChildActivationStart } from '@angular/router';
+import { filter } from 'rxjs';
 import { Game } from 'src/app/models/Game';
 import { GameCategory } from 'src/app/models/GameCategory';
 import { GameSubcategory } from 'src/app/models/GameSubcategory';
@@ -13,10 +14,22 @@ import { ApiService } from 'src/app/services/api.service';
 export class GameListComponent implements OnInit {
 
   public isLoading:boolean=true;
-  public address_selected:string='España';
+  public selected_address:string='';
+  public selected_name:string='';
   public filteredGames:Game[]=[];
   public regionFilteredGames:Game[]=[];
   public games:Game[]=[];
+
+  //game filtros
+  min_price?:number;
+  max_price?:number;
+  min_people?:number;
+  max_people?:number;
+  min_duration?:number;
+  max_duration?:number;
+  selected_categories?:[number];
+  selected_subcategories?:[number];
+  
 
 
   constructor(private apiService:ApiService,
@@ -28,16 +41,16 @@ export class GameListComponent implements OnInit {
 
   public getGames(filters?:any):void{
     let url='games';
-    if(filters){
-        url+='?min_price='+filters.min_price;
-        url+='&max_price='+filters.max_price;
-        url+='&min_people='+filters.min_people;
-        url+='&max_people='+filters.max_people;
-        url+='&min_duration='+filters.min_duration;
-        url+='&max_duration='+filters.max_duration;
-        url+='&selected_categories='+filters.selected_categories;
-        url+='&selected_subcategories='+filters.selected_subcategories;
-    }
+    url+='?min_price='+this.min_price;
+    url+='&max_price='+this.max_price;
+    url+='&min_people='+this.min_people;
+    url+='&max_people='+this.max_people;
+    url+='&min_duration='+this.min_duration;
+    url+='&max_duration='+this.max_duration;
+    url+='&selected_categories='+this.selected_categories;
+    url+='&selected_subcategories='+this.selected_subcategories;
+    url+='&selected_address='+this.selected_address;
+    url+='&selected_name='+this.selected_name; 
     
     this.apiService.getEntity(url).subscribe((games:Game[])=>{
       if(Object.prototype.toString.call(games) === '[object Array]') {
@@ -60,29 +73,24 @@ export class GameListComponent implements OnInit {
   }
 
  
-  public filterGamesByAddress(places:google.maps.places.PlaceResult):void{
-    this.address_selected=places.address_components![0].long_name;
-
-
-
-    this.regionFilteredGames=this.games.filter(x=>{
-      if(this.address_selected.includes(x.address!)
-      || this.address_selected.includes(x.name!)
-      || this.address_selected.includes(x.city!)){
-        return true;
-      }
-      else return false;
-    },(error:Error)=>{
-      console.log(error);
-    });
-
-    this.filteredGames=[...this.regionFilteredGames];
+  public filterByNameAndAddress(filters:[string,string]):void{
+    this.selected_address=filters[0];
+    this.selected_name=filters[1];
+    this.getGames();
   }
 
   
 
   public applyFilters(filters:any):void{   
     console.log("FILTROS",filters);
+    this.min_price=filters.min_price;
+    this.max_price=filters.max_price;
+    this.min_people=filters.min_people;
+    this.max_people=filters.max_people;
+    this.min_duration=filters.min_duration;
+    this.max_duration=filters.max_duration;
+    this.selected_categories=filters.selected_categories;
+    this.selected_subcategories=filters.selected_subcategories;
     this.getGames(filters);
   }
   

@@ -1,17 +1,38 @@
 .searchbar{
     margin: 0 auto;
-    width: 70%;
+    width: 50%;
     position: relative;
     box-shadow: var(--item-box-shadow);
-    
+    background: white;
+    border-radius: 25px;
+    overflow: auto;
     input{
-        border-radius: 25px;
         padding: 20px;
         padding-left: 50px;
         font-size: 14px;
         margin-right: 10px;
         border: none;
+        width:50%;
+        float: left;
+    }
+    .name{
+        border-left:1px solid #ccc;
         width:100%;
+    }
+    .search-icon{
+        position: absolute;
+        left: 2%;
+        top: 33%;
+        font-size: 18px;
+        color:var(--color-primary);
+    }
+    .name-icon{
+        position: absolute;
+        left: 2%;
+        top: 33%;
+        width: 20px;
+        font-size: 18px;
+        color:var(--color-primary);
     }
     input:focus{
         outline: none;
@@ -23,5 +44,18 @@
         font-size: 18px;
         color:var(--color-primary);
     }
+   
 }
 
+
+.change-city-btn{
+    background: var(--color-primary);
+    color:white;
+    padding:15px;
+    font-size: 14px;
+    border-radius: 25px;
+    margin: 0 auto;
+    border:none;
+    display: block;
+    margin-top: 20px;
+}

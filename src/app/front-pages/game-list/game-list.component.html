@@ -1,6 +1,6 @@
 <div class="content">
 
-    <app-game-list-header (places)="filterGamesByAddress($event)" (removeAddress)="removeAddress()"></app-game-list-header>
+    <app-game-list-header (searchFilter)="filterByNameAndAddress($event)" (removeAddress)="removeAddress()"></app-game-list-header>
 
 
     <div class="game-list-container row">
