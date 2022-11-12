@@ -38,19 +38,19 @@
     <div class="filter">
         <p> Precio <span class="filter-range-option">{{min_price_selected}}€ -
                 {{max_price_selected}}€</span></p>
-        <npn-slider [min]="0" [max]="50" (onChange)="changePrice($event)"></npn-slider>
+        <npn-slider [min]="min_price" [max]="max_price" (onChange)="changePrice($event)"></npn-slider>
     </div>
 
     <div class="filter">
         <p> Personas <span class="filter-range-option">{{min_people_selected}} -
                 {{max_people_selected}}</span></p>
-        <npn-slider [min]="1" [max]="30" (onChange)="changePeople($event)"></npn-slider>
+        <npn-slider [min]="min_people" [max]="max_people" (onChange)="changePeople($event)"></npn-slider>
     </div>
 
     <div class="filter">
         <p> Duración <span class="filter-range-option">{{min_duration_selected}} -
                 {{max_duration_selected}} min</span></p>
-        <npn-slider [min]="10" [max]="180" (onChange)="changeDuration($event)"></npn-slider>
+        <npn-slider [min]="min_duration" [max]="max_duration" (onChange)="changeDuration($event)"></npn-slider>
     </div>
 
 

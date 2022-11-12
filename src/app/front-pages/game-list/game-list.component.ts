@@ -31,6 +31,7 @@ export class GameListComponent implements OnInit {
   selected_subcategories?:[number];
   actual_page?:number=1;
   total_game_pages?:number;
+  total_games?:number;
 
   constructor(private apiService:ApiService,
     private ngZone:NgZone) { }
@@ -39,7 +40,7 @@ export class GameListComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  public getGames(filters?:any):void{
+  public getGames():void{
     let url='games';
     url+='?min_price='+this.min_price;
     url+='&max_price='+this.max_price;
@@ -55,7 +56,8 @@ export class GameListComponent implements OnInit {
 
     this.apiService.getEntity(url).subscribe((games:any)=>{
         this.games=games.data;
-        this.total_game_pages=games.last_page;      
+        this.total_games=games.total;   
+        this.total_game_pages=games.last_page;           
         this.filteredGames=[...games.data];
         this.isLoading=false;
       
@@ -96,7 +98,7 @@ export class GameListComponent implements OnInit {
     this.selected_subcategories=filters.selected_subcategories;
     this.total_game_pages=0;
     this.actual_page=1;
-    this.getGames(filters);
+    this.getGames();
   }
 
   public changeGamesPage(event:number):void{
