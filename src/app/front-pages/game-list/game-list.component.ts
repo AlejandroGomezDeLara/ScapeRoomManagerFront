@@ -1,6 +1,6 @@
 import { AfterViewInit, Component, NgZone, OnInit } from '@angular/core';
 import { ChildActivationStart } from '@angular/router';
-import { filter } from 'rxjs';
+import { debounceTime, filter } from 'rxjs';
 import { Game } from 'src/app/models/Game';
 import { GameCategory } from 'src/app/models/GameCategory';
 import { GameSubcategory } from 'src/app/models/GameSubcategory';
@@ -29,8 +29,8 @@ export class GameListComponent implements OnInit {
   max_duration?:number;
   selected_categories?:[number];
   selected_subcategories?:[number];
-  
-
+  actual_page?:number=1;
+  total_game_pages?:number;
 
   constructor(private apiService:ApiService,
     private ngZone:NgZone) { }
@@ -51,15 +51,14 @@ export class GameListComponent implements OnInit {
     url+='&selected_subcategories='+this.selected_subcategories;
     url+='&selected_address='+this.selected_address;
     url+='&selected_name='+this.selected_name; 
-    
-    this.apiService.getEntity(url).subscribe((games:Game[])=>{
-      if(Object.prototype.toString.call(games) === '[object Array]') {
-        this.games=games;
-        this.filteredGames=[...games];
-        this.isLoading=false;
-      }
+    url+='&page='+this.actual_page; 
+
+    this.apiService.getEntity(url).subscribe((games:any)=>{
       
-     
+      this.games=games.data;
+      this.total_game_pages=games.last_page;      
+      this.filteredGames=[...games.data];
+      this.isLoading=false;
     },(error:Error)=>{
       this.isLoading=false;
       console.log(error);
@@ -92,6 +91,11 @@ export class GameListComponent implements OnInit {
     this.selected_categories=filters.selected_categories;
     this.selected_subcategories=filters.selected_subcategories;
     this.getGames(filters);
+  }
+
+  public changeGamesPage(event:number):void{
+    this.actual_page=event;
+    this.getGames();
   }
   
 

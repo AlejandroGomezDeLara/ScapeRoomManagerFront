@@ -1,6 +1,7 @@
 <div class="content">
 
-    <app-game-list-header (searchFilter)="filterByNameAndAddress($event)" (removeAddress)="removeAddress()"></app-game-list-header>
+    <app-game-list-header (searchFilter)="filterByNameAndAddress($event)" (removeAddress)="removeAddress()">
+    </app-game-list-header>
 
 
     <div class="game-list-container row">
@@ -10,7 +11,8 @@
                     <app-game-item *ngFor="let game of filteredGames" [game]="game"></app-game-item>
                 </ng-container>
                 <ng-container *ngIf="!isLoading && filteredGames.length<= 0" && games>
-                    <h1 style="margin-bottom: 150px;">Lo sentimos no hay eventos con esos filtros, aquí tienes resultados similares</h1>
+                    <h1 style="margin-bottom: 150px;">Lo sentimos no hay eventos con esos filtros, aquí tienes
+                        resultados similares</h1>
                     <app-game-item *ngFor="let game of games" [game]="game"></app-game-item>
                 </ng-container>
 
@@ -24,14 +26,16 @@
             </div>
 
             <div class="filters col-3">
-                <app-game-list-filters (filter)="applyFilters($event)" ></app-game-list-filters>
+                <app-game-list-filters (filter)="applyFilters($event)"></app-game-list-filters>
             </div>
         </div>
 
-        <div class="row">
-            <h2>Paginacion</h2>
+        <div class="row" *ngIf="filteredGames.length>0 && !isLoading">
+            <div class="col-9 game-list-pagination">
+                <app-game-list-pagination [totalPages]="this.total_game_pages!" (changePage)="changeGamesPage($event)"></app-game-list-pagination>
+            </div>
         </div>
     </div>
 
-    <app-game-list-footer></app-game-list-footer>
+    <app-game-list-footer class="pagination-footer"></app-game-list-footer>
 </div>

@@ -14,6 +14,7 @@ import { AutocompleteSearchbarComponent } from 'src/app/components/autocomplete-
 import { NpnSliderModule } from "npn-slider";
 import { AppLoadingComponent } from 'src/app/components/app-loading/app-loading.component';
 import { RatingComponent } from 'src/app/components/rating/rating.component';
+import { GameListPaginationComponent } from 'src/app/components/game-list-pagination/game-list-pagination.component';
 
 const routes: Routes = [
   {
@@ -32,6 +33,7 @@ const routes: Routes = [
     AutocompleteSearchbarComponent,
     AppLoadingComponent,
     RatingComponent,
+    GameListPaginationComponent
 ],
   imports: [
     CommonModule,

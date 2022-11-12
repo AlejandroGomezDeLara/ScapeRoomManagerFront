@@ -1,0 +1,13 @@
+.pagination{
+    cursor: pointer;
+    margin: 0 auto;
+    li a{
+        border:none !important;
+        color:black;
+    }
+    
+    .active{
+        background: var(--color-primary);
+        color:white !important;
+    }
+}

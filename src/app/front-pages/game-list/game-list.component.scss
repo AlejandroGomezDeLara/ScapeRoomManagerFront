@@ -16,11 +16,16 @@
             
         }
        
-        .pagination-footer{
-            border: 0.5px solid #ccc;
-            background-color: white;
-            height: 10vh;
-        }
+        
+        
+    }
+    .game-list-pagination{
+        padding:15px;
+        box-shadow: var(--item-box-shadow);
+        position: relative;
+        border-radius: 10px;
+        background: white;
+        margin-bottom: 15px;
         
     }
 }

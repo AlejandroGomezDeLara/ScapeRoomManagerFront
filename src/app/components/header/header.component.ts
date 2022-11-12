@@ -26,7 +26,7 @@ export class HeaderComponent implements OnInit,AfterContentInit {
       route:'/'
     },
     {
-      name:'Otros eventos',
+      name:'Ranking',
       route:'/'
     },
     {
