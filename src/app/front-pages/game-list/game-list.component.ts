@@ -54,11 +54,11 @@ export class GameListComponent implements OnInit {
     url+='&page='+this.actual_page; 
 
     this.apiService.getEntity(url).subscribe((games:any)=>{
+        this.games=games.data;
+        this.total_game_pages=games.last_page;      
+        this.filteredGames=[...games.data];
+        this.isLoading=false;
       
-      this.games=games.data;
-      this.total_game_pages=games.last_page;      
-      this.filteredGames=[...games.data];
-      this.isLoading=false;
     },(error:Error)=>{
       this.isLoading=false;
       console.log(error);
@@ -73,9 +73,13 @@ export class GameListComponent implements OnInit {
 
  
   public filterByNameAndAddress(filters:[string,string]):void{
-    this.selected_address=filters[0];
-    this.selected_name=filters[1];
-    this.getGames();
+    this.ngZone.run(()=>{
+      this.selected_address=filters[0];
+      this.selected_name=filters[1];
+      this.actual_page=1;
+      this.getGames();
+    })
+    
   }
 
   
@@ -90,6 +94,8 @@ export class GameListComponent implements OnInit {
     this.max_duration=filters.max_duration;
     this.selected_categories=filters.selected_categories;
     this.selected_subcategories=filters.selected_subcategories;
+    this.total_game_pages=0;
+    this.actual_page=1;
     this.getGames(filters);
   }
 

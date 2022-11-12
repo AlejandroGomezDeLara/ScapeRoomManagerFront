@@ -7,7 +7,7 @@
             </a>
         </li>
         <li class="page-item" *ngFor="let page of pages">
-            <a class="page-link {{actual_page == page ? 'active' : ''}}" (click)="changeActualPage(page)">{{page}}</a>
+            <a href="#" class="page-link {{actual_page == page ? 'active' : ''}}" (click)="changeActualPage(page)">{{page}}</a>
         </li>
         <li class="page-item" (click)="changeActualPage(actual_page+1)" *ngIf="actual_page!=totalPages">
             <a class="page-link" href="#" aria-label="Next">

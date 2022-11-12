@@ -16,10 +16,10 @@
                     <app-game-item *ngFor="let game of games" [game]="game"></app-game-item>
                 </ng-container>
 
-                <ng-container *ngIf="!isLoading && filteredGames.length< 3 && filteredGames.length>0" && games>
+              <!--   <ng-container *ngIf="!isLoading && filteredGames.length< 3 && filteredGames.length>0" && games>
                     <h1 style="margin-bottom: 100px">Resultados similares</h1>
                     <app-game-item *ngFor="let game of games" [game]="game"></app-game-item>
-                </ng-container>
+                </ng-container> -->
 
                 <app-loading *ngIf="isLoading"></app-loading>
 
@@ -30,7 +30,7 @@
             </div>
         </div>
 
-        <div class="row" *ngIf="filteredGames.length>0 && !isLoading">
+        <div class="row" *ngIf="filteredGames.length>0 && !isLoading && total_game_pages!>1">
             <div class="col-9 game-list-pagination">
                 <app-game-list-pagination [totalPages]="this.total_game_pages!" (changePage)="changeGamesPage($event)"></app-game-list-pagination>
             </div>
