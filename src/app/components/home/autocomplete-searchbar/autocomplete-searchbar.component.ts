@@ -3,7 +3,7 @@ import {MatDialog} from '@angular/material/dialog';
 import {MatMenuTrigger} from '@angular/material/menu';
 import { GameCategory } from 'src/app/models/GameCategory';
 import { ApiService } from 'src/app/services/api.service';
-import { SearchDialogComponent } from '../search-dialog/search-dialog.component';
+import { SearchDialogComponent } from '../../search-dialog/search-dialog.component';
 
 @Component({
   selector: 'app-autocomplete-searchbar',

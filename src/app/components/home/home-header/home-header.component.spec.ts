@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { GameListHeaderComponent } from './game-list-header.component';
+import { HomeHeaderComponent } from './home-header.component';
 
 describe('GameListHeaderComponent', () => {
-  let component: GameListHeaderComponent;
-  let fixture: ComponentFixture<GameListHeaderComponent>;
+  let component: HomeHeaderComponent;
+  let fixture: ComponentFixture<HomeHeaderComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ GameListHeaderComponent ]
+      declarations: [ HomeHeaderComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(GameListHeaderComponent);
+    fixture = TestBed.createComponent(HomeHeaderComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
