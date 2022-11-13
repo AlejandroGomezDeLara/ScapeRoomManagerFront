@@ -53,12 +53,11 @@ h2{
         border-radius: 25px;
         background:#ccc;
         color:black;
-        box-shadow: var(--item-box-shadow);
         margin-bottom:10px;
     }
     
     span:hover{
-        background:var(--gradient-primary);
+        background:var(--color-primary);
         color:white;
         box-shadow: var(--item-box-shadow);
 
@@ -68,13 +67,14 @@ h2{
 .modal-footer{
 
     .change-city-btn{
-        background: var(--gradient-primary);
+        background: var(--color-primary);
         color:white;
         padding:15px 55px;
         font-size: 14px;
         border-radius: 25px;
         margin: 0 auto;
         border:none;
+        box-shadow: var(--item-box-shadow);
         display: block;
         margin-top: 25px;
     }

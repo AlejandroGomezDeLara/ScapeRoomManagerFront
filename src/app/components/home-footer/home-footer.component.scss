@@ -1,0 +1,19 @@
+.footer{
+    box-shadow:var(--item-box-shadow);
+    background: var(--dark-background);
+    color:white;
+    padding:20px;
+    position: relative;
+    height: 30vh;
+    .logo img{
+        width: 150px;
+    }
+    .copyright{
+        position: absolute;
+        font-size: 10px;
+        color:#ccc;
+        width: auto;
+        bottom: 15px;
+        right: 15px;
+    }
+}

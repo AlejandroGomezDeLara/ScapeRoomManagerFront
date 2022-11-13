@@ -6,16 +6,15 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 import { IntranetModule } from './intranet/intranet.module';
-import { HeaderComponent } from './components/header/header.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { SearchDialogComponent } from './components/search-dialog/search-dialog.component';
 import { FormsModule } from '@angular/forms';
+import { HeaderModule } from './components/header/header.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HeaderComponent,
-    SearchDialogComponent
+    SearchDialogComponent,
     ],
   imports: [
     BrowserModule,
@@ -24,6 +23,7 @@ import { FormsModule } from '@angular/forms';
     AppRoutingModule,
     IntranetModule,
     FormsModule,
+    HeaderModule,
     MatDialogModule
   ],
   providers: [],

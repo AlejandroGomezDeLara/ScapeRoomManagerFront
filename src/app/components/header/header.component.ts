@@ -15,10 +15,10 @@ export class HeaderComponent implements OnInit,AfterContentInit {
   public pages=[
     {
       name:'Buscador',
-      route:'/'
+      route:'/search'
     },
     {
-      name:'Ranking',
+      name:'Ranking Funly',
       route:'/'
     },
     {
