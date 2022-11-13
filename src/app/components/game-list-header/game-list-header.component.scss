@@ -1,7 +1,7 @@
 .header{
     border-bottom: 0.5px solid #ccc;
     position: relative;
-    height: 50vh;
+    height: 60vh;
     .change-city-btn{
         background: var(--color-primary);
         color:white;
@@ -29,7 +29,7 @@
         }  
     }
     video{
-        filter: brightness(40%);
+        filter: brightness(60%);
         width: 100%;
         object-fit: cover;
         height: 100%;

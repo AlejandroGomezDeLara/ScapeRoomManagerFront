@@ -51,14 +51,14 @@ h2{
         float: left;
         padding:5px 15px 5px 15px;
         border-radius: 25px;
-        background:var(--gradient-hover);
+        background:#ccc;
         color:black;
         box-shadow: var(--item-box-shadow);
         margin-bottom:10px;
     }
     
     span:hover{
-        background:var(--gradient-hover-color);
+        background:var(--gradient-primary);
         color:white;
         box-shadow: var(--item-box-shadow);
 

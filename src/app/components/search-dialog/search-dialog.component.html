@@ -26,10 +26,7 @@
     <div class="events">
         <h2>Eventos de ocio más populares</h2>
         <div class="categories row">
-            <span *ngFor="let category of categories" [ngStyle]="{
-                '--gradient-hover': category.background_color, 
-                '--gradient-hover-color': category.color
-                }" (click)="searchByGameCategory(category)">
+            <span *ngFor="let category of categories" (click)="searchByGameCategory(category)">
                 {{category?.name}} </span>
         </div>
     </div>
