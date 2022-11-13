@@ -1,5 +1,5 @@
 import { AfterViewInit, Component, NgZone, OnInit } from '@angular/core';
-import { ChildActivationStart } from '@angular/router';
+import { ActivatedRoute, ChildActivationStart } from '@angular/router';
 import { debounceTime, filter } from 'rxjs';
 import { Game } from 'src/app/models/Game';
 import { GameCategory } from 'src/app/models/GameCategory';
@@ -27,20 +27,28 @@ export class GameListComponent implements OnInit {
   max_people?:number;
   min_duration?:number;
   max_duration?:number;
-  selected_categories?:[number];
-  selected_subcategories?:[number];
+  selected_categories_ids?:[number];
+  selected_subcategories_ids?:[number];
+  selected_categories:GameCategory[]=[];
+  selected_subcategories:GameSubcategory[]=[];
   actual_page?:number=1;
   total_game_pages?:number;
   total_games?:number;
+
+
 
   constructor(private apiService:ApiService,
     private ngZone:NgZone) { }
 
 
   ngOnInit(): void {
+    
+    
   }
 
   public getGames():void{
+
+   
     let url='games';
     url+='?min_price='+this.min_price;
     url+='&max_price='+this.max_price;
@@ -48,12 +56,13 @@ export class GameListComponent implements OnInit {
     url+='&max_people='+this.max_people;
     url+='&min_duration='+this.min_duration;
     url+='&max_duration='+this.max_duration;
-    url+='&selected_categories='+this.selected_categories;
-    url+='&selected_subcategories='+this.selected_subcategories;
+    url+='&selected_categories='+this.selected_categories_ids;
+    url+='&selected_subcategories='+this.selected_subcategories_ids;
     url+='&selected_address='+this.selected_address;
     url+='&selected_name='+this.selected_name; 
     url+='&page='+this.actual_page; 
 
+    
     this.apiService.getEntity(url).subscribe((games:any)=>{
         this.games=games.data;
         this.total_games=games.total;   
@@ -94,10 +103,16 @@ export class GameListComponent implements OnInit {
     this.max_people=filters.max_people;
     this.min_duration=filters.min_duration;
     this.max_duration=filters.max_duration;
+    this.selected_categories_ids=filters.selected_categories_ids;
     this.selected_categories=filters.selected_categories;
+    this.selected_subcategories_ids=filters.selected_subcategories_ids;
     this.selected_subcategories=filters.selected_subcategories;
+
     this.total_game_pages=0;
     this.actual_page=1;
+  
+    console.log("FILTROS RECIBIDOS",this.selected_categories);
+      
     this.getGames();
   }
 

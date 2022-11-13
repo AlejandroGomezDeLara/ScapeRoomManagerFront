@@ -11,9 +11,10 @@
     <div class="form-check" *ngFor="let category of categories">
         <label class="form-check-label" for="nombre">
             {{category.name}}
-            <input class="form-check-input" name="Nombre" type="checkbox" value="{{category.id}}" (click)="selectCategory(category.id!)">
+            <input class="form-check-input" name="Nombre" type="checkbox" value="{{category.id}}"
+                (click)="selectCategory(category.id!)" [checked]="url_category_id == category.id">
         </label>
-        
+
     </div>
 
 
@@ -24,16 +25,17 @@
     <div class="form-check" *ngFor="let subcategory of subcategories">
         <label class="form-check-label" for="nombre">
             {{subcategory.name}}
-            <input class="form-check-input" name="Nombre" type="checkbox" value="{{subcategory.id}}" (click)="selectSubcategory(subcategory.id!)">
+            <input class="form-check-input" name="Nombre" type="checkbox" value="{{subcategory.id}}"
+                (click)="selectSubcategory(subcategory.id!)">
         </label>
-        
+
     </div>
 
     <div class="filters-title">
         <p class="order-by"> FILTRAR POR <i class="fa fa-sliders"></i></p>
     </div>
 
-    
+
     <!-- Filtro precio -->
     <div class="filter">
         <p> Precio <span class="filter-range-option">{{min_price_selected}}€ -
@@ -54,8 +56,8 @@
     </div>
 
 
-   
-    
+
+
 
 
     <!-- <div class="filters-title">

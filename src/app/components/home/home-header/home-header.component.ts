@@ -20,6 +20,9 @@ export class HomeHeaderComponent implements OnInit {
     this.ngZone.run(()=>{
       this.searchFilter.emit(filters);
     });
+  }
+
+  public search():void{
     
   }
 

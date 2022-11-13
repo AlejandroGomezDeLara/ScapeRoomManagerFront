@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { combineLatest, debounceTime, delay, forkJoin, Observable, Subject } from 'rxjs';
 import { GameCategory } from 'src/app/models/GameCategory';
 import { GameSubcategory } from 'src/app/models/GameSubcategory';
@@ -34,27 +35,31 @@ export class GameListFiltersComponent implements OnInit {
   public min_duration_selected:number=0;
   public max_duration_selected:number=0;
 
-  public selected_categories_ids:GameCategory[]=[];
+  public selected_categories:GameCategory[]=[];
 
-  public selected_subcategories_ids:GameSubcategory[]=[];
+  public selected_subcategories:GameSubcategory[]=[];
   
   categories:GameCategory[]=[];
   subcategories:GameSubcategory[]=[];
-  categories_selected_ids:number[]=[];
-  subcategories_selected_ids:number[]=[];
+  selected_categories_ids:number[]=[];
+  selected_subcategories_ids:number[]=[];
+  public url_category_id?:number;
 
 
   private priceChanged: Subject<[number,number]> = new Subject<[number,number]>();
   private peopleChanged: Subject<[number,number]> = new Subject<[number,number]>();
   private durationChanged: Subject<[number,number]> = new Subject<[number,number]>();
 
-  constructor(private apiService:ApiService) { }
+  constructor(private apiService:ApiService,
+    private route:ActivatedRoute) { }
 
   ngOnInit(): void {
     combineLatest([this.priceChanged,this.peopleChanged,this.durationChanged]).pipe(debounceTime(500)).subscribe(([price,people,duration])=>{
       this.filterGames();
     });
-
+    this.url_category_id = +this.route.snapshot.paramMap.get('category_id')!;
+    console.log("CATEGORIA sleccionada",this.url_category_id);
+   
     this.getCategories();
   }
 
@@ -67,8 +72,10 @@ export class GameListFiltersComponent implements OnInit {
       max_people:this.max_people_selected,
       min_duration:this.min_duration_selected,
       max_duration:this.max_duration_selected,
-      selected_categories:this.categories_selected_ids,
-      selected_subcategories:this.subcategories_selected_ids,
+      selected_categories:this.selected_categories,
+      selected_subcategories:this.selected_subcategories,
+      selected_categories_ids:this.selected_categories_ids,
+      selected_subcategories_ids:this.selected_subcategories_ids,
     }
     this.filter.emit(filters);
   }
@@ -98,30 +105,45 @@ export class GameListFiltersComponent implements OnInit {
     let requests=[obGameCategories,obGameSubcategories];
     forkJoin(requests).subscribe(([categories,subcategories])=>{
       this.categories=categories;
-      this.subcategories=subcategories    
+      this.subcategories=subcategories;
+      //SELECCIONAR CATEGORIA DE LA URL
+      if(this.url_category_id)
+        this.selectCategory(this.url_category_id);  
+
     },error=>{
       console.log(error);
     });
   }
 
   public selectCategory(id:number):void{
-    if(!this.categories_selected_ids.some(x=>x == id)){
-      this.categories_selected_ids.push(id);
+    if(!this.selected_categories_ids.some(x=>x == id)){
+      this.selected_categories_ids.push(id);
     }else{
-      this.categories_selected_ids=this.categories_selected_ids.filter(x=>x != id)
+      this.selected_categories_ids=this.selected_categories_ids.filter(x=>x != id)
     }
-    console.log(this.categories_selected_ids);
+    
+    if(!this.selected_categories.some(x=>x.id == id)){
+      this.selected_categories.push(this.categories.find(x=>x.id==id)!);
+    }else{
+      this.selected_categories=this.selected_categories.filter(x=>x.id != id);
+    }
+
     this.filterGames();
  
   }
 
   public selectSubcategory(id:number):void{
-    if(!this.subcategories_selected_ids.some(x=>x == id)){
-      this.subcategories_selected_ids.push(id);
+    if(!this.selected_subcategories_ids.some(x=>x == id)){
+      this.selected_subcategories_ids.push(id);
     }else{
-      this.subcategories_selected_ids=this.subcategories_selected_ids.filter(x=>x != id)
+      this.selected_subcategories_ids=this.selected_subcategories_ids.filter(x=>x != id)
     }
-    console.log(this.subcategories_selected_ids);
+    
+    if(!this.selected_subcategories.some(x=>x.id == id)){
+      this.selected_subcategories.push(this.subcategories.find(x=>x.id==id)!);
+    }else{
+      this.selected_subcategories=this.selected_subcategories.filter(x=>x.id != id);
+    }
     this.filterGames();
 
   }
