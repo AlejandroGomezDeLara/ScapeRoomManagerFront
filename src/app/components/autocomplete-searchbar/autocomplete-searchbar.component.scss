@@ -13,6 +13,7 @@
         margin-right: 10px;
         border: none;
         width:50%;
+        cursor: pointer;
         float: left;
     }
     .name{
@@ -23,6 +24,14 @@
         position: absolute;
         left: 2%;
         top: 33%;
+        font-size: 18px;
+        color:var(--color-primary);
+    }
+    .close-icon{
+        position: absolute;
+        top: 33%;
+        left: 47%;
+        opacity: 0.5;
         font-size: 18px;
         color:var(--color-primary);
     }
@@ -44,8 +53,17 @@
         font-size: 18px;
         color:var(--color-primary);
     }
+    .name-container{
+        position: relative;
+        overflow: hidden;
+        width: 48%;
+        cursor: pointer;
+    }
+    .menu{
+        width: 100vw;
+    }
 }
-    
+
 
 
 .change-city-btn{

@@ -15,10 +15,10 @@ export class GameListFiltersComponent implements OnInit {
 
 
   public min_price:number=0;
-  public max_price:number=50;
+  public max_price:number=200;
 
   public min_people:number=1;
-  public max_people:number=30;
+  public max_people:number=100;
 
   public min_duration:number=15;
   public max_duration:number=300;

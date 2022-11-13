@@ -1,0 +1,40 @@
+<div class="modal-header">
+    <i class="fa fa-search"></i>
+    <input type="text" placeholder="¿Qué buscas?" [(ngModel)]="search">
+    <i class="close-icon fa-solid fa-circle-xmark" (click)="deleteSearch()" *ngIf="search"></i>
+</div>
+<div class="modal-content">
+    <div class="recomendations">
+        <h2>Recomendaciones búsqueda</h2>
+        <p class="recomendation">
+            <i class="fa fa-search"></i>
+            Prueba listado 1
+        </p>
+        <p class="recomendation">
+            <i class="fa fa-search"></i>
+            Prueba listado 1
+        </p>
+        <p class="recomendation">
+            <i class="fa fa-search"></i>
+            Prueba listado 1
+        </p>
+        <p class="recomendation">
+            <i class="fa fa-search"></i>
+            Prueba listado 1
+        </p>
+    </div>
+    <div class="events">
+        <h2>Eventos de ocio más populares</h2>
+        <div class="categories row">
+            <span *ngFor="let category of categories" [ngStyle]="{
+                '--gradient-hover': category.background_color, 
+                '--gradient-hover-color': category.color
+                }" (click)="searchByGameCategory(category)">
+                {{category?.name}} </span>
+        </div>
+    </div>
+</div>
+
+<div class="modal-footer">
+    <button class="change-city-btn" (click)="makeSearch()"><i class="fa fa-search"></i> Buscar </button>
+</div>

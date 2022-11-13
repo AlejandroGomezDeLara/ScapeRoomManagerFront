@@ -91,3 +91,9 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   }
   
 }
+.mat-dialog-container {
+  border-radius: 15px !important;
+}
+.backdropBackground {
+  background-color: rgba(0, 0, 0,0.7);
+}

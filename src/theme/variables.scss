@@ -5,6 +5,8 @@
 /** primary **/
 
     --color-primary:#fc5817;
+    --color-secondary:#fcbf17;
+    --gradient-primary:linear-gradient(var(--color-secondary),var(--color-primary));
     --color-primary-light:#f8d4b1;
     --color-dark:#4a1463;
     --item-box-shadow:1px 8px 24px 0 rgb(0 0 0 / 11%);

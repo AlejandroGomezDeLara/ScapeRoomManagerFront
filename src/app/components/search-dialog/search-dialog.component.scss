@@ -1,0 +1,84 @@
+
+
+.modal-header{
+    margin-bottom: 20px;
+    position: relative;
+    i{
+        color:var(--color-primary);
+        font-size: 16px;    
+    }
+    input{
+        padding: 10px;
+        font-size: 16px;
+        border: none;
+        width:100%;
+        float: left;
+    }
+    input:focus{
+        outline: none !important;
+    
+    }
+    .close-icon{
+        position: absolute;
+        top: 33%;
+        right:2%;
+        opacity: 0.5;
+        font-size: 18px;
+        color:var(--color-primary);
+        cursor: pointer;
+    }
+    border-bottom: 1px solid #ccc;    
+   }
+
+   .recomendations{
+     margin-bottom: 20px;
+    .recomendation:hover{
+        color:var(--color-primary);
+        cursor: pointer;
+    }
+}
+h2{
+    font-weight: 400;
+}
+.categories{
+    padding:5px;
+    margin-bottom: 10px;
+    span{
+        cursor: pointer;
+        margin-right: 5px;
+        width: auto;
+        display: inline;
+        float: left;
+        padding:5px 15px 5px 15px;
+        border-radius: 25px;
+        background:var(--gradient-hover);
+        color:black;
+        box-shadow: var(--item-box-shadow);
+        margin-bottom:10px;
+    }
+    
+    span:hover{
+        background:var(--gradient-hover-color);
+        color:white;
+        box-shadow: var(--item-box-shadow);
+
+    }
+ }
+
+.modal-footer{
+
+    .change-city-btn{
+        background: var(--gradient-primary);
+        color:white;
+        padding:15px 55px;
+        font-size: 14px;
+        border-radius: 25px;
+        margin: 0 auto;
+        border:none;
+        display: block;
+        margin-top: 25px;
+    }
+    .change-city-btn:hover{
+        box-shadow: 1px 8px 24px 0 rgb(0 0 0 / 31%);
+    }
+}

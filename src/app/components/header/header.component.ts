@@ -14,15 +14,7 @@ export class HeaderComponent implements OnInit,AfterContentInit {
   public appName=environment.appName;
   public pages=[
     {
-      name:'Scape Rooms',
-      route:'/'
-    },
-    {
-      name:'Laser Tag',
-      route:'/'
-    },
-    {
-      name:'Carts',
+      name:'Buscador',
       route:'/'
     },
     {

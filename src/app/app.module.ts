@@ -7,11 +7,15 @@ import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 import { IntranetModule } from './intranet/intranet.module';
 import { HeaderComponent } from './components/header/header.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { SearchDialogComponent } from './components/search-dialog/search-dialog.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HeaderComponent
+    HeaderComponent,
+    SearchDialogComponent
     ],
   imports: [
     BrowserModule,
@@ -19,6 +23,8 @@ import { HeaderComponent } from './components/header/header.component';
     BrowserAnimationsModule,
     AppRoutingModule,
     IntranetModule,
+    FormsModule,
+    MatDialogModule
   ],
   providers: [],
   bootstrap: [AppComponent]

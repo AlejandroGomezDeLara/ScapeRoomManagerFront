@@ -1,4 +1,9 @@
-import { AfterViewInit, Component, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
+import {MatDialog} from '@angular/material/dialog';
+import {MatMenuTrigger} from '@angular/material/menu';
+import { GameCategory } from 'src/app/models/GameCategory';
+import { ApiService } from 'src/app/services/api.service';
+import { SearchDialogComponent } from '../search-dialog/search-dialog.component';
 
 @Component({
   selector: 'app-autocomplete-searchbar',
@@ -10,13 +15,18 @@ export class AutocompleteSearchbarComponent implements OnInit,AfterViewInit {
   @ViewChild('addresstext') addresstext: any;
   @Output() searchFilter = new EventEmitter<[string,string]>();
 
+
   selected_name:string ="";
   selected_address:string ="";
   autocompleteInput!: string;
 
-  constructor() { }
+  @Input() categories:GameCategory[]=[];
+
+  constructor(public dialog: MatDialog,
+    private apiService:ApiService) { }
 
   ngOnInit(): void {
+    this.getCategories();
   }
 
   ngAfterViewInit() {
@@ -46,4 +56,30 @@ export class AutocompleteSearchbarComponent implements OnInit,AfterViewInit {
   public checkAddressEmpty():void{    
     if(this.selected_address == "")this.search();
   }
+
+  public getCategories():void{
+    this.apiService.getEntity('categories').subscribe((categories:GameCategory[])=>{
+      this.categories=categories;
+    });
+  }
+
+  openDialog(): void {
+    const dialogRef = this.dialog.open(SearchDialogComponent, {
+      width: '700px',
+      data: {categories: this.categories},
+      backdropClass: 'backdropBackground' // This is the "wanted" line
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      console.log(result);
+      
+    });
+  }
+
+  public deleteAddress():void{
+    this.selected_address="";
+    this.search();
+  }
+
 }
