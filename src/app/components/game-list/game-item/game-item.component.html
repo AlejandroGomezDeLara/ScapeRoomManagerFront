@@ -1,6 +1,7 @@
 <div class="game row">
     <div class="game-logo col-md-3">
-        <img [src]="game.images" alt="">
+        <img [src]="game.images" alt="" *ngIf="game.images">
+        <img style="background: rgb(233, 233, 233)" src="assets/imgs/placeholder.png" alt="" *ngIf="!game.images">
     </div>
     <div class="game-content col-md-9">
         <div class="title row">

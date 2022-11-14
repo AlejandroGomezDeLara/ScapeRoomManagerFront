@@ -9,11 +9,11 @@ import { GameItemComponent } from 'src/app/components/game-list/game-item/game-i
 import { GameListFiltersComponent } from 'src/app/components/game-list/game-list-filters/game-list-filters.component';
 import { FormsModule } from '@angular/forms';
 import { NpnSliderModule } from "npn-slider";
-import { AppLoadingComponent } from 'src/app/components/app-loading/app-loading.component';
 import { RatingComponent } from 'src/app/components/game-list/rating/rating.component';
 import { GameListPaginationComponent } from 'src/app/components/game-list/game-list-pagination/game-list-pagination.component';
 import { MatMenuModule } from '@angular/material/menu';
 import { HomeFooterModule } from 'src/app/components/home/home-footer/home-footer.module';
+import { AppLoadingModule } from 'src/app/components/app-loading/app-loading.module';
 
 const routes: Routes = [
   {
@@ -27,7 +27,6 @@ const routes: Routes = [
     GameListComponent,
     GameItemComponent,
     GameListFiltersComponent,
-    AppLoadingComponent,
     RatingComponent,
     GameListPaginationComponent,
 ],
@@ -39,6 +38,7 @@ const routes: Routes = [
     NpnSliderModule,
     MatMenuModule,
     HomeFooterModule,
+    AppLoadingModule,
     RouterModule.forChild(routes)
   ]
 })

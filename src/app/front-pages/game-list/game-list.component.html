@@ -22,7 +22,6 @@
                     <app-game-item *ngFor="let game of games" [game]="game"></app-game-item>
                 </ng-container> -->
 
-                <app-loading *ngIf="isLoading"></app-loading>
 
             </div>
 
@@ -33,10 +32,13 @@
 
         <div class="row" *ngIf="filteredGames.length>0 && !isLoading && total_game_pages!>1">
             <div class="col-9 game-list-pagination">
-                <app-game-list-pagination [totalPages]="this.total_game_pages!" (changePage)="changeGamesPage($event)"></app-game-list-pagination>
+                <app-game-list-pagination [actualPage]="this.actual_page!" [totalPages]="this.total_game_pages!" (changePage)="changeGamesPage($event)"></app-game-list-pagination>
             </div>
         </div>
     </div>
 
     <home-footer class="pagination-footer"></home-footer>
+
 </div>
+<app-loading *ngIf="isLoading"></app-loading>
+

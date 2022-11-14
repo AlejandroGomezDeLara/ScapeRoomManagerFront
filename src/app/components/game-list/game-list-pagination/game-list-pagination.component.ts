@@ -5,26 +5,27 @@ import { AfterViewInit, Component, EventEmitter, Input, OnInit, Output } from '@
   templateUrl: './game-list-pagination.component.html',
   styleUrls: ['./game-list-pagination.component.scss']
 })
-export class GameListPaginationComponent implements AfterViewInit {
+export class GameListPaginationComponent implements OnInit {
 
   public pages:number[]=[];
-  public actual_page:number=1;
-  @Input() totalPages!:number;
+  @Input() actualPage:number=0;
+  @Input() totalPages:number=0;
   @Output() changePage = new EventEmitter<number>();
 
   constructor() { }
 
-  ngAfterViewInit(): void {
-      console.log(this.totalPages);
-      for(let i=0;i<this.totalPages;i++){
-        this.pages.push(i+1);
-      }
+  ngOnInit():void{
+    
+    for(let i=0;i<this.totalPages;i++){
+      this.pages.push(i+1);
+    }
   }
 
 
   public changeActualPage(page:number):void{
-    this.actual_page=page;
-    this.changePage.emit(this.actual_page);
+    this.actualPage=page;
+    window.scrollTo(0, 0);
+    this.changePage.emit(this.actualPage);
   }
 
 }

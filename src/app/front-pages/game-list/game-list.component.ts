@@ -1,6 +1,6 @@
 import { AfterViewInit, Component, NgZone, OnInit } from '@angular/core';
 import { ActivatedRoute, ChildActivationStart } from '@angular/router';
-import { debounceTime, filter } from 'rxjs';
+import { debounceTime, delay, filter } from 'rxjs';
 import { Game } from 'src/app/models/Game';
 import { GameCategory } from 'src/app/models/GameCategory';
 import { GameSubcategory } from 'src/app/models/GameSubcategory';
@@ -48,7 +48,7 @@ export class GameListComponent implements OnInit {
 
   public getGames():void{
 
-   
+    this.isLoading=true;
     let url='games';
     url+='?min_price='+this.min_price;
     url+='&max_price='+this.max_price;
@@ -63,9 +63,9 @@ export class GameListComponent implements OnInit {
     if(this.selected_name)
       url+='&selected_name='+this.selected_name; 
     url+='&page='+this.actual_page; 
-
     
-    this.apiService.getEntity(url).subscribe((games:any)=>{
+    
+    this.apiService.getEntity(url).pipe(delay(1000)).subscribe((games:any)=>{
         this.games=games.data;
         this.total_games=games.total;   
         this.total_game_pages=games.last_page;           
