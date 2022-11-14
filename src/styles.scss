@@ -17,10 +17,10 @@ body {
 
 //Estilos autocomplete google 
 .pac-container{
-    margin-top: -25px;
+    margin-top: -5px;
     z-index: 999;
-    box-shadow: none;
-    padding:25px;
+    box-shadow: var(--item-box-shadow);
+    padding:15px;
     border-radius: 0px 0px 25px 25px;
     border:none;
 }

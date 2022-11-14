@@ -5,6 +5,45 @@
 
 <div class="filters">
     <div class="filters-title">
+        <p class="order-by"> FILTRAR POR <i class="fa fa-sliders"></i></p>
+    </div>
+
+    <div class="searchbar">
+        <div class="input-container">
+            <label for="location">Localidad o Ciudad</label>
+            <input name="location" class="input" type="text" [(ngModel)]="autocompleteInput" #addresstext
+                placeholder="Ciudad o región" [(ngModel)]="selected_address" (input)="checkAddressEmpty()">
+        </div>
+        <div class="input-container">
+            <label for="name">Nombre</label>
+            <input name="name" class="input" type="text" placeholder="Nombre" [(ngModel)]="selected_name"
+            (keyup)="checkName()">
+        </div>
+    </div>
+
+    <div class="filter-items">
+        <!-- Filtro precio -->
+        <div class="filter">
+            <p> Precio <span class="filter-range-option">{{min_price_selected}}€ -
+                    {{max_price_selected}}€</span></p>
+            <npn-slider [min]="min_price" [max]="max_price" (onChange)="changePrice($event)"></npn-slider>
+        </div>
+
+        <div class="filter">
+            <p> Personas <span class="filter-range-option">{{min_people_selected}} -
+                    {{max_people_selected}}</span></p>
+            <npn-slider [min]="min_people" [max]="max_people" (onChange)="changePeople($event)"></npn-slider>
+        </div>
+
+        <div class="filter">
+            <p> Duración <span class="filter-range-option">{{min_duration_selected}} -
+                    {{max_duration_selected}} min</span></p>
+            <npn-slider [min]="min_duration" [max]="max_duration" (onChange)="changeDuration($event)"></npn-slider>
+        </div>
+
+    </div>
+
+    <div class="filters-title">
         <p class="filter-by">EVENTOS <i class="fa fa-list"></i></p>
     </div>
 
@@ -31,29 +70,9 @@
 
     </div>
 
-    <div class="filters-title">
-        <p class="order-by"> FILTRAR POR <i class="fa fa-sliders"></i></p>
-    </div>
 
 
-    <!-- Filtro precio -->
-    <div class="filter">
-        <p> Precio <span class="filter-range-option">{{min_price_selected}}€ -
-                {{max_price_selected}}€</span></p>
-        <npn-slider [min]="min_price" [max]="max_price" (onChange)="changePrice($event)"></npn-slider>
-    </div>
 
-    <div class="filter">
-        <p> Personas <span class="filter-range-option">{{min_people_selected}} -
-                {{max_people_selected}}</span></p>
-        <npn-slider [min]="min_people" [max]="max_people" (onChange)="changePeople($event)"></npn-slider>
-    </div>
-
-    <div class="filter">
-        <p> Duración <span class="filter-range-option">{{min_duration_selected}} -
-                {{max_duration_selected}} min</span></p>
-        <npn-slider [min]="min_duration" [max]="max_duration" (onChange)="changeDuration($event)"></npn-slider>
-    </div>
 
 
 

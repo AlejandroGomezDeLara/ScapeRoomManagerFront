@@ -31,13 +31,13 @@ public deleteSearch():void{
 }
 
 public makeSearch():void{
-  this.dialogRef.close();
+  this.dialogRef.close(this.search);
 }
 
 public searchByGameCategory(category:GameCategory):void{
   console.log("CATEGORIA",category);
-  this.router.navigate(['search/'+category.id]);
-  this.dialogRef.close();
+  this.router.navigate(['/search'], { queryParams: { c: category.id } });
+  this.dialogRef.close(this.search);
 }
 
 

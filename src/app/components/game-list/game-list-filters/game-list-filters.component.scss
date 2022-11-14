@@ -5,6 +5,9 @@
     background: white;
     margin-left: 25px;
     padding:25px;
+    .filter-items{
+        padding:25px;
+    }
     p{
         margin: 0;
     }
@@ -73,4 +76,58 @@
 .map:hover{
     background-color: rgba(33,33,33,0.05);
     cursor: pointer;
+}
+
+.searchbar{
+    margin: 0 auto;
+    position: relative;
+    overflow: auto;
+    .input-container{
+        position: relative;
+        padding:15px;
+        overflow: hidden;
+        label{
+            font-size: 16px;
+            font-weight: bold;
+            color:var(--color-primary);
+            margin-bottom: 10px;
+        }   
+        .close-icon{
+            position: absolute;
+            top: 25%;
+            left: 47%;
+            opacity: 0.5;
+            font-size: 18px;
+            color:var(--color-primary);
+        }
+    }
+    input{
+        border-radius: 25px;
+        padding: 10px;
+        padding-left: 15px;
+        font-size: 14px;
+        width:100%;
+        float: left;
+        margin-bottom: 10px;
+        border: none;
+        box-shadow: var(--item-box-shadow);
+    }
+    .name{
+        border-left:1px solid #ccc;
+        width:100%;
+    }
+    
+    .close-icon{
+        position: absolute;
+        top: 33%;
+        left: 47%;
+        opacity: 0.5;
+        font-size: 18px;
+        color:var(--color-primary);
+    }
+    
+    input:focus{
+        outline: none;
+    }
+    
 }

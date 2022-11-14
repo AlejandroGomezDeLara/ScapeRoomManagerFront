@@ -58,8 +58,10 @@ export class GameListComponent implements OnInit {
     url+='&max_duration='+this.max_duration;
     url+='&selected_categories='+this.selected_categories_ids;
     url+='&selected_subcategories='+this.selected_subcategories_ids;
-    url+='&selected_address='+this.selected_address;
-    url+='&selected_name='+this.selected_name; 
+    if(this.selected_address)
+      url+='&selected_address='+this.selected_address;
+    if(this.selected_name)
+      url+='&selected_name='+this.selected_name; 
     url+='&page='+this.actual_page; 
 
     
@@ -97,23 +99,27 @@ export class GameListComponent implements OnInit {
 
   public applyFilters(filters:any):void{   
     console.log("FILTROS",filters);
-    this.min_price=filters.min_price;
-    this.max_price=filters.max_price;
-    this.min_people=filters.min_people;
-    this.max_people=filters.max_people;
-    this.min_duration=filters.min_duration;
-    this.max_duration=filters.max_duration;
-    this.selected_categories_ids=filters.selected_categories_ids;
-    this.selected_categories=filters.selected_categories;
-    this.selected_subcategories_ids=filters.selected_subcategories_ids;
-    this.selected_subcategories=filters.selected_subcategories;
-
-    this.total_game_pages=0;
-    this.actual_page=1;
-  
-    console.log("FILTROS RECIBIDOS",this.selected_categories);
-      
-    this.getGames();
+    this.ngZone.run(()=>{
+      this.min_price=filters.min_price;
+      this.max_price=filters.max_price;
+      this.min_people=filters.min_people;
+      this.max_people=filters.max_people;
+      this.min_duration=filters.min_duration;
+      this.max_duration=filters.max_duration;
+      this.selected_categories_ids=filters.selected_categories_ids;
+      this.selected_categories=filters.selected_categories;
+      this.selected_subcategories_ids=filters.selected_subcategories_ids;
+      this.selected_subcategories=filters.selected_subcategories;
+      this.selected_address=filters.selected_address;
+      this.selected_name=filters.selected_name;
+      this.total_game_pages=0;
+      this.actual_page=1;
+    
+      console.log("FILTROS RECIBIDOS",this.selected_categories);
+        
+      this.getGames();
+    })
+    
   }
 
   public changeGamesPage(event:number):void{
