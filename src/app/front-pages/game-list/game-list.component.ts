@@ -38,12 +38,22 @@ export class GameListComponent implements OnInit {
 
 
   constructor(private apiService:ApiService,
-    private ngZone:NgZone) { }
+    private ngZone:NgZone,
+    private router:ActivatedRoute) { }
 
 
   ngOnInit(): void {
     
-    
+    this.apiService.getEntity('categories',1).subscribe((category:GameCategory)=>{
+      console.log("category",category);
+      
+    },(error:Error)=>{
+
+    });
+  }
+
+  public getCategory():void{
+    this.apiService
   }
 
   public getGames():void{

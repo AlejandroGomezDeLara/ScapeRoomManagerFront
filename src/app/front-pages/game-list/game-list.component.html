@@ -2,7 +2,9 @@
 
  <!--    <app-game-list-header (searchFilter)="filterByNameAndAddress($event)" (removeAddress)="removeAddress()">
     </app-game-list-header> -->
-
+    <div>
+        <app-image-slider></app-image-slider>
+    </div>
 
     <div class="game-list-container row">
         <h1 *ngIf="selected_address && !isLoading">Mostrando {{total_games}} resultados {{selected_categories!.length>0 ? 'de '+selected_categories[0].name : ''}} en {{selected_address}}</h1>

@@ -14,6 +14,7 @@ import { GameListPaginationComponent } from 'src/app/components/game-list/game-l
 import { MatMenuModule } from '@angular/material/menu';
 import { HomeFooterModule } from 'src/app/components/home/home-footer/home-footer.module';
 import { AppLoadingModule } from 'src/app/components/app-loading/app-loading.module';
+import { AppImageSliderModule } from 'src/app/components/app-image-slider/app-image-slider.module';
 
 const routes: Routes = [
   {
@@ -39,6 +40,7 @@ const routes: Routes = [
     MatMenuModule,
     HomeFooterModule,
     AppLoadingModule,
+    AppImageSliderModule,
     RouterModule.forChild(routes)
   ]
 })

@@ -1,0 +1,33 @@
+.slider-container{
+    height: 50vh;
+    width: 100vw;
+    padding:25px;
+    position: relative;
+    .text{
+        text-align: center;
+        font-weight: bold;
+        left: 0;
+        right: 0;
+        z-index: 99;
+        top: 50%;
+        transform: translateY(-50%);
+        position: absolute;
+        .title{
+            font-size: 42px;
+            color:white;
+            margin-bottom: 12px;
+            line-height: 1;
+        }
+        .description{
+            font-size: 28px;
+            color:white;
+        }
+    }
+    .category-images{
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+        display:none;
+        filter:brightness(0.6);
+    }
+}
