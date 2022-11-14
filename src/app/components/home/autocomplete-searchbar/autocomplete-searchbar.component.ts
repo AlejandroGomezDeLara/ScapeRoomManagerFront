@@ -72,8 +72,8 @@ export class AutocompleteSearchbarComponent implements OnInit,AfterViewInit {
   openDialog(): void {
     const dialogRef = this.dialog.open(SearchDialogComponent, {
       width: '700px',
-      data: {categories: this.categories},
-      backdropClass: 'backdropBackground' 
+      data: {categories: this.categories,selected_address:this.selected_address},
+      backdropClass: 'backdropBackground'
     });
 
     dialogRef.afterClosed().subscribe(result => {

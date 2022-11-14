@@ -1,7 +1,7 @@
 <div class="searchbar">
     <div class="input-container">
         <input class="input" type="text" [(ngModel)]="autocompleteInput" #addresstext placeholder="Ciudad o región"
-            [(ngModel)]="selected_address" (input)="checkAddressEmpty()">
+            [(ngModel)]="selected_address" >
         <i class="search-icon fa fa-location-dot"></i>
         <i class="close-icon fa-solid fa-circle-xmark" (click)="deleteAddress()" *ngIf="selected_address"></i>
     </div>

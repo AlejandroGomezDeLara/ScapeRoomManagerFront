@@ -12,7 +12,9 @@ export class SearchDialogComponent implements OnInit {
 
 
   public categories:GameCategory[]=[];
+  public selected_address:string="";
   public search:string="";
+
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
@@ -24,6 +26,7 @@ export class SearchDialogComponent implements OnInit {
 ngOnInit() {
   // will log the entire data object
   this.categories=this.data.categories;
+  this.selected_address=this.data.selected_address;
 }
 
 public deleteSearch():void{
@@ -36,7 +39,7 @@ public makeSearch():void{
 
 public searchByGameCategory(category:GameCategory):void{
   console.log("CATEGORIA",category);
-  this.router.navigate(['/search'], { queryParams: { c: category.id } });
+  this.router.navigate(['/search'], { queryParams: { c: category.id,a:this.selected_address } });
   this.dialogRef.close(this.search);
 }
 

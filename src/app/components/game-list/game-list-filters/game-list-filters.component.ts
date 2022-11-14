@@ -63,7 +63,10 @@ export class GameListFiltersComponent implements OnInit,AfterViewInit {
     combineLatest([this.priceChanged,this.peopleChanged,this.durationChanged,this.nameChanged]).pipe(debounceTime(500)).subscribe(([price,people,duration,name])=>{
       this.filterGames();
     });
+    //Realizar para ejecutar método búsqueda con nombre ("")
     this.nameChanged.next("");
+
+    //Recibimos los parametros de la url
     this.route.queryParams
       .subscribe(params => {
         this.url_category_id = params["c"];
@@ -72,7 +75,12 @@ export class GameListFiltersComponent implements OnInit,AfterViewInit {
       }
     );
    
+    //Obtenemos categorias y subcategorias
     this.getCategories();
+  }
+
+  ngAfterViewInit() {
+    this.getPlaceAutocomplete();
   }
 
 
@@ -162,14 +170,6 @@ export class GameListFiltersComponent implements OnInit,AfterViewInit {
 
   }
 
-  ngOnDestroy(): void {
-    this.priceChanged.unsubscribe();
-    this.peopleChanged.unsubscribe();
-    this.durationChanged.unsubscribe();
-    this.nameChanged.unsubscribe();
-  }
-
-
   private getPlaceAutocomplete() {
     const autocomplete = new google.maps.places.Autocomplete(this.addresstext.nativeElement,
         {
@@ -183,17 +183,21 @@ export class GameListFiltersComponent implements OnInit,AfterViewInit {
     });
   }
 
-  ngAfterViewInit() {
-    this.getPlaceAutocomplete();
-  }
+  
 
   public checkAddressEmpty():void{    
     if(this.selected_address == "")this.filterGames();
   }
 
   public checkName():void{
-    console.log("XD");
     this.nameChanged.next(this.selected_name!);
+  }
+
+  ngOnDestroy(): void {
+    this.priceChanged.unsubscribe();
+    this.peopleChanged.unsubscribe();
+    this.durationChanged.unsubscribe();
+    this.nameChanged.unsubscribe();
   }
  
 }
