@@ -1,18 +1,23 @@
 <div class="open-reservation" *ngIf="reservation">
 
-    <span class="reservation-people-label" [style.background-color]="reservation.game_category?.color"><i
-            class="fa-solid fa-user-group"></i>
-        {{reservation.users?.length}}/{{reservation.max_people}}</span>
+    <span class="reservation-people-label" [style.background-color]="reservation.game_category?.color">
+       <i class="fa fa-user-group"></i> {{reservation.actual_people}}/{{reservation.max_people}}</span>
+
+       <span class="reservation-countdown-label" *ngIf="reservation.active && reservation.countdown">
+        <i class="fa fa-clock"></i> {{reservation.countdown}}</span>
+        <span class="reservation-countdown-label closed" *ngIf="!reservation.active">
+            <i class="fa fa-clock"></i> Empezado </span>
 
     <div class="rating"></div>
-    <p class="rating-content">{{reservation.game?.rating}} <i class="fa fa-star"></i></p>
+    <p class="rating-content"><i class="fa fa-star"></i> {{reservation.game?.rating}} </p>
 
     <div class="duration" [style.background-color]="reservation.game_category?.color"></div>
     <p class="duration-content">
         {{reservation.game?.max_duration}} min </p>
 
 
-    <img class="reservation-image" [src]="reservation.game?.images" alt="">
+    <img class="reservation-image" [src]="reservation.game?.images" alt="" *ngIf="reservation.game?.images">
+    <img class="reservation-image" src="assets/imgs/placeholder.png" alt="" *ngIf="!reservation.game?.images">
 
 
     <div class="reservation-data">
@@ -28,7 +33,7 @@
 
         <p class="game-address"><i class="fa-solid fa-location-dot"
                 style="margin-right: 5px"></i>{{reservation.game?.address}}</p>
-        <div class="text-divider" [style.color]="reservation.game_category?.color">{{reservation.hour | slice:0:5}} PM</div>
+        <div class="text-divider" [style.color]="reservation.game_category?.color">Hoy {{reservation.date | date:'HH:mm'}}</div>
 
         <!--     <div class="hour-data">
             <span [style.color]="reservation.game_category?.color">{{reservation.hour | slice:0:5}} AM </span>

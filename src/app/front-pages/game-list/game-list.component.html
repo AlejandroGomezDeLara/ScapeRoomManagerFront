@@ -6,8 +6,9 @@
         <app-image-slider></app-image-slider>
     </div>
 
+    <h1 class="open-reservations-title">¡Corre! ¡Reserva antes de que empiecen!</h1>
+
     <div class="open-reservations my-auto">
-        <h1 class="title">Mostrando que puedes hacer HOY en tu zona</h1>
 
         <app-open-reservation [reservation]="reservation" *ngFor="let reservation of openReservations"></app-open-reservation>
        

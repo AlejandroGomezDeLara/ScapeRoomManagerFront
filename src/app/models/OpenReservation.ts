@@ -1,4 +1,3 @@
-import { Time } from "@angular/common";
 import { Game } from "./Game";
 import { GameCategory } from "./GameCategory";
 import { GameSubcategory } from "./GameSubcategory";
@@ -16,7 +15,8 @@ export interface OpenReservation{
     max_people?:number;
     min_people?:number;
     actual_people?:number;
-    date?:Date;
-    hour?:any;
+    date?:string;
+    countdown?:any;
+    active?:boolean;
     price_per_user?:number;
 }

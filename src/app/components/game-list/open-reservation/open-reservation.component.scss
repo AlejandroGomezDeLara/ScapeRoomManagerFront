@@ -8,6 +8,7 @@
         display: inline-block;
         margin:20px;
         position: relative;
+        background: white;
         .rating{
             position: absolute;
             top: 140px;
@@ -44,6 +45,21 @@
             font-size: 16px;
             margin: 0;
             right: 7px;
+        }
+        .reservation-countdown-label{
+            position: absolute;
+            top: 0px;
+            right: 0px;
+            z-index: 99;
+            background: var(--color-open-reservation);
+            border-radius: 0 15px 0 15px;
+            color:white;
+            padding:10px 15px;
+            font-weight: bold;
+            font-size: 16px;
+        }
+        .closed{
+            background:#c91e2f;
         }
         .reservation-category-label{
             position: absolute;
@@ -91,6 +107,7 @@
             .reservation-title{
                 font-weight: bold;
                 font-size: 24px;
+                overflow: hidden;
                 margin-bottom: 0;
                 text-overflow: ellipsis;
                 white-space: nowrap;
