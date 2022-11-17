@@ -1,0 +1,56 @@
+<div class="open-reservation" *ngIf="reservation">
+
+    <span class="reservation-people-label" [style.background-color]="reservation.game_category?.color"><i
+            class="fa-solid fa-user-group"></i>
+        {{reservation.users?.length}}/{{reservation.max_people}}</span>
+
+    <div class="rating"></div>
+    <p class="rating-content">{{reservation.game?.rating}} <i class="fa fa-star"></i></p>
+
+    <div class="duration" [style.background-color]="reservation.game_category?.color"></div>
+    <p class="duration-content">
+        {{reservation.game?.max_duration}} min </p>
+
+
+    <img class="reservation-image" [src]="reservation.game?.images" alt="">
+
+
+    <div class="reservation-data">
+        <p class="reservation-title" [style.color]="reservation.game_category?.color">
+            {{reservation.game?.name}}</p>
+        <div class="categories">
+            <span [style.background-color]="reservation.game_category?.background_color"
+                [style.color]="reservation.game_category?.color">
+                {{reservation.game_category?.name}} </span>
+            <span [style.background-color]="'#ccc'" [style.color]="'black'" *ngIf="reservation.game_subcategory">
+                {{reservation.game_subcategory.name}} </span>
+        </div>
+
+        <p class="game-address"><i class="fa-solid fa-location-dot"
+                style="margin-right: 5px"></i>{{reservation.game?.address}}</p>
+        <div class="text-divider" [style.color]="reservation.game_category?.color">{{reservation.hour | slice:0:5}} PM</div>
+
+        <!--     <div class="hour-data">
+            <span [style.color]="reservation.game_category?.color">{{reservation.hour | slice:0:5}} AM </span>
+        </div> -->
+        <div class="people">
+            <!--  <p class="people-label"><span class="available"><i class="fa-solid fa-user-group"></i> 4/8</span>
+                 huecos disponibles</p> -->
+            <div *ngIf="people?.length!>0">
+                <div class="user" *ngFor="let user of people;let i =index">
+                    <img class="avatar" [src]="user.avatar" alt="">
+                    <p class="user-name">{{user.name}}</p>
+                </div>
+
+            </div>
+
+
+        </div>
+
+        <div class="reservation-price row">
+            <div class="reservation-button col-4" [style.background-color]="reservation.game_category?.color">
+                <p class="price">Únete a la reserva <span>{{reservation.price_per_user}}€</span> </p>
+            </div>
+        </div>
+    </div>
+</div>

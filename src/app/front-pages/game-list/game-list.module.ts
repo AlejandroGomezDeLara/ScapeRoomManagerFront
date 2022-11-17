@@ -9,12 +9,13 @@ import { GameItemComponent } from 'src/app/components/game-list/game-item/game-i
 import { GameListFiltersComponent } from 'src/app/components/game-list/game-list-filters/game-list-filters.component';
 import { FormsModule } from '@angular/forms';
 import { NpnSliderModule } from "npn-slider";
-import { RatingComponent } from 'src/app/components/game-list/rating/rating.component';
 import { GameListPaginationComponent } from 'src/app/components/game-list/game-list-pagination/game-list-pagination.component';
 import { MatMenuModule } from '@angular/material/menu';
 import { HomeFooterModule } from 'src/app/components/home/home-footer/home-footer.module';
 import { AppLoadingModule } from 'src/app/components/app-loading/app-loading.module';
 import { AppImageSliderModule } from 'src/app/components/app-image-slider/app-image-slider.module';
+import { OpenReservationModule } from 'src/app/components/game-list/open-reservation/open-reservation.module';
+import { RatingModule } from 'src/app/components/game-list/rating/rating.module';
 
 const routes: Routes = [
   {
@@ -28,7 +29,6 @@ const routes: Routes = [
     GameListComponent,
     GameItemComponent,
     GameListFiltersComponent,
-    RatingComponent,
     GameListPaginationComponent,
 ],
   imports: [
@@ -41,6 +41,8 @@ const routes: Routes = [
     HomeFooterModule,
     AppLoadingModule,
     AppImageSliderModule,
+    OpenReservationModule,
+    RatingModule,
     RouterModule.forChild(routes)
   ]
 })

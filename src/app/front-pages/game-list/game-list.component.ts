@@ -4,6 +4,7 @@ import { debounceTime, delay, filter } from 'rxjs';
 import { Game } from 'src/app/models/Game';
 import { GameCategory } from 'src/app/models/GameCategory';
 import { GameSubcategory } from 'src/app/models/GameSubcategory';
+import { OpenReservation } from 'src/app/models/OpenReservation';
 import { ApiService } from 'src/app/services/api.service';
 
 @Component({
@@ -19,7 +20,7 @@ export class GameListComponent implements OnInit {
   public filteredGames:Game[]=[];
   public regionFilteredGames:Game[]=[];
   public games:Game[]=[];
-
+  public openReservations:OpenReservation[]=[];
   //game filtros
   min_price?:number;
   max_price?:number;
@@ -44,12 +45,7 @@ export class GameListComponent implements OnInit {
 
   ngOnInit(): void {
     
-    this.apiService.getEntity('categories',1).subscribe((category:GameCategory)=>{
-      console.log("category",category);
-      
-    },(error:Error)=>{
-
-    });
+    this.getOpenReservations();
   }
 
   public getCategory():void{
@@ -138,4 +134,10 @@ export class GameListComponent implements OnInit {
   }
   
 
+  public getOpenReservations():void{
+    this.apiService.getEntity('reservations').subscribe((openReservations:OpenReservation[])=>{
+      console.log("Reservas",openReservations);
+      this.openReservations=openReservations;
+    });
+  }
 }
