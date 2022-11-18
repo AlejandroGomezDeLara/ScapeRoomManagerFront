@@ -41,7 +41,9 @@ export class GameListComponent implements OnInit {
 
   constructor(private apiService: ApiService,
     private ngZone: NgZone,
-    private router: ActivatedRoute) { }
+    private router: ActivatedRoute) { 
+      
+    }
 
 
   ngOnInit(): void {
@@ -118,9 +120,10 @@ export class GameListComponent implements OnInit {
       },
       error: (error) => {
         console.log(error);
+        this.isLoading=false;
       }
     });
-    
+
   }
 
 

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, NgZone, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-home',
@@ -8,13 +8,51 @@ import { Component, OnInit } from '@angular/core';
 export class HomeComponent implements OnInit {
 
   public isLoading:boolean=true;
+  public selected_address?:string;
 
-  constructor() { }
-
+  constructor(private zone:NgZone) {
+    
+    
+  }
   ngOnInit(): void {
-    setTimeout(()=>{
+    this.locate();
+  }
+
+  
+  public locate():void{
+    navigator.geolocation.getCurrentPosition(({ coords }) => {
+      let geocoder = new google.maps.Geocoder();
+      let latlng = new google.maps.LatLng(coords.latitude, coords.longitude);
+  
+  
+      geocoder.geocode({location:latlng}, (results, status) => {
+        if (status == google.maps.GeocoderStatus.OK) {
+          if (results[0] != null) {
+            var user_city = results[0].address_components.filter(ac=>~ac.types.indexOf('locality'))[0].long_name
+
+            this.zone.run(()=>{
+              this.selected_address=user_city;
+              this.isLoading=false;
+            });
+            
+            
+
+            
+          } else {
+            alert("No address available");
+          }
+        }
+      });
+    }, error => {
+      alert('No se pudo obtener la geolocalización');
       this.isLoading=false;
-    },500);
+      console.log(error);
+
+    });
+
+      
+    
+    
   }
 
 }

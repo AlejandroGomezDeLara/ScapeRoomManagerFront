@@ -17,6 +17,6 @@ export interface OpenReservation{
     actual_people?:number;
     date?:string;
     countdown?:any;
-    active?:boolean;
+    closed?:boolean;
     price_per_user?:number;
 }

@@ -3,10 +3,10 @@
     <span class="reservation-people-label" [style.background-color]="reservation.game_category?.color">
        <i class="fa fa-user-group"></i> {{reservation.actual_people}}/{{reservation.max_people}}</span>
 
-       <span class="reservation-countdown-label" *ngIf="reservation.active && reservation.countdown">
+       <span class="reservation-countdown-label" *ngIf="!reservation.closed && reservation.countdown">
         <i class="fa fa-clock"></i> {{reservation.countdown}}</span>
-        <span class="reservation-countdown-label closed" *ngIf="!reservation.active">
-            <i class="fa fa-clock"></i> Empezado </span>
+        <span class="reservation-countdown-label closed" *ngIf="reservation.closed">
+            <i class="fa fa-clock"></i> Cerrado </span>
 
     <div class="rating"></div>
     <p class="rating-content"><i class="fa fa-star"></i> {{reservation.game?.rating}} </p>

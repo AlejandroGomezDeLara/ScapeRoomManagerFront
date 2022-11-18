@@ -6,14 +6,18 @@
         <app-image-slider></app-image-slider>
     </div>
 
-    <h1 class="open-reservations-title">¡Corre! ¡Reserva antes de que empiecen!</h1>
+    <ng-container *ngIf="openReservations?.length!>0">
+        <h1 class="open-reservations-title">¡Corre! ¡Reserva antes de que empiecen!</h1>
+        <p class="open-reservations-description">Los eventos empezarán <span>1 hora</span> después de terminar el contador</p>
+        <div class="open-reservations my-auto">
+            <app-open-reservation [reservation]="reservation" *ngFor="let reservation of openReservations">
+            </app-open-reservation>
+        </div>
+    </ng-container>
 
-    <div class="open-reservations my-auto">
-
-        <app-open-reservation [reservation]="reservation" *ngFor="let reservation of openReservations"></app-open-reservation>
-       
-
-    </div>
+    <ng-container *ngIf="openReservations?.length!<=0">
+        <h1 class="open-reservations-title">No hay reservas disponibles para hoy. ¡Reserva ya y espera que se unan!</h1>
+    </ng-container>
 
     <div class="game-list-container row">
         <h1 *ngIf="selected_address && !isLoading">Mostrando {{total_games}} resultados {{selected_categories!.length>0
@@ -21,7 +25,7 @@
         <h1 *ngIf="!selected_address && !isLoading">Mostrando {{total_games}} resultados {{selected_categories!.length>0
             ? 'de '+selected_categories[0].name : ''}} </h1>
         <div class="row">
-            <div class="game-list col-9">
+            <div class="game-list col-lg-9 col-sm-12">
                 <ng-container *ngIf="!isLoading && filteredGames.length> 0 && games">
                     <app-game-item *ngFor="let game of filteredGames" [game]="game"></app-game-item>
                 </ng-container>
@@ -38,7 +42,7 @@
 
             </div>
 
-            <div class="filters col-3">
+            <div class="filters col-lg-3 col-sm-12">
                 <app-game-list-filters (filter)="applyFilters($event)"></app-game-list-filters>
             </div>
         </div>

@@ -9,13 +9,25 @@
         font-weight: bold;
         padding-bottom: 15px;
     }
+    .open-reservations-description{
+        color:black;
+        font-size: 16px;
+        text-align: center;
+        font-weight: bold;
+        padding-bottom: 15px;
+        span{
+            color:var(--color-primary);
+            font-size: 22px;
+        }
+    }
     .open-reservations{
         width: 100vw;
         overflow: hidden;
         text-align: center;
         background: var(--dark-background);
-        padding:20px 0px 20px 0px;
-       
+        padding:20px;
+        overflow-x: auto;
+        white-space: nowrap;
     }
     .game-list-container{
         padding:40px;

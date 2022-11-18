@@ -1,6 +1,5 @@
 import { AfterViewInit, Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import {MatDialog} from '@angular/material/dialog';
-import {MatMenuTrigger} from '@angular/material/menu';
 import { Router } from '@angular/router';
 import { GameCategory } from 'src/app/models/GameCategory';
 import { ApiService } from 'src/app/services/api.service';
@@ -18,7 +17,7 @@ export class AutocompleteSearchbarComponent implements OnInit,AfterViewInit {
 
 
   selected_name:string ="";
-  selected_address:string ="";
+  @Input() selected_address?:string;
   autocompleteInput!: string;
 
   @Input() categories:GameCategory[]=[];
@@ -85,7 +84,6 @@ export class AutocompleteSearchbarComponent implements OnInit,AfterViewInit {
 
   public deleteAddress():void{
     this.selected_address="";
-    this.search();
   }
 
 }
