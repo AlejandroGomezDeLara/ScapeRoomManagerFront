@@ -22,7 +22,11 @@ export class HeaderComponent implements OnInit,AfterContentInit {
       route:'/'
     },
     {
-      name:'Sobre nosotros',
+      name:'Mapa',
+      route:'/'
+    },
+    {
+      name:'Publicaciones',
       route:'/'
     },
     {

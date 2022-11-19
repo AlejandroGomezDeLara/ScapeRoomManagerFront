@@ -1,12 +1,12 @@
 <div class="open-reservation" *ngIf="reservation">
 
     <span class="reservation-people-label" [style.background-color]="reservation.game_category?.color">
-       <i class="fa fa-user-group"></i> {{reservation.actual_people}}/{{reservation.max_people}}</span>
+        <i class="fa fa-user-group"></i> {{reservation.users?.length}}/{{reservation.max_people}}</span>
 
-       <span class="reservation-countdown-label" *ngIf="!reservation.closed && reservation.countdown">
+    <span class="reservation-countdown-label" *ngIf="!reservation.closed && reservation.countdown">
         <i class="fa fa-clock"></i> {{reservation.countdown}}</span>
-        <span class="reservation-countdown-label closed" *ngIf="reservation.closed">
-            <i class="fa fa-clock"></i> Cerrado </span>
+    <span class="reservation-countdown-label closed" *ngIf="reservation.closed">
+        <i class="fa fa-clock"></i> Cerrado </span>
 
     <div class="rating"></div>
     <p class="rating-content"><i class="fa fa-star"></i> {{reservation.game?.rating}} </p>
@@ -33,14 +33,19 @@
 
         <p class="game-address"><i class="fa-solid fa-location-dot"
                 style="margin-right: 5px"></i>{{reservation.game?.address}}</p>
-        <div class="text-divider" [style.color]="reservation.game_category?.color">Hoy {{reservation.date | date:'HH:mm'}}</div>
+        <div class="text-divider" [style.color]="reservation.game_category?.color">Hoy {{reservation.date |
+            date:'HH:mm'}}</div>
+
 
         <!--     <div class="hour-data">
             <span [style.color]="reservation.game_category?.color">{{reservation.hour | slice:0:5}} AM </span>
         </div> -->
         <div class="people">
-            <!--  <p class="people-label"><span class="available"><i class="fa-solid fa-user-group"></i> 4/8</span>
-                 huecos disponibles</p> -->
+            <p class="remaining-people" *ngIf="reservation.users?.length! < reservation.min_people!">Quedan <span
+                    [style.color]="reservation.game_category?.color">{{reservation.min_people! -
+                    reservation.users?.length!}} <i class="fa fa-user-group"></i> </span> para poder empezar</p>
+            <p class="remaining-people" *ngIf="reservation.users?.length">¡Listo para poder
+                empezar!</p>
             <div *ngIf="people?.length!>0">
                 <div class="user" *ngFor="let user of people;let i =index">
                     <img class="avatar" [src]="user.avatar" alt="">

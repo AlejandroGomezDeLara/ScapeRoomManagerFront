@@ -2,13 +2,14 @@
 
     <!--    <app-game-list-header (searchFilter)="filterByNameAndAddress($event)" (removeAddress)="removeAddress()">
     </app-game-list-header> -->
-    <div>
+   <!--  <div>
         <app-image-slider></app-image-slider>
-    </div>
+    </div> -->
 
     <ng-container *ngIf="openReservations?.length!>0">
         <h1 class="open-reservations-title">¡Corre! ¡Reserva antes de que empiecen!</h1>
-        <p class="open-reservations-description">Los eventos empezarán <span>1 hora</span> después de terminar el contador</p>
+        <p class="open-reservations-description">¡Los eventos empezarán <span>1 hora</span> después de terminar la cuenta atrás!</p>
+        <p class="open-reservations-description">La reserva será cancelada si no hay suficientes personas cuando se termine la cuenta atrás</p>
         <div class="open-reservations my-auto">
             <app-open-reservation [reservation]="reservation" *ngFor="let reservation of openReservations">
             </app-open-reservation>
