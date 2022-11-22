@@ -1,0 +1,176 @@
+<div class="game-container" *ngIf="game && !isLoading">
+
+
+    <div class="game-content row">
+        <div class="col-4 description-container">
+            <div class="map">
+                <img src="assets/imgs/map.png" alt="">
+            </div>
+            <div class="description-content">
+                <h1>{{game.category?.name}}</h1>
+                <p class="description">
+                    {{game.category?.description}}
+                </p>
+
+                <div class="row especifications description-item">
+                    <h1>Especificaciones</h1>
+                    <div class="col-6">
+                        <p>Duracion <span [style.color]="game.category?.color"><i class="fa fa-clock"></i>
+                                {{game.max_duration}}</span></p>
+
+                    </div>
+                    <div class="col-6">
+                        <p>Personas <span [style.color]="game.category?.color">{{game.min_people}}-{{game.max_people}}
+                                <i class="fa fa-user-group"></i></span>
+                        </p>
+                    </div>
+                    <div class="col-6">
+                        <p>Dificultad <span [style.color]="game.category?.color"> 6-10 <i class="fa fa-star"></i></span>
+                        </p>
+
+                    </div>
+                    <div class="col-6">
+                        <p>Puntos Funly <span [style.color]="game.category?.color"> 250 <img
+                                    src="assets/imgs/box-transparent.png" alt=""></span></p>
+
+                    </div>
+                </div>
+                <div class="row contact description-item">
+                    <h1>Redes sociales</h1>
+                    <div class="col-6">
+                        <p><i class="fa fa-envelope" [style.color]="game.category?.color"></i> Yami@Scape.es</p>
+
+
+                    </div>
+                    <div class="col-6">
+                        <p><i class="fa-brands fa-instagram" [style.color]="game.category?.color"></i> Yami@Scape.es</p>
+
+                    </div>
+                    <div class="col-6">
+                        <p><i class="fa-brands fa-instagram" [style.color]="game.category?.color"></i> Yami@Scape.es</p>
+
+
+                    </div>
+                    <div class="col-6">
+                        <p><i class="fa-brands fa-twitter" [style.color]="game.category?.color"></i> Yami@Scape.es</p>
+
+                    </div>
+
+                </div>
+
+                <div class="row phone description-item">
+                    <h1>Teléfono</h1>
+                    <div class="col-6">
+                        <p><i class="fa fa-mobile" [style.color]="game.category?.color"></i> 62321789</p>
+                    </div>
+                    <div class="col-6">
+                        <span class="call-btn" [style.background]="game.category?.color">Llamar</span>
+                    </div>
+                </div>
+
+                <div class="row schedule">
+                    <h1>Horario de apertura</h1>
+                    <div class="col-6 day">
+                        <p>Lunes</p>
+                    </div>
+                    <div class="col-6 hour">
+                        <p>10:00 - 22:00</p>
+                    </div>
+                    <div class="col-6 day">
+                        <p>Martes</p>
+                    </div>
+                    <div class="col-6 hour">
+                        <p>10:00 - 22:00</p>
+                    </div>
+                    <div class="col-6 day">
+                        <p>Miercoles</p>
+                    </div>
+                    <div class="col-6 hour">
+                        <p>10:00 - 22:00</p>
+                    </div>
+                    <div class="col-6 day">
+                        <p>Jueves</p>
+                    </div>
+                    <div class="col-6 hour">
+                        <p>10:00 - 22:00</p>
+                    </div>
+                    <div class="col-6 day">
+                        <p>Viernes</p>
+                    </div>
+                    <div class="col-6 hour">
+                        <p>10:00 - 22:00</p>
+                    </div>
+                    <div class="col-6 day">
+                        <p>Sabado</p>
+                    </div>
+                    <div class="col-6 hour">
+                        <p>10:00 - 22:00</p>
+                    </div>
+                    <div class="col-6 day">
+                        <p>Domingo</p>
+                    </div>
+                    <div class="col-6 hour">
+                        <p>10:00 - 22:00</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="col-8 images">
+            <app-image-slider></app-image-slider>
+
+            <div class="game-data row">
+                <div class="game-title"><span class="title">{{game.name}}</span> <span
+                        [style.color]="game.category?.color" class="rating">{{game.rating}} <span> <i
+                                class="fa fa-star"></i></span>
+                    </span> <span class="reviews"> {{game.reviews}} opiniones</span>
+                </div>
+                <div class="enterprise-container row ">
+                    <span class="enterprise"><i class="fa-solid fa-building" [style.color]="game.category?.color"></i>
+                        {{game.user?.name}}
+                    </span>
+                </div>
+                <div class="game-address row">
+                    <p><i class="fa fa-location-dot"></i> {{game.address}}</p>
+                </div>
+
+                <div class="row">
+                    <span (click)="searchCategory()" class="category"
+                        [style.background-color]="game.category?.background_color" [style.color]="game.category?.color">
+                        {{game.category?.name}} </span>
+                    <span class="category" [style.background-color]="game.subcategory?.background_color"
+                        [style.color]="game.subcategory?.color">
+                        {{game.subcategory?.name}} </span>
+                    <span class="category reservation" [style.background]="game.category?.color">Reserva estándar</span>
+                    <span class="category reservation" [style.background]="game.category?.color">Reserva Funly! <i
+                            class="fa fa-star"></i></span>
+                </div>
+                <div class="game-description">
+                    <h1>Quiénes somos</h1>
+                    <p>{{game.description}}</p>
+                </div>
+            </div>
+
+            <div class="game-reviews-data-container row">
+                <div class="col-8 reviews">
+                    <p>Puntuación <i *ngFor="let item of [0,1,2,3,4]; let i = index"
+                            [class]="i + 1 <= game.rating! ? 'fa fa-star' : (game.rating! % 1 !==0 && round(game.rating!) == (i + 1)) ? 'fa fa-star-half-stroke':'fa-regular fa-star'"
+                            [style.color]="game.category?.color"></i>
+                        {{game.reviews}} opiniones</p>
+                    <p>Puntos Funly - 126 puntos</p>
+                </div>
+                <div class="col-4 my-auto reviews-label-container">
+                    <span class="write-review-btn" [style.background]="game.category?.color">Escribe tu opinión <i
+                            class="fa fa-pen"></i> </span>
+                </div>
+            </div>
+
+            <div class="game-reviews">
+                <h1>Opiniones</h1>
+            </div>
+        </div>
+    </div>
+</div>
+
+<app-loading *ngIf="isLoading"></app-loading>

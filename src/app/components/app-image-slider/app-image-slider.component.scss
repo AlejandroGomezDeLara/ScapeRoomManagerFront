@@ -1,7 +1,6 @@
 .slider-container{
-    height: 50vh;
-    width: 100vw;
-    padding:25px;
+    height: 100%;
+    width: 100%;
     position: relative;
     .text{
         text-align: center;
@@ -28,6 +27,5 @@
         width: 100%;
         object-fit: cover;
         display:none;
-        filter:brightness(0.6);
     }
 }

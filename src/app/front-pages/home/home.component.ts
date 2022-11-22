@@ -7,7 +7,7 @@ import { Component, NgZone, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  public isLoading:boolean=true;
+  public isLoading:boolean=false;
   public selected_address?:string;
 
   constructor(private zone:NgZone) {
@@ -15,7 +15,7 @@ export class HomeComponent implements OnInit {
     
   }
   ngOnInit(): void {
-    this.locate();
+    //this.locate();
   }
 
   
