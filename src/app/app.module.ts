@@ -10,10 +10,12 @@ import { SearchDialogComponent } from './components/search-dialog/search-dialog.
 import { FormsModule } from '@angular/forms';
 import { HeaderModule } from './components/header/header.module';
 
+
 @NgModule({
   declarations: [
     AppComponent,
     SearchDialogComponent,
+
   ],
   imports: [
     BrowserModule,

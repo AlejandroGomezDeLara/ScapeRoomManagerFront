@@ -1,0 +1,41 @@
+.reviews-summary-container{
+    background-color: #fafafa;
+    .reviews{
+        text-align: center;
+        .rating{
+            margin: 0;
+            span{
+                font-size: 26px;
+                font-weight: bold;
+            }
+        }
+        i{
+            font-size: 22px;
+        }
+        .reviews-description{
+            font-size: 12px;
+            color:#ccc;
+        }
+    }
+    .reviews-summary{
+        padding:15px;
+        p{
+            font-size: 10px;
+        }
+        .stars-count,.stars-number,.bar{
+            text-align: center;
+            padding:0;
+        }
+         
+       
+
+        ::ng-deep .mat-progress-bar-buffer {
+            background: #E4E8EB;
+        }
+        
+        ::ng-deep .mat-progress-bar {
+            border-radius: 2px;
+        }
+        
+    }
+}

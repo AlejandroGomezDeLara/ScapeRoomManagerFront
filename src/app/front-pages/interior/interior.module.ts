@@ -9,6 +9,7 @@ import { RatingModule } from 'src/app/components/game-list/rating/rating.module'
 import { AppImageSliderModule } from 'src/app/components/app-image-slider/app-image-slider.module';
 import { EspecificationsSidebarComponent } from 'src/app/components/interior/especifications-sidebar/especifications-sidebar.component';
 import { GameDescriptionComponent } from 'src/app/components/interior/game-description/game-description.component';
+import { ReviewsSummaryModule } from 'src/app/components/reviews-summary/reviews-summary.module';
 
 
 const routes: Routes = [
@@ -22,12 +23,14 @@ const routes: Routes = [
   declarations: [
     InteriorComponent,
     EspecificationsSidebarComponent,
-    GameDescriptionComponent
+    GameDescriptionComponent,
+    
   ],
   imports: [
     CommonModule,
     InteriorRoutingModule,
     RatingModule,
+    ReviewsSummaryModule,
     AppLoadingModule,
     AppImageSliderModule,
     RouterModule.forChild(routes)

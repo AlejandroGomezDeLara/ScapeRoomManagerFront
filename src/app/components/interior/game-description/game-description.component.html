@@ -23,9 +23,6 @@
             <span class="category" [style.background-color]="game.subcategory?.background_color"
                 [style.color]="game.subcategory?.color">
                 {{game.subcategory?.name}} </span>
-            <span class="category reservation" [style.background]="game.category?.color">Reserva estándar</span>
-            <span class="category reservation" [style.background]="game.category?.color">Reserva Funly! <i
-                    class="fa fa-star"></i></span>
         </div>
         <div class="description">
             <h1>Quiénes somos</h1>
@@ -33,21 +30,19 @@
         </div>
     </div>
 
-    <div class="game-reviews-data-container row">
+ <!--    <div class="game-reviews-data-container row">
         <div class="col-8 reviews">
             <p>Puntuación <i *ngFor="let item of [0,1,2,3,4]; let i = index"
                     [class]="i + 1 <= game.rating! ? 'fa fa-star' : (game.rating! % 1 !==0 && round(game.rating!) == (i + 1)) ? 'fa fa-star-half-stroke':'fa-regular fa-star'"
                     [style.color]="game.category?.color"></i>
-                {{game.reviews}} opiniones</p>
-            <p>Puntos Funly - 126 puntos</p>
+                {{game.reviews}} valoraciones</p>
+            <p>Puntos Funly: 126 puntos</p>
         </div>
         <div class="col-4 my-auto reviews-label-container">
             <span class="write-review-btn" [style.background]="game.category?.color">Escribe tu opinión <i
                     class="fa fa-pen"></i> </span>
         </div>
-    </div>
+    </div> -->
 
-    <div class="game-reviews">
-        <h1>Valoraciones</h1>
-    </div>
+   
 </div>

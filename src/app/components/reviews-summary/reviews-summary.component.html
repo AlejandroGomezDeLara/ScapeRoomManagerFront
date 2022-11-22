@@ -1,0 +1,80 @@
+<div class="reviews-summary-container row">
+    <div class="col-6 my-auto reviews">
+        <p class="rating" [style.color]="game.category?.color"><span>{{game.rating}}</span>/5</p>
+        <div class="stars">
+            <i *ngFor="let item of [0,1,2,3,4]; let i = index"
+                [class]="i + 1 <= game.rating!? 'fa fa-star' : (game.rating! % 1 !==0 && round(game.rating!) == (i + 1)) ? 'fa fa-star-half-stroke':'fa-regular fa-star'"
+                [style.color]="game.category?.color"></i>
+        </div>
+        <p class="reviews-description">Basado en {{game.reviews}} valoraciones</p>
+    </div>
+    <div class="col-6 reviews-summary">
+
+        <div class="row">
+            <div class="stars-number col my-auto">
+                <span style="font-size:12px">
+                    5<i class="fa fa-star" [style.color]="game.category?.color"></i>
+                </span>
+            </div>
+            <div class="bar col-8 my-auto">
+                <mat-progress-bar class="bar" [value]="98" [color]="game.category?.color"></mat-progress-bar>
+            </div>
+            <div class="stars-count col my-auto">
+                <span  style="font-size:12px">98</span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="stars-number col my-auto">
+                <span style="font-size:12px">
+                    4<i class="fa fa-star" [style.color]="game.category?.color"></i>
+                </span>
+            </div>
+            <div class="bar col-8 my-auto">
+                <mat-progress-bar class="bar" [value]="22" [color]="game.category?.color"></mat-progress-bar>
+            </div>
+            <div class="stars-count col my-auto">
+                <span  style="font-size:12px">22</span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="stars-number col my-auto">
+                <span style="font-size:12px">
+                    3<i class="fa fa-star" [style.color]="game.category?.color"></i>
+                </span>
+            </div>
+            <div class="bar col-8 my-auto">
+                <mat-progress-bar class="bar" [value]="12" [color]="game.category?.color"></mat-progress-bar>
+            </div>
+            <div class="stars-count col my-auto">
+                <span  style="font-size:12px">12</span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="stars-number col my-auto">
+                <span style="font-size:12px">
+                    2<i class="fa fa-star" [style.color]="game.category?.color"></i>
+                </span>
+            </div>
+            <div class="bar col-8 my-auto">
+                <mat-progress-bar class="bar" [value]="4" [color]="game.category?.color"></mat-progress-bar>
+            </div>
+            <div class="stars-count col my-auto">
+                <span  style="font-size:12px">4</span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="stars-number col my-auto">
+                <span style="font-size:12px">
+                    1<i class="fa fa-star" [style.color]="game.category?.color"></i>
+                </span>
+            </div>
+            <div class="bar col-8 my-auto" [appProgressBarColor]="game.category?.color!">
+                <mat-progress-bar mode="determinate"  [value]="2"></mat-progress-bar>
+            </div>
+            <div class="stars-count col my-auto">
+                <span  style="font-size:12px">2</span>
+            </div>
+        </div>
+      
+    </div>
+</div>

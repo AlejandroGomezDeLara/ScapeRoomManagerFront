@@ -3,11 +3,17 @@
         <img src="assets/imgs/map.png" alt="">
     </div>
     <div class="description-content">
-        <h1>{{game.category?.name}} <img style="width:20px;filter:brightness(0)" src="assets/imgs/box-transparent.png" alt=""></h1>
-        <p class="description">
-            {{game.category?.description}}
-        </p>
-
+        <div class="game-description">
+            <h1>{{game.category?.name}} <img style="width:20px;filter:brightness(0)"
+                    src="assets/imgs/box-transparent.png" alt=""></h1>
+            <p class="description">
+                {{game.category?.description}}
+            </p>
+        </div>
+        <div class="row description-item">
+            <h1 style="margin:0;">Valoraciones</h1>
+            <app-reviews-summary [game]="game"></app-reviews-summary>
+        </div>
         <div class="row especifications description-item">
             <h1>Especificaciones</h1>
             <div class="col-6">
