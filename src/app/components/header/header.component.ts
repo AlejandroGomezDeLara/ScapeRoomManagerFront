@@ -14,24 +14,29 @@ export class HeaderComponent implements OnInit,AfterContentInit {
   public appName=environment.appName;
   public pages=[
     {
-      name:'Buscador',
-      route:'/search'
+      name:'Eventos',
+      route:'/search',
+      icon:'search'
     },
     {
-      name:'Ranking Funly',
-      route:'/'
+      name:'Ranking',
+      route:'/',
+      icon:'star'
     },
     {
       name:'Mapa',
-      route:'/'
+      route:'/',
+      icon:'map'
     },
     {
       name:'Publicaciones',
-      route:'/'
+      route:'/',
+      icon:'thumbs-up'
     },
     {
-      name:'¿Eres una empresa?',
-      route:'/register'
+      name:'Empresas',
+      route:'/register',
+      icon:'building'
     }
 
   ];

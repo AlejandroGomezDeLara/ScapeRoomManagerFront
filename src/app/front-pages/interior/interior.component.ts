@@ -15,8 +15,7 @@ export class InteriorComponent implements OnInit {
   public isLoading: boolean = true;
 
   constructor(private apiService: ApiService,
-    private router: ActivatedRoute,
-    private route: Router) {
+    private router: ActivatedRoute) {
     this.gameId = +router.snapshot.params["id"];
   }
 
@@ -35,13 +34,7 @@ export class InteriorComponent implements OnInit {
     });
   }
 
-  round(number: number) {
-    return Math.round(number);
-  }
+ 
 
-  public searchCategory(): void {
-    console.log("xd");
-    
-    this.route.navigate(['/search'], { queryParams: { c: this.game?.category!.id} });
-  }
+  
 }

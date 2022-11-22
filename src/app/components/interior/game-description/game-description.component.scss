@@ -1,0 +1,99 @@
+.game-description {
+    padding: 0 5vw;
+    .images{
+        height: 400px;
+    }
+    .game-data {
+        margin-top: 20px;
+        margin-bottom: 20px;
+        .description {
+            h1 {
+                color: black;
+                font-weight: bold;
+            }
+        }
+    }
+    .game-title {
+        margin-bottom: 10px;
+        .title {
+            margin-top: 20px;
+            font-size: 36px;
+            font-weight: bold;
+        }
+        .rating {
+            font-weight: bold;
+            margin-left: 5px;
+            i {
+                font-size: 24px;
+            }
+            span {
+                font-weight: bold;
+                font-size: 24px;
+            }
+        }
+
+        .reviews {
+            font-size: 16px;
+            font-weight: bold;
+            margin-left: 5px;
+        }
+        .reviews:hover {
+            text-decoration: underline;
+            cursor: pointer;
+        }
+    }
+    .rating {
+        font-size: 20px;
+    }
+    .enterprise {
+        font-size: 18px;
+        text-decoration: underline;
+    }
+    .category {
+        z-index: 999;
+        font-size: 14px;
+        margin-left: 5px;
+        margin-bottom: 20px;
+        width: auto;
+        display: inline;
+        padding: 5px 10px 5px 10px;
+        border-radius: 25px;
+        cursor: pointer;
+    }
+    .game-reviews-data-container {
+        padding: 35px;
+        background: black;
+        box-shadow: var(--item-box-shadow);
+        margin-bottom: 10px;
+        border-radius: 5px;
+        .reviews {
+            font-size: 22px;
+            color: white;
+        }
+    }
+    .game-reviews {
+        h1 {
+            font-weight: bold;
+        }
+    }
+    .reviews {
+        h1 {
+            text-align: center;
+            font-weight: bold;
+        }
+    }
+    .reservation {
+        color: white;
+    }
+    .reviews-label-container {
+        p {
+            color: white;
+        }
+        .write-review-btn {
+            padding: 5px 10px 5px 10px;
+            border-radius: 25px;
+            font-size: 16px;
+            color: white;
+        }
+    }
+}

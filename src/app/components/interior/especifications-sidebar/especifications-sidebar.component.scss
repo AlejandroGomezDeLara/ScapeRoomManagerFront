@@ -1,0 +1,74 @@
+.description-container {
+    background: #fafafa;
+    padding: 0;
+    .map {
+        img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+    }
+    .description-item {
+        text-align: center;
+        font-size: 14px;
+        border-bottom: 0.5px solid #ccc;
+        padding: 15px 0;
+    }
+    .especifications {
+        span {
+            color: var(--color-primary);
+            font-weight: bold;
+            font-size: 18px;
+        }
+        img {
+            width: 20px;
+            filter: invert(60%) sepia(70%) saturate(5459%) hue-rotate(348deg) brightness(96%) contrast(105%);
+        }
+    }
+    .phone {
+        p {
+            font-size: 18px;
+        }
+        .call-btn {
+            color: white;
+            border-radius: 25px;
+            font-size: 18px;
+            padding: 5px 15px 5px 15px;
+        }
+    }
+    .contact {
+        i {
+            font-size: 22px;
+        }
+        h1 {
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .phone {
+            font-size: 16px;
+        }
+    }
+    .schedule {
+        h1 {
+            text-align: center;
+        }
+        .day {
+            font-weight: bold;
+        }
+        .hour {
+            text-align: right;
+        }
+        padding: 15px 0;
+    }
+    .description-content {
+        padding: 25px;
+        h1 {
+            text-align: center;
+            font-weight: bold;
+        }
+    }
+    .description {
+        margin-bottom: 25px;
+    }
+}

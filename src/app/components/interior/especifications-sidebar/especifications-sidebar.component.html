@@ -1,0 +1,114 @@
+<div class="col-4 description-container">
+    <div class="map">
+        <img src="assets/imgs/map.png" alt="">
+    </div>
+    <div class="description-content">
+        <h1>{{game.category?.name}} <img style="width:20px;filter:brightness(0)" src="assets/imgs/box-transparent.png" alt=""></h1>
+        <p class="description">
+            {{game.category?.description}}
+        </p>
+
+        <div class="row especifications description-item">
+            <h1>Especificaciones</h1>
+            <div class="col-6">
+                <p>Duracion <span [style.color]="game.category?.color"><i class="fa fa-clock"></i>
+                        {{game.max_duration}}</span></p>
+
+            </div>
+            <div class="col-6">
+                <p>Personas <span [style.color]="game.category?.color">{{game.min_people}}-{{game.max_people}}
+                        <i class="fa fa-user-group"></i></span>
+                </p>
+            </div>
+            <div class="col-6">
+                <p>Dificultad <span [style.color]="game.category?.color"> 6-10 <i class="fa fa-star"></i></span>
+                </p>
+
+            </div>
+            <div class="col-6">
+                <p>Puntos Funly <span [style.color]="game.category?.color"> 250 <img
+                            src="assets/imgs/box-transparent.png" alt=""></span></p>
+
+            </div>
+        </div>
+        <div class="row contact description-item">
+            <h1>Redes sociales</h1>
+            <div class="col-6">
+                <p><i class="fa fa-envelope" [style.color]="game.category?.color"></i> Yami@Scape.es</p>
+
+
+            </div>
+            <div class="col-6">
+                <p><i class="fa-brands fa-instagram" [style.color]="game.category?.color"></i> Yami@Scape.es</p>
+
+            </div>
+            <div class="col-6">
+                <p><i class="fa-brands fa-instagram" [style.color]="game.category?.color"></i> Yami@Scape.es</p>
+
+
+            </div>
+            <div class="col-6">
+                <p><i class="fa-brands fa-twitter" [style.color]="game.category?.color"></i> Yami@Scape.es</p>
+
+            </div>
+
+        </div>
+
+        <div class="row phone description-item">
+            <h1>Teléfono</h1>
+            <div class="col-6">
+                <p><i class="fa fa-mobile" [style.color]="game.category?.color"></i> 62321789</p>
+            </div>
+            <div class="col-6">
+                <span class="call-btn" [style.background]="game.category?.color">Llamar</span>
+            </div>
+        </div>
+
+        <div class="row schedule">
+            <h1>Horario de apertura</h1>
+            <div class="col-6 day">
+                <p>Lunes</p>
+            </div>
+            <div class="col-6 hour">
+                <p>10:00 - 22:00</p>
+            </div>
+            <div class="col-6 day">
+                <p>Martes</p>
+            </div>
+            <div class="col-6 hour">
+                <p>10:00 - 22:00</p>
+            </div>
+            <div class="col-6 day">
+                <p>Miercoles</p>
+            </div>
+            <div class="col-6 hour">
+                <p>10:00 - 22:00</p>
+            </div>
+            <div class="col-6 day">
+                <p>Jueves</p>
+            </div>
+            <div class="col-6 hour">
+                <p>10:00 - 22:00</p>
+            </div>
+            <div class="col-6 day">
+                <p>Viernes</p>
+            </div>
+            <div class="col-6 hour">
+                <p>10:00 - 22:00</p>
+            </div>
+            <div class="col-6 day">
+                <p>Sabado</p>
+            </div>
+            <div class="col-6 hour">
+                <p>10:00 - 22:00</p>
+            </div>
+            <div class="col-6 day">
+                <p>Domingo</p>
+            </div>
+            <div class="col-6 hour">
+                <p>10:00 - 22:00</p>
+            </div>
+        </div>
+    </div>
+
+</div>

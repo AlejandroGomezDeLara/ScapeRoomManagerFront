@@ -14,7 +14,7 @@ import { HeaderModule } from './components/header/header.module';
   declarations: [
     AppComponent,
     SearchDialogComponent,
-    ],
+  ],
   imports: [
     BrowserModule,
     HttpClientModule,
