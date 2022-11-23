@@ -9,12 +9,14 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { SearchDialogComponent } from './components/search-dialog/search-dialog.component';
 import { FormsModule } from '@angular/forms';
 import { HeaderModule } from './components/header/header.module';
+import { AddReviewDialogComponent } from './components/add-review-dialog/add-review-dialog.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     SearchDialogComponent,
+    AddReviewDialogComponent,
 
   ],
   imports: [

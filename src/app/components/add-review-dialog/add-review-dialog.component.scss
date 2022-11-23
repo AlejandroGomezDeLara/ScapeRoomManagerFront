@@ -1,0 +1,68 @@
+.game-rating-container{
+    padding: 15px;
+    position: relative;
+    text-align: center;
+    .close-icon{
+        position: absolute;
+        top: 0;
+        right: 0;
+        font-size: 24px;
+        cursor: pointer;
+    }
+    .game{
+        margin-bottom: 25px;
+        .game-image{
+            text-align: center;
+            margin: 0 auto;
+            img{
+                width: 150px;
+                height: 150px;
+                object-fit: cover;
+            }
+            
+        }
+        .title{
+            font-size: 18px;
+            font-weight: bold;
+        }
+        .address{
+            color:#ccc;
+            font-size: 12px;
+        }
+    }
+    .rate{
+        margin-bottom: 25px;
+        .select-rating{
+            i{
+                font-size: 32px;
+                cursor: pointer;
+            }
+            padding-bottom: 20px;
+        }
+        .rate-title{
+            font-size: 18px;
+            span{
+                font-size: 14px;
+                color:#ccc;
+            }
+        }
+        .description{
+            textarea{
+                border-radius: 10px;
+                padding:5px;
+            }
+            textarea:focus{
+                outline: none !important;
+            }
+        }
+    }
+    .rate-btn{
+        button{
+            padding:10px 20px 10px 20px;
+            color:white;
+            border-radius: 25px;
+            border:none;
+            cursor: pointer;
+        }
+    }
+}

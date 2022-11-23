@@ -1,0 +1,30 @@
+<div class="game-rating-container">
+    <i class="fa fa-close close-icon" (click)="closeDialog()"></i>
+    <div class="game row">
+        <div class="col-7 my-auto game-image">
+            <img [src]="game.images" alt="">
+        </div>
+        <div class="col-5 my-auto">
+            <p class="title">{{game.name}}</p>
+            <p class="address"><i class="fa fa-location-dot" [style.color]="game.category?.color"></i> {{game.address}}
+            </p>
+        </div>
+    </div>
+
+    <div class="rate">
+        <p class="rate-title">Puntúe su experiencia <span> (obligatorio)</span></p>
+        <div class="select-rating">
+            <i *ngFor="let item of [0,1,2,3,4]; let i = index"
+                [ngClass]="i + 1 <= gameReview.stars? 'fa fa-star':'fa-regular fa-star'" (click)="changeRating(i+1)"
+                [style.color]="game.category?.color"></i>
+        </div>
+        <div class="description">
+            <p class="rate-title" for="description">Detalle su valoración <span>(obligatorio)</span> </p>
+            <textarea [(ngModel)]="gameReview.text" [style.border]="'2px solid '+game.category?.color" rows="4" cols="50" placeholder="Cuenta tu experiencia en el evento"></textarea>
+        </div>
+    </div>
+
+    <div class="rate-btn">
+        <button [style.background]="game.category?.color" (click)="addReview()">Enviar valoración <i class="fa fa-paper-plane"></i></button>
+    </div>
+</div>

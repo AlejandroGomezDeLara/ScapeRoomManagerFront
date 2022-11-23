@@ -9,8 +9,8 @@ import { GameReview } from 'src/app/models/GameReview';
 export class RatingComponent implements OnInit {
 
   @Input() color?:string;
-  @Input() rating?:number;
-  @Input() reviews?:GameReview[] | number;
+  @Input() rating:number=0;
+  @Input() reviews:number=0;
 
   constructor() { }
 

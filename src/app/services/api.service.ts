@@ -51,7 +51,7 @@ export class ApiService {
   /**
    * Método para añadir el bearer token a las cabeceras 
    */
-  public setTokenToHeaders(token: string): void {
+  public setTokenToHeaders(token: string | null): void {
 
     //Asignar token a las siguientes peticiones
     this.httpOptions = {

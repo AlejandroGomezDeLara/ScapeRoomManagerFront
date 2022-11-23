@@ -1,4 +1,4 @@
-<div class="col-8 game-description">
+<div class="col-8 game-description" >
     <div class="images">
         <app-image-slider></app-image-slider>
     </div>
@@ -24,20 +24,30 @@
                 [style.color]="game.subcategory?.color">
                 {{game.subcategory?.name}} </span>
         </div>
-        <div class="description">
+        <div class="description game-item">
             <h1>Quiénes somos</h1>
             <p>{{game.description}}</p>
         </div>
     </div>
 
-    <div class="reservation-btns">
+    <div class="reservation-btns game-item">
         <h1>¡Reserva ya!</h1>
         <button class="reservation-btn" [style.background]="game.category?.color">Reserva Estándar</button>
-        <button class="reservation-btn funly" [style.background]="game.category?.color">¡Reserva Funly! <i class="fa fa-star"></i></button>
+        <button class="reservation-btn funly" [style.background]="game.category?.color">¡Reserva Funly! <i
+                class="fa fa-star"></i></button>
     </div>
 
+    <div class="row game-item">
+        <div class="col-6">
+            <h1>Valoraciones</h1>
+            <p>Déjanos tu opinión para ayudar a los usuarios!</p>
+        </div>
+        <div class="col-6 my-auto" style="text-align:center;">
+            <button class="btn" [style.background]="game.category?.color" (click)="showAddReviewModal()"><i class="fa fa-pencil"></i> Dános
+                tu opinión</button>
+        </div>
+    </div>
     <div class="reviews" *ngIf="game.reviews?.length!>0">
-        <h1>Valoraciones</h1>
         <div class="review" *ngFor="let review of game.reviews">
             <div class="stars">
                 <img class="review-user-avatar" [src]="review.user?.avatar" alt="" *ngIf="review.user?.avatar">
@@ -52,10 +62,13 @@
                 {{review.text}}
             </p>
         </div>
-        <button class="more-reviews-btn" [style.background]="game.category?.color" (click)="loadMoreReviews()">Ver más valoraciones</button>
-        <button class="more-reviews-btn" [style.background]="game.category?.color" (click)="getReviews()" *ngIf="actual_reviews_page>1">Mostrar menos</button>
+        <button class="more-reviews-btn" [style.background]="game.category?.color" (click)="loadMoreReviews.emit()">Ver más
+            valoraciones</button>
+        <button class="more-reviews-btn" [style.background]="game.category?.color" (click)="updateReviewSummary.emit()"
+            *ngIf="actual_reviews_page>1">Mostrar menos</button>
 
     </div>
 
 
 </div>
+

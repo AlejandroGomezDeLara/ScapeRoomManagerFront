@@ -11,15 +11,10 @@ import { ApiService } from 'src/app/services/api.service';
 export class EspecificationsSidebarComponent implements OnInit {
 
   @Input() game!:Game; 
-  constructor(private apiService:ApiService) { }
+  
+  constructor() { }
 
   ngOnInit(): void {
-    this.getReviewsData();
   }
 
-  public getReviewsData():void{
-    this.apiService.getSubEntity('games',this.game.id!,'reviews-summary').subscribe((gameReviewSummary:GameReviewSummary)=>{
-      this.game.gameReviewSummary=gameReviewSummary;
-    });
-  }
 }

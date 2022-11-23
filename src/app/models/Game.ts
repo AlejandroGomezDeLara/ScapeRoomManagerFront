@@ -14,6 +14,7 @@ export interface Game{
     reviews?:GameReview[],
     reviewsCount?:number,
     gameReviewSummary?:GameReviewSummary;
+    firstReview?:string,
     address?:string,
     description?:string,
     images?:string,

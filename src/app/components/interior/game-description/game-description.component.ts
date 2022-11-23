@@ -1,53 +1,65 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { AfterContentInit, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
+import { debounceTime } from 'rxjs';
 import { Game } from 'src/app/models/Game';
 import { GameReview } from 'src/app/models/GameReview';
 import { GameReviewData } from 'src/app/models/GameReviewData';
 import { ApiService } from 'src/app/services/api.service';
+import { AddReviewDialogComponent } from '../../add-review-dialog/add-review-dialog.component';
 
 @Component({
   selector: 'app-game-description',
   templateUrl: './game-description.component.html',
   styleUrls: ['./game-description.component.scss']
 })
-export class GameDescriptionComponent implements OnInit {
+export class GameDescriptionComponent implements AfterContentInit {
 
-  @Input() game!:Game; 
+  @Input() game!: Game;
+  @Output() updateReviewSummary = new EventEmitter<void>();
+  @Output() loadMoreReviews = new EventEmitter<void>();
+
   public actual_reviews_page: number = 1;
 
-  constructor(private route:Router,
-    private apiService:ApiService) { }
+  constructor(private route: Router,
+    private apiService: ApiService,
+    private dialog: MatDialog) { }
 
-  ngOnInit(): void {
-    this.getReviews();
+  ngAfterContentInit(): void {
+
   }
 
   public searchCategory(): void {
-    this.route.navigate(['/search'], { queryParams: { c: this.game?.category!.id} });
+    this.route.navigate(['/search'], { queryParams: { c: this.game?.category!.id } });
   }
 
   round(number: number) {
     return Math.round(number);
   }
 
-  public getReviews(): void {
-    this.apiService.getSubEntity('games', this.game.id!, 'reviews').subscribe((gameReviewData: GameReviewData) => {
-      console.log(gameReviewData);
-      this.game.reviews = gameReviewData.data;
+
+  public showAddReviewModal(): void {
+    const dialogRef = this.dialog.open(AddReviewDialogComponent, {
+      width: '500px',
+      data: { game: this.game },
+      backdropClass: 'backdropBackground'
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      if(result)
+      this.addReview(result);
     });
   }
 
-  public loadMoreReviews(): void {
-    this.actual_reviews_page+=1;
-    this.apiService.getSubEntity('games', this.game.id!, 'reviews?page='+this.actual_reviews_page).subscribe((gameReviewData: GameReviewData) => {
-      console.log(gameReviewData);
-      let reviews:GameReview[]=gameReviewData.data!;
-      this.game.reviews!.push(...reviews);
+  public addReview(gameReview: GameReview): void {
+    gameReview.game_id=this.game.id;
+    this.apiService.addSubEntity('games', this.game.id!, 'reviews', gameReview).subscribe((gameReview: GameReview) => {
+      console.log(gameReview);
+      this.updateReviewSummary.emit();
+    }, (error: Error) => {
+      console.log(error);
     });
   }
-
-  
-
-
 
 }
