@@ -5,6 +5,7 @@ export interface User{
     avatar?:string;
     role_id?:number;
     api_token?:string;
+    phone?:string;
     instagram_user?:string;
     facebook_user?:string;
     twitter_user?:string;

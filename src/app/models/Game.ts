@@ -13,10 +13,12 @@ export interface Game{
     city?:string,
     reviews?:GameReview[],
     reviewsCount?:number,
+    closed?:boolean,
     gameReviewSummary?:GameReviewSummary;
     firstReview?:GameReview,
     address?:string,
     description?:string,
+    schedule?:any[],
     images?:string,
     category?:GameCategory,
     subcategory?:GameSubcategory,

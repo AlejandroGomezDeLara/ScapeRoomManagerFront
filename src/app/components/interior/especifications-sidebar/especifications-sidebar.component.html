@@ -64,60 +64,32 @@
 
         </div>
 
-        <div class="row phone description-item">
+        <div class="row phone description-item" *ngIf="game.user?.phone">
             <h1>Teléfono</h1>
             <div class="col-6">
-                <p><i class="fa fa-mobile" [style.color]="game.category?.color"></i> 62321789</p>
+                <p><i class="fa fa-mobile" [style.color]="game.category?.color"></i> {{game.user?.phone}}</p>
             </div>
             <div class="col-6">
                 <span class="call-btn" [style.background]="game.category?.color">Llamar</span>
             </div>
         </div>
 
-        <div class="row schedule">
+        <div class="row schedule" *ngIf="game.schedule?.length!>0">
             <h1>Horario de apertura</h1>
-            <div class="col-6 day">
-                <p>Lunes</p>
-            </div>
-            <div class="col-6 hour">
-                <p>10:00 - 22:00</p>
-            </div>
-            <div class="col-6 day">
-                <p>Martes</p>
-            </div>
-            <div class="col-6 hour">
-                <p>10:00 - 22:00</p>
-            </div>
-            <div class="col-6 day">
-                <p>Miercoles</p>
-            </div>
-            <div class="col-6 hour">
-                <p>10:00 - 22:00</p>
-            </div>
-            <div class="col-6 day">
-                <p>Jueves</p>
-            </div>
-            <div class="col-6 hour">
-                <p>10:00 - 22:00</p>
-            </div>
-            <div class="col-6 day">
-                <p>Viernes</p>
-            </div>
-            <div class="col-6 hour">
-                <p>10:00 - 22:00</p>
-            </div>
-            <div class="col-6 day">
-                <p>Sabado</p>
-            </div>
-            <div class="col-6 hour">
-                <p>10:00 - 22:00</p>
-            </div>
-            <div class="col-6 day">
-                <p>Domingo</p>
-            </div>
-            <div class="col-6 hour">
-                <p>10:00 - 22:00</p>
-            </div>
+            <ng-container *ngFor="let schedule of game.schedule">
+                <div class="col-6 day">
+                    <p *ngIf="schedule.day == 1">Lunes</p>
+                    <p *ngIf="schedule.day == 2">Martes</p>
+                    <p *ngIf="schedule.day == 3">Miércoles</p>
+                    <p *ngIf="schedule.day == 4">Jueves</p>
+                    <p *ngIf="schedule.day == 5">Viernes</p>
+                    <p *ngIf="schedule.day == 6">Sábado</p>
+                    <p *ngIf="schedule.day == 7">Domingo</p>
+                </div>
+                <div class="col-6 hour">
+                    <p>{{schedule.opening_time | slice:0:5}} - {{schedule.closing_time | slice:0:5}}</p>
+                </div>
+            </ng-container>
         </div>
     </div>
 

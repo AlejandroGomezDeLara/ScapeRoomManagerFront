@@ -26,7 +26,7 @@ export class GameDescriptionComponent implements AfterContentInit {
     private dialog: MatDialog) { }
 
   ngAfterContentInit(): void {
-
+    this.checkGameClosed();
   }
 
   public searchCategory(): void {
@@ -60,6 +60,40 @@ export class GameDescriptionComponent implements AfterContentInit {
     }, (error: Error) => {
       console.log(error);
     });
+  }
+
+  public checkGameClosed():void{
+    const now = new Date();
+    const day= now.getDay();
+    
+    var hour=now.getHours();
+    var minutes=now.getMinutes();
+    var seconds=now.getSeconds();
+    if(this.game.schedule){
+      let opening_time=this.game.schedule.find(x=>x.day == day).opening_time;
+      let closing_time=this.game.schedule.find(x=>x.day == day).closing_time;
+      let actualHour=hour+':'+minutes+':'+seconds;
+      if(actualHour> opening_time && actualHour<closing_time){
+        this.game.closed=false;
+      }else{
+        this.game.closed=true;
+      }
+      console.log(this.game.closed);
+      
+      
+    }
+    
+    /* const difference = this.target.getTime() - now.getTime();
+
+    const horas = Math.floor(
+      (difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+    )-1;
+
+    
+    const minutos = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+
+    const segundos = Math.floor((difference % (1000 * 60)) / 1000); */
+    
   }
 
 }

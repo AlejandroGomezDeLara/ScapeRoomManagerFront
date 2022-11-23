@@ -1,5 +1,9 @@
 <div class="col-8 game-description">
     <div class="images">
+        <ng-container *ngIf="game.schedule?.length!>0">
+            <span class="closed-label open" *ngIf="!game.closed">Abierto ahora</span>
+            <span class="closed-label closed" *ngIf="game.closed">Cerrado ahora</span>
+        </ng-container>
         <app-image-slider></app-image-slider>
     </div>
     <div class="game-data row">
@@ -24,13 +28,13 @@
                 [style.color]="game.subcategory?.color">
                 {{game.subcategory?.name}} </span>
         </div>
-       
+
         <div class="description game-item">
             <h1>Quiénes somos</h1>
             <p>{{game.description}}</p>
         </div>
 
-       
+
 
         <div class="reservation-btns game-item row">
             <h1>¡Reserva ya!</h1>
