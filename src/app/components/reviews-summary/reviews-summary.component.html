@@ -17,7 +17,7 @@
                 </span>
             </div>
             <div class="bar col-8 my-auto">
-                <mat-progress-bar  class="bar" [value]="summary?.fiveStars"></mat-progress-bar>
+                <mat-progress-bar  class="bar" [value]="summary?.fiveStarsPercentage"></mat-progress-bar>
             </div>
             <div class="stars-count col my-auto">
                 <span  style="font-size:12px">{{summary?.fiveStars}}</span>
@@ -30,7 +30,7 @@
                 </span>
             </div>
             <div class="bar col-8 my-auto">
-                <mat-progress-bar class="bar" [value]="summary?.fourStars"></mat-progress-bar>
+                <mat-progress-bar class="bar" [value]="summary?.fourStarsPercentage"></mat-progress-bar>
             </div>
             <div class="stars-count col my-auto">
                 <span  style="font-size:12px">{{summary?.fourStars}}</span>
@@ -43,7 +43,7 @@
                 </span>
             </div>
             <div class="bar col-8 my-auto">
-                <mat-progress-bar class="bar" [value]="summary?.threeStars" ></mat-progress-bar>
+                <mat-progress-bar class="bar" [value]="summary?.threeStarsPercentage" ></mat-progress-bar>
             </div>
             <div class="stars-count col my-auto">
                 <span  style="font-size:12px">{{summary?.threeStars}}</span>
@@ -56,7 +56,7 @@
                 </span>
             </div>
             <div class="bar col-8 my-auto">
-                <mat-progress-bar class="bar" [value]="summary?.twoStars" [color]="color"></mat-progress-bar>
+                <mat-progress-bar class="bar" [value]="summary?.twoStarsPercentage" [color]="color"></mat-progress-bar>
             </div>
             <div class="stars-count col my-auto">
                 <span  style="font-size:12px">{{summary?.twoStars}}</span>
@@ -69,7 +69,7 @@
                 </span>
             </div>
             <div class="bar col-8 my-auto" [appProgressBarColor]="color!">
-                <mat-progress-bar mode="determinate"  [value]="summary?.oneStars"></mat-progress-bar>
+                <mat-progress-bar mode="determinate"  [value]="summary?.oneStarsPercentage"></mat-progress-bar>
             </div>
             <div class="stars-count col my-auto">
                 <span  style="font-size:12px">{{summary?.oneStars}}</span>

@@ -18,11 +18,22 @@ export class ReviewsSummaryComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    this.setPercentajes();
   }
 
   round(number: number) {
     return Math.round(number);
   }
 
+  setPercentajes():void{
+    if(this.summary){
+      let total=this.summary.reviewsCount;
+      this.summary.fiveStarsPercentage=(this.summary.fiveStars/total)*100;
+      this.summary.fourStarsPercentage=(this.summary.fourStars/total)*100;
+      this.summary.threeStarsPercentage=(this.summary.threeStars/total)*100;
+      this.summary.twoStarsPercentage=(this.summary.twoStars/total)*100;
+      this.summary.oneStarsPercentage=(this.summary.oneStars/total)*100;
+    }
+  }
  
 }

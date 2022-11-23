@@ -2,7 +2,9 @@
     <i class="fa fa-close close-icon" (click)="closeDialog()"></i>
     <div class="game row">
         <div class="col-7 my-auto game-image">
-            <img [src]="game.images" alt="">
+            <img [src]="game.images" alt="" *ngIf="game.images">
+            <img src="assets/imgs/placeholder.png" alt="" *ngIf="!game.images">
+
         </div>
         <div class="col-5 my-auto">
             <p class="title">{{game.name}}</p>
