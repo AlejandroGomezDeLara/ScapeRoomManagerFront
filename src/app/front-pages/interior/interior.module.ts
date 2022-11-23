@@ -12,6 +12,7 @@ import { GameDescriptionComponent } from 'src/app/components/interior/game-descr
 import { ReviewsSummaryModule } from 'src/app/components/reviews-summary/reviews-summary.module';
 import { HomeFooterModule } from 'src/app/components/home/home-footer/home-footer.module';
 import { GameReviewsModule } from 'src/app/components/interior/game-reviews/game-reviews.module';
+import { MapModule } from 'src/app/components/map/map.module';
 
 
 const routes: Routes = [
@@ -37,6 +38,7 @@ const routes: Routes = [
     AppImageSliderModule,
     HomeFooterModule,
     GameReviewsModule,
+    MapModule,
     RouterModule.forChild(routes)
 
   ]
