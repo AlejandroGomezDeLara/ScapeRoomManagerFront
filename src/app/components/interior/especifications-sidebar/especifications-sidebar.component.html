@@ -12,7 +12,7 @@
         </div>
         <div class="row description-item">
             <h1 style="margin:0;">Valoraciones</h1>
-            <app-reviews-summary [game]="game"></app-reviews-summary>
+            <app-reviews-summary  [summary]="game.gameReviewSummary!" [color]="game.category?.color!"></app-reviews-summary>
         </div>
         <div class="row especifications description-item">
             <h1>Especificaciones</h1>

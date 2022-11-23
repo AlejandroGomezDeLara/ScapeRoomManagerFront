@@ -1,6 +1,6 @@
 .game-description {
     padding: 0 5vw;
-    .images{
+    .images {
         height: 400px;
     }
     .game-data {
@@ -11,6 +11,10 @@
                 color: black;
                 font-weight: bold;
             }
+        }
+        .game-address{
+            font-size: 14px;
+            color:#ccc;
         }
     }
     .game-title {
@@ -45,9 +49,11 @@
     .rating {
         font-size: 20px;
     }
+    
     .enterprise {
-        font-size: 18px;
+        font-size: 16px;
         text-decoration: underline;
+        margin-bottom: 10px;
     }
     .category {
         z-index: 999;
@@ -77,14 +83,57 @@
         }
     }
     .reviews {
+        margin: 0 auto;
+        text-align: center;
+        .review {
+            margin-bottom: 20px;
+            border-bottom: 0.5px solid #fafafa;
+            text-align:start;
+        }
         h1 {
-            text-align: center;
             font-weight: bold;
         }
+        .review-user-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            box-shadow: var(--item-box-shadow);
+            margin-right: 5px;
+        }
+        .review-date {
+            color: #ccc;
+            font-size: 12px;
+            margin: 0;
+        }
+        .more-reviews-btn{
+            padding:10px;
+            border-radius: 25px;
+            color:white;
+            border:none;
+            cursor: pointer;
+            display: inline-block;
+            font-size: 16px;
+        }
     }
-    .reservation {
-        color: white;
+    .reservation-btns {
+        margin-bottom: 10px;
+        padding:20px;
+        text-align: center;
+        h1{
+            font-weight: bold;
+        }
+        .reservation-btn{
+            padding:10px;
+            border-radius: 25px;
+            color:white;
+            border:none;
+            cursor: pointer;
+            display: inline-block;
+            font-size: 16px;
+            margin:10px;
+        }
     }
+
     .reviews-label-container {
         p {
             color: white;

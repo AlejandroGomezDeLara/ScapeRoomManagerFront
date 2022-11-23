@@ -2,7 +2,7 @@
     <div class="stars">
         <span class="rating-number" [style.color]="color">{{rating}}</span>
         <i *ngFor="let item of [0,1,2,3,4]; let i = index"
-        [class]="i + 1 <= rating? 'fa fa-star' : (rating % 1 !==0 && round(rating) == (i + 1)) ? 'fa fa-star-half-stroke':'fa-regular fa-star'"
+        [class]="i + 1 <= rating! ? 'fa fa-star' : (rating! % 1 !==0 && round(rating!) == (i + 1)) ? 'fa fa-star-half-stroke':'fa-regular fa-star'"
         [style.color]="color"></i>
     </div>
     <div class="ratings">

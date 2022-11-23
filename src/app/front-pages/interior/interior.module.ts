@@ -10,6 +10,7 @@ import { AppImageSliderModule } from 'src/app/components/app-image-slider/app-im
 import { EspecificationsSidebarComponent } from 'src/app/components/interior/especifications-sidebar/especifications-sidebar.component';
 import { GameDescriptionComponent } from 'src/app/components/interior/game-description/game-description.component';
 import { ReviewsSummaryModule } from 'src/app/components/reviews-summary/reviews-summary.module';
+import { HomeFooterModule } from 'src/app/components/home/home-footer/home-footer.module';
 
 
 const routes: Routes = [
@@ -33,6 +34,7 @@ const routes: Routes = [
     ReviewsSummaryModule,
     AppLoadingModule,
     AppImageSliderModule,
+    HomeFooterModule,
     RouterModule.forChild(routes)
 
   ]

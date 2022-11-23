@@ -11,7 +11,7 @@ import { ApiService } from 'src/app/services/api.service';
 export class InteriorComponent implements OnInit {
 
   public gameId?: number;
-  public game?: Game;
+  public game!: Game;
   public isLoading: boolean = true;
 
   constructor(private apiService: ApiService,
@@ -25,7 +25,6 @@ export class InteriorComponent implements OnInit {
 
   public getGame(): void {
     this.apiService.getEntity('games', this.gameId).subscribe((game: Game) => {
-      console.log(game);
       this.game = game;
       this.isLoading = false;
     }, (error: Error) => {
@@ -34,7 +33,8 @@ export class InteriorComponent implements OnInit {
     });
   }
 
- 
-
   
+
+
+
 }

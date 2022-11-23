@@ -1,4 +1,6 @@
 import { GameCategory } from "./GameCategory";
+import { GameReview } from "./GameReview";
+import { GameReviewSummary } from "./GameReviewSummary";
 import { GameSubcategory } from "./GameSubcategory";
 import { OpenReservation } from "./OpenReservation";
 import { User } from "./User";
@@ -9,7 +11,9 @@ export interface Game{
     rating?:number,
     user?:User,
     city?:string,
-    reviews?:number,
+    reviews?:GameReview[],
+    reviewsCount?:number,
+    gameReviewSummary?:GameReviewSummary;
     address?:string,
     description?:string,
     images?:string,

@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { GameReview } from 'src/app/models/GameReview';
 
 @Component({
   selector: 'app-rating',
@@ -8,8 +9,8 @@ import { Component, Input, OnInit } from '@angular/core';
 export class RatingComponent implements OnInit {
 
   @Input() color?:string;
-  @Input() reviews?:number;
-  @Input() rating!:number;
+  @Input() rating?:number;
+  @Input() reviews?:GameReview[] | number;
 
   constructor() { }
 
@@ -19,4 +20,7 @@ export class RatingComponent implements OnInit {
   round(number:number) {
     return Math.round(number);
   }
+
+
+
 }

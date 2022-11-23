@@ -4,8 +4,8 @@
     </div>
     <div class="game-data row">
         <div class="game-title"><span class="title">{{game.name}}</span> <span [style.color]="game.category?.color"
-                class="rating">{{game.rating}} <span> <i class="fa fa-star"></i></span>
-            </span> <span class="reviews"> {{game.reviews}} opiniones</span>
+                class="rating">{{game.gameReviewSummary?.avgStars}} <span> <i class="fa fa-star"></i></span>
+            </span> <span class="reviews"> {{game.gameReviewSummary?.reviewsCount}} valoraciones</span>
         </div>
         <div class="enterprise-container row ">
             <span class="enterprise"><i class="fa-solid fa-building" [style.color]="game.category?.color"></i>
@@ -13,7 +13,7 @@
             </span>
         </div>
         <div class="game-address row">
-            <p><i class="fa fa-location-dot"></i> {{game.address}}</p>
+            <p><i class="fa fa-location-dot" [style.color]="game.category?.color"></i> {{game.address}}</p>
         </div>
 
         <div class="row">
@@ -30,19 +30,32 @@
         </div>
     </div>
 
- <!--    <div class="game-reviews-data-container row">
-        <div class="col-8 reviews">
-            <p>Puntuación <i *ngFor="let item of [0,1,2,3,4]; let i = index"
-                    [class]="i + 1 <= game.rating! ? 'fa fa-star' : (game.rating! % 1 !==0 && round(game.rating!) == (i + 1)) ? 'fa fa-star-half-stroke':'fa-regular fa-star'"
-                    [style.color]="game.category?.color"></i>
-                {{game.reviews}} valoraciones</p>
-            <p>Puntos Funly: 126 puntos</p>
-        </div>
-        <div class="col-4 my-auto reviews-label-container">
-            <span class="write-review-btn" [style.background]="game.category?.color">Escribe tu opinión <i
-                    class="fa fa-pen"></i> </span>
-        </div>
-    </div> -->
+    <div class="reservation-btns">
+        <h1>¡Reserva ya!</h1>
+        <button class="reservation-btn" [style.background]="game.category?.color">Reserva Estándar</button>
+        <button class="reservation-btn funly" [style.background]="game.category?.color">¡Reserva Funly! <i class="fa fa-star"></i></button>
+    </div>
 
-   
+    <div class="reviews" *ngIf="game.reviews?.length!>0">
+        <h1>Valoraciones</h1>
+        <div class="review" *ngFor="let review of game.reviews">
+            <div class="stars">
+                <img class="review-user-avatar" [src]="review.user?.avatar" alt="" *ngIf="review.user?.avatar">
+                <img class="review-user-avatar" src="assets/imgs/placeholder.png" alt="" *ngIf="!review.user?.avatar">
+                <span class="review-user-name">{{review.user?.name}} </span>
+                <i *ngFor="let item of [0,1,2,3,4]; let i = index"
+                    [class]="i + 1 <= review.stars ? 'fa fa-star' : (review.stars % 1 !==0 && round(review.stars) == (i + 1)) ? 'fa fa-star-half-stroke':'fa-regular fa-star'"
+                    [style.color]="game.category?.color"></i>
+            </div>
+            <p class="review-date">{{review.created_at | date}}</p>
+            <p>
+                {{review.text}}
+            </p>
+        </div>
+        <button class="more-reviews-btn" [style.background]="game.category?.color" (click)="loadMoreReviews()">Ver más valoraciones</button>
+        <button class="more-reviews-btn" [style.background]="game.category?.color" (click)="getReviews()" *ngIf="actual_reviews_page>1">Mostrar menos</button>
+
+    </div>
+
+
 </div>
