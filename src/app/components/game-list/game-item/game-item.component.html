@@ -8,7 +8,11 @@
             <p [style.color]="game.category?.color">{{game.name}} </p>
             <p class="enterprise"><i class="fa-solid fa-building" [style.color]="game.category?.color"></i> {{game.user?.name}}</p>
         </div>
-        
+        <app-rating [color]="game.category?.color" [rating]="game.rating!" [reviews]="game.reviewsCount!" ></app-rating>
+
+        <div class="address">
+            <p><i class="fa fa-location-dot"></i> {{game.address}}</p>
+        </div>
 
         <!-- Data -->
         <span class="game-price">Desde <span class="price"
@@ -21,7 +25,6 @@
             {{game.max_people}} personas </p>
 
        <!--  Componente rating -->
-        <app-rating [color]="game.category?.color" [rating]="game.rating!" [reviews]="game.reviewsCount!" ></app-rating>
 
         
 
@@ -33,12 +36,11 @@
                 {{game.subcategory?.name}} </span>
         </div>
 
-        <div class="address row">
-            <p><i class="fa fa-location-dot"></i> {{game.address}}</p>
-        </div>
+        
 
         <div class="data row">
             <p>{{game.description}}</p>
+            <p class="comment" *ngIf="game.firstReview"><img [src]="game.firstReview?.user?.avatar" alt=""> "{{game.firstReview?.text}}"</p>
         </div>
     </div>
 
