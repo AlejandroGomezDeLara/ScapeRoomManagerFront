@@ -1,4 +1,4 @@
-<div class="col-8 game-description" >
+<div class="col-8 game-description">
     <div class="images">
         <app-image-slider></app-image-slider>
     </div>
@@ -24,31 +24,36 @@
                 [style.color]="game.subcategory?.color">
                 {{game.subcategory?.name}} </span>
         </div>
+       
         <div class="description game-item">
             <h1>Quiénes somos</h1>
             <p>{{game.description}}</p>
         </div>
-    </div>
 
-    <div class="reservation-btns game-item">
-        <h1>¡Reserva ya!</h1>
-        <button class="reservation-btn" [style.background]="game.category?.color">Reserva Estándar</button>
-        <button class="reservation-btn funly" [style.background]="game.category?.color">¡Reserva Funly! <i
-                class="fa fa-star"></i></button>
-    </div>
+       
 
-    <div class="row game-item">
-        <div class="col-6">
-            <h1>Valoraciones</h1>
-            <p>Déjanos tu opinión para ayudar a los usuarios!</p>
+        <div class="reservation-btns game-item row">
+            <h1>¡Reserva ya!</h1>
+            <button class="reservation-btn" [style.background]="game.category?.color">Reserva Estándar</button>
+            <button class="reservation-btn funly" [style.background]="game.category?.color">¡Reserva Funly! <i
+                    class="fa fa-star"></i></button>
         </div>
-        <div class="col-6 my-auto" style="text-align:center;">
-            <button class="btn" [style.background]="game.category?.color" (click)="showAddReviewModal()"><i class="fa fa-pencil"></i> Dános
-                tu opinión</button>
+
+        <div class="row game-item">
+            <div class="col-6">
+                <h1>Valoraciones</h1>
+                <p>Déjanos tu opinión para ayudar a los usuarios!</p>
+            </div>
+            <div class="col-6 my-auto" style="text-align:center;">
+                <button class="btn" [style.background]="game.category?.color" (click)="showAddReviewModal()"><i
+                        class="fa fa-pencil"></i> Dános
+                    tu opinión</button>
+            </div>
         </div>
+
+        <app-game-reviews [game]="game" (loadMoreReviews)="loadMoreReviews.emit()"></app-game-reviews>
     </div>
 
-    <app-game-reviews [game]="game" (loadMoreReviews)="loadMoreReviews.emit()"></app-game-reviews>
-   
+
+
 </div>
-

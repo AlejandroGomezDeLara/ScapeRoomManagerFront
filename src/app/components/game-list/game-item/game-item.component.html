@@ -40,7 +40,7 @@
 
         <div class="data row">
             <p>{{game.description}}</p>
-            <p class="comment" *ngIf="game.firstReview"><img [src]="game.firstReview?.user?.avatar" alt=""> "{{game.firstReview?.text}}"</p>
+            <p class="comment" *ngIf="game.firstReview"><img [src]="game.firstReview.user?.avatar" alt=""> "{{game.firstReview.text}}"</p>
         </div>
     </div>
 

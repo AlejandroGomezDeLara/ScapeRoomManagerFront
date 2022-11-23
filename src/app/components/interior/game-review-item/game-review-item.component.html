@@ -7,8 +7,10 @@
             [class]="i + 1 <= review.stars ? 'fa fa-star' : (review.stars % 1 !==0 && round(review.stars) == (i + 1)) ? 'fa fa-star-half-stroke':'fa-regular fa-star'"
             [style.color]="color"></i>
     </div>
-    <p class="review-date">{{review.created_at | date}}</p>
-    <p>
-        {{review.text}}
-    </p>
+    <div class="date-and-text">
+        <p class="review-date">{{review.created_at | date}}</p>
+        <p>
+            {{review.text}}
+        </p>
+    </div>
 </div>

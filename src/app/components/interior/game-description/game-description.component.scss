@@ -1,168 +1,131 @@
 .game-description {
-    padding: 0 5vw;
+    padding: 0 0 0 5vw;
     .images {
         height: 400px;
-        border-radius: 5px;
     }
     .game-data {
-        margin-top: 20px;
+        margin: 0 auto;
+        width: 100%;
         margin-bottom: 20px;
+        padding: 30px;
+        background: white;
+        border:0.5px solid #ccc;
         .description {
             h1 {
                 color: black;
                 font-weight: bold;
             }
         }
-        .game-address{
+        .game-address {
             font-size: 14px;
-            color:#ccc;
+            color: #ccc;
         }
-    }
-    .game-title {
-        margin-bottom: 10px;
-        .title {
-            margin-top: 20px;
-            font-size: 36px;
-            font-weight: bold;
+        .game-title {
+            margin-bottom: 10px;
+            .title {
+                margin-top: 20px;
+                font-size: 36px;
+                font-weight: bold;
+            }
+            .rating {
+                font-weight: bold;
+                margin-left: 5px;
+                i {
+                    font-size: 24px;
+                }
+                span {
+                    font-weight: bold;
+                    font-size: 24px;
+                }
+            }
+
+            .reviews {
+                font-size: 16px;
+                font-weight: bold;
+                margin-left: 5px;
+            }
+            .reviews:hover {
+                text-decoration: underline;
+                cursor: pointer;
+            }
         }
         .rating {
-            font-weight: bold;
+            font-size: 20px;
+        }
+
+        .enterprise {
+            font-size: 16px;
+            text-decoration: underline;
+            margin-bottom: 10px;
+        }
+        .category {
+            z-index: 999;
+            font-size: 14px;
             margin-left: 5px;
-            i {
-                font-size: 24px;
-            }
-            span {
-                font-weight: bold;
-                font-size: 24px;
+            margin-bottom: 20px;
+            width: auto;
+            display: inline;
+            padding: 5px 10px 5px 10px;
+            border-radius: 25px;
+            cursor: pointer;
+        }
+        .game-reviews-data-container {
+            padding: 35px;
+            background: black;
+            box-shadow: var(--item-box-shadow);
+            margin-bottom: 10px;
+            border-radius: 10px;
+            .reviews {
+                font-size: 22px;
+                color: white;
             }
         }
 
-        .reviews {
-            font-size: 16px;
-            font-weight: bold;
-            margin-left: 5px;
-        }
-        .reviews:hover {
-            text-decoration: underline;
-            cursor: pointer;
-        }
-    }
-    .rating {
-        font-size: 20px;
-    }
-    
-    .enterprise {
-        font-size: 16px;
-        text-decoration: underline;
-        margin-bottom: 10px;
-    }
-    .category {
-        z-index: 999;
-        font-size: 14px;
-        margin-left: 5px;
-        margin-bottom: 20px;
-        width: auto;
-        display: inline;
-        padding: 5px 10px 5px 10px;
-        border-radius: 25px;
-        cursor: pointer;
-    }
-    .game-reviews-data-container {
-        padding: 35px;
-        background: black;
-        box-shadow: var(--item-box-shadow);
-        margin-bottom: 10px;
-        border-radius: 10px;
-        .reviews {
-            font-size: 22px;
-            color: white;
-        }
-    }
-    
-    .game-item{
-        h1{
-            font-weight: bold;
-        }
-        padding-bottom: 10px;
-        margin-bottom: 10px;
-        border-bottom: 0.5px solid #ccc;
-        .btn{
-            padding:10px 20px 10px 20px;
-            font-size: 16px;
-            border-radius: 25px;
-            border:none;
-            color:white;
-            cursor: pointer;
-        }
-    }
-    .reviews {
-        margin: 0 auto;
-       
-        .reviews-title{
-            padding:20px;
+        .game-item {
+            h1 {
+                font-weight: bold;
+            }
             padding-bottom: 10px;
             margin-bottom: 10px;
             border-bottom: 0.5px solid #ccc;
+            .btn {
+                padding: 10px 20px 10px 20px;
+                font-size: 16px;
+                border-radius: 25px;
+                border: none;
+                color: white;
+                cursor: pointer;
+            }
         }
-        .review {
-            margin-bottom: 20px;
-            border-bottom: 0.5px solid #fafafa;
-            text-align:start;
-        }
-        h1 {
-            font-weight: bold;
-        }
-        .review-user-avatar {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            object-fit: cover;
-            box-shadow: var(--item-box-shadow);
-            margin-right: 5px;
-        }
-        .review-date {
-            color: #ccc;
-            font-size: 12px;
-            margin: 0;
-        }
-        .more-reviews-btn{
-            padding:10px;
-            border-radius: 25px;
-            color:white;
-            border:none;
-            cursor: pointer;
-            display: inline-block;
-            font-size: 16px;
-        }
-       
-    }
-    .reservation-btns {
-        padding-bottom: 20px;
-        text-align: center;
-        h1{
-            font-weight: bold;
-        }
-        .reservation-btn{
-            padding:10px;
-            border-radius: 25px;
-            color:white;
-            border:none;
-            cursor: pointer;
-            display: inline-block;
-            font-size: 16px;
-            margin:10px;
-        }
-    }
 
-    .reviews-label-container {
-        p {
-            color: white;
+        .reservation-btns {
+            padding-bottom: 20px;
+            text-align: center;
+            h1 {
+                font-weight: bold;
+            }
+            .reservation-btn {
+                padding: 10px;
+                border-radius: 25px;
+                color: white;
+                border: none;
+                cursor: pointer;
+                display: inline-block;
+                font-size: 16px;
+                margin: 10px;
+            }
         }
-        .write-review-btn {
-            padding: 5px 15px 5px 15px;
-            border-radius: 25px;
-            font-size: 16px;
-            color: white;
+
+        .reviews-label-container {
+            p {
+                color: white;
+            }
+            .write-review-btn {
+                padding: 5px 15px 5px 15px;
+                border-radius: 25px;
+                font-size: 16px;
+                color: white;
+            }
         }
     }
 }

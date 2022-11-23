@@ -1,9 +1,13 @@
 .description-container {
-    background: #fafafa;
+    background: white;
     padding: 0;
     height: 100%;
+    border:0.5px solid #ccc;
+    border-radius: 5px 5px 0 0 ;
     .map {
         border-radius: 5px 5px 0 0 ;
+        border-bottom:0.5px solid #ccc;
+
         img {
             border-radius: 5px 5px 0 0 ;
             width: 100%;
@@ -23,10 +27,12 @@
             font-weight: bold;
             font-size: 18px;
         }
-        img {
-            width: 20px;
-            filter: invert(60%) sepia(70%) saturate(5459%) hue-rotate(348deg) brightness(96%) contrast(105%);
+        .points{
+            img {
+                width: 20px;
+            }
         }
+        
     }
     .phone {
         p {

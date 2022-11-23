@@ -25,6 +25,8 @@ export interface Game{
     max_people?:number,
     min_duration?:number,
     max_duration?:number,
-    min_price?:number
+    min_price?:number,
+    funly_points?:number,
+    difficulty?:number
     
 }
