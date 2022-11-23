@@ -1,0 +1,6 @@
+<div class="reviews" *ngIf="game.reviews?.length!>0">
+    <app-game-review-item [color]="game.category?.color!" *ngFor="let review of game.reviews" [review]="review">
+    </app-game-review-item>
+    <button class="more-reviews-btn" [style.background]="game.category?.color" (click)="loadMoreReviews.emit()">Ver más
+        valoraciones</button>
+</div>

@@ -47,28 +47,8 @@
                 tu opinión</button>
         </div>
     </div>
-    <div class="reviews" *ngIf="game.reviews?.length!>0">
-        <div class="review" *ngFor="let review of game.reviews">
-            <div class="stars">
-                <img class="review-user-avatar" [src]="review.user?.avatar" alt="" *ngIf="review.user?.avatar">
-                <img class="review-user-avatar" src="assets/imgs/placeholder.png" alt="" *ngIf="!review.user?.avatar">
-                <span class="review-user-name">{{review.user?.name}} </span>
-                <i *ngFor="let item of [0,1,2,3,4]; let i = index"
-                    [class]="i + 1 <= review.stars ? 'fa fa-star' : (review.stars % 1 !==0 && round(review.stars) == (i + 1)) ? 'fa fa-star-half-stroke':'fa-regular fa-star'"
-                    [style.color]="game.category?.color"></i>
-            </div>
-            <p class="review-date">{{review.created_at | date}}</p>
-            <p>
-                {{review.text}}
-            </p>
-        </div>
-        <button class="more-reviews-btn" [style.background]="game.category?.color" (click)="loadMoreReviews.emit()">Ver más
-            valoraciones</button>
-        <button class="more-reviews-btn" [style.background]="game.category?.color" (click)="updateReviewSummary.emit()"
-            *ngIf="actual_reviews_page>1">Mostrar menos</button>
 
-    </div>
-
-
+    <app-game-reviews [game]="game" (loadMoreReviews)="loadMoreReviews.emit()"></app-game-reviews>
+   
 </div>
 

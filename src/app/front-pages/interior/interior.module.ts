@@ -11,6 +11,7 @@ import { EspecificationsSidebarComponent } from 'src/app/components/interior/esp
 import { GameDescriptionComponent } from 'src/app/components/interior/game-description/game-description.component';
 import { ReviewsSummaryModule } from 'src/app/components/reviews-summary/reviews-summary.module';
 import { HomeFooterModule } from 'src/app/components/home/home-footer/home-footer.module';
+import { GameReviewsModule } from 'src/app/components/interior/game-reviews/game-reviews.module';
 
 
 const routes: Routes = [
@@ -35,6 +36,7 @@ const routes: Routes = [
     AppLoadingModule,
     AppImageSliderModule,
     HomeFooterModule,
+    GameReviewsModule,
     RouterModule.forChild(routes)
 
   ]

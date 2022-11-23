@@ -1,0 +1,14 @@
+<div class="review">
+    <div class="stars">
+        <img class="review-user-avatar" [src]="review.user?.avatar" alt="" *ngIf="review.user?.avatar">
+        <img class="review-user-avatar" src="assets/imgs/placeholder.png" alt="" *ngIf="!review.user?.avatar">
+        <span class="review-user-name">{{review.user?.name}} </span>
+        <i *ngFor="let item of [0,1,2,3,4]; let i = index"
+            [class]="i + 1 <= review.stars ? 'fa fa-star' : (review.stars % 1 !==0 && round(review.stars) == (i + 1)) ? 'fa fa-star-half-stroke':'fa-regular fa-star'"
+            [style.color]="color"></i>
+    </div>
+    <p class="review-date">{{review.created_at | date}}</p>
+    <p>
+        {{review.text}}
+    </p>
+</div>
