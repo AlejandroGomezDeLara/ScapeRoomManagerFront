@@ -37,14 +37,11 @@
             date:'HH:mm'}}</div>
 
 
-        <!--     <div class="hour-data">
-            <span [style.color]="reservation.game_category?.color">{{reservation.hour | slice:0:5}} AM </span>
-        </div> -->
         <div class="people">
             <p class="remaining-people" *ngIf="reservation.users?.length! < reservation.min_people!">Quedan <span
                     [style.color]="reservation.game_category?.color">{{reservation.min_people! -
                     reservation.users?.length!}} <i class="fa fa-user-group"></i> </span> para poder empezar</p>
-            <p class="remaining-people" *ngIf="reservation.users?.length">¡Listo para poder
+            <p class="remaining-people" *ngIf="reservation.users?.length! >= reservation.min_people!">¡Listo para poder
                 empezar!</p>
             <div *ngIf="people?.length!>0">
                 <div class="user" *ngFor="let user of people;let i =index">

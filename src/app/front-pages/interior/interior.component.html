@@ -1,7 +1,7 @@
 <div class="game-container" *ngIf="game && !isLoading">
     <div class="game-content row">
         <app-especifications-sidebar [game]="game" style="display: contents;"></app-especifications-sidebar>
-        <app-game-description (updateReviewSummary)="getReviewsAndSummary()" (loadMoreReviews)="loadMoreReviews()" [game]="game" style="display: contents;"></app-game-description>
+        <app-game-description [openReservations]="openReservations" (updateReviewSummary)="getReviewsAndSummary()" (loadMoreReviews)="loadMoreReviews()" [game]="game" style="display: contents;"></app-game-description>
     </div>
 </div>
 

@@ -8,16 +8,16 @@
     </div>
     <div class="game-data row">
         <div class="game-title"><span class="title">{{game.name}}</span> <span [style.color]="game.category?.color"
-                class="rating">{{game.gameReviewSummary?.avgStars}} <span> <i class="fa fa-star"></i></span>
+                class="rating">{{game.gameReviewSummary?.avgStars}} <span> <em class="fa fa-star"></em></span>
             </span> <span class="reviews"> {{game.gameReviewSummary?.reviewsCount}} valoraciones</span>
         </div>
         <div class="enterprise-container row ">
-            <span class="enterprise"><i class="fa-solid fa-building" [style.color]="game.category?.color"></i>
+            <span class="enterprise"><em class="fa-solid fa-building" [style.color]="game.category?.color"></em>
                 {{game.user?.name}}
             </span>
         </div>
         <div class="game-address row">
-            <p><i class="fa fa-location-dot" [style.color]="game.category?.color"></i> {{game.address}}</p>
+            <p><em class="fa fa-location-dot" [style.color]="game.category?.color"></em> {{game.address}}</p>
         </div>
 
         <div class="row">
@@ -34,23 +34,36 @@
             <p>{{game.description}}</p>
         </div>
 
+        <div class="open-reservations-header my-auto">
+            <h1 class="title">¡Reservas FUNLY <img src="assets/imgs/box-transparent.svg" style="width:30px" alt="">
+                abiertas!</h1>
+            <p class="subtitle">¡Corre, se cerrarán <span [style.color]="game.category?.color">1 hora</span> antes de
+                que
+                empiece el evento!</p>
+        </div>
+        <div class="open-reservations my-auto game-item" *ngIf="openReservations.length>0">
 
-
-        <div class="reservation-btns game-item row">
-            <h1>¡Reserva ya!</h1>
-            <button class="reservation-btn" [style.background]="game.category?.color">Reserva Estándar</button>
-            <button class="reservation-btn funly" [style.background]="game.category?.color">¡Reserva Funly! <i
-                    class="fa fa-star"></i></button>
+            <app-open-reservation-small routerLink="{{reservation.game?.id}}/interior" [reservation]="reservation"
+                *ngFor="let reservation of openReservations">
+            </app-open-reservation-small>
         </div>
 
+        <div class="reservation-btns game-item row">
+            <h1>¡Reserva de forma tradicional!</h1>
+            <button class="reservation-btn" [style.background]="game.category?.color">Reserva Estándar</button>
+        </div>
+
+
+
         <div class="row game-item">
+
             <div class="col-6">
                 <h1>Valoraciones</h1>
                 <p>Déjanos tu opinión para ayudar a los usuarios!</p>
             </div>
             <div class="col-6 my-auto" style="text-align:center;">
-                <button class="btn" [style.background]="game.category?.color" (click)="showAddReviewModal()"><i
-                        class="fa fa-pencil"></i> Dános
+                <button class="btn" [style.background]="game.category?.color" (click)="showAddReviewModal()"><em
+                        class="fa fa-pencil"></em> Dános
                     tu opinión</button>
             </div>
         </div>

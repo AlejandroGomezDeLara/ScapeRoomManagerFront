@@ -13,6 +13,7 @@ import { ReviewsSummaryModule } from 'src/app/components/reviews-summary/reviews
 import { HomeFooterModule } from 'src/app/components/home/home-footer/home-footer.module';
 import { GameReviewsModule } from 'src/app/components/interior/game-reviews/game-reviews.module';
 import { MapModule } from 'src/app/components/map/map.module';
+import { OpenReservationSmallModule } from 'src/app/components/open-reservation-small/open-reservation-small.module';
 
 
 const routes: Routes = [
@@ -27,7 +28,7 @@ const routes: Routes = [
     InteriorComponent,
     EspecificationsSidebarComponent,
     GameDescriptionComponent,
-    
+
   ],
   imports: [
     CommonModule,
@@ -38,6 +39,7 @@ const routes: Routes = [
     AppImageSliderModule,
     HomeFooterModule,
     GameReviewsModule,
+    OpenReservationSmallModule,
     MapModule,
     RouterModule.forChild(routes)
 

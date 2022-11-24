@@ -16,8 +16,7 @@ import { AddReviewDialogComponent } from './components/add-review-dialog/add-rev
   declarations: [
     AppComponent,
     SearchDialogComponent,
-    AddReviewDialogComponent,
-    
+    AddReviewDialogComponent,    
   ],
   imports: [
     BrowserModule,

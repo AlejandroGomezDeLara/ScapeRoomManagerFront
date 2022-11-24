@@ -1,7 +1,7 @@
 <div class="col-4 description-container">
     <div class="map">
         <img src="assets/imgs/map.png" alt="">
-        <app-map></app-map>
+        <!-- <app-map></app-map> -->
     </div>
     <div class="description-content">
         <div class="game-description">
@@ -39,6 +39,18 @@
 
             </div>
         </div>
+
+
+        <div class="row phone description-item" *ngIf="game.user?.phone">
+            <h1>Teléfono</h1>
+            <div class="col-6">
+                <p><i class="fa fa-mobile" [style.color]="game.category?.color"></i> {{game.user?.phone}}</p>
+            </div>
+            <div class="col-6">
+                <span class="call-btn" [style.background]="game.category?.color">Llamar</span>
+            </div>
+        </div>
+        
         <div class="row contact description-item">
             <h1>Redes sociales</h1>
             <div class="col-6">
@@ -65,15 +77,6 @@
 
         </div>
 
-        <div class="row phone description-item" *ngIf="game.user?.phone">
-            <h1>Teléfono</h1>
-            <div class="col-6">
-                <p><i class="fa fa-mobile" [style.color]="game.category?.color"></i> {{game.user?.phone}}</p>
-            </div>
-            <div class="col-6">
-                <span class="call-btn" [style.background]="game.category?.color">Llamar</span>
-            </div>
-        </div>
 
         <div class="row schedule" *ngIf="game.schedule?.length!>0">
             <h1>Horario de apertura</h1>

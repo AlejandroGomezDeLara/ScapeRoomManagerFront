@@ -1,36 +1,62 @@
 .game-description {
-    padding: 0 0 0 5vw;
+    padding: 0 0 0 3vw;
     .images {
         height: 400px;
         position: relative;
 
-        .closed-label{
-            padding:15px;
-            color:white;
+        .closed-label {
+            padding: 15px;
+            color: white;
             position: absolute;
             z-index: 999;
             font-size: 22px;
             top: 0;
-            right: 0;
+            left: 0;
             box-shadow: var(--item-box-shadow);
             font-weight: bold;
-            border-radius: 0px 0px 0px 25px;
+            border-radius: 0px 0px 25px 0px;
             background: var(--color-open-reservation);
         }
-        .open{
+        .open {
             background: var(--color-open-reservation);
         }
-        .closed{
-            background: red;
+        .closed {
+            background: var(--color-danger);
         }
     }
+
     .game-data {
         margin: 0 auto;
         width: 100%;
         margin-bottom: 20px;
-        padding: 30px;
         background: white;
-        border:0.5px solid #ccc;
+        border: 0.5px solid #ccc;
+        padding: 30px;
+        .open-reservations-header {
+            padding-top: 20px;
+            .title,
+            .subtitle {
+                color: black;
+                font-weight: bold;
+                text-align: center;
+            }
+            .title {
+                font-size: 32px;
+            }
+            .subtitle {
+                span {
+                    font-weight: bold;
+                }
+            }
+        }
+        .open-reservations {
+            width: 100%;
+            overflow: hidden;
+            text-align: center;
+            padding: 20px;
+            overflow-x: auto;
+            white-space: nowrap;
+        }
         .description {
             h1 {
                 color: black;
@@ -45,7 +71,7 @@
             margin-bottom: 10px;
             .title {
                 margin-top: 20px;
-                font-size: 36px;
+                font-size: 46px;
                 font-weight: bold;
             }
             .rating {
@@ -107,6 +133,7 @@
                 font-weight: bold;
             }
             padding-bottom: 10px;
+            padding-top: 15px;
             margin-bottom: 10px;
             border-bottom: 0.5px solid #ccc;
             .btn {
