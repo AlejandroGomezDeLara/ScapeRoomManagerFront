@@ -14,6 +14,9 @@ import { HomeFooterModule } from 'src/app/components/home/home-footer/home-foote
 import { GameReviewsModule } from 'src/app/components/interior/game-reviews/game-reviews.module';
 import { MapModule } from 'src/app/components/map/map.module';
 import { OpenReservationSmallModule } from 'src/app/components/open-reservation-small/open-reservation-small.module';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule, MAT_DATE_LOCALE } from '@angular/material/core';
+import { MatCalendarColorDirective } from 'src/app/directives/mat-calendar-color.directive';
 
 
 const routes: Routes = [
@@ -28,7 +31,7 @@ const routes: Routes = [
     InteriorComponent,
     EspecificationsSidebarComponent,
     GameDescriptionComponent,
-
+    MatCalendarColorDirective
   ],
   imports: [
     CommonModule,
@@ -39,10 +42,15 @@ const routes: Routes = [
     AppImageSliderModule,
     HomeFooterModule,
     GameReviewsModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
     OpenReservationSmallModule,
     MapModule,
     RouterModule.forChild(routes)
 
-  ]
+  ],
+  providers: [
+    { provide: MAT_DATE_LOCALE, useValue: 'es-ES' },
+  ],
 })
 export class InteriorModule { }

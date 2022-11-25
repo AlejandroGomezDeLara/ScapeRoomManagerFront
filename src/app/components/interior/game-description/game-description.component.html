@@ -34,15 +34,19 @@
             <p>{{game.description}}</p>
         </div>
 
-        <div class="open-reservations-header my-auto">
+        <div class="open-reservations-header my-auto" *ngIf="openReservations.length>0">
             <h1 class="title">¡Reservas FUNLY <img src="assets/imgs/box-transparent.svg" style="width:30px" alt="">
                 abiertas!</h1>
             <p class="subtitle">¡Corre, se cerrarán <span [style.color]="game.category?.color">1 hora</span> antes de
                 que
                 empiece el evento!</p>
         </div>
+        <div class="open-reservations-header game-item" *ngIf="openReservations.length<=0">
+            <p class="title">No hay reservas FUNLY <img src="assets/imgs/box-transparent.svg" style="width:20px" alt=""> disponibles</p>
+            <p class="subtitle">¿No tienes nadie con quien ir?, reserva TÚ sólo con las reservas FUNLY <img src="assets/imgs/box-transparent.svg" style="width:20px" alt=""> y conoce a gente!</p>
+            <button [style.background]="game.category?.color" class="create-funly-reservation-btn">Crea tu reserva única</button>
+        </div>
         <div class="open-reservations my-auto game-item" *ngIf="openReservations.length>0">
-
             <app-open-reservation-small routerLink="{{reservation.game?.id}}/interior" [reservation]="reservation"
                 *ngFor="let reservation of openReservations">
             </app-open-reservation-small>
@@ -50,7 +54,22 @@
 
         <div class="reservation-btns game-item row">
             <h1>¡Reserva de forma tradicional!</h1>
-            <button class="reservation-btn" [style.background]="game.category?.color">Reserva Estándar</button>
+            <div class="calendar row">
+                <div class="col-6 my-auto" [matCalendarColor]="game.category?.color!">
+                    <mat-calendar (selectedChange)="changeDate($event)" [selected]="day_selected" [dateFilter]="dateFilter"></mat-calendar>
+                </div>
+                <div class="col-6 my-auto" *ngIf="day_selected">
+                    <p class="title-hour">¡Elige una hora!</p>
+                    <p>Para el día {{day_selected | date}}</p>
+                    <span class="hour" *ngFor="let hour of disponible_hours">{{hour.hour | slice:0:5}}</span>
+                    
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <button class="reservation-btn" [style.background]="game.category?.color">Reserva Estándar</button>
+                </div>
+            </div>
         </div>
 
 

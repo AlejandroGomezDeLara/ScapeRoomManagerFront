@@ -1,7 +1,9 @@
 import { AfterContentInit, Component, EventEmitter, Input, Output } from '@angular/core';
+import { MatDatepickerInputEvent } from '@angular/material/datepicker';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { Game } from 'src/app/models/Game';
+import { GameReservationHour } from 'src/app/models/GameReservationHour';
 import { GameReview } from 'src/app/models/GameReview';
 import { OpenReservation } from 'src/app/models/OpenReservation';
 import { ApiService } from 'src/app/services/api.service';
@@ -15,10 +17,13 @@ import { AddReviewDialogComponent } from '../../add-review-dialog/add-review-dia
 export class GameDescriptionComponent implements AfterContentInit {
 
   @Input() game!: Game;
-  @Input() openReservations:OpenReservation[]=[];
+  @Input() openReservations: OpenReservation[] = [];
 
   @Output() updateReviewSummary = new EventEmitter<void>();
   @Output() loadMoreReviews = new EventEmitter<void>();
+  public day_selected: Date | null = null;
+
+  public disponible_hours:GameReservationHour[] | undefined=[];
 
   public actual_reviews_page: number = 1;
 
@@ -48,13 +53,13 @@ export class GameDescriptionComponent implements AfterContentInit {
 
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
-      if(result)
-      this.addReview(result);
+      if (result)
+        this.addReview(result);
     });
   }
 
   public addReview(gameReview: GameReview): void {
-    gameReview.game_id=this.game.id;
+    gameReview.game_id = this.game.id;
     this.apiService.addSubEntity('games', this.game.id!, 'reviews', gameReview).subscribe((gameReview: GameReview) => {
       console.log(gameReview);
       this.updateReviewSummary.emit();
@@ -63,24 +68,50 @@ export class GameDescriptionComponent implements AfterContentInit {
     });
   }
 
-  public checkGameClosed():void{
+  public checkGameClosed(): void {
     const now = new Date();
-    const day= now.getDay();
-    
-    let hour=now.getHours();
-    let minutes=now.getMinutes();
-    let seconds=now.getSeconds();
-    if(this.game.schedule){
-      let opening_time=this.game.schedule.find(x=>x.day == day).opening_time;
-      let closing_time=this.game.schedule.find(x=>x.day == day).closing_time;
-      let actualHour=hour+':'+minutes+':'+seconds;
-      if(actualHour> opening_time && actualHour<closing_time){
-        this.game.closed=false;
-      }else{
-        this.game.closed=true;
+    const day = now.getDay();
+
+    let hour = now.getHours();
+    let minutes = now.getMinutes();
+    let seconds = now.getSeconds();
+    if (this.game.schedule) {
+      let opening_time = this.game.schedule.find(x => x.day == day).opening_time;
+      let closing_time = this.game.schedule.find(x => x.day == day).closing_time;
+      let actualHour = hour + ':' + minutes + ':' + seconds;
+      if (actualHour > opening_time && actualHour < closing_time) {
+        this.game.closed = false;
+      } else {
+        this.game.closed = true;
       }
-      console.log(this.game.closed);     
+      console.log(this.game.closed);
     }
   }
+
+  dateFilter = (d: Date): boolean => {
+    let today: Date = new Date();
+    let todaystr:Date=new Date(Date.UTC(today.getFullYear(),today.getMonth(), today.getDate()));
+
+    let calendarstr:Date=new Date(Date.UTC(d.getFullYear(),d.getMonth(), d.getDate()));
+
+  
+    console.log("TODAY",todaystr);
+
+    console.log("CALENDARY",calendarstr);
+
+
+    
+    return calendarstr.getTime() >= todaystr.getTime();
+  }
+
+  public changeDate(date:any):void{
+    this.day_selected=date;
+    
+    this.disponible_hours=this.game.reservation_hours?.filter(x=>x.day == date.getDay());
+    console.log(this.game.reservation_hours);
+    
+    
+  }
+
 
 }

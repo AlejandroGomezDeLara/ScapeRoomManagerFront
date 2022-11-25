@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { catchError, forkJoin, map, Observable, of } from 'rxjs';
 import { Game } from 'src/app/models/Game';
+import { GameReservationHour } from 'src/app/models/GameReservationHour';
 import { GameReview } from 'src/app/models/GameReview';
 import { GameReviewData } from 'src/app/models/GameReviewData';
 import { GameReviewSummary } from 'src/app/models/GameReviewSummary';
@@ -35,7 +36,10 @@ export class InteriorComponent implements OnInit {
     let obGameReviewsSummary: Observable<GameReviewSummary> = this.apiService.getSubEntity('games', this.gameId!, 'reviews-summary').pipe(map((res) => res), catchError(e => of('FALLO SUMARY!')));
     let obGameReviewsData: Observable<GameReviewData> = this.apiService.getSubEntity('games', this.gameId!, 'reviews').pipe(map((res) => res), catchError(e => of('FALLO REVIEWS!')));
     let obReservations: Observable<OpenReservation[]> = this.apiService.getSubEntity('games', this.gameId!, 'open-reservations').pipe(map((res) => res), catchError(e => of('FALLO RESERVATION!')));
-    let requests = [obGame, obGameReviewsSummary, obGameReviewsData, obReservations];
+    let obReservationHours: Observable<GameReservationHour[]> = this.apiService.getSubEntity('games', this.gameId!, 'reservation-hours').pipe(map((res) => res), catchError(e => of('FALLO HOURS!')));
+
+    let requests = [obGame, obGameReviewsSummary, obGameReviewsData, obReservations,obReservationHours];
+    
     this.isLoading = true;
     forkJoin(requests).subscribe({
       next: (data) => {
@@ -44,10 +48,13 @@ export class InteriorComponent implements OnInit {
         const reviewsDataSummary: GameReviewSummary = data[1] as GameReviewSummary;
         const reviewsData: GameReviewData = data[2] as GameReviewData;
         const openReservations: OpenReservation[] = data[3] as OpenReservation[];
+        const gameReservationHours: GameReservationHour[] = data[4] as GameReservationHour[];
+        
         this.game = game;
         this.game.gameReviewSummary = reviewsDataSummary;
         this.game.reviews = reviewsData.data;
         this.openReservations = openReservations;
+        this.game.reservation_hours=gameReservationHours;
         console.log("game", game);
       },
       error: (error) => {

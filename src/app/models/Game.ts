@@ -1,4 +1,5 @@
 import { GameCategory } from "./GameCategory";
+import { GameReservationHour } from "./GameReservationHour";
 import { GameReview } from "./GameReview";
 import { GameReviewSummary } from "./GameReviewSummary";
 import { GameSubcategory } from "./GameSubcategory";
@@ -16,6 +17,7 @@ export interface Game{
     closed?:boolean,
     gameReviewSummary?:GameReviewSummary;
     firstReview?:GameReview,
+    reservation_hours?:GameReservationHour[];
     address?:string,
     description?:string,
     schedule?:any[],

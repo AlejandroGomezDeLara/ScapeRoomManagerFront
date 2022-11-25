@@ -146,6 +146,7 @@
                     filter: invert(33%) sepia(56%) saturate(5499%) hue-rotate(337deg) brightness(77%) contrast(107%);
                 }
                 .user-name{
+                    font-weight: bold;
                     color:var(--color-danger);
                 }
             }
