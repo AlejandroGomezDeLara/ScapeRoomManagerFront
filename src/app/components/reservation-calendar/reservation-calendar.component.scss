@@ -1,0 +1,81 @@
+.standard-reservation {
+    padding-bottom: 20px;
+    text-align: center;
+    margin: 0 auto;
+    width: 100%;
+    h1 {
+        font-weight: bold;
+    }
+    .reservation-btn {
+        padding: 10px;
+        border-radius: 25px;
+        color: white;
+        border: none;
+        cursor: pointer;
+        width: 50%;
+        font-size: 16px;
+        margin: 10px;
+    }
+    .reservation-overview {
+        font-size: 18px;
+        .title {
+            font-weight: bold;
+            font-size:26px;
+        }
+        .day-selected,.hour-selected,.price-selected{
+            font-weight: bold;
+            font-size: 24px;
+        }
+    }
+}
+.calendar {
+    width: 100%;
+    margin: 0 auto;
+    padding: 0;
+
+    .hours-container,
+    .prices-container {
+        text-align: center;
+    }
+    .select-price {
+        margin-top: 20px;
+    }
+    .hour,
+    .price {
+        padding: 10px;
+        font-size: 18px;
+        border-radius: 25px;
+        color: white;
+        font-weight: bold;
+        margin: 5px;
+        display: inline-block;
+        width: auto;
+        cursor: pointer;
+        background: var(--color-open-reservation);
+    }
+    .price:hover {
+        background: var(--dark-background);
+    }
+    .hour-disabled {
+        padding: 10px;
+        font-size: 18px;
+        border-radius: 25px;
+        color: white;
+        font-weight: bold;
+        margin: 5px;
+        display: inline-block;
+        width: auto;
+        cursor: not-allowed;
+        background: var(--color-danger);
+    }
+    .hour-selected,.price-selected{
+        background:var(--dark-background);
+    }
+    .hour:hover {
+        background: var(--dark-background);
+    }
+    .title-hour {
+        font-size: 18px;
+        font-weight: bold;
+    }
+}

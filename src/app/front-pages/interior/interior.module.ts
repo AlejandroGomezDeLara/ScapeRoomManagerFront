@@ -16,7 +16,7 @@ import { MapModule } from 'src/app/components/map/map.module';
 import { OpenReservationSmallModule } from 'src/app/components/open-reservation-small/open-reservation-small.module';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule, MAT_DATE_LOCALE } from '@angular/material/core';
-import { MatCalendarColorDirective } from 'src/app/directives/mat-calendar-color.directive';
+import { ReservationCalendarModule } from 'src/app/components/reservation-calendar/reservation-calendar.module';
 
 
 const routes: Routes = [
@@ -30,8 +30,7 @@ const routes: Routes = [
   declarations: [
     InteriorComponent,
     EspecificationsSidebarComponent,
-    GameDescriptionComponent,
-    MatCalendarColorDirective
+    GameDescriptionComponent
   ],
   imports: [
     CommonModule,
@@ -46,6 +45,7 @@ const routes: Routes = [
     MatNativeDateModule,
     OpenReservationSmallModule,
     MapModule,
+    ReservationCalendarModule,
     RouterModule.forChild(routes)
 
   ],
