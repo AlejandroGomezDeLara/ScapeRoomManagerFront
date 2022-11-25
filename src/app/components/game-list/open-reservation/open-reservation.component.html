@@ -33,8 +33,7 @@
 
         <p class="game-address"><i class="fa-solid fa-location-dot"
                 style="margin-right: 5px"></i>{{reservation.game?.address}}</p>
-        <div class="text-divider" [style.color]="reservation.game_category?.color">Hoy {{reservation.date |
-            date:'HH:mm'}}</div>
+        <div class="text-divider" [style.color]="reservation.game_category?.color">Hoy {{reservation.game_reservation_hour?.hour| slice:0:5}}</div>
 
 
         <div class="people">

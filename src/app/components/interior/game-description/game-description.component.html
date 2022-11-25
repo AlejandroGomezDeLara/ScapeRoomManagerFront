@@ -42,9 +42,12 @@
                 empiece el evento!</p>
         </div>
         <div class="open-reservations-header game-item" *ngIf="openReservations.length<=0">
-            <p class="title">No hay reservas FUNLY <img src="assets/imgs/box-transparent.svg" style="width:20px" alt=""> disponibles</p>
-            <p class="subtitle">¿No tienes nadie con quien ir?, reserva TÚ sólo con las reservas FUNLY <img src="assets/imgs/box-transparent.svg" style="width:20px" alt=""> y conoce a gente!</p>
-            <button [style.background]="game.category?.color" class="create-funly-reservation-btn">Crea tu reserva única</button>
+            <p class="title">No hay reservas FUNLY <img src="assets/imgs/box-transparent.svg" style="width:20px" alt="">
+                disponibles</p>
+            <p class="subtitle">¿No tienes nadie con quien ir?, reserva TÚ sólo con las reservas FUNLY <img
+                    src="assets/imgs/box-transparent.svg" style="width:20px" alt=""> y conoce a gente!</p>
+            <button [style.background]="game.category?.color" class="create-funly-reservation-btn">Crea tu reserva
+                única</button>
         </div>
         <div class="open-reservations my-auto game-item" *ngIf="openReservations.length>0">
             <app-open-reservation-small routerLink="{{reservation.game?.id}}/interior" [reservation]="reservation"
@@ -56,13 +59,16 @@
             <h1>¡Reserva de forma tradicional!</h1>
             <div class="calendar row">
                 <div class="col-6 my-auto" [matCalendarColor]="game.category?.color!">
-                    <mat-calendar (selectedChange)="changeDate($event)" [selected]="day_selected" [dateFilter]="dateFilter"></mat-calendar>
+                    <mat-calendar (selectedChange)="changeDate($event)" [selected]="day_selected"
+                        [dateFilter]="dateFilter"></mat-calendar>
                 </div>
                 <div class="col-6 my-auto" *ngIf="day_selected">
                     <p class="title-hour">¡Elige una hora!</p>
                     <p>Para el día {{day_selected | date}}</p>
-                    <span class="hour" *ngFor="let hour of disponible_hours">{{hour.hour | slice:0:5}}</span>
-                    
+                    <ng-container *ngFor="let hour of disponible_hours">
+                        <span class="hour" *ngIf="hour.open_reservation?.length!<=0"><i class="fa-solid fa-door-open"></i> {{hour.hour | slice:0:5}}</span>
+                        <span class="hour-disabled" *ngIf="hour.open_reservation?.length!>0"> <i class="fa-solid fa-door-closed"></i>{{hour.hour | slice:0:5}}</span>
+                    </ng-container>
                 </div>
             </div>
             <div class="row">

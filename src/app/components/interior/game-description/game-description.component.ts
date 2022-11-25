@@ -100,8 +100,10 @@ export class GameDescriptionComponent implements AfterContentInit {
     console.log("CALENDARY",calendarstr);
 
 
+    let disponible_hours=this.game.reservation_hours?.filter(x=>x.day == d.getDay());
     
-    return calendarstr.getTime() >= todaystr.getTime();
+  
+    return calendarstr.getTime() >= todaystr.getTime() && disponible_hours?.length!>0;
   }
 
   public changeDate(date:any):void{

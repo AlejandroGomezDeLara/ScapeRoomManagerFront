@@ -6,8 +6,8 @@
         <div class="reservation-header">
             <h1 class="title">Reserva FUNLY <img src="assets/imgs/box-transparent.svg " style="width:25px ;"></h1>
         </div>
-        <div class="text-divider" [style.color]="reservation.game_category?.color">Hoy {{reservation.date |
-            date:'HH:mm'}}</div>
+        <div class="text-divider" [style.color]="reservation.game_category?.color">Hoy
+            {{reservation.game_reservation_hour?.hour| slice:0:5}}</div>
 
         <div class="reservation-open" [style.background]="reservation.game_category?.color"
             *ngIf="!reservation.closed && reservation.countdown">

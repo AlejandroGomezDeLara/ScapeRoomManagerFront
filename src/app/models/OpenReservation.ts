@@ -1,5 +1,6 @@
 import { Game } from "./Game";
 import { GameCategory } from "./GameCategory";
+import { GameReservationHour } from "./GameReservationHour";
 import { GameSubcategory } from "./GameSubcategory";
 import { User } from "./User";
 
@@ -10,6 +11,7 @@ export interface OpenReservation{
     users?:User[];
     game_category_id?:number;
     game_category?:GameCategory;
+    game_reservation_hour?:GameReservationHour;
     game_subcategory?:GameSubcategory;
     game_subcategory_id?:number;
     max_people?:number;
