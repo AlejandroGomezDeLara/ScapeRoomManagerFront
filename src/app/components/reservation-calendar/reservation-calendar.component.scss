@@ -1,8 +1,9 @@
 .standard-reservation {
-    padding-bottom: 20px;
     text-align: center;
     margin: 0 auto;
     width: 100%;
+    padding-top: 25px;
+
     h1 {
         font-weight: bold;
     }
@@ -18,6 +19,11 @@
     }
     .reservation-overview {
         font-size: 18px;
+        padding-bottom: 20px;
+
+        padding-top: 25px;
+        border-bottom: 0.5px solid #ccc;
+
         .title {
             font-weight: bold;
             font-size:26px;

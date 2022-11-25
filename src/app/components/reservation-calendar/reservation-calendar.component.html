@@ -12,10 +12,10 @@
                 <div class="hours-container">
                     <ng-container *ngFor="let hour of disponible_hours">
                         <span [ngClass]="hour.id == hour_selected?.id ? 'hour hour-selected':'hour'"
-                            *ngIf="hour.open_reservation?.length!<=0" (click)="selectHour(hour)"><i
+                            *ngIf="hour.open_reservation?.length!<=0 && hour.reservation?.length!<=0" (click)="selectHour(hour)"><i
                                 class="fa-solid fa-door-open"></i> {{hour.hour |
                             slice:0:5}}</span>
-                        <span class="hour-disabled" *ngIf="hour.open_reservation?.length!>0"> <i
+                        <span class="hour-disabled" *ngIf="hour.open_reservation?.length!>0 || hour.reservation?.length!>0"> <i
                                 class="fa-solid fa-door-closed"></i>{{hour.hour |
                             slice:0:5}}</span>
                     </ng-container>
@@ -33,12 +33,12 @@
         </div>
 
     </div>
-    <div class="row reservation-overview" *ngIf="day_selected && price_selected">
+    <div class="row reservation-overview" *ngIf="day_selected && hour_selected && price_selected">
         <div class="row">
             <p class="title">Resumen Reserva Estándar:</p>
             <p class="day">Día: <span [style.color]="game.category?.color" class="day-selected"> {{day_selected
                     | date}}</span> a la hora: <span [style.color]="game.category?.color" class="hour-selected">
-                    {{hour_selected?.hour|
+                    {{hour_selected.hour|
                     slice:0:5}}</span></p>
             <p class="total_price">Precio Total: <span [style.color]="game.category?.color" class="price-selected">
                     {{price_selected.price}}€</span></p>
@@ -47,7 +47,7 @@
             </p>
         </div>
         <div class="col-12">
-            <button class="reservation-btn" [style.background]="game.category?.color">¡Reserva ya!</button>
+            <button class="reservation-btn" (click)="createReservation()" [style.background]="game.category?.color">¡Reserva ya!</button>
         </div>
     </div>
 </div>
