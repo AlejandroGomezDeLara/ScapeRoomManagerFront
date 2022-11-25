@@ -9,7 +9,7 @@
         <div class="text-divider" [style.color]="reservation.game_category?.color">Hoy
             {{reservation.game_reservation_hour?.hour| slice:0:5}}</div>
 
-        <div class="reservation-open" [style.background]="reservation.game_category?.color"
+        <div class="reservation-open" 
             *ngIf="!reservation.closed && reservation.countdown">
             <span class="reservation-countdown">
                 <span class="reservation-people-label">

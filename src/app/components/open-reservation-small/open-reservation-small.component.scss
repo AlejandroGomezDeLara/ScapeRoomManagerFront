@@ -82,6 +82,7 @@
             display: inline-block;
             padding:5px 15px 5px 15px;
             border-radius: 25px;
+            background: var(--color-open-reservation);
         }
         .reservation-closed{
             background:var(--color-danger);

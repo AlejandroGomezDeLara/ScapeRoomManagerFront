@@ -129,7 +129,7 @@ export class GameListComponent implements OnInit {
 
   public getGamesAndOpenReservations(): Observable<(GameData | OpenReservation[])[]> {
     let gamesUrl = 'games';
-    let openReservationsUrl = 'reservations';
+    let openReservationsUrl = 'open-reservations';
     let params = "";
     params += '?min_price=' + this.min_price;
     params += '&max_price=' + this.max_price;

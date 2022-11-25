@@ -28,8 +28,7 @@ export class ReservationCalendarComponent implements OnInit {
     let today: Date = new Date();
     let todaystr: Date = new Date(Date.UTC(today.getFullYear(), today.getMonth(), today.getDate()));
     let calendarstr: Date = new Date(Date.UTC(d.getFullYear(), d.getMonth(), d.getDate()));
-    console.log("TODAY", todaystr);
-    console.log("CALENDARY", calendarstr);
+    
     let disponible_hours = this.game.reservation_hours?.filter(x => x.day == d.getDay());
     return calendarstr.getTime() >= todaystr.getTime() && disponible_hours?.length! > 0;
   }

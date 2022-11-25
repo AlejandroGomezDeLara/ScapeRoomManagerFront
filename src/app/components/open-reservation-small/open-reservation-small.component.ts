@@ -18,6 +18,13 @@ export class OpenReservationSmallComponent implements OnInit {
 
   ngOnInit(): void {
     this.target = new Date(this.reservation.date!);
+    let hour = Number(this.reservation.game_reservation_hour?.hour?.slice(0, 2));
+    let minutes = Number(this.reservation.game_reservation_hour?.hour?.slice(3, 5));
+    let seconds = Number(this.reservation.game_reservation_hour?.hour?.slice(6))
+    this.target.setHours(hour);
+    this.target.setMinutes(minutes);
+    this.target.setSeconds(seconds);
+
     this.setCountDown();
     this.setUsers();
   }
@@ -64,7 +71,7 @@ export class OpenReservationSmallComponent implements OnInit {
         { avatar: 'assets/imgs/add-placeholder.png', name: this.reservation.closed ? 'Cerrado' : 'Unirse', id: 0 }
       );
     }
-  
+
     this.reservation.users?.forEach((user, index) => {
       if (index <= 2) {
         this.people[index] = user;
