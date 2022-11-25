@@ -32,39 +32,85 @@
         background: white;
         border: 0.5px solid #ccc;
         padding: 30px;
+        .standard-reservation {
+            padding-bottom: 20px;
+            text-align: center;
+            margin: 0 auto;
+            width: 100%;
+            h1 {
+                font-weight: bold;
+            }
+            .reservation-btn {
+                padding: 10px;
+                border-radius: 25px;
+                color: white;
+                border: none;
+                cursor: pointer;
+                width: 50%;
+                font-size: 16px;
+                margin: 10px;
+            }
+            .reservation-overview {
+                font-size: 18px;
+                .title {
+                    font-weight: bold;
+                    font-size:26px;
+                }
+                .day-selected,.hour-selected,.price-selected{
+                    font-weight: bold;
+                    font-size: 24px;
+                }
+            }
+        }
         .calendar {
             width: 100%;
-            .hour {
-                padding:10px;
+            margin: 0 auto;
+            padding: 0;
+
+            .hours-container,
+            .prices-container {
+                text-align: center;
+            }
+            .select-price {
+                margin-top: 20px;
+            }
+            .hour,
+            .price {
+                padding: 10px;
                 font-size: 18px;
                 border-radius: 25px;
-                color:white;
+                color: white;
                 font-weight: bold;
-                margin:5px;
+                margin: 5px;
                 display: inline-block;
                 width: auto;
                 cursor: pointer;
                 background: var(--color-open-reservation);
             }
-            .hour-disabled{
-                padding:10px;
+            .price:hover {
+                background: var(--dark-background);
+            }
+            .hour-disabled {
+                padding: 10px;
                 font-size: 18px;
                 border-radius: 25px;
-                color:white;
+                color: white;
                 font-weight: bold;
-                margin:5px;
+                margin: 5px;
                 display: inline-block;
                 width: auto;
                 cursor: not-allowed;
                 background: var(--color-danger);
             }
-            
-            .hour:hover{
+            .hour-selected,.price-selected{
+                background:var(--dark-background);
+            }
+            .hour:hover {
                 background: var(--dark-background);
             }
-            .title-hour{
+            .title-hour {
                 font-size: 18px;
-                font-weight: bold   ;
+                font-weight: bold;
             }
         }
         .open-reservations-header {
@@ -85,7 +131,7 @@
                     font-weight: bold;
                 }
             }
-            .create-funly-reservation-btn{
+            .create-funly-reservation-btn {
                 padding: 10px;
                 border-radius: 25px;
                 color: white;
@@ -93,7 +139,7 @@
                 cursor: pointer;
                 width: 50%;
                 font-size: 16px;
-                margin: 10px;  
+                margin: 10px;
             }
         }
         .open-reservations {
@@ -103,9 +149,8 @@
             padding: 20px;
             overflow-x: auto;
             white-space: nowrap;
-            
         }
-        
+
         .description {
             h1 {
                 color: black;
@@ -192,26 +237,6 @@
                 border: none;
                 color: white;
                 cursor: pointer;
-            }
-        }
-
-        .reservation-btns {
-            padding-bottom: 20px;
-            text-align: center;
-            margin: 0 auto;
-            width: 100%;
-            h1 {
-                font-weight: bold;
-            }
-            .reservation-btn {
-                padding: 10px;
-                border-radius: 25px;
-                color: white;
-                border: none;
-                cursor: pointer;
-                width: 50%;
-                font-size: 16px;
-                margin: 10px;
             }
         }
 

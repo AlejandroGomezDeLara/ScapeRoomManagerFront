@@ -55,7 +55,7 @@
             </app-open-reservation-small>
         </div>
 
-        <div class="reservation-btns game-item row">
+        <div class="standard-reservation game-item row">
             <h1>¡Reserva de forma tradicional!</h1>
             <div class="calendar row">
                 <div class="col-6 my-auto" [matCalendarColor]="game.category?.color!">
@@ -63,17 +63,46 @@
                         [dateFilter]="dateFilter"></mat-calendar>
                 </div>
                 <div class="col-6 my-auto" *ngIf="day_selected">
-                    <p class="title-hour">¡Elige una hora!</p>
-                    <p>Para el día {{day_selected | date}}</p>
-                    <ng-container *ngFor="let hour of disponible_hours">
-                        <span class="hour" *ngIf="hour.open_reservation?.length!<=0"><i class="fa-solid fa-door-open"></i> {{hour.hour | slice:0:5}}</span>
-                        <span class="hour-disabled" *ngIf="hour.open_reservation?.length!>0"> <i class="fa-solid fa-door-closed"></i>{{hour.hour | slice:0:5}}</span>
-                    </ng-container>
+                    <div class="row select-hour">
+                        <p class="title-hour">¡Elige una hora!</p>
+                        <p>Para el día {{day_selected | date}}</p>
+                        <div class="hours-container">
+                            <ng-container *ngFor="let hour of disponible_hours">
+                                <span [ngClass]="hour.id == hour_selected?.id ? 'hour hour-selected':'hour'" *ngIf="hour.open_reservation?.length!<=0"
+                                    (click)="selectHour(hour)"><i class="fa-solid fa-door-open"></i> {{hour.hour |
+                                    slice:0:5}}</span>
+                                <span class="hour-disabled" *ngIf="hour.open_reservation?.length!>0"> <i class="fa-solid fa-door-closed"></i>{{hour.hour |
+                                    slice:0:5}}</span>
+                            </ng-container>
+                        </div>
+                    </div>
+                    <div class="row select-price">
+                        <p class="title-hour">¡Elige un precio!</p>
+                        <div class="prices-container">
+                            <span [ngClass]="price.id == price_selected?.id ? 'price price-selected':'price'" 
+                                *ngFor="let price of game.prices" (click)="selectPrice(price)"><i
+                                    class="fa-solid fa-user-group"></i>
+                                {{price.people}} - {{price.price}}€</span>
+                        </div>
+                    </div>
                 </div>
+
             </div>
-            <div class="row">
+            <div class="row reservation-overview" *ngIf="day_selected && price_selected">
+                <div class="row">
+                    <p class="title">Resumen Reserva Estándar:</p>
+                    <p class="day">Día: <span [style.color]="game.category?.color" class="day-selected"> {{day_selected
+                            | date}}</span> a la hora: <span [style.color]="game.category?.color" class="hour-selected">
+                            {{hour_selected?.hour|
+                            slice:0:5}}</span></p>
+                    <p class="total_price">Precio Total: <span [style.color]="game.category?.color"
+                            class="price-selected"> {{price_selected.price}}€</span></p>
+                    <p class="person_price">Precio Persona: <span [style.color]="game.category?.color"
+                            class="price-selected"> {{price_selected.price!/price_selected.people! | number }}€</span>
+                    </p>
+                </div>
                 <div class="col-12">
-                    <button class="reservation-btn" [style.background]="game.category?.color">Reserva Estándar</button>
+                    <button class="reservation-btn" [style.background]="game.category?.color">¡Reserva ya!</button>
                 </div>
             </div>
         </div>
