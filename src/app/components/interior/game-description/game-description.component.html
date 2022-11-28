@@ -11,50 +11,72 @@
                 class="rating">{{game.gameReviewSummary?.avgStars}} <span> <em class="fa fa-star"></em></span>
             </span> <span class="reviews"> {{game.gameReviewSummary?.reviewsCount}} valoraciones</span>
         </div>
-        <div class="enterprise-container row ">
-            <span class="enterprise"><em class="fa-solid fa-building" [style.color]="game.category?.color"></em>
-                {{game.user?.name}}
-            </span>
-        </div>
-        <div class="game-address row">
-            <p><em class="fa fa-location-dot" [style.color]="game.category?.color"></em> {{game.address}}</p>
-        </div>
+        <div class="game-data-header row game-item">
+            <div class="col-6">
+                <div class="enterprise-container row ">
+                    <span class="enterprise"><em class="fa-solid fa-building" [style.color]="game.category?.color"></em>
+                        {{game.user?.name}}
+                    </span>
+                </div>
+                <div class="game-address row">
+                    <p><em class="fa fa-location-dot" [style.color]="game.category?.color"></em> {{game.address}}</p>
+                </div>
 
-        <div class="row">
-            <span (click)="searchCategory()" class="category" [style.background-color]="game.category?.background_color"
-                [style.color]="game.category?.color">
-                {{game.category?.name}} </span>
-            <span class="category" [style.background-color]="game.subcategory?.background_color"
-                [style.color]="game.subcategory?.color">
-                {{game.subcategory?.name}} </span>
-        </div>
+                <div class="row">
+                    <span (click)="searchCategory()" class="category"
+                        [style.background-color]="game.category?.background_color" [style.color]="game.category?.color">
+                        {{game.category?.name}} </span>
+                    <span class="category" [style.background-color]="game.subcategory?.background_color"
+                        [style.color]="game.subcategory?.color">
+                        {{game.subcategory?.name}} </span>
+                </div>
 
-        <div class="description game-item">
-            <h1>Quiénes somos</h1>
-            <p>{{game.description}}</p>
+                <div class="description">
+                    <h1>Quiénes somos</h1>
+                    <p>{{game.description}}</p>
+                </div>
+            </div>
+            <div class="col-6 my-auto">
+                <div class="featured-reviews">
+                    <h1>Qué dicen los usuarios</h1>
+                    <div class="review-container" *ngFor="let review of game.gameReviewSummary?.featuredReviews">
+                        <p class="title">- "{{review?.text}}"</p>
+                        <p class="stars">
+                            <img class="avatar" [src]="review?.user?.avatar" alt="">
+                            <i *ngFor="let item of [0,1,2,3,4]; let i = index"
+                                [class]="i + 1 <= review?.stars! ? 'fa fa-star' : (review.stars! % 1 !==0 && round(review.stars!) == (i + 1)) ? 'fa fa-star-half-stroke':'fa-regular fa-star'"
+                                [style.color]="game.category?.color"></i>
+                            {{review?.created_at | date}}
+                        </p>
+                    </div>
+                </div>
+            </div>
         </div>
-
         <div class="open-reservations-header my-auto">
             <h1 class="title">¡Reservas FUNLY <img src="assets/imgs/box-transparent.svg" style="width:30px" alt="">
                 abiertas!</h1>
+            <p class="subtitle">
+                ¿No tienes nadie con quien ir?, no te preocupes, ¡ya hay personas que quieren participar contigo!
+            </p>
             <p class="subtitle">¡Corre, se cerrarán <span [style.color]="game.category?.color">1 hora</span> antes de
                 que
                 empiece el evento!</p>
 
         </div>
-        
+
 
         <div class="open-reservations my-auto game-item">
-            
+
             <app-open-reservation-small routerLink="{{reservation.game?.id}}/interior" [reservation]="reservation"
                 *ngFor="let reservation of openReservations">
             </app-open-reservation-small>
 
-            <app-new-open-reservation *ngFor="let hour of disponible_hours" [game]="game" [hour]="hour"></app-new-open-reservation>
+            <app-new-open-reservation *ngFor="let hour of disponible_hours" [game]="game" [hour]="hour">
+            </app-new-open-reservation>
 
         </div>
 
-    
+
 
         <app-reservation-calendar [game]="game"></app-reservation-calendar>
 

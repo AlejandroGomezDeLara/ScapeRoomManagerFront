@@ -10,7 +10,7 @@ import { ApiService } from 'src/app/services/api.service';
 })
 export class EspecificationsSidebarComponent implements OnInit {
 
-  @Input() game?:Game; 
+  @Input() game!:Game; 
   
   constructor() { }
 

@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, Input, OnInit } from '@angular/core';
+import { AfterViewInit, Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { Game } from 'src/app/models/Game';
 import { GameReview } from 'src/app/models/GameReview';
 import { GameReviewSummary } from 'src/app/models/GameReviewSummary';
@@ -9,7 +9,7 @@ import { ApiService } from 'src/app/services/api.service';
   templateUrl: './reviews-summary.component.html',
   styleUrls: ['./reviews-summary.component.scss']
 })
-export class ReviewsSummaryComponent implements OnInit {
+export class ReviewsSummaryComponent implements OnInit,OnChanges {
   
   @Input() color!:string;
   @Input() summary?:GameReviewSummary;
@@ -17,9 +17,14 @@ export class ReviewsSummaryComponent implements OnInit {
 
   constructor() { }
 
+  ngOnChanges(changes: SimpleChanges): void {
+    this.setPercentajes();    
+  }
+
   ngOnInit(): void {
     this.setPercentajes();
   }
+
 
   round(number: number) {
     return Math.round(number);

@@ -1,7 +1,5 @@
 <div class="open-reservation" *ngIf="reservation">
 
-
-
     <div class="reservation-data">
         <div class="reservation-header">
             <h1 class="title">Reserva FUNLY <img src="assets/imgs/box-transparent.svg " style="width:25px ;"></h1>
@@ -17,9 +15,6 @@
 
                 <span class="countdown" *ngIf="!reservation.closed"> <em class="fa-regular fa-clock"></em>
                     {{reservation.countdown}}</span></span>
-
-
-
         </div>
 
         <div class="reservation-closed" *ngIf="reservation.closed">

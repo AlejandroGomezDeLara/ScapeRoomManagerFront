@@ -68,7 +68,6 @@ export class NewOpenReservationComponent implements OnInit {
 
     this.countdown = horas + ':' + m + ':' + s;
 
-    console.log(this.countdown);
 
     this.timeout = setTimeout(() => {
       this.setCountDown();

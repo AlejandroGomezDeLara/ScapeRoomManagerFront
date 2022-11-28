@@ -102,7 +102,6 @@ export class GameListComponent implements OnInit {
   }
 
   public setGamesAndOpenReservations():void{
-
     this.getGamesAndOpenReservations().subscribe({
       next: (data) => {
 
@@ -122,6 +121,10 @@ export class GameListComponent implements OnInit {
         this.loading.stopLoading();
       }
     });
+
+    setTimeout(()=>{
+      this.setGamesAndOpenReservations();
+    },20000);
 
   }
 

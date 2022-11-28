@@ -13,5 +13,5 @@ export interface GameReviewSummary {
     oneStars: number,
     oneStarsPercentage: number,
     reviewsCount: number,
-    firstReview:GameReview,
+    featuredReviews:GameReview[],
 }

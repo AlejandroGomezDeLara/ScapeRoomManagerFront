@@ -2,6 +2,27 @@
     height: 100%;
     width: 100%;
     position: relative;
+    .arrows i{
+        background: black;
+        padding:15px;
+        color:white;
+        cursor: pointer;
+        border-radius: 50%;
+        z-index: 999;
+        position: absolute;
+
+    }
+    .arrow-right i{
+        top:45%;
+        right: 10px;
+    }
+    .arrow-left i{
+        top:45%;
+        left: 10px;
+    }
+    .arrows:hover i{
+        background: rgb(74, 74, 74);
+    }
     .text{
         text-align: center;
         font-weight: bold;

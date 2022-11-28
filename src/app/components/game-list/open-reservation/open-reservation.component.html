@@ -1,19 +1,16 @@
 <div class="open-reservation" *ngIf="reservation">
 
-    <span class="reservation-people-label" [style.background-color]="reservation.game_category?.color">
-        <i class="fa fa-user-group"></i> {{reservation.users?.length}}/{{reservation.max_people}}</span>
 
-    <span class="reservation-countdown-label" *ngIf="!reservation.closed && reservation.countdown">
-        <i class="fa fa-clock"></i> {{reservation.countdown}}</span>
-    <span class="reservation-countdown-label closed" *ngIf="reservation.closed">
-        <i class="fa fa-clock"></i> Cerrado </span>
 
-    <div class="rating"></div>
-    <p class="rating-content"><i class="fa fa-star"></i> {{reservation.game?.rating}} </p>
+    <span class="reservation-countdown" [style.background]="reservation.game_category?.color">
+        <span class="reservation-people-label">
+            <em class="fa fa-user-group"></em>{{reservation.users?.length}}/{{reservation.max_people}} </span>
 
-    <div class="duration" [style.background-color]="reservation.game_category?.color"></div>
-    <p class="duration-content">
-        {{reservation.game?.max_duration}} min </p>
+        <span class="countdown" *ngIf="!reservation.closed"> <em class="fa-regular fa-clock"></em>
+            {{reservation.countdown}}</span>
+        <span class="countdown" *ngIf="reservation.closed"> <em class="fa-regular fa-clock"></em>
+            Plazo Cerrado</span>
+    </span>
 
 
     <img class="reservation-image" [src]="reservation.game?.images" alt="" *ngIf="reservation.game?.images">
@@ -21,8 +18,16 @@
 
 
     <div class="reservation-data">
-        <p class="reservation-title" [style.color]="reservation.game_category?.color">
-            {{reservation.game?.name}}</p>
+        <p class="reservation-title">{{reservation.game?.name}} </p>
+        <div class="specifications" [style.color]="reservation.game_category?.color">
+            <p class="rating">
+                {{reservation.game?.rating}}<i class="fa fa-star"></i>
+                &nbsp;
+                {{reservation.game?.max_duration}} min<i class="fa fa-clock"></i>
+                &nbsp;
+                {{reservation.min_people}} - {{reservation.max_people}}<i class="fa fa-user-group"></i>
+            </p>
+        </div>
         <div class="categories">
             <span [style.background-color]="reservation.game_category?.background_color"
                 [style.color]="reservation.game_category?.color">
@@ -33,8 +38,9 @@
 
         <p class="game-address"><i class="fa-solid fa-location-dot"
                 style="margin-right: 5px"></i>{{reservation.game?.address}}</p>
-        <div class="text-divider" [style.color]="reservation.game_category?.color">Hoy {{reservation.game_reservation_hour?.hour| slice:0:5}}</div>
 
+        <div class="text-divider" [style.color]="reservation.game_category?.color">Hoy
+            {{reservation.game_reservation_hour?.hour| slice:0:5}}</div>
 
         <div class="people">
             <p class="remaining-people" *ngIf="reservation.users?.length! < reservation.min_people!">Quedan <span
