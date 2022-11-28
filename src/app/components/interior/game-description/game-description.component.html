@@ -1,4 +1,4 @@
-<div class="col-8 game-description">
+<div class="col-md-8 col-sm-12 game-description">
     <div class="images">
         <ng-container *ngIf="game.schedule?.length!>0">
             <span class="closed-label open" *ngIf="!game.closed">Abierto ahora</span>
@@ -56,13 +56,14 @@
         </div>
 
         <app-reservation-calendar [game]="game"></app-reservation-calendar>
-        
+
 
 
         <div class="row game-item">
 
             <div class="col-6">
-                <h1>Valoraciones</h1>
+                <h1><span [style.color]="game.category?.color"> {{game.gameReviewSummary?.reviewsCount}}</span> Valoraciones
+                    <span [style.color]="game.category?.color">{{game.gameReviewSummary?.avgStars}} <i class="fa fa-star"></i> </span> </h1>
                 <p>Déjanos tu opinión para ayudar a los usuarios!</p>
             </div>
             <div class="col-6 my-auto" style="text-align:center;">

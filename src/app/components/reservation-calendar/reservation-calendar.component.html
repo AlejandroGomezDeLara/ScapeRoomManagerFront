@@ -12,10 +12,10 @@
                 <div class="hours-container">
                     <ng-container *ngFor="let hour of disponible_hours">
                         <span [ngClass]="hour.id == hour_selected?.id ? 'hour hour-selected':'hour'"
-                            *ngIf="hour.open_reservation?.length!<=0 && hour.reservation?.length!<=0" (click)="selectHour(hour)"><i
+                            *ngIf="!hour.closed" (click)="selectHour(hour)"><i
                                 class="fa-solid fa-door-open"></i> {{hour.hour |
                             slice:0:5}}</span>
-                        <span class="hour-disabled" *ngIf="hour.open_reservation?.length!>0 || hour.reservation?.length!>0"> <i
+                        <span class="hour-disabled" *ngIf="hour.closed"> <i
                                 class="fa-solid fa-door-closed"></i>{{hour.hour |
                             slice:0:5}}</span>
                     </ng-container>

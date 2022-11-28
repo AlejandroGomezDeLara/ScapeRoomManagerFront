@@ -6,7 +6,7 @@ import { GameReservationHour } from "./GameReservationHour";
 export interface Reservation{
     id?:number;
     game_id?:number;
-    date?:Date;
+    date?:Date | string;
     people?:number;
     game_reservation_hour_id?:number;
     game_price_id?:number;

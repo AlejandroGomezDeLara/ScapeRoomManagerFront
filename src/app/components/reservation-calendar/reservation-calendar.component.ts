@@ -28,7 +28,7 @@ export class ReservationCalendarComponent implements OnInit {
     let today: Date = new Date();
     let todaystr: Date = new Date(Date.UTC(today.getFullYear(), today.getMonth(), today.getDate()));
     let calendarstr: Date = new Date(Date.UTC(d.getFullYear(), d.getMonth(), d.getDate()));
-    
+
     let disponible_hours = this.game.reservation_hours?.filter(x => x.day == d.getDay());
     return calendarstr.getTime() >= todaystr.getTime() && disponible_hours?.length! > 0;
   }
@@ -36,9 +36,31 @@ export class ReservationCalendarComponent implements OnInit {
   public changeDate(date: any): void {
     this.day_selected = date;
     this.disponible_hours = this.game.reservation_hours?.filter(x => x.day == date.getDay());
+    let selected_date = date.toDateString()
+    this.disponible_hours = this.disponible_hours!.map(x => {
+      if (x.open_reservation?.length! > 0) {
+        let date = new Date(x.open_reservation![0].date!);
+        let reservation_date = date!.toDateString();
+        if (reservation_date == selected_date)
+          x.closed = true;
+        else
+          x.closed = false;
+      }
+      if (x.reservation?.length! > 0) {
+        let date = new Date(x.reservation![0].date!);
+        let reservation_date = date!.toDateString();
+        console.log("RRES", reservation_date);
+
+        if (reservation_date == selected_date)
+          x.closed = true;
+        else
+          x.closed = false;
+      }
+      return x;
+    });
     this.price_selected = null;
     this.hour_selected = null;
-    console.log(this.game.reservation_hours);
+    console.log("dayt", this.disponible_hours);
   }
 
   public selectHour(hour: GameReservationHour) {
@@ -55,8 +77,8 @@ export class ReservationCalendarComponent implements OnInit {
 
   public createReservation(): void {
     let reservation: Reservation = {
-      date: this.day_selected!,
-      people:this.price_selected?.people,
+      date: this.day_selected!.toDateString(),
+      people: this.price_selected?.people,
       game_reservation_hour_id: this.hour_selected!.id,
       game_price_id: this.price_selected!.id,
       game_id: this.game!.id
