@@ -23,7 +23,7 @@ export class GameDescriptionComponent implements AfterContentInit {
   @Output() updateReviewSummary = new EventEmitter<void>();
   @Output() loadMoreReviews = new EventEmitter<void>();
 
- 
+  public disponible_hours: GameReservationHour[] = [];
 
   public actual_reviews_page: number = 1;
 
@@ -33,6 +33,22 @@ export class GameDescriptionComponent implements AfterContentInit {
 
   ngAfterContentInit(): void {
     this.checkGameClosed();
+    let today = new Date();
+    let weekday = today.getDay();
+    let selected_date = today.toDateString();
+    this.disponible_hours = this.game.reservation_hours!.filter(x => x.day == weekday);
+
+    this.disponible_hours = this.disponible_hours.filter(x => {
+      if (x.open_reservation?.length! <= 0 && x.reservation?.length! <= 0)
+        return true;
+      else if (x.reservation?.length! > 0) {
+        let isToday = x.reservation?.some(x => new Date(x.date!).toDateString() == selected_date);
+        return !isToday;
+      }else return false;
+    });
+
+    console.log("Horas", this.disponible_hours);
+
   }
 
   public searchCategory(): void {
@@ -88,6 +104,7 @@ export class GameDescriptionComponent implements AfterContentInit {
     }
   }
 
-  
+
+
 
 }

@@ -1,0 +1,54 @@
+<div class="open-reservation">
+
+
+    <div class="reservation-data">
+        <div class="reservation-header">
+            <h1 class="title">Reserva FUNLY <img src="assets/imgs/box-transparent.svg " style="width:25px ;"></h1>
+        </div>
+        <div class="text-divider" [style.color]="game.category?.color">Hoy
+            {{hour.hour| slice:0:5}}</div>
+
+        <div class="reservation-open" 
+            *ngIf="!closed && countdown">
+            <span class="reservation-countdown">
+                <span class="reservation-people-label">
+                    <em class="fa fa-user-group"></em>0/{{game.max_people}} </span>
+
+                <span class="countdown" *ngIf="!closed"> <em class="fa-regular fa-clock"></em>
+                    {{countdown}}</span></span>
+
+
+
+        </div>
+
+        <div class="reservation-closed" *ngIf="closed">
+            <span class="reservation-countdown"><span class="reservation-people-label">
+                    <em class="fa fa-user-group"></em>0/{{game.max_people}}
+                </span> Plazo Cerrado</span>
+        </div>
+        <div [ngClass]="closed ? 'people closed' : 'people' ">
+
+            <p class="remaining-people" >Quedan <span
+                    [style.color]="game.category?.color">{{game.max_people}} <i class="fa fa-user-group"></i> </span> para poder empezar</p>
+
+           
+
+            <div *ngIf="people?.length!>0">
+                <div class='user-open'
+                    *ngFor="let user of people;let i =index">
+                    <img class="avatar" [src]="user.avatar" alt="">
+                    <p class="user-name">{{user.name}}</p>
+                </div>
+
+            </div>
+
+
+        </div>
+
+        <div class="reservation-price row">
+            <div class="reservation-button col-4" [style.background-color]="game.category?.color">
+                <p class="price">Únete a la reserva <span>{{game.min_price}}€</span> </p>
+            </div>
+        </div>
+    </div>
+</div>

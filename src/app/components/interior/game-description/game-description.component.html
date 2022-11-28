@@ -34,26 +34,27 @@
             <p>{{game.description}}</p>
         </div>
 
-        <div class="open-reservations-header my-auto" *ngIf="openReservations.length>0">
+        <div class="open-reservations-header my-auto" >
             <h1 class="title">¡Reservas FUNLY <img src="assets/imgs/box-transparent.svg" style="width:30px" alt="">
                 abiertas!</h1>
             <p class="subtitle">¡Corre, se cerrarán <span [style.color]="game.category?.color">1 hora</span> antes de
                 que
                 empiece el evento!</p>
+
         </div>
-        <div class="open-reservations-header game-item" *ngIf="openReservations.length<=0">
-            <p class="title">No hay reservas FUNLY <img src="assets/imgs/box-transparent.svg" style="width:20px" alt="">
-                disponibles</p>
-            <p class="subtitle">¿No tienes nadie con quien ir?, reserva TÚ sólo con las reservas FUNLY <img
-                    src="assets/imgs/box-transparent.svg" style="width:20px" alt=""> y conoce a gente!</p>
-            <button [style.background]="game.category?.color" class="create-funly-reservation-btn">Crea tu reserva
-                única</button>
-        </div>
-        <div class="open-reservations my-auto game-item" *ngIf="openReservations.length>0">
+        
+
+        <div class="open-reservations my-auto game-item">
+            
             <app-open-reservation-small routerLink="{{reservation.game?.id}}/interior" [reservation]="reservation"
                 *ngFor="let reservation of openReservations">
             </app-open-reservation-small>
+
+            <app-new-open-reservation *ngFor="let hour of disponible_hours" [game]="game" [hour]="hour"></app-new-open-reservation>
+
         </div>
+
+    
 
         <app-reservation-calendar [game]="game"></app-reservation-calendar>
 
@@ -62,8 +63,11 @@
         <div class="row game-item">
 
             <div class="col-6">
-                <h1><span [style.color]="game.category?.color"> {{game.gameReviewSummary?.reviewsCount}}</span> Valoraciones
-                    <span [style.color]="game.category?.color">{{game.gameReviewSummary?.avgStars}} <i class="fa fa-star"></i> </span> </h1>
+                <h1><span [style.color]="game.category?.color"> {{game.gameReviewSummary?.reviewsCount}}</span>
+                    Valoraciones
+                    <span [style.color]="game.category?.color">{{game.gameReviewSummary?.avgStars}} <i
+                            class="fa fa-star"></i> </span>
+                </h1>
                 <p>Déjanos tu opinión para ayudar a los usuarios!</p>
             </div>
             <div class="col-6 my-auto" style="text-align:center;">
