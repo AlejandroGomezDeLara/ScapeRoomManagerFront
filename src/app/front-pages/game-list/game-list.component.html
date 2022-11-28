@@ -21,27 +21,20 @@
     </ng-container>
 
     <div class="game-list-container row">
-        <h1 *ngIf="selected_address && !isLoading">Mostrando {{total_games}} resultados {{selected_categories!.length>0
+        <h1 *ngIf="selected_address && !(loading.isLoading | async)">Mostrando {{total_games}} resultados {{selected_categories!.length>0
             ? 'de '+selected_categories[0].name : ''}} en {{selected_address}}</h1>
-        <h1 *ngIf="!selected_address && !isLoading">Mostrando {{total_games}} resultados {{selected_categories!.length>0
+        <h1 *ngIf="!selected_address && !(loading.isLoading | async)">Mostrando {{total_games}} resultados {{selected_categories!.length>0
             ? 'de '+selected_categories[0].name : ''}} </h1>
         <div class="row">
             <div class="game-list col-lg-9 col-sm-12">
-                <ng-container *ngIf="!isLoading && filteredGames.length> 0 && games">
+                <ng-container *ngIf="!(loading.isLoading | async) && filteredGames.length> 0 && games">
                     <app-game-item *ngFor="let game of filteredGames" [game]="game"
                     routerLink="{{game.id}}/interior"></app-game-item>
                 </ng-container>
-                <ng-container *ngIf="!isLoading && filteredGames.length<= 0" && games>
+                <ng-container *ngIf="!(loading.isLoading | async) && filteredGames.length<= 0" && games>
                     <h1 style="margin-bottom: 150px;">Lo sentimos no hay eventos con esos filtros</h1>
                     <app-game-item *ngFor="let game of games" [game]="game"></app-game-item>
                 </ng-container>
-
-                <!--   <ng-container *ngIf="!isLoading && filteredGames.length< 3 && filteredGames.length>0" && games>
-                    <h1 style="margin-bottom: 100px">Resultados similares</h1>
-                    <app-game-item *ngFor="let game of games" [game]="game"></app-game-item>
-                </ng-container> -->
-
-
             </div>
 
             <div class="filters col-lg-3 col-sm-12">
@@ -49,7 +42,7 @@
             </div>
         </div>
 
-        <div class="row" *ngIf="filteredGames.length>0 && !isLoading && total_game_pages!>1">
+        <div class="row" *ngIf="filteredGames.length>0 && !(loading.isLoading| async) && total_game_pages!>1">
             <div class="col-9 game-list-pagination">
                 <app-game-list-pagination [actualPage]="this.actual_page!" [totalPages]="this.total_game_pages!"
                     (changePage)="changeGamesPage($event)"></app-game-list-pagination>
@@ -60,4 +53,4 @@
     <home-footer class="pagination-footer"></home-footer>
 
 </div>
-<app-loading *ngIf="isLoading"></app-loading>
+<app-loading [hidden]="!(loading.isLoading | async)"></app-loading>

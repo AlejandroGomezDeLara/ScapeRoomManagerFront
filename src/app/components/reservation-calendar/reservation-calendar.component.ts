@@ -1,9 +1,11 @@
+import { ThisReceiver } from '@angular/compiler';
 import { Component, Input, OnInit } from '@angular/core';
 import { Game } from 'src/app/models/Game';
 import { GamePrice } from 'src/app/models/GamePrice';
 import { GameReservationHour } from 'src/app/models/GameReservationHour';
 import { Reservation } from 'src/app/models/Reservation';
 import { ApiService } from 'src/app/services/api.service';
+import { LoadingService } from 'src/app/services/loading.service';
 
 @Component({
   selector: 'app-reservation-calendar',
@@ -12,14 +14,15 @@ import { ApiService } from 'src/app/services/api.service';
 })
 export class ReservationCalendarComponent implements OnInit {
 
-  @Input() game!: Game;
+  @Input() game?: Game;
   public day_selected: Date | null = null;
   public price_selected: GamePrice | null = null;
   public hour_selected: GameReservationHour | null = null;
   public disponible_hours: GameReservationHour[] | undefined = [];
 
 
-  constructor(private apiService: ApiService) { }
+  constructor(private apiService: ApiService,
+    private loading: LoadingService) { }
 
   ngOnInit(): void {
   }
@@ -29,13 +32,13 @@ export class ReservationCalendarComponent implements OnInit {
     let todaystr: Date = new Date(Date.UTC(today.getFullYear(), today.getMonth(), today.getDate()));
     let calendarstr: Date = new Date(Date.UTC(d.getFullYear(), d.getMonth(), d.getDate()));
 
-    let disponible_hours = this.game.reservation_hours?.filter(x => x.day == d.getDay());
+    let disponible_hours = this.game?.reservation_hours?.filter(x => x.day == d.getDay());
     return calendarstr.getTime() >= todaystr.getTime() && disponible_hours?.length! > 0;
   }
 
   public changeDate(date: any): void {
     this.day_selected = date;
-    this.disponible_hours = this.game.reservation_hours?.filter(x => x.day == date.getDay());
+    this.disponible_hours = this.game?.reservation_hours?.filter(x => x.day == date.getDay());
     let selected_date = date.toDateString()
     this.disponible_hours = this.disponible_hours!.map(x => {
       if (x.open_reservation?.length! > 0) {
@@ -76,6 +79,7 @@ export class ReservationCalendarComponent implements OnInit {
   }
 
   public createReservation(): void {
+    this.loading.startLoading();
     let reservation: Reservation = {
       date: this.day_selected!.toDateString(),
       people: this.price_selected?.people,
@@ -83,10 +87,10 @@ export class ReservationCalendarComponent implements OnInit {
       game_price_id: this.price_selected!.id,
       game_id: this.game!.id
     }
-
+    
     this.apiService.addEntity('reservations', reservation).subscribe((res: Reservation) => {
       console.log(res);
-      location.reload();
+      this.loading.stopLoading();
     }, (error: Error) => {
       console.log(error);
     });

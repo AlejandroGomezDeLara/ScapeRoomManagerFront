@@ -5,72 +5,72 @@
     </div>
     <div class="description-content">
         <div class="game-description">
-            <h1>{{game.category?.name}}</h1>
+            <h1>{{game?.category?.name}}</h1>
             <p class="description">
-                {{game.category?.description}}
+                {{game?.category?.description}}
             </p>
         </div>
         <div class="row description-item">
             <h1 style="margin:0;">Valoraciones</h1>
-            <app-reviews-summary [summary]="game.gameReviewSummary!" [color]="game.category?.color!">
+            <app-reviews-summary [summary]="game?.gameReviewSummary!" [color]="game?.category?.color!">
             </app-reviews-summary>
         </div>
         <div class="row especifications description-item">
             <h1>Especificaciones</h1>
             <div class="col-6">
-                <p>Duracion <span [style.color]="game.category?.color"><i class="fa fa-clock"></i>
-                        {{game.max_duration}}</span></p>
+                <p>Duracion <span [style.color]="game?.category?.color"><i class="fa fa-clock"></i>
+                        {{game?.max_duration}}</span></p>
 
             </div>
             <div class="col-6">
-                <p>Personas <span [style.color]="game.category?.color">{{game.min_people}}-{{game.max_people}}
+                <p>Personas <span [style.color]="game?.category?.color">{{game?.min_people}}-{{game?.max_people}}
                         <i class="fa fa-user-group"></i></span>
                 </p>
             </div>
-            <div class="col-6" *ngIf="game.difficulty">
-                <p>Dificultad <span [style.color]="game.category?.color"> {{game.difficulty}}/10 <i
+            <div class="col-6" *ngIf="game?.difficulty">
+                <p>Dificultad <span [style.color]="game?.category?.color"> {{game?.difficulty}}/10 <i
                             class="fa fa-lock"></i></span>
                 </p>
 
             </div>
-            <div class="col-6" *ngIf="game.funly_points">
-                <p class="points">Puntos Funly <span [style.color]="'var(--color-primary)'"> {{game.funly_points}}
+            <div class="col-6" *ngIf="game?.funly_points">
+                <p class="points">Puntos Funly <span [style.color]="'var(--color-primary)'"> {{game?.funly_points}}
                         <img src="assets/imgs/box-transparent.svg" alt=""></span></p>
 
             </div>
         </div>
 
 
-        <div class="row phone description-item" *ngIf="game.user?.phone">
+        <div class="row phone description-item" *ngIf="game?.user?.phone">
             <h1>Teléfono</h1>
             <div class="col-6">
-                <p><i class="fa fa-mobile" [style.color]="game.category?.color"></i> {{game.user?.phone}}</p>
+                <p><i class="fa fa-mobile" [style.color]="game?.category?.color"></i> {{game?.user?.phone}}</p>
             </div>
             <div class="col-6">
-                <span class="call-btn" [style.background]="game.category?.color">Llamar</span>
+                <span class="call-btn" [style.background]="game?.category?.color">Llamar</span>
             </div>
         </div>
         
         <div class="row contact description-item">
             <h1>Redes sociales</h1>
             <div class="col-6">
-                <p><i class="fa fa-envelope" [style.color]="game.category?.color"></i> {{game.user?.email}}</p>
+                <p><i class="fa fa-envelope" [style.color]="game?.category?.color"></i> {{game?.user?.email}}</p>
 
 
             </div>
-            <div class="col-6" *ngIf="game.user?.instagram_user">
-                <p><i class="fa-brands fa-instagram" [style.color]="game.category?.color"></i>
-                    {{game.user?.instagram_user}}</p>
+            <div class="col-6" *ngIf="game?.user?.instagram_user">
+                <p><i class="fa-brands fa-instagram" [style.color]="game?.category?.color"></i>
+                    {{game?.user?.instagram_user}}</p>
 
             </div>
-            <div class="col-6" *ngIf="game.user?.facebook_user">
-                <p><i class="fa-brands fa-facebook" [style.color]="game.category?.color"></i>
-                    {{game.user?.facebook_user}}</p>
+            <div class="col-6" *ngIf="game?.user?.facebook_user">
+                <p><i class="fa-brands fa-facebook" [style.color]="game?.category?.color"></i>
+                    {{game?.user?.facebook_user}}</p>
 
 
             </div>
-            <div class="col-6" *ngIf="game.user?.twitter_user">
-                <p><i class="fa-brands fa-twitter" [style.color]="game.category?.color"></i> {{game.user?.twitter_user}}
+            <div class="col-6" *ngIf="game?.user?.twitter_user">
+                <p><i class="fa-brands fa-twitter" [style.color]="game?.category?.color"></i> {{game?.user?.twitter_user}}
                 </p>
 
             </div>
@@ -78,20 +78,20 @@
         </div>
 
 
-        <div class="row schedule" *ngIf="game.schedule?.length!>0">
+        <div class="row schedule" *ngIf="game?.schedule?.length!>0">
             <h1>Horario de apertura</h1>
-            <ng-container *ngFor="let schedule of game.schedule">
+            <ng-container *ngFor="let schedule of game?.schedule">
                 <div class="col-6 day">
-                    <p *ngIf="schedule.day == 1">Lunes</p>
-                    <p *ngIf="schedule.day == 2">Martes</p>
-                    <p *ngIf="schedule.day == 3">Miércoles</p>
-                    <p *ngIf="schedule.day == 4">Jueves</p>
-                    <p *ngIf="schedule.day == 5">Viernes</p>
-                    <p *ngIf="schedule.day == 6">Sábado</p>
-                    <p *ngIf="schedule.day == 7">Domingo</p>
+                    <p *ngIf="schedule?.day == 1">Lunes</p>
+                    <p *ngIf="schedule?.day == 2">Martes</p>
+                    <p *ngIf="schedule?.day == 3">Miércoles</p>
+                    <p *ngIf="schedule?.day == 4">Jueves</p>
+                    <p *ngIf="schedule?.day == 5">Viernes</p>
+                    <p *ngIf="schedule?.day == 6">Sábado</p>
+                    <p *ngIf="schedule?.day == 7">Domingo</p>
                 </div>
                 <div class="col-6 hour">
-                    <p>{{schedule.opening_time | slice:0:5}} - {{schedule.closing_time | slice:0:5}}</p>
+                    <p>{{schedule?.opening_time | slice:0:5}} - {{schedule?.closing_time | slice:0:5}}</p>
                 </div>
             </ng-container>
         </div>

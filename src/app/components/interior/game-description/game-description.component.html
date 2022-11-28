@@ -1,4 +1,4 @@
-<div class="col-md-8 col-sm-12 game-description">
+<div class="col-md-8 col-sm-12 game-description" *ngIf="game">
     <div class="images">
         <ng-container *ngIf="game.schedule?.length!>0">
             <span class="closed-label open" *ngIf="!game.closed">Abierto ahora</span>
@@ -34,7 +34,7 @@
             <p>{{game.description}}</p>
         </div>
 
-        <div class="open-reservations-header my-auto" >
+        <div class="open-reservations-header my-auto">
             <h1 class="title">¡Reservas FUNLY <img src="assets/imgs/box-transparent.svg" style="width:30px" alt="">
                 abiertas!</h1>
             <p class="subtitle">¡Corre, se cerrarán <span [style.color]="game.category?.color">1 hora</span> antes de

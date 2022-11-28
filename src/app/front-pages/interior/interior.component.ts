@@ -8,6 +8,7 @@ import { GameReviewData } from 'src/app/models/GameReviewData';
 import { GameReviewSummary } from 'src/app/models/GameReviewSummary';
 import { OpenReservation } from 'src/app/models/OpenReservation';
 import { ApiService } from 'src/app/services/api.service';
+import { LoadingService } from 'src/app/services/loading.service';
 
 @Component({
   selector: 'app-interior',
@@ -19,11 +20,11 @@ export class InteriorComponent implements OnInit {
   public gameId?: number;
   public game!: Game;
   public openReservations: OpenReservation[] = [];
-  public isLoading: boolean = true;
   public actual_reviews_page: number = 1;
 
   constructor(private apiService: ApiService,
-    private router: ActivatedRoute) {
+    private router: ActivatedRoute,
+    public loading:LoadingService) {
     this.gameId = +router.snapshot.params["id"];
   }
 
@@ -32,6 +33,8 @@ export class InteriorComponent implements OnInit {
   }
 
   public getGameAndReviewsDataSummaryAndOpenReservations(): void {
+    this.loading.startLoading();
+    
     let obGame: Observable<Game> = this.apiService.getEntity('games', this.gameId).pipe(map((res) => res), catchError(e => of('FALLO GAME!')));
     let obGameReviewsSummary: Observable<GameReviewSummary> = this.apiService.getSubEntity('games', this.gameId!, 'reviews-summary').pipe(map((res) => res), catchError(e => of('FALLO SUMARY!')));
     let obGameReviewsData: Observable<GameReviewData> = this.apiService.getSubEntity('games', this.gameId!, 'reviews').pipe(map((res) => res), catchError(e => of('FALLO REVIEWS!')));
@@ -40,10 +43,9 @@ export class InteriorComponent implements OnInit {
 
     let requests = [obGame, obGameReviewsSummary, obGameReviewsData, obReservations,obReservationHours];
     
-    this.isLoading = true;
     forkJoin(requests).subscribe({
       next: (data) => {
-        this.isLoading = false;
+        this.loading.stopLoading();
         const game: Game = data[0] as Game;
         const reviewsDataSummary: GameReviewSummary = data[1] as GameReviewSummary;
         const reviewsData: GameReviewData = data[2] as GameReviewData;
@@ -59,7 +61,7 @@ export class InteriorComponent implements OnInit {
       },
       error: (error) => {
         console.log(error);
-        this.isLoading = false;
+        this.loading.stopLoading();
       }
     });
   }
@@ -72,10 +74,10 @@ export class InteriorComponent implements OnInit {
     let obGameReviewsData: Observable<GameReviewData> = this.apiService.getSubEntity('games', this.game.id!, 'reviews');
     let obGAmeReviewsSummary: Observable<GameReviewSummary> = this.apiService.getSubEntity('games', this.gameId!, 'reviews-summary');
     let requests = [obGameReviewsData, obGAmeReviewsSummary];
-    this.isLoading = true;
+    this.loading.startLoading();
     forkJoin(requests).subscribe({
       next: (data) => {
-        this.isLoading = false;
+        this.loading.stopLoading();
         const gameReviewsData: GameReviewData = data[0] as GameReviewData;
         const reviewsData: GameReviewSummary = data[1] as GameReviewSummary;
         this.game.reviews = gameReviewsData.data;
@@ -85,19 +87,19 @@ export class InteriorComponent implements OnInit {
       },
       error: (error) => {
         console.log(error);
-        this.isLoading = false;
+        this.loading.stopLoading();
       }
     });
   }
 
   public loadMoreReviews(): void {
     this.actual_reviews_page += 1;
-    this.isLoading = true;
+    this.loading.startLoading();
     this.apiService.getSubEntity('games', this.game.id!, 'reviews?page=' + this.actual_reviews_page).subscribe((gameReviewData: GameReviewData) => {
       console.log("reviews", gameReviewData);
       let reviews: GameReview[] = gameReviewData.data!;
       this.game.reviews!.push(...reviews);
-      this.isLoading = false;
+      this.loading.stopLoading();
     });
   }
 

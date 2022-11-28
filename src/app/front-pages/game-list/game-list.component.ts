@@ -7,6 +7,7 @@ import { GameData } from 'src/app/models/GameData';
 import { GameSubcategory } from 'src/app/models/GameSubcategory';
 import { OpenReservation } from 'src/app/models/OpenReservation';
 import { ApiService } from 'src/app/services/api.service';
+import { LoadingService } from 'src/app/services/loading.service';
 
 @Component({
   selector: 'app-game-list',
@@ -15,7 +16,6 @@ import { ApiService } from 'src/app/services/api.service';
 })
 export class GameListComponent implements OnInit {
 
-  public isLoading: boolean = true;
   public selected_address: string = '';
   public selected_name: string = '';
   public filteredGames: Game[] = [];
@@ -41,13 +41,14 @@ export class GameListComponent implements OnInit {
 
   constructor(private apiService: ApiService,
     private ngZone: NgZone,
-    private router: ActivatedRoute) { 
+    private router: ActivatedRoute,
+    public loading:LoadingService) { 
       
     }
 
 
   ngOnInit(): void {
-
+    this.loading.startLoading();
   }
 
 
@@ -112,15 +113,13 @@ export class GameListComponent implements OnInit {
         this.total_games=gameData.total;   
         this.total_game_pages=gameData.last_page;           
         this.filteredGames=[...gameData.data!];
-        this.isLoading=false;
+        this.loading.stopLoading();
         this.openReservations = openReservations;
-
-        this.isLoading = false;
         console.log("GAMES AND RESERVATIONS", data);
       },
       error: (error) => {
         console.log(error);
-        this.isLoading=false;
+        this.loading.stopLoading();
       }
     });
 

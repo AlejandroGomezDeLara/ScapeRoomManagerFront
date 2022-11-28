@@ -35,7 +35,7 @@ export class NewOpenReservationComponent implements OnInit {
   public setUsers(): void {
     for (let index = 0; index < 4; index++) {
       this.people.push(
-        { avatar: 'assets/imgs/add-placeholder.png', name: 'Unirse', id: 0 }
+        { avatar: 'assets/imgs/add-placeholder.png', name: 'Empezar', id: 0 }
       );
     }
   }

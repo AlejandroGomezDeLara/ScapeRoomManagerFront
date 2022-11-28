@@ -8,7 +8,7 @@ import { Game } from 'src/app/models/Game';
 })
 export class GameReviewsComponent implements OnInit {
 
-  @Input() game!: Game;
+  @Input() game?: Game;
   @Output() loadMoreReviews = new EventEmitter<void>();
 
   constructor() { }

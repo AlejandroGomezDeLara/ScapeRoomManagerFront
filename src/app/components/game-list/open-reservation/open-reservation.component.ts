@@ -9,7 +9,7 @@ import { User } from 'src/app/models/User';
 })
 export class OpenReservationComponent implements OnInit {
 
-  @Input() reservation!: OpenReservation;
+  @Input() reservation?: OpenReservation;
   public people: User[] = [];
   public target!: Date;
   public timeout: any;
@@ -18,10 +18,10 @@ export class OpenReservationComponent implements OnInit {
 
   ngOnInit(): void {
     this.setUsers();
-    this.target = new Date(this.reservation.date!);
-    let hour = Number(this.reservation.game_reservation_hour?.hour?.slice(0, 2));
-    let minutes = Number(this.reservation.game_reservation_hour?.hour?.slice(3, 5));
-    let seconds = Number(this.reservation.game_reservation_hour?.hour?.slice(6))
+    this.target = new Date(this.reservation?.date!);
+    let hour = Number(this.reservation?.game_reservation_hour?.hour?.slice(0, 2));
+    let minutes = Number(this.reservation?.game_reservation_hour?.hour?.slice(3, 5));
+    let seconds = Number(this.reservation?.game_reservation_hour?.hour?.slice(6))
     this.target.setHours(hour);
     this.target.setMinutes(minutes);
     this.target.setSeconds(seconds); 
@@ -43,7 +43,7 @@ export class OpenReservationComponent implements OnInit {
     const segundos = Math.floor((difference % (1000 * 60)) / 1000);
 
     if (horas < 0 || minutos < 0 || segundos < 0)
-      this.reservation.closed = true;
+      this.reservation!.closed = true;
 
     const m = minutos.toLocaleString('en-US', {
       minimumIntegerDigits: 2,
@@ -55,10 +55,8 @@ export class OpenReservationComponent implements OnInit {
       useGrouping: false
     });
 
-    this.reservation.countdown = horas + ':' + m + ':' + s;
+    this.reservation!.countdown = horas + ':' + m + ':' + s;
     
-    console.log(this.reservation.countdown);
-
     this.timeout = setTimeout(() => {
       this.setCountDown();
     }, 1000);
@@ -77,12 +75,12 @@ export class OpenReservationComponent implements OnInit {
     this.people.push(
       { avatar: 'assets/imgs/add-placeholder.png', name: 'Unirse' }
     );
-    this.reservation.users?.forEach((user, index) => {
+    this.reservation?.users?.forEach((user, index) => {
       if (index <= 2) {
         this.people[index] = user;
         if (index == 2) {
-          if (this.reservation.users?.length != 3) {
-            this.people[index] = { avatar: 'assets/imgs/group-placeholder.webp', name: 'y ' + (this.reservation.users?.length! - 2) + ' más' }
+          if (this.reservation?.users?.length != 3) {
+            this.people[index] = { avatar: 'assets/imgs/group-placeholder.webp', name: 'y ' + (this.reservation?.users?.length! - 2) + ' más' }
           }
         }
       }
