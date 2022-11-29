@@ -111,37 +111,6 @@
                     <img class="recomendation-image" src="assets/imgs/scape.jpeg" alt="">
                     <p class="recomendation-title">Los invitados scape room
                     </p>
-                    <p class="rating" [style.color]="game.category?.color">
-                        {{game.rating}}
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                    </p>
-                    <div class="recomendation-categories">
-                        <span>Scape Room</span>
-                        <span>Miedo</span>
-                    </div>
-                </div>
-                <div class="col-6 my-auto">
-                    <div class="review-container" *ngFor="let review of game.gameReviewSummary?.featuredReviews">
-                        <p class="title">- "{{review?.text}}"</p>
-                        <p class="stars">
-                            <img class="avatar" [src]="review?.user?.avatar" alt="">
-                            <i *ngFor="let item of [0,1,2,3,4]; let i = index"
-                                [class]="i + 1 <= review?.stars! ? 'fa fa-star' : (review.stars! % 1 !==0 && round(review.stars!) == (i + 1)) ? 'fa fa-star-half-stroke':'fa-regular fa-star'"
-                                [style.color]="game.category?.color"></i>
-                            {{review?.created_at | date}}
-                        </p>
-                    </div>
-                </div>
-            </div>
-            <div class="recomendation row">
-                <div class="col-6">
-                    <img class="recomendation-image" src="assets/imgs/scape.jpeg" alt="">
-                    <p class="recomendation-title">Los invitados scape room
-                    </p>
                     <p>
                         <app-rating [rating]="3" [reviews]="120" [color]="game.category?.color"></app-rating>
                     </p>
@@ -150,18 +119,7 @@
                         <span>Miedo</span>
                     </div>
                 </div>
-                <div class="col-6 my-auto">
-                    <div class="review-container" *ngFor="let review of game.gameReviewSummary?.featuredReviews">
-                        <p class="title">- "{{review?.text}}"</p>
-                        <p class="stars">
-                            <img class="avatar" [src]="review?.user?.avatar" alt="">
-                            <i *ngFor="let item of [0,1,2,3,4]; let i = index"
-                                [class]="i + 1 <= review?.stars! ? 'fa fa-star' : (review.stars! % 1 !==0 && round(review.stars!) == (i + 1)) ? 'fa fa-star-half-stroke':'fa-regular fa-star'"
-                                [style.color]="game.category?.color"></i>
-                            {{review?.created_at | date}}
-                        </p>
-                    </div>
-                </div>
+               
             </div>
         </div>
     </div>

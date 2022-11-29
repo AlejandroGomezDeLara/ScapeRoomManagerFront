@@ -79,6 +79,7 @@ export class ReservationCalendarComponent implements OnInit {
           //PRESTAMOS LAS HORAS DE ANTELACION
           horas -= reservation_margin_hours;
           if (horas < 0) x.closed = true;
+          else x.closed=false;
 
         }else{
           x.closed=true;
@@ -97,8 +98,12 @@ export class ReservationCalendarComponent implements OnInit {
         else
           x.closed = false;
       }
+
+
       return x;
     });
+
+
     this.price_selected = null;
     this.hour_selected = null;
     console.log("dayt", this.disponible_hours);
