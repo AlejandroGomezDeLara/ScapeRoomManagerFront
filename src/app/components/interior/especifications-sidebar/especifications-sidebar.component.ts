@@ -17,4 +17,8 @@ export class EspecificationsSidebarComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  round(number: number) {
+    return Math.round(number);
+  }
+
 }

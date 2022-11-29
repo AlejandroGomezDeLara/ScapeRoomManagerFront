@@ -4,11 +4,10 @@
         <div class="reservation-header">
             <h1 class="title">Reserva FUNLY <img src="assets/imgs/box-transparent.svg " style="width:25px ;"></h1>
         </div>
-        <div class="text-divider" [style.color]="reservation.game_category?.color">Hoy
-            {{reservation.game_reservation_hour?.hour| slice:0:5}}</div>
+        <div class="text-divider" [style.color]="reservation.game_category?.color">{{actual_date_str == target_date_str
+            ? 'Hoy' : reservation.date| date:'dd/MMM'}} - {{reservation.game_reservation_hour?.hour | slice:0:5}}</div>
 
-        <div class="reservation-open" 
-            *ngIf="!reservation.closed && reservation.countdown">
+        <div class="reservation-open" *ngIf="!reservation.closed && reservation.countdown">
             <span class="reservation-countdown">
                 <span class="reservation-people-label">
                     <em class="fa fa-user-group"></em>{{reservation.users?.length}}/{{reservation.max_people}} </span>
@@ -43,10 +42,12 @@
         </div>
 
         <div class="reservation-price row">
-            <div class="reservation-button col-4" [style.background-color]="reservation.game_category?.color" *ngIf="!reservation.closed">
+            <div class="reservation-button col-4" [style.background-color]="reservation.game_category?.color"
+                *ngIf="!reservation.closed">
                 <p class="price">Únete a la reserva <span>{{reservation.price_per_user}}€</span> </p>
             </div>
-            <div class="reservation-button col-4" [style.background-color]="reservation.game_category?.color" *ngIf="reservation.closed">
+            <div class="reservation-button col-4" [style.background-color]="reservation.game_category?.color"
+                *ngIf="reservation.closed">
                 <p class="price">Reserva cerrada</p>
             </div>
         </div>

@@ -39,8 +39,9 @@
         <p class="game-address"><i class="fa-solid fa-location-dot"
                 style="margin-right: 5px"></i>{{reservation.game?.address}}</p>
 
-        <div class="text-divider" [style.color]="reservation.game_category?.color">Hoy
-            {{reservation.game_reservation_hour?.hour| slice:0:5}}</div>
+        <div class="text-divider" [style.color]="reservation.game_category?.color">{{actual_date_str == target_date_str
+            ? 'Hoy' : reservation.date| date:'dd/MMM'}} - {{reservation.game_reservation_hour?.hour | slice:0:5}}</div>
+
 
         <div class="people">
             <p class="remaining-people" *ngIf="reservation.users?.length! < reservation.min_people!">Quedan <span
