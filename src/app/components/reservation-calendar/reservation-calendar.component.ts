@@ -65,7 +65,6 @@ export class ReservationCalendarComponent implements OnInit {
         if (date > now) {
           var delta = Math.abs(date.getTime() - now.getTime()) / 1000;
 
-          // calculate (and subtract) whole days
           var days = Math.floor(delta / 86400);
 
           delta -= days * 86400;

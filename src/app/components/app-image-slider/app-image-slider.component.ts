@@ -8,33 +8,49 @@ import { GameCategory } from 'src/app/models/GameCategory';
 })
 export class AppImageSliderComponent implements AfterViewInit {
 
-  public title:string="¡Encuentra lo que quieras hacer hoy!";
-  public subtitle:string="¡Busca el evento que desees y encuentra personas con quien hacerlos!";
+  public title: string = "¡Encuentra lo que quieras hacer hoy!";
+  public subtitle: string = "¡Busca el evento que desees y encuentra personas con quien hacerlos!";
 
-  @Input() images:string[]=[
+  @Input() images: string[] = [
     "assets/imgs/carts.jpeg",
     "assets/imgs/scape.jpeg",
     "assets/imgs/laser-tag.jpeg"
   ];
 
-  public changeImageSeconds:number=4; //Tiempo en segundos
+  public changeImageSeconds: number = 4; //Tiempo en segundos
 
-  public index:number = 0;
+  public index: number = 0;
 
-  constructor(private ngZone:NgZone) { }
+  constructor(private ngZone: NgZone) { }
 
   ngAfterViewInit(): void {
-    this.carousel();
+    //this.carousel();
+    this.showImage();
   }
 
-  public carousel():void{
+  public showImage() {
     let x = document.getElementsByClassName("category-images") as HTMLCollectionOf<HTMLElement>;
-    if(this.index>=x.length)this.index=0;
+    if (this.index >= x.length || this.index < 0) this.index = 0;
     for (let i = 0; i < x.length; i++) {
-        x[i].style.display = (i==this.index) ? "block" : "none"; 
+      x[i].style.display = (i == this.index) ? "block" : "none";
     }
-    this.index++;
-    setTimeout(()=>this.carousel(),this.changeImageSeconds*1000);
   }
 
+  public carousel(): void {
+    setTimeout(() => {
+      this.showImage(); this.index++;
+    }, this.changeImageSeconds * 1000);
+
+  }
+
+
+  public nextImage(): void {
+    this.index++;
+    this.showImage();
+  }
+
+  public previousImage(): void {
+    this.index -= 1;
+    this.showImage();
+  }
 }

@@ -7,6 +7,6 @@
     
 </div>
 
-<home-footer class="pagination-footer"></home-footer>
+<home-footer class="pagination-footer" [hidden]="!game && (loading.isLoading | async)"></home-footer>
 
 <app-loading [hidden]="!(loading.isLoading | async)"></app-loading>
