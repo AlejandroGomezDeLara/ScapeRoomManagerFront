@@ -12,7 +12,7 @@
             </span> <span class="reviews"> {{game.gameReviewSummary?.reviewsCount}} valoraciones</span>
         </div>
         <div class="game-data-header row game-item">
-            <div class="col-6">
+            <div class="col-12">
                 <div class="enterprise-container row ">
                     <span class="enterprise"><em class="fa-solid fa-building" [style.color]="game.category?.color"></em>
                         {{game.user?.name}}
@@ -31,37 +31,46 @@
                         {{game.subcategory?.name}} </span>
                 </div>
 
-                <div class="description">
-                    <h1>Quiénes somos</h1>
-                    <p>{{game.description}}</p>
-                </div>
-            </div>
-            <div class="col-6 my-auto">
-                <div class="featured-reviews">
-                    <h1>Qué dicen los usuarios</h1>
-                    <div class="review-container" *ngFor="let review of game.gameReviewSummary?.featuredReviews">
-                        <p class="title">- "{{review?.text}}"</p>
-                        <p class="stars">
-                            <img class="avatar" [src]="review?.user?.avatar" alt="">
-                            <i *ngFor="let item of [0,1,2,3,4]; let i = index"
-                                [class]="i + 1 <= review?.stars! ? 'fa fa-star' : (review.stars! % 1 !==0 && round(review.stars!) == (i + 1)) ? 'fa fa-star-half-stroke':'fa-regular fa-star'"
-                                [style.color]="game.category?.color"></i>
-                            {{review?.created_at | date}}
-                        </p>
+                <div class="row">
+                    <div class="description col-6">
+                        <h1>Quiénes somos</h1>
+                        <p>{{game.description}}</p>
+                    </div>
+                    <div class="col-6 featured-reviews-container">
+                        <h1>Qué dicen los usuarios</h1>
+                        <div class="featured-reviews">
+                            <ng-container *ngIf="game.gameReviewSummary?.featuredReviews?.length!>0">
+                                <div class="review-container"
+                                    *ngFor="let review of game.gameReviewSummary?.featuredReviews">
+                                    <p class="title">- "{{review?.text}}"</p>
+                                    <p class="stars">
+                                        <img class="avatar" [src]="review?.user?.avatar" alt="">
+                                        <i *ngFor="let item of [0,1,2,3,4]; let i = index"
+                                            [class]="i + 1 <= review?.stars! ? 'fa fa-star' : (review.stars! % 1 !==0 && round(review.stars!) == (i + 1)) ? 'fa fa-star-half-stroke':'fa-regular fa-star'"
+                                            [style.color]="game.category?.color"></i>
+                                        {{review?.created_at | date}}
+                                    </p>
+                                </div>
+                            </ng-container>
+                            <ng-container *ngIf="game.gameReviewSummary?.featuredReviews?.length!<=0">
+                                <h1>No hay reseñas</h1>
+                            </ng-container>
+                        </div>
                     </div>
                 </div>
             </div>
+
         </div>
         <div class="open-reservations-header my-auto">
-            <h1 class="title">¡Reservas FUNLY <img src="assets/imgs/box-transparent.svg" style="width:30px" alt="">
-                abiertas!</h1>
+            <h1 class="title">¡Reservas individuales FUNLY <img src="assets/imgs/box-transparent.svg" style="width:30px"
+                    alt="">
+                disponibles!</h1>
             <p class="subtitle">
                 ¿No tienes nadie con quien ir?, no te preocupes, ¡ya hay personas que quieren participar contigo!
             </p>
-            <p class="subtitle">¡Corre, se cerrarán <span [style.color]="game.category?.color">1 hora</span> antes de
+            <p class="subtitle">¡Corre, se cerrarán <span [style.color]="game.category?.color"> hora(s)</span> antes de
                 que
                 empiece el evento!</p>
-
         </div>
 
 
@@ -77,29 +86,37 @@
         </div>
 
 
-
-        <app-reservation-calendar [game]="game"></app-reservation-calendar>
-
-
-
         <div class="row game-item">
+            <app-reservation-calendar [game]="game"></app-reservation-calendar>
+        </div>
 
-            <div class="col-6">
+
+        <div class="row game-item reviews-container">
+
+            <div class="col-6 reviews-label">
                 <h1><span [style.color]="game.category?.color"> {{game.gameReviewSummary?.reviewsCount}}</span>
                     Valoraciones
                     <span [style.color]="game.category?.color">{{game.gameReviewSummary?.avgStars}} <i
                             class="fa fa-star"></i> </span>
                 </h1>
-                <p>Déjanos tu opinión para ayudar a los usuarios!</p>
+                <p>Las valoraciones son muy importantes para saber qué tan bueno es un evento, no olvides dejar tu
+                    valoración al terminar!, te recompasaremos con puntos FUNLY <img style="width:20px;"
+                        src="assets/imgs/box-transparent.svg" alt=""></p>
             </div>
-            <div class="col-6 my-auto" style="text-align:center;">
-                <button class="btn" [style.background]="game.category?.color" (click)="showAddReviewModal()"><em
-                        class="fa fa-pencil"></em> Dános
-                    tu opinión</button>
+            <div class="col-6">
+                <app-reviews-summary [summary]="game.gameReviewSummary" [color]="game.category?.color!">
+                </app-reviews-summary>
+            </div>
+            <div class="row">
+                <div class="col-12 my-auto" style="text-align:center;">
+                    <button class="btn" [style.background]="game.category?.color" (click)="showAddReviewModal()"><em
+                            class="fa fa-pencil"></em> Dános
+                        tu opinión</button>
+                </div>
             </div>
         </div>
-
-        <app-game-reviews [game]="game" (loadMoreReviews)="loadMoreReviews.emit()"></app-game-reviews>
+        <app-game-reviews [game]="game" (loadMoreReviews)="loadMoreReviews.emit()">
+        </app-game-reviews>
     </div>
 
 

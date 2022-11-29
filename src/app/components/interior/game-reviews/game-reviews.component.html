@@ -1,6 +1,16 @@
-<div class="reviews" *ngIf="game?.reviews?.length!>0">
-    <app-game-review-item [color]="game?.category?.color!" *ngFor="let review of game?.reviews" [review]="review">
-    </app-game-review-item>
-    <button class="more-reviews-btn" [style.background]="game?.category?.color" (click)="loadMoreReviews.emit()">Ver más
-        valoraciones</button>
+<div class="reviews-container row" *ngIf="game?.reviews?.length!>0">
+
+    <div class="col reviews">
+        <app-game-review-item [color]="game?.category?.color!" *ngFor="let review of game?.reviews" [review]="review">
+        </app-game-review-item>
+        <div class="text-center">
+            <button class="more-reviews-btn" [style.background]="game?.category?.color"
+                (click)="loadMoreReviews.emit()">Ver
+                más
+                valoraciones</button>
+        </div>
+    </div>
+    <!-- <div class="col-5">
+        <app-reviews-summary [summary]="game?.gameReviewSummary" [color]="game?.category?.color!"></app-reviews-summary>
+    </div> -->
 </div>

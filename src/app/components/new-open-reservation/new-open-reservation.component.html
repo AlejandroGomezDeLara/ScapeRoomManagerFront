@@ -17,8 +17,6 @@
                 <span class="countdown" *ngIf="!closed"> <em class="fa-regular fa-clock"></em>
                     {{countdown}}</span></span>
 
-
-
         </div>
 
         <div class="reservation-closed" *ngIf="closed">
@@ -46,8 +44,11 @@
         </div>
 
         <div class="reservation-price row">
-            <div class="reservation-button col-4" [style.background-color]="game.category?.color">
+            <div class="reservation-button col-4" [style.background-color]="game.category?.color" *ngIf="!closed">
                 <p class="price">Únete a la reserva <span>{{game.min_price}}€</span> </p>
+            </div>
+            <div class="reservation-button col-4" [style.background-color]="game.category?.color" *ngIf="closed">
+                <p class="price">Reserva cerrada</p>
             </div>
         </div>
     </div>

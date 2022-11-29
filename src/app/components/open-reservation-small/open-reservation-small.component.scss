@@ -185,6 +185,7 @@
     }
     .reservation-price {
         padding: 10px;
+        font-weight: bold;
         .reservation-button {
             width: 100%;
             text-align: center;
@@ -206,6 +207,9 @@
             }
         }
     }
+}
+.closed{
+    filter: blur(2px);
 }
 .open-reservation {
     transition: all 0.3s ease-in-out;

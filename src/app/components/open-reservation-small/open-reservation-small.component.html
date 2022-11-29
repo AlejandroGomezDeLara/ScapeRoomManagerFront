@@ -22,7 +22,7 @@
                     <em class="fa fa-user-group"></em>{{reservation.users?.length}}/{{reservation.max_people}}
                 </span> Plazo Cerrado</span>
         </div>
-        <div class="people">
+        <div [ngClass]="reservation.closed ? 'people closed' : 'people' ">
             <p class="remaining-people" *ngIf="reservation.users?.length! < reservation.min_people!">Quedan <span
                     [style.color]="reservation.game_category?.color">{{reservation.min_people! -
                     reservation.users?.length!}} <i class="fa fa-user-group"></i> </span> para poder empezar</p>
@@ -43,8 +43,11 @@
         </div>
 
         <div class="reservation-price row">
-            <div class="reservation-button col-4" [style.background-color]="reservation.game_category?.color">
+            <div class="reservation-button col-4" [style.background-color]="reservation.game_category?.color" *ngIf="!reservation.closed">
                 <p class="price">Únete a la reserva <span>{{reservation.price_per_user}}€</span> </p>
+            </div>
+            <div class="reservation-button col-4" [style.background-color]="reservation.game_category?.color" *ngIf="reservation.closed">
+                <p class="price">Reserva cerrada</p>
             </div>
         </div>
     </div>

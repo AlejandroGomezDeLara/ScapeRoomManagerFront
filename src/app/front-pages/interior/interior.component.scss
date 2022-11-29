@@ -1,7 +1,10 @@
 .game-container {
-    padding: 5vw;
-    background: var(--light-background);
-  
+    padding: 3vw 4vw;
+    background: #f2f2f2;
+    background-image: url(../../../assets/imgs/box-transparent-light.svg);
+    background-repeat: space;
+    background-size: 200px;
+    background-position: center;
     .funly {
         img {
             width: 20px;
@@ -10,3 +13,4 @@
         background: var(--color-open-reservation);
     }
 }
+

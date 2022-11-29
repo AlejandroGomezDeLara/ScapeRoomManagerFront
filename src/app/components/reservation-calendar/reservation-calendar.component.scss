@@ -20,10 +20,8 @@
     .reservation-overview {
         font-size: 18px;
         padding-bottom: 20px;
-
+        background: #fafafa;
         padding-top: 25px;
-        border-bottom: 0.5px solid #ccc;
-
         .title {
             font-weight: bold;
             font-size:26px;
@@ -50,22 +48,27 @@
     .price {
         padding: 10px;
         font-size: 18px;
-        border-radius: 25px;
+        border-radius: 5px;
         color: white;
         font-weight: bold;
         margin: 5px;
         display: inline-block;
         width: auto;
         cursor: pointer;
+        transition: all 0.1s ease-in-out;
         background: var(--color-open-reservation);
     }
-    .price:hover {
+ 
+    .price:hover,.hour:hover {
+        scale: 1.1;
         background: var(--dark-background);
+        box-shadow: var(--item-box-shadow);
     }
+    
     .hour-disabled {
         padding: 10px;
         font-size: 18px;
-        border-radius: 25px;
+        border-radius: 5px;
         color: white;
         font-weight: bold;
         margin: 5px;
@@ -76,9 +79,6 @@
     }
     .hour-selected,.price-selected{
         background:var(--dark-background);
-    }
-    .hour:hover {
-        background: var(--dark-background);
     }
     .title-hour {
         font-size: 18px;
