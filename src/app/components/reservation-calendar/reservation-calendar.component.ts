@@ -40,19 +40,57 @@ export class ReservationCalendarComponent implements OnInit {
     this.day_selected = date;
     this.disponible_hours = this.game?.reservation_hours?.filter(x => x.day == date.getDay());
     let selected_date = date.toDateString()
+
     this.disponible_hours = this.disponible_hours!.map(x => {
+      //Comprobar si hay reservas el mismo dia
       if (x.open_reservation?.length! > 0) {
         let date = new Date(x.open_reservation![0].date!);
         let reservation_date = date!.toDateString();
         if (reservation_date == selected_date)
           x.closed = true;
-        else
-          x.closed = false;
+      } else {
+        //Comprobamos si la hora está disponible por la antelación si no hay reserva
+
+        var reservation_margin_hours = this.game?.reservation_margin_hours!;
+        const now = new Date();
+
+        let addHours = Number(x.hour?.slice(0, 2));
+        let addMinutes = Number(x.hour?.slice(3, 5));
+        let addSeconds = Number(x.hour?.slice(6));
+
+        date.setHours(addHours);
+        date.setMinutes(addMinutes);
+        date.setSeconds(addSeconds);
+
+        if (date > now) {
+          var delta = Math.abs(date.getTime() - now.getTime()) / 1000;
+
+          // calculate (and subtract) whole days
+          var days = Math.floor(delta / 86400);
+
+          delta -= days * 86400;
+
+          var horas = Math.floor(delta / 3600) % 24;
+
+          horas += days * 60;
+
+          console.log("COMPROBAR", date, "DIFERENCIA", horas);
+
+          //PRESTAMOS LAS HORAS DE ANTELACION
+          horas -= reservation_margin_hours;
+          if (horas < 0) x.closed = true;
+
+        }else{
+          x.closed=true;
+        }
+
+
       }
+
+      //Comprobar si hay reservas el mismo día 
       if (x.reservation?.length! > 0) {
         let date = new Date(x.reservation![0].date!);
         let reservation_date = date!.toDateString();
-        console.log("RRES", reservation_date);
 
         if (reservation_date == selected_date)
           x.closed = true;
@@ -97,8 +135,8 @@ export class ReservationCalendarComponent implements OnInit {
     });
   }
 
-  public setIndividualReservation(individual:boolean):void{
-    this.is_individual=individual;
-    this.price_selected=null;
+  public setIndividualReservation(individual: boolean): void {
+    this.is_individual = individual;
+    this.price_selected = null;
   }
 }

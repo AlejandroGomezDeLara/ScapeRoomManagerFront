@@ -61,9 +61,11 @@ export class NewOpenReservationComponent implements OnInit, OnChanges {
     this.date.setSeconds(addSeconds);
 
     if (this.date > now) {
-      this.target = this.date;
-      this.closed=false;
       
+      this.target = this.date;
+
+      this.closed = false;
+
       var delta = Math.abs(this.date.getTime() - now.getTime()) / 1000;
 
       // calculate (and subtract) whole days
@@ -71,14 +73,13 @@ export class NewOpenReservationComponent implements OnInit, OnChanges {
 
       delta -= days * 86400;
 
-      var horas = Math.floor(delta/ 3600) % 24;
+      var horas = Math.floor(delta / 3600) % 24;
+
+      horas += days * 60;
 
       //RESTAMOS LAS HORAS DE ANTELACION
-
-      horas+=days*60;
-
-      if(this.game.reservation_margin_hours){
-        horas-=this.game.reservation_margin_hours;
+      if (this.game.reservation_margin_hours) {
+        horas -= this.game.reservation_margin_hours;
       }
 
       var minutos = Math.floor(delta / 60) % 60;
@@ -91,18 +92,20 @@ export class NewOpenReservationComponent implements OnInit, OnChanges {
         minimumIntegerDigits: 2,
         useGrouping: false
       });
-  
+
       const s = segundos.toLocaleString('en-US', {
         minimumIntegerDigits: 2,
         useGrouping: false
       });
-      if(horas<0){
-        this.closed=true;
+
+      if (horas < 0) {
+        this.closed = true;
       }
+
       this.countdown = horas + ':' + m + ':' + s;
 
     } else {
-      this.closed=true;
+      this.closed = true;
     }
 
     console.log(this.countdown);
