@@ -5,11 +5,11 @@
         <div class="reservation-header">
             <h1 class="title">Reserva FUNLY <img src="assets/imgs/box-transparent.svg " style="width:25px ;"></h1>
         </div>
-        <div class="text-divider" [style.color]="game.category?.color">Hoy
+        <div class="text-divider" [style.color]="game.category?.color">{{actual_date_str == target_date_str ? 'Hoy' : date | date}}
             {{hour.hour| slice:0:5}}</div>
 
         <div class="reservation-open" 
-            *ngIf="!closed && countdown">
+            *ngIf="!closed">
             <span class="reservation-countdown">
                 <span class="reservation-people-label">
                     <em class="fa fa-user-group"></em>0/{{game.max_people}} </span>
@@ -45,7 +45,7 @@
 
         <div class="reservation-price row">
             <div class="reservation-button col-4" [style.background-color]="game.category?.color" *ngIf="!closed">
-                <p class="price">Únete a la reserva <span>{{game.min_price}}€</span> </p>
+                <p class="price">Crea la reserva por <span>{{game.min_price}}€</span> </p>
             </div>
             <div class="reservation-button col-4" [style.background-color]="game.category?.color" *ngIf="closed">
                 <p class="price">Reserva cerrada</p>

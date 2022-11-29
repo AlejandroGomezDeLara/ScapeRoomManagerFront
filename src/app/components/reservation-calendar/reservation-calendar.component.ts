@@ -19,7 +19,7 @@ export class ReservationCalendarComponent implements OnInit {
   public price_selected: GamePrice | null = null;
   public hour_selected: GameReservationHour | null = null;
   public disponible_hours: GameReservationHour[] | undefined = [];
-
+  public is_individual: boolean | undefined;
 
   constructor(private apiService: ApiService,
     private loading: LoadingService) { }
@@ -87,13 +87,18 @@ export class ReservationCalendarComponent implements OnInit {
       game_price_id: this.price_selected!.id,
       game_id: this.game!.id
     }
-    
+
     this.apiService.addEntity('reservations', reservation).subscribe((res: Reservation) => {
       console.log(res);
       this.loading.stopLoading();
+      location.reload();
     }, (error: Error) => {
       console.log(error);
     });
   }
 
+  public setIndividualReservation(individual:boolean):void{
+    this.is_individual=individual;
+    this.price_selected=null;
+  }
 }

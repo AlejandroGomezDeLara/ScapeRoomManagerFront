@@ -28,6 +28,7 @@ export interface Game{
     subcategory?:GameSubcategory,
     open_reservations?:OpenReservation[],
     min_people?:number,
+    reservation_margin_hours?:number,
     max_people?:number,
     min_duration?:number,
     max_duration?:number,

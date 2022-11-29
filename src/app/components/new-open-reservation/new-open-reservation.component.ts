@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { Game } from 'src/app/models/Game';
 import { GameReservationHour } from 'src/app/models/GameReservationHour';
 import { User } from 'src/app/models/User';
@@ -8,28 +8,35 @@ import { User } from 'src/app/models/User';
   templateUrl: './new-open-reservation.component.html',
   styleUrls: ['./new-open-reservation.component.scss']
 })
-export class NewOpenReservationComponent implements OnInit {
+export class NewOpenReservationComponent implements OnInit, OnChanges {
 
   @Input() game!: Game;
   @Input() hour!: GameReservationHour;
+  @Input() date!: Date;
+
   public people: User[] = [];
-  public closed:boolean=false;
-  public countdown?:string;
+  public closed: boolean = false;
+  public countdown?: string;
   public timeout: any;
   public target!: Date;
+  public target_date_str?: string;
+  public actual_date_str?: string;
 
   constructor() { }
 
-  ngOnInit(): void {
-    this.target = new Date();
-    let hour = Number(this.hour?.hour?.slice(0, 2));
-    let minutes = Number(this.hour?.hour?.slice(3, 5));
-    let seconds = Number(this.hour?.hour?.slice(6))
-    this.target.setHours(hour);
-    this.target.setMinutes(minutes);
-    this.target.setSeconds(seconds);
+  ngOnChanges(changes: SimpleChanges): void {
+    clearTimeout(this.timeout);
+    this.timeout = null;
     this.setCountDown();
+  }
+
+  ngOnInit(): void {
     this.setUsers();
+  }
+
+  ngOnDestroy(): void {
+    clearTimeout(this.timeout);
+    this.timeout = null;
   }
 
   public setUsers(): void {
@@ -41,37 +48,72 @@ export class NewOpenReservationComponent implements OnInit {
   }
 
   public setCountDown(): void {
+
     const now = new Date();
-    const difference = this.target.getTime() - now.getTime();
+    this.actual_date_str = now.toDateString();
+    this.target_date_str = this.date.toDateString();
 
-    const horas = Math.floor(
-      (difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
-    ) - 1;
+    let addHours = Number(this.hour?.hour?.slice(0, 2));
+    let addMinutes = Number(this.hour?.hour?.slice(3, 5));
+    let addSeconds = Number(this.hour?.hour?.slice(6))
+    this.date.setHours(addHours);
+    this.date.setMinutes(addMinutes);
+    this.date.setSeconds(addSeconds);
 
+    if (this.date > now) {
+      this.target = this.date;
+      this.closed=false;
+      
+      var delta = Math.abs(this.date.getTime() - now.getTime()) / 1000;
 
-    const minutos = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+      // calculate (and subtract) whole days
+      var days = Math.floor(delta / 86400);
 
-    const segundos = Math.floor((difference % (1000 * 60)) / 1000);
+      delta -= days * 86400;
 
-    if (horas < 0 || minutos < 0 || segundos < 0)
-      this.closed = true;
+      var horas = Math.floor(delta/ 3600) % 24;
 
-    const m = minutos.toLocaleString('en-US', {
-      minimumIntegerDigits: 2,
-      useGrouping: false
-    });
+      //RESTAMOS LAS HORAS DE ANTELACION
 
-    const s = segundos.toLocaleString('en-US', {
-      minimumIntegerDigits: 2,
-      useGrouping: false
-    });
+      horas+=days*60;
 
-    this.countdown = horas + ':' + m + ':' + s;
+      if(this.game.reservation_margin_hours){
+        horas-=this.game.reservation_margin_hours;
+      }
+
+      var minutos = Math.floor(delta / 60) % 60;
+      if (minutos < 0) minutos *= -1;
+
+      var segundos = Math.floor(delta % 60);
+      if (segundos < 0) segundos *= -1;
+
+      const m = minutos.toLocaleString('en-US', {
+        minimumIntegerDigits: 2,
+        useGrouping: false
+      });
+  
+      const s = segundos.toLocaleString('en-US', {
+        minimumIntegerDigits: 2,
+        useGrouping: false
+      });
+      if(horas<0){
+        this.closed=true;
+      }
+      this.countdown = horas + ':' + m + ':' + s;
+
+    } else {
+      this.closed=true;
+    }
+
+    console.log(this.countdown);
 
 
     this.timeout = setTimeout(() => {
       this.setCountDown();
     }, 1000);
+
+
+
   }
 
 }
