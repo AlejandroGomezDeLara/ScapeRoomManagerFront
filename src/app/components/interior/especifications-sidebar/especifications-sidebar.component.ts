@@ -1,7 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Game } from 'src/app/models/Game';
-import { GameReviewSummary } from 'src/app/models/GameReviewSummary';
 import { ApiService } from 'src/app/services/api.service';
 
 @Component({
@@ -21,9 +20,7 @@ export class EspecificationsSidebarComponent implements OnInit {
     this.getRecomendations();
   }
 
-  round(number: number) {
-    return Math.round(number);
-  }
+ 
 
   public getRecomendations():void{
     this.apiService.getEntity('recomendations').subscribe((recomendations:Game[])=>{
@@ -31,8 +28,5 @@ export class EspecificationsSidebarComponent implements OnInit {
     });
   }
 
-  public redirectInterior(game_id:number):void{
-    this.router.navigateByUrl('/', {skipLocationChange: true}).then(()=>
-    this.router.navigate(['search/'+game_id+'/interior']));
-  }
+ 
 }

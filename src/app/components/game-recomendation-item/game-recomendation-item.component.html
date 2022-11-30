@@ -1,0 +1,28 @@
+<div class="recomendation row" (click)="redirectInterior(game?.id!)">
+    <div class="col-5">
+        <img class="recomendation-image" [src]="game?.images" alt="">
+    </div>
+    <div class="col-7 my-auto">
+        <p class="recomendation-title">{{game?.name}}</p>
+        <p class="recomendation-address"><i class="fa fa-location-dot"></i> {{game?.address}}</p>
+        <p class="recomendation-stars">
+            <app-rating [rating]="game?.rating!" [reviews]="game?.reviewsCount!" [color]="game?.category?.color">
+            </app-rating>
+        </p>
+
+        <div class="recomendation-categories">
+            <span class="category" [style.background]="game?.category?.background_color"
+                [style.color]="game?.category?.color">{{game?.category?.name}}</span>
+            <span class="category" *ngIf="game?.subcategory"
+                [style.background]="game?.subcategory?.background_color"
+                [style.color]="game?.subcategory?.color">{{game?.subcategory?.name}}</span>
+        </div>
+        <p class="specifications" [style.color]="game?.category?.color">
+            {{game?.max_duration}} min <i class="fa fa-clock"></i>
+            |
+            {{game?.min_people}} - {{game?.max_people}}<i class="fa fa-user-group"></i>
+            |
+            {{game?.min_price}}€
+        </p>
+    </div>
+</div>

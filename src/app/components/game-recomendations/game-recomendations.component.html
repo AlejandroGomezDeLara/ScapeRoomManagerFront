@@ -1,0 +1,9 @@
+<div class="recomendations">
+    <h1 class="recomendations-title">Top <i class="fa fa-star"></i> eventos FUNLY
+        <img src="assets/imgs/box-transparent.svg" width="20px"> recomendados
+    </h1>
+
+    <div class="recomendations-container">
+        <app-game-recomendation-item [game]="game" *ngFor="let game of recomendations"></app-game-recomendation-item>
+    </div>
+</div>

@@ -18,6 +18,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule, MAT_DATE_LOCALE } from '@angular/material/core';
 import { ReservationCalendarModule } from 'src/app/components/reservation-calendar/reservation-calendar.module';
 import { NewOpenReservationModule } from 'src/app/components/new-open-reservation/new-open-reservation.module';
+import { GameRecomendationsModule } from 'src/app/components/game-recomendations/game-recomendations.module';
 
 
 const routes: Routes = [
@@ -46,6 +47,7 @@ const routes: Routes = [
     MatNativeDateModule,
     OpenReservationSmallModule,
     MapModule,
+    GameRecomendationsModule,
     NewOpenReservationModule,
     ReservationCalendarModule,
     RouterModule.forChild(routes)
