@@ -19,7 +19,7 @@ export class HomeComponent implements OnInit {
   }
 
   
-  public locate():void{
+  /* public locate():void{
     navigator.geolocation.getCurrentPosition(({ coords }) => {
       let geocoder = new google.maps.Geocoder();
       let latlng = new google.maps.LatLng(coords.latitude, coords.longitude);
@@ -53,6 +53,6 @@ export class HomeComponent implements OnInit {
       
     
     
-  }
+  } */
 
 }
