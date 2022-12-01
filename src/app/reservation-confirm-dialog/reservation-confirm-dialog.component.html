@@ -1,0 +1,31 @@
+<div class="dialog-container">
+
+    <h1 class="title">Detalles de la reserva</h1>
+    <p>Al reservar individualmente se te asignará un chat grupral asociado al
+        evento, en cuanto se una alguien, ¡podrás chatear con el!</p>
+
+
+    <i class="fa fa-close close-icon" (click)="closeDialog()"></i>
+    <div class="game row">
+        <div class="col-5 my-auto game-image">
+            <img [src]="game.images" alt="" *ngIf="game.images">
+            <img src="assets/imgs/placeholder.png" alt="" *ngIf="!game.images">
+
+        </div>
+        <div class="col-7 my-auto">
+            <p class="game-title">{{game.name}}</p>
+            <app-rating [rating]="game.gameReviewSummary?.avgStars! 
+            " [reviews]="game.gameReviewSummary?.reviewsCount!"></app-rating>
+            <p class="address"><i class="fa fa-location-dot" [style.color]="game.category?.color"></i> {{game.address}}
+            </p>
+        </div>
+    </div>
+    <p class="day">Día - <span [style.color]="game.category?.color"> {{openReservation.date | date}}</span></p>
+    <p class="hour">Hora - <span [style.color]="game.category?.color"> {{openReservation.game_reservation_hour?.hour |
+            slice:0:5}}</span></p>
+    <p class="price">Precio individual -
+        <span [style.color]="game.category?.color"> {{game.min_price}}€ </span>
+    </p>
+    <button class="reservation-btn" [style.background]="game.category?.color" (click)="makeOpenReservation()">Realizar
+        reserva FUNLY <img src="assets/imgs/box-transparent.svg" style="width: 20px;" alt=""></button>
+</div>

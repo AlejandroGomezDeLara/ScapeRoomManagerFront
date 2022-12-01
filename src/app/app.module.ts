@@ -10,6 +10,10 @@ import { SearchDialogComponent } from './components/search-dialog/search-dialog.
 import { FormsModule } from '@angular/forms';
 import { HeaderModule } from './components/header/header.module';
 import { AddReviewDialogComponent } from './components/add-review-dialog/add-review-dialog.component';
+import { ReservationConfirmDialogComponent } from './reservation-confirm-dialog/reservation-confirm-dialog.component';
+import { RatingModule } from './components/game-list/rating/rating.module';
+import { ReservationConfirmedDialogComponent } from './reservation-confirmed-dialog/reservation-confirmed-dialog.component';
+import { ReservationFailedDialogComponent } from './reservation-failed-dialog/reservation-failed-dialog.component';
 
 
 @NgModule({
@@ -17,6 +21,9 @@ import { AddReviewDialogComponent } from './components/add-review-dialog/add-rev
     AppComponent,
     SearchDialogComponent,
     AddReviewDialogComponent,
+    ReservationConfirmDialogComponent,
+    ReservationConfirmedDialogComponent,
+    ReservationFailedDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -25,6 +32,7 @@ import { AddReviewDialogComponent } from './components/add-review-dialog/add-rev
     AppRoutingModule,
     FormsModule,
     HeaderModule,
+    RatingModule,
     MatDialogModule
   ],
   providers: [],

@@ -1,0 +1,65 @@
+
+.dialog-container{
+    padding: 15px;
+    position: relative;
+    text-align: center;
+    .close-icon{
+        position: absolute;
+        top: 0;
+        right: 0;
+        font-size: 24px;
+        cursor: pointer;
+    }
+    .title{
+        margin-bottom:30px;
+        font-weight: bold;
+        font-size: 32px;
+    }
+    .day,.hour,.price{
+        font-size: 22px;
+        font-weight: bold;
+        span{
+            font-size: 26px;
+        }
+    }
+    .price{
+        span{
+            font-size: 32px;
+        }
+    }
+    .reservation-btn{
+        z-index: 99;
+        color:white;
+        border:none;
+        padding:15px;
+        font-size: 18px;
+        font-weight: bold;
+        border-radius: 25px;
+        img{
+            filter: brightness(100);
+        }
+    }
+    .game{
+        margin-bottom: 25px;
+        
+        .game-image{
+            text-align: center;
+            margin: 0 auto;
+            img{
+                width: 150px;
+                height: 150px;
+                border-radius: 5px;
+                object-fit: cover;
+            }
+            
+        }
+        .game-title{
+            font-size: 28px;
+            font-weight: bold;
+        }
+        .address{
+            color:#ccc;
+            font-size: 12px;
+        }
+    }
+}

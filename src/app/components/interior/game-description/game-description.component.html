@@ -76,7 +76,7 @@
 
         <div class="open-reservations my-auto game-item">
 
-            <app-open-reservation-small routerLink="{{reservation.game?.id}}/interior" [reservation]="reservation"
+            <app-open-reservation-small [reservation]="reservation" [game]="game"
                 *ngFor="let reservation of openReservations">
             </app-open-reservation-small>
 

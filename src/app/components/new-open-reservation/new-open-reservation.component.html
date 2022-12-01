@@ -33,7 +33,7 @@
 
             <div *ngIf="people?.length!>0">
                 <div class='user-open'
-                    *ngFor="let user of people;let i =index">
+                    *ngFor="let user of people;let i =index" (click)="openConfirmDialog()">
                     <img class="avatar" [src]="user.avatar" alt="">
                     <p class="user-name">{{user.name}}</p>
                 </div>
@@ -43,7 +43,7 @@
 
         </div>
 
-        <div class="reservation-price row">
+        <div class="reservation-price row" (click)="openConfirmDialog()">
             <div class="reservation-button col-4" [style.background-color]="game.category?.color" *ngIf="!closed">
                 <p class="price">Crea la reserva por <span>{{game.min_price}}€</span> </p>
             </div>

@@ -27,11 +27,12 @@ export class AppComponent implements OnInit {
         let user:User=this.auth.getStorageUser();
         let token=localStorage.getItem('auth-token');
         this.apiService.setTokenToHeaders(token);
-        if(user.role_id)
-          this.redirectFromRoleId(user.role_id);
+        /* if(user.role_id)
+          this.redirectFromRoleId(user.role_id); */
       } else if (token == 'logout') {
       
         this.router.navigateByUrl('/');
+        this.apiService.setTokenToHeaders(null);
 
       } else {
         console.log("primera vez");

@@ -1,6 +1,14 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, Input, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { Router } from '@angular/router';
+import { Game } from 'src/app/models/Game';
 import { OpenReservation } from 'src/app/models/OpenReservation';
 import { User } from 'src/app/models/User';
+import { ReservationConfirmDialogComponent } from 'src/app/reservation-confirm-dialog/reservation-confirm-dialog.component';
+import { ReservationConfirmedDialogComponent } from 'src/app/reservation-confirmed-dialog/reservation-confirmed-dialog.component';
+import { ReservationFailedDialogComponent } from 'src/app/reservation-failed-dialog/reservation-failed-dialog.component';
+import { ApiService } from 'src/app/services/api.service';
 
 @Component({
   selector: 'app-open-reservation-small',
@@ -10,7 +18,7 @@ import { User } from 'src/app/models/User';
 export class OpenReservationSmallComponent implements OnInit {
 
   @Input() reservation!: OpenReservation;
-
+  @Input() game!: Game;
   public people: User[] = [];
   public target!: Date;
   public timeout: any;
@@ -18,10 +26,11 @@ export class OpenReservationSmallComponent implements OnInit {
   public actual_date_str?: string;
 
 
-  constructor() { }
+  constructor(private apiService: ApiService,
+    private dialog: MatDialog, private router: Router) { }
 
   ngOnInit(): void {
-    this.target = new Date(this.reservation.date!);  
+    this.target = new Date(this.reservation.date!);
     this.setCountDown();
     this.setUsers();
   }
@@ -36,7 +45,7 @@ export class OpenReservationSmallComponent implements OnInit {
 
     const now = new Date();
     this.actual_date_str = now.toDateString();
-    let reservation_date=new Date(this.reservation.date!);
+    let reservation_date = new Date(this.reservation.date!);
     this.target_date_str = reservation_date.toDateString();
 
     let addHours = Number(this.reservation.game_reservation_hour?.hour!.slice(0, 2));
@@ -47,7 +56,7 @@ export class OpenReservationSmallComponent implements OnInit {
     reservation_date.setSeconds(addSeconds);
 
     if (reservation_date > now) {
-      
+
 
       this.reservation.closed = false;
 
@@ -60,7 +69,7 @@ export class OpenReservationSmallComponent implements OnInit {
 
       var horas = Math.floor(delta / 3600) % 24;
 
-      horas += days * 60;
+      horas += days * 24;
 
       //RESTAMOS LAS HORAS DE ANTELACION
       if (this.reservation.game!.reservation_margin_hours) {
@@ -119,6 +128,59 @@ export class OpenReservationSmallComponent implements OnInit {
         }
       }
     })
+  }
+
+  public openConfirmDialog(): void {
+
+    const dialogRef = this.dialog.open(ReservationConfirmDialogComponent, {
+      width: '700px',
+      backdropClass: 'backdropBackground',
+      data: { game: this.game, openReservation: this.reservation }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      if (result.reservation)
+        this.openReservationConfirmedDialog();
+      else if (result.error)
+        this.handleError(result.error);
+    });
+  }
+
+  public openReservationConfirmedDialog(): void {
+    const dialogRef = this.dialog.open(ReservationConfirmedDialogComponent, {
+      width: '500px',
+      backdropClass: 'backdropBackground',
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      location.reload();
+    });
+
+  }
+
+  public openReservationFailedDialog(error: HttpErrorResponse): void {
+    const dialogRef = this.dialog.open(ReservationFailedDialogComponent, {
+      width: '500px',
+      backdropClass: 'backdropBackground',
+      data: { error: error }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+    });
+  }
+
+  public handleError(error: HttpErrorResponse): void {
+    
+    if (error.status == 401) {
+      console.log("NO USER");
+      
+      this.router.navigate(['/login']);
+    } else {
+      this.openReservationFailedDialog(error);
+    }
   }
 
 }

@@ -1,5 +1,4 @@
 <div class="open-reservation" *ngIf="reservation">
-
     <div class="reservation-data">
         <div class="reservation-header">
             <h1 class="title">Reserva FUNLY <img src="assets/imgs/box-transparent.svg " style="width:25px ;"></h1>
@@ -31,7 +30,7 @@
 
             <div *ngIf="people?.length!>0">
                 <div [ngClass]="user.id == 0 ? reservation.closed ? 'user-closed'  : 'user-open' : 'user'"
-                    *ngFor="let user of people;let i =index">
+                    *ngFor="let user of people;let i =index" (click)="!reservation.closed ? openConfirmDialog() : ''">
                     <img class="avatar" [src]="user.avatar" alt="">
                     <p class="user-name">{{user.name}}</p>
                 </div>
@@ -41,7 +40,7 @@
 
         </div>
 
-        <div class="reservation-price row">
+        <div class="reservation-price row" (click)="!reservation.closed ? openConfirmDialog() : ''">
             <div class="reservation-button col-4" [style.background-color]="reservation.game_category?.color"
                 *ngIf="!reservation.closed">
                 <p class="price">Únete a la reserva <span>{{reservation.price_per_user}}€</span> </p>

@@ -1,9 +1,11 @@
 import { ThisReceiver } from '@angular/compiler';
 import { Component, Input, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { Game } from 'src/app/models/Game';
 import { GamePrice } from 'src/app/models/GamePrice';
 import { GameReservationHour } from 'src/app/models/GameReservationHour';
 import { Reservation } from 'src/app/models/Reservation';
+import { ReservationConfirmedDialogComponent } from 'src/app/reservation-confirmed-dialog/reservation-confirmed-dialog.component';
 import { ApiService } from 'src/app/services/api.service';
 import { LoadingService } from 'src/app/services/loading.service';
 
@@ -22,7 +24,8 @@ export class ReservationCalendarComponent implements OnInit {
   public is_individual: boolean | undefined;
 
   constructor(private apiService: ApiService,
-    private loading: LoadingService) { }
+    private loading: LoadingService,
+    private dialog:MatDialog) { }
 
   ngOnInit(): void {
   }
@@ -53,7 +56,8 @@ export class ReservationCalendarComponent implements OnInit {
 
         var reservation_margin_hours = this.game?.reservation_margin_hours!;
         const now = new Date();
-
+        console.log("NOW",now);
+        
         let addHours = Number(x.hour?.slice(0, 2));
         let addMinutes = Number(x.hour?.slice(3, 5));
         let addSeconds = Number(x.hour?.slice(6));
@@ -71,7 +75,7 @@ export class ReservationCalendarComponent implements OnInit {
 
           var horas = Math.floor(delta / 3600) % 24;
 
-          horas += days * 60;
+          horas += days * 24;
 
           console.log("COMPROBAR", date, "DIFERENCIA", horas);
 
@@ -133,7 +137,7 @@ export class ReservationCalendarComponent implements OnInit {
     this.apiService.addEntity('reservations', reservation).subscribe((res: Reservation) => {
       console.log(res);
       this.loading.stopLoading();
-      location.reload();
+      this.openReservationConfirmedDialog();
     }, (error: Error) => {
       console.log(error);
     });
@@ -142,5 +146,17 @@ export class ReservationCalendarComponent implements OnInit {
   public setIndividualReservation(individual: boolean): void {
     this.is_individual = individual;
     this.price_selected = null;
+  }
+
+  public openReservationConfirmedDialog():void{
+    const dialogRef = this.dialog.open(ReservationConfirmedDialogComponent, {
+      width: '500px',
+      backdropClass: 'backdropBackground',
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      location.reload();
+    });
   }
 }

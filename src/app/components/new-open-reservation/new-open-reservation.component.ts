@@ -1,7 +1,14 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 import { Game } from 'src/app/models/Game';
 import { GameReservationHour } from 'src/app/models/GameReservationHour';
+import { OpenReservation } from 'src/app/models/OpenReservation';
 import { User } from 'src/app/models/User';
+import { ReservationConfirmDialogComponent } from 'src/app/reservation-confirm-dialog/reservation-confirm-dialog.component';
+import { ReservationConfirmedDialogComponent } from 'src/app/reservation-confirmed-dialog/reservation-confirmed-dialog.component';
+import { ReservationFailedDialogComponent } from 'src/app/reservation-failed-dialog/reservation-failed-dialog.component';
 
 @Component({
   selector: 'app-new-open-reservation',
@@ -22,7 +29,7 @@ export class NewOpenReservationComponent implements OnInit, OnChanges {
   public target_date_str?: string;
   public actual_date_str?: string;
 
-  constructor() { }
+  constructor(private dialog: MatDialog, private router: Router) { }
 
   ngOnChanges(changes: SimpleChanges): void {
     clearTimeout(this.timeout);
@@ -61,7 +68,7 @@ export class NewOpenReservationComponent implements OnInit, OnChanges {
     this.date.setSeconds(addSeconds);
 
     if (this.date > now) {
-      
+
       this.target = this.date;
 
       this.closed = false;
@@ -75,7 +82,7 @@ export class NewOpenReservationComponent implements OnInit, OnChanges {
 
       var horas = Math.floor(delta / 3600) % 24;
 
-      horas += days * 60;
+      horas += days * 24;
 
       //RESTAMOS LAS HORAS DE ANTELACION
       if (this.game.reservation_margin_hours) {
@@ -118,5 +125,61 @@ export class NewOpenReservationComponent implements OnInit, OnChanges {
 
 
   }
+
+
+  public openConfirmDialog(): void {
+    let reservation: OpenReservation = {
+      game_id: this.game.id,
+      game_reservation_hour: this.hour,
+      date: this.date,
+    };
+    const dialogRef = this.dialog.open(ReservationConfirmDialogComponent, {
+      width: '700px',
+      backdropClass: 'backdropBackground',
+      data: { game: this.game, openReservation: reservation }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      if (result.reservation)
+        this.openReservationConfirmedDialog();
+        else if (result.error)
+        this.handleError(result.error);
+    });
+  }
+
+  public openReservationConfirmedDialog(): void {
+    const dialogRef = this.dialog.open(ReservationConfirmedDialogComponent, {
+      width: '500px',
+      backdropClass: 'backdropBackground',
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      location.reload();
+    });
+  }
+
+  public openReservationFailedDialog(error: HttpErrorResponse): void {
+    const dialogRef = this.dialog.open(ReservationFailedDialogComponent, {
+      width: '500px',
+      backdropClass: 'backdropBackground',
+      data: { error: error }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      location.reload();
+    });
+  }
+
+  public handleError(error: HttpErrorResponse): void {
+    if (error.status == 401) {
+      this.router.navigate(['/login']);
+    } else {
+      this.openReservationFailedDialog(error);
+    }
+  }
+
 
 }
