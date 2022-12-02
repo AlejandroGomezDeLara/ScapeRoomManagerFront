@@ -119,6 +119,11 @@ export class GameListComponent implements OnInit {
         this.loading.stopLoading();
         this.openReservations = openReservations;
         console.log("GAMES AND RESERVATIONS", data);
+        window.scroll({
+          top: 0,
+          left: 0,
+          behavior: 'smooth'
+        });
       },
       error: (error) => {
         console.log(error);
@@ -153,7 +158,7 @@ export class GameListComponent implements OnInit {
     params += '&page=' + this.actual_page;
 
     let obGames: Observable<GameData> = this.apiService.getEntity(gamesUrl + params);
-    let obAddresses: Observable<GameAddress> = this.apiService.getEntity(addressUrl);
+    let obAddresses: Observable<GameAddress> = this.apiService.getEntity(addressUrl +params);
     let obReservations: Observable<OpenReservation[]> = this.apiService.getEntity(openReservationsUrl + params);
     let requests = [obGames, obReservations,obAddresses];
 

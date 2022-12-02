@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, SimpleChanges, ViewChild } from '@angular/core';
 import { GoogleMap } from '@angular/google-maps';
 import { Game } from 'src/app/models/Game';
 import { GameAddress } from 'src/app/models/GameAddress';
@@ -10,10 +10,10 @@ import { GeocodingService } from 'src/app/services/geocoding.service';
   templateUrl: './map.component.html',
   styleUrls: ['./map.component.scss']
 })
-export class MapComponent implements OnInit {
+export class MapComponent implements OnInit, OnChanges {
 
-  @Input() addresses: GameAddress[]=[];
-  @Input() address?:string;
+  @Input() addresses: GameAddress[] = [];
+  @Input() address?: string;
   @Input() zoom!: number;
 
   @ViewChild('myGoogleMap', { static: false })
@@ -28,9 +28,13 @@ export class MapComponent implements OnInit {
 
   constructor(private geocoderService: GeocodingService) { }
 
-  ngOnInit(): void {
-    
+  ngOnChanges(changes: SimpleChanges): void {
+    this.markers = [];
     this.setMarkersByAddress();
+  }
+
+  ngOnInit(): void {
+
   }
 
   dropMarker(location: google.maps.LatLng) {
@@ -50,19 +54,19 @@ export class MapComponent implements OnInit {
   }
 
   public setMarkersByAddress(): void {
-    if(this.addresses.length>0){
+    if (this.addresses.length > 0) {
       for (let address of this.addresses) {
         this.geocoderService.getLocation(address.address).subscribe((res) => {
           let location = res.results[0].geometry.location;
           this.dropMarker(location);
         });
       }
-    }else{
+    } else {
       this.geocoderService.getLocation(this.address!).subscribe((res) => {
         let location = res.results[0].geometry.location;
         this.dropMarker(location);
       });
     }
-    
+
   }
 }
