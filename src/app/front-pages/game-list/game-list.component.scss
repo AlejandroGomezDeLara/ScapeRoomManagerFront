@@ -6,7 +6,17 @@
     z-index: 1;
     background-position: center;
     width: 100vw;
-    
+    .map{
+        box-shadow: var(--item-box-shadow);
+        border-radius: 10px;
+        background: white;
+        height: auto;
+        margin-bottom: 25px;
+        margin-left: 25px;
+        height: 500px;
+        position: relative;
+       
+    }
     .open-reservations-title{
         color:var(--color-primary);
         font-size: 32px;

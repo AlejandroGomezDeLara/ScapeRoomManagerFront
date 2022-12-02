@@ -1,4 +1,4 @@
-<div class="content">
+<div class="content" [hidden]="(loading.isLoading | async)">
 
     <!--    <app-game-list-header (searchFilter)="filterByNameAndAddress($event)" (removeAddress)="removeAddress()">
     </app-game-list-header> -->
@@ -39,6 +39,9 @@
             </div>
 
             <div class="filters col-lg-3 col-sm-12">
+                <div class="map" *ngIf="addresses.length>0">
+                    <app-map [addresses]="addresses" [zoom]="4.5" [center]="{lat:40.289479, lng:-3.963506}"></app-map>
+                </div>
                 <app-game-list-filters (filter)="applyFilters($event)"></app-game-list-filters>
             </div>
         </div>

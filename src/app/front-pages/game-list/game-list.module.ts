@@ -16,6 +16,7 @@ import { AppLoadingModule } from 'src/app/components/app-loading/app-loading.mod
 import { AppImageSliderModule } from 'src/app/components/app-image-slider/app-image-slider.module';
 import { OpenReservationModule } from 'src/app/components/game-list/open-reservation/open-reservation.module';
 import { RatingModule } from 'src/app/components/game-list/rating/rating.module';
+import { MapModule } from 'src/app/components/map/map.module';
 
 const routes: Routes = [
   {
@@ -43,6 +44,7 @@ const routes: Routes = [
     AppImageSliderModule,
     OpenReservationModule,
     RatingModule,
+    MapModule,
     RouterModule.forChild(routes)
   ]
 })

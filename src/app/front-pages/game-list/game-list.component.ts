@@ -2,6 +2,7 @@ import { AfterViewInit, Component, NgZone, OnInit } from '@angular/core';
 import { ActivatedRoute, ChildActivationStart } from '@angular/router';
 import { debounceTime, delay, filter, forkJoin, map, Observable, tap } from 'rxjs';
 import { Game } from 'src/app/models/Game';
+import { GameAddress } from 'src/app/models/GameAddress';
 import { GameCategory } from 'src/app/models/GameCategory';
 import { GameData } from 'src/app/models/GameData';
 import { GameSubcategory } from 'src/app/models/GameSubcategory';
@@ -21,6 +22,7 @@ export class GameListComponent implements OnInit {
   public filteredGames: Game[] = [];
   public regionFilteredGames: Game[] = [];
   public games: Game[] = [];
+  public addresses:GameAddress[]=[];
   public openReservations: OpenReservation[] = [];
   //game filtros
   min_price?: number;
@@ -107,8 +109,10 @@ export class GameListComponent implements OnInit {
 
         const gameData: GameData = data[0] as GameData;
         const openReservations: OpenReservation[] = data[1] as OpenReservation[];
+        const addresses: GameAddress[] = data[2] as GameAddress[];
 
         this.games = gameData.data!;
+        this.addresses=addresses;
         this.total_games=gameData.total;   
         this.total_game_pages=gameData.last_page;           
         this.filteredGames=[...gameData.data!];
@@ -122,16 +126,17 @@ export class GameListComponent implements OnInit {
       }
     });
 
-    setTimeout(()=>{
+   /*  setTimeout(()=>{
       this.setGamesAndOpenReservations();
-    },20000);
+    },20000); */
 
   }
 
 
-  public getGamesAndOpenReservations(): Observable<(GameData | OpenReservation[])[]> {
+  public getGamesAndOpenReservations(): Observable<(GameData | OpenReservation[] | GameAddress)[]> {
     let gamesUrl = 'games';
     let openReservationsUrl = 'open-reservations';
+    let addressUrl = 'addresses';
     let params = "";
     params += '?min_price=' + this.min_price;
     params += '&max_price=' + this.max_price;
@@ -148,8 +153,9 @@ export class GameListComponent implements OnInit {
     params += '&page=' + this.actual_page;
 
     let obGames: Observable<GameData> = this.apiService.getEntity(gamesUrl + params);
+    let obAddresses: Observable<GameAddress> = this.apiService.getEntity(addressUrl);
     let obReservations: Observable<OpenReservation[]> = this.apiService.getEntity(openReservationsUrl + params);
-    let requests = [obGames, obReservations];
+    let requests = [obGames, obReservations,obAddresses];
 
     return forkJoin(requests);
   }
