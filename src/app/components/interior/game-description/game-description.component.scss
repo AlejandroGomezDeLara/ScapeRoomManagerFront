@@ -2,6 +2,7 @@
     padding: 0 0 0 3vw;
     z-index: 2;
     .images {
+        box-shadow: var(--item-box-shadow);
         height: 450px;
         position: relative;
 
@@ -15,7 +16,7 @@
             left: 0;
             box-shadow: var(--item-box-shadow);
             font-weight: bold;
-            border-radius: 0px 0px 25px 0px;
+            border-radius: 10px 0px 25px 0px;
             background: var(--color-open-reservation);
         }
         .open {
@@ -31,7 +32,8 @@
         width: 100%;
         margin-bottom: 20px;
         background: white;
-        border: 0.5px solid #ccc;
+        border-radius: 0px 0px 10px 10px;
+        box-shadow: var(--item-box-shadow);
         padding: 30px;
         .game-data-header {
             padding-bottom: 30px !important;

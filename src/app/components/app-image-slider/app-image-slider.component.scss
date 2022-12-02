@@ -2,6 +2,7 @@
     height: 100%;
     width: 100%;
     position: relative;
+    border-radius: 10px 10px 0 0;
     .arrows i{
         background: black;
         padding:15px;
@@ -44,6 +45,7 @@
         }
     }
     .category-images{
+        border-radius: 10px 10px 0 0;
         height: 100%;
         width: 100%;
         object-fit: cover;

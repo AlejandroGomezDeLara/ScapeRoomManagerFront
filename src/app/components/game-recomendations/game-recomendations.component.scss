@@ -1,9 +1,11 @@
 .recomendations {
     background: white;
     padding: 10px;
-    border: 0.5px solid #ccc;
     z-index: 2;
     margin-top: 3vw;
+    box-shadow: var(--item-box-shadow);
+    border-radius: 10px;
+
     .recomendations-title {
         text-align: center;
         font-weight: bold;

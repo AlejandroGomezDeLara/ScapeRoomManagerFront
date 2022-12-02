@@ -19,6 +19,8 @@ export class MapComponent implements OnInit {
   center?: google.maps.LatLng;
   options: google.maps.MapOptions = {
     disableDoubleClickZoom: true,
+    mapTypeControl:false,
+    mapTypeId:google.maps.MapTypeId['ROADMAP']
   };
   markers = [] as any;
 
