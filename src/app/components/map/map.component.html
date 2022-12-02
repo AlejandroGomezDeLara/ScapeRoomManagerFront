@@ -1,3 +1,7 @@
 <div class="map-container">
-    <google-map height="325" [zoom]="12" [options]="options"></google-map>
+    <google-map #myGoogleMap height="250" width="100%" [zoom]="17" [options]="options" [center]="center!">
+        <map-marker #markerElem="mapMarker" *ngFor="let marker of markers" [position]="marker.position"
+            [label]="marker.label" [title]="marker.title" [options]="marker.options">
+        </map-marker>
+    </google-map>
 </div>
