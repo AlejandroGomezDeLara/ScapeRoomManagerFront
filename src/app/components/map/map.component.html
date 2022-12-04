@@ -1,7 +1,7 @@
 <div class="map-container">
     <google-map #myGoogleMap height="100%" width="100%" [zoom]="zoom" [options]="options" [center]="center!">
         <map-marker #markerElem="mapMarker" *ngFor="let marker of markers" [position]="marker.position"
-            [label]="marker.label" [title]="marker.title" [options]="marker.options">
+            [label]="marker.label" [title]="marker.title" [options]="marker.options" (mapClick)="redirectGame(marker.game_id)" >
         </map-marker>
     </google-map>
 </div>

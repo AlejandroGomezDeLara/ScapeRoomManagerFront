@@ -8,6 +8,7 @@ import { AppImageSliderComponent } from './app-image-slider.component';
   declarations: [AppImageSliderComponent],
   imports: [
     CommonModule,
+    
   ],
   exports:[AppImageSliderComponent]
 })

@@ -40,12 +40,17 @@
         width: 100vw;
         overflow: hidden;
         text-align: center;
-        background: #fafafa;
         overflow-x: auto;
         white-space: nowrap;
         position: relative;
         padding:50px;
         background-color: var(--dark-background);
+        background-image: url(../../../assets/imgs/box-transparent-dark.svg);
+        background-repeat: space;
+
+        background-size: 200px;
+        z-index: 1;
+        background-position: center;
         video{
             filter: brightness(50%);
             width: 100%;

@@ -1,36 +1,35 @@
 <div class="content" [hidden]="(loading.isLoading | async)">
 
-    <!--    <app-game-list-header (searchFilter)="filterByNameAndAddress($event)" (removeAddress)="removeAddress()">
-    </app-game-list-header> -->
-   <!--  <div>
-        <app-image-slider></app-image-slider>
-    </div> -->
-
     <ng-container *ngIf="openReservations?.length!>0">
-        <h1 class="open-reservations-title">¡Hay {{openReservations.length}} reservas Funly <img style="width: 25px" src="assets/imgs/box-transparent.svg" alt=""> disponibles! ¡Reserva antes de que empiecen!</h1>
-        <!-- <p class="open-reservations-description">¡Los eventos empezarán <span>1 hora</span> después de terminar la cuenta atrás!</p> -->
-        <p class="open-reservations-description">La reserva será cancelada si no hay suficientes personas cuando se termine la cuenta atrás</p>
+        <h1 class="open-reservations-title">¡Hay {{openReservations.length}} reservas Funly <img style="width: 25px"
+                src="assets/imgs/box-transparent.svg" alt=""> disponibles! ¡Reserva antes de que empiecen!</h1>
+        <p class="open-reservations-description">La reserva será cancelada si no hay suficientes personas cuando se
+            termine la cuenta atrás</p>
         <div class="open-reservations my-auto">
-           
-            <app-open-reservation routerLink="{{reservation.game?.id}}/interior" [reservation]="reservation" *ngFor="let reservation of openReservations">
+
+            <app-open-reservation routerLink="{{reservation.game?.id}}/interior" [reservation]="reservation"
+                *ngFor="let reservation of openReservations">
             </app-open-reservation>
         </div>
     </ng-container>
 
     <ng-container *ngIf="openReservations?.length!<=0">
-        <h1 class="open-reservations-title">No hay reservas FUNLY <img src="assets/imgs/box-transparent.svg" [style.width]="'30px'"> disponibles para hoy. ¡Reserva ya y espera que se unan!</h1>
+        <h1 class="open-reservations-title">No hay reservas FUNLY <img src="assets/imgs/box-transparent.svg"
+                [style.width]="'30px'"> disponibles para hoy. ¡Reserva ya y espera que se unan!</h1>
     </ng-container>
 
     <div class="game-list-container row">
-        <h1 *ngIf="selected_address && !(loading.isLoading | async)">Mostrando {{total_games}} resultados {{selected_categories!.length>0
+        <h1 *ngIf="selected_address && !(loading.isLoading | async)">Mostrando {{total_games}} resultados
+            {{selected_categories!.length>0
             ? 'de '+selected_categories[0].name : ''}} en {{selected_address}}</h1>
-        <h1 *ngIf="!selected_address && !(loading.isLoading | async)">Mostrando {{total_games}} resultados {{selected_categories!.length>0
+        <h1 *ngIf="!selected_address && !(loading.isLoading | async)">Mostrando {{total_games}} resultados
+            {{selected_categories!.length>0
             ? 'de '+selected_categories[0].name : ''}} </h1>
         <div class="row">
             <div class="game-list col-lg-9 col-sm-12">
                 <ng-container *ngIf="!(loading.isLoading | async) && filteredGames.length> 0 && games">
-                    <app-game-item *ngFor="let game of filteredGames" [game]="game"
-                    routerLink="{{game.id}}/interior"></app-game-item>
+                    <app-game-item *ngFor="let game of filteredGames" [game]="game" routerLink="{{game.id}}/interior">
+                    </app-game-item>
                 </ng-container>
                 <ng-container *ngIf="!(loading.isLoading | async) && filteredGames.length<= 0" && games>
                     <h1 style="margin-bottom: 150px;">Lo sentimos no hay eventos con esos filtros</h1>

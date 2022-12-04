@@ -2,10 +2,8 @@
     padding: 0 0 0 3vw;
     z-index: 2;
     .images {
-        box-shadow: var(--item-box-shadow);
-        height: 450px;
         position: relative;
-
+        
         .closed-label {
             padding: 15px;
             color: white;
