@@ -18,7 +18,8 @@
                 width: 150px;
                 height: 150px;
                 border-radius: 5px;
-                object-fit: cover;
+                object-fit: contain;
+                background: var(--dark-background);
             }
             
         }
@@ -65,5 +66,14 @@
             border:none;
             cursor: pointer;
         }
+    }
+    .upload-img{
+        width: 80%;
+        object-fit: contain;
+        max-height: 200px;
+        background: var(--dark-background);
+        margin: 10px auto;
+        padding:5px;
+        display: block;
     }
 }

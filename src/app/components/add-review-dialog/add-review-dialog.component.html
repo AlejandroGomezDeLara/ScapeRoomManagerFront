@@ -24,6 +24,11 @@
             <p class="rate-title" for="description">Detalle su valoración <span>(obligatorio)</span> </p>
             <textarea [(ngModel)]="gameReview.text" [style.border]="'2px solid '+game.category?.color" rows="4" cols="50" placeholder="Cuenta tu experiencia en el evento"></textarea>
         </div>
+        <div class="image">
+            <p class="rate-title">Subir imagen <span>Opcional</span></p>
+            <img class="upload-img" [src]="gameReview.image" alt="" *ngIf="gameReview.image">
+            <input type="file" accept="image/*" (change)="setImageBase64($event)" />
+        </div>
     </div>
 
     <div class="rate-btn">

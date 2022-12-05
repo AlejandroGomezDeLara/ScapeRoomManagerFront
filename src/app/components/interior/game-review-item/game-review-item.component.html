@@ -8,9 +8,11 @@
             [style.color]="color"></i>
     </div>
     <div class="date-and-text">
+        <img class="review-image" [src]="review.image" alt="" *ngIf="review.image">
         <p class="review-date">{{review.created_at | date}}</p>
         <p>
             {{review.text}}
         </p>
+
     </div>
 </div>

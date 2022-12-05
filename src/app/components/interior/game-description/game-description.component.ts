@@ -47,7 +47,7 @@ export class GameDescriptionComponent implements OnInit {
 
   public showAddReviewModal(): void {
     const dialogRef = this.dialog.open(AddReviewDialogComponent, {
-      width: '500px',
+      width: '650px',
       data: { game: this.game },
       backdropClass: 'backdropBackground'
     });
