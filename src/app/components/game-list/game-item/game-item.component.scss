@@ -9,11 +9,11 @@
         float:left;
         min-width: 100%;
         max-width: 100%;
-        min-height: 200px;
+        min-height: 225px;
         max-height: 200px;
         overflow: hidden;
-        object-fit: cover;
-        
+        object-fit: contain;
+        background: var(--dark-background);
     }
 
     .game-content{

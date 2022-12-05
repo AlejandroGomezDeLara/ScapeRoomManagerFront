@@ -14,7 +14,8 @@
     .recomendation-image {
         width: 100%;
         height: 150px;
-        object-fit: cover;
+        object-fit: contain;
+        background: var(--dark-background);
     }
     .recomendation-title {
         font-weight: bold;

@@ -4,7 +4,8 @@
             <span class="closed-label open" *ngIf="!game.closed">Abierto ahora</span>
             <span class="closed-label closed" *ngIf="game.closed">Cerrado ahora</span>
         </ng-container>
-        <app-image-slider [images]="[game.images!]"></app-image-slider>
+        <app-image-slider [images]="game.images!" *ngIf="game.images?.length!>0"></app-image-slider>
+        <img class="game-image" [src]="game.image" *ngIf="game.image && game.images?.length!<=0">
     </div>
     <div class="game-data row">
         <div class="game-title"><span class="title">{{game.name}}</span> <span [style.color]="game.category?.color"

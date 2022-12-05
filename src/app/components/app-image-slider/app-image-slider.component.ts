@@ -1,5 +1,6 @@
 import { AfterViewInit, Component, Input, NgZone, OnInit } from '@angular/core';
 import { GameCategory } from 'src/app/models/GameCategory';
+import { GameImage } from 'src/app/models/GameImage';
 
 @Component({
   selector: 'app-image-slider',
@@ -8,76 +9,66 @@ import { GameCategory } from 'src/app/models/GameCategory';
 })
 export class AppImageSliderComponent implements AfterViewInit {
 
-  public title: string = "¡Encuentra lo que quieras hacer hoy!";
-  public subtitle: string = "¡Busca el evento que desees y encuentra personas con quien hacerlos!";
-
-  @Input() images: string[] = [
-    "assets/imgs/carts.jpeg",
-    "assets/imgs/scape.jpeg",
-    "assets/imgs/laser-tag.jpeg",
-    "assets/imgs/carts.jpeg",
-    "assets/imgs/scape.jpeg",
-    "assets/imgs/laser-tag.jpeg",
-    "assets/imgs/carts.jpeg",
-    "assets/imgs/scape.jpeg",
-    "assets/imgs/laser-tag.jpeg",
-    "assets/imgs/carts.jpeg",
-    "assets/imgs/scape.jpeg",
-    "assets/imgs/laser-tag.jpeg",
-    "assets/imgs/carts.jpeg",
-    "assets/imgs/scape.jpeg",
-    "assets/imgs/laser-tag.jpeg"
-  ];
+  @Input() images: GameImage[] = [];
 
   public changeImageSeconds: number = 2; //Tiempo en segundos
 
   public index: number = 0;
 
-  constructor(private ngZone: NgZone) { }
+  public imagesHTML!: HTMLCollectionOf<HTMLImageElement>;
+  public carouselImagesHTML!: HTMLCollectionOf<HTMLImageElement>;;
+  public carouselContainerHTML!:HTMLElement;
+
+  public interval:any;
+
+  constructor() { }
 
   ngAfterViewInit(): void {
-    //this.carousel();
-    this.setImages();
+    this.showImages();
+    this.carousel();
   }
 
-  public setImages(){
-    if(this.images.length<10){
-      this.images.push(...this.images);
-      this.setImages();
-    }else{
-      this.showImage();
-    }
-  }
+  public showImages() {
+    this.imagesHTML=document.getElementsByClassName("category-images") as HTMLCollectionOf<HTMLImageElement>;
+    this.carouselImagesHTML=document.getElementsByClassName("carousel-image") as HTMLCollectionOf<HTMLImageElement>;
 
-  public showImage() {
-    let x = document.getElementsByClassName("category-images") as HTMLCollectionOf<HTMLElement>;
-    let y = document.getElementsByClassName("carousel-image") as HTMLCollectionOf<HTMLElement>;
-
-    if (this.index >= x.length || this.index < 0) this.index = 0;
-    for (let i = 0; i < x.length; i++) {
-      x[i].style.display = (i == this.index) ? "block" : "none";
-      y[i].style.filter = (i == this.index) ? "" : "contrast(0.2) brightness(1.8)";
+    if (this.index >= this.imagesHTML.length || this.index < 0){
+      this.carouselContainerHTML!.scrollLeft=0;
+      this.index = 0;
+    } 
+    for (let i = 0; i < this.imagesHTML.length; i++) {
+      this.imagesHTML[i].style.display = (i == this.index) ? "block" : "none";
+      this.carouselImagesHTML[i].style.filter = (i == this.index) ? "" : "contrast(0.2) brightness(1.8)";
     }
+   
+    this.carouselContainerHTML=document.getElementById('carousel-images') as HTMLElement;
   }
 
   public carousel(): void {
-    setTimeout(() => {
-      this.showImage(); this.index++;
+    this.interval=setInterval(() => {
+      this.showImages();
+      this.index++;
     }, this.changeImageSeconds * 1000);
   }
 
-  public setImage():void{
-
-  }
-
-
   public nextImage(): void {
+    clearInterval(this.interval);
     this.index++;
-    this.showImage();
+    this.showImages();
+    this.carouselContainerHTML!.scrollLeft += 25 
   }
 
   public previousImage(): void {
+    clearInterval(this.interval);
     this.index -= 1;
-    this.showImage();
+    this.showImages();
+    this.carouselContainerHTML!.scrollLeft -= 25;
+  }
+
+  public setImage(image:string,i:number):void{
+    clearInterval(this.interval);
+    this.imagesHTML![i].src=image;
+    this.index=i;
+    this.showImages();   
   }
 }

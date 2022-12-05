@@ -1,8 +1,14 @@
 .slider-container {
-    height: 500px;
+    height: 650px;
     width: 100%;
     position: relative;
-    border-radius: 10px 10px 0 0;
+    .image-count{
+        color:white;
+        position: absolute;
+        top:10px;
+        right: 10px;
+        font-size: 16px;
+    }
     .arrows i {
         background: black;
         padding: 15px;
@@ -44,24 +50,40 @@
         }
     }
     .category-images {
-        border-radius: 10px 10px 0 0;
         height: calc(100% - 50px);
         width: 100%;
-        object-fit: cover;
+        object-fit: contain;
+        background-color: var(--dark-background);
+        background-image: url(../../../assets/imgs/box-transparent-dark.svg);
+        background-repeat: space;
+        background-size: 150px;
+        z-index: 1;
+        background-position: center;
+
         display: none;
     }
-    .carousel-images {
+    #carousel-images {
         margin: 0 auto;
         width: 100%;
         height: 50px;
-        background: #e5e5e5;
+        
+        background:rgb(244, 244, 244);
+    
         text-align: center;
         overflow-x: auto;
         white-space: nowrap;
         margin-bottom: 50px;
         .carousel-image {
             height: 100%;
+            min-width: 60px;
+            border:0.5px solid #ccc;
+            max-width: 60px;
+            object-fit: cover;
             padding:2px 1px;
+        }
+        .carousel-image:hover{
+            cursor: pointer;
+            filter: contrast(1) brightness(1) !important;
         }
     }
 }

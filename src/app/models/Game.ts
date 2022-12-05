@@ -1,4 +1,5 @@
 import { GameCategory } from "./GameCategory";
+import { GameImage } from "./GameImage";
 import { GamePrice } from "./GamePrice";
 import { GameReservationHour } from "./GameReservationHour";
 import { GameReview } from "./GameReview";
@@ -13,6 +14,7 @@ export interface Game{
     rating?:number,
     user?:User,
     city?:string,
+    image?:string,
     reviews?:GameReview[],
     reviewsCount?:number,
     closed?:boolean,
@@ -23,7 +25,7 @@ export interface Game{
     description?:string,
     prices:GamePrice[],
     schedule?:any[],
-    images?:string,
+    images?:GameImage[],
     category?:GameCategory,
     subcategory?:GameSubcategory,
     open_reservations?:OpenReservation[],

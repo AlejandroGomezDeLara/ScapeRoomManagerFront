@@ -3,7 +3,12 @@
     z-index: 2;
     .images {
         position: relative;
-        
+        .game-image{
+            width: 100%;
+            height: 550px;
+            object-fit: contain;
+            background: var(--dark-background);
+        }
         .closed-label {
             padding: 15px;
             color: white;
@@ -14,7 +19,7 @@
             left: 0;
             box-shadow: var(--item-box-shadow);
             font-weight: bold;
-            border-radius: 10px 0px 25px 0px;
+            border-radius: 0px 0px 25px 0px;
             background: var(--color-open-reservation);
         }
         .open {

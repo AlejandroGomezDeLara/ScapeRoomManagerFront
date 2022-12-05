@@ -1,9 +1,9 @@
 <div class="slider-container">
-   
-    <!-- <span class="arrows arrow-left" (click)="previousImage()"><i class="fa fa-arrow-left"></i></span>
-    <img class="category-images" [src]="image" *ngFor="let image of images">
+    <span class="image-count">{{index+1}}/{{images.length}}</span>
+    <span class="arrows arrow-left" (click)="previousImage()"><i class="fa fa-arrow-left"></i></span>
+    <img class="category-images" [src]="image.image" *ngFor="let image of images">
     <span class="arrows arrow-right" (click)="nextImage()"><i class="fa fa-arrow-right"></i></span>
-    <div class="carousel-images" >
-        <img class="carousel-image" [src]="image" *ngFor="let image of images">
-    </div> -->
+    <div id="carousel-images">
+        <img class="carousel-image" [src]="image.image" *ngFor="let image of images;let i =index" (click)="setImage(image.image!,i)">
+    </div>
 </div>
