@@ -53,6 +53,7 @@ export class AppImageSliderComponent implements AfterViewInit {
 
   public nextImage(): void {
     clearInterval(this.interval);
+    this.interval=null;
     this.index++;
     this.showImages();
     this.carouselContainerHTML!.scrollLeft += 25 
@@ -60,6 +61,7 @@ export class AppImageSliderComponent implements AfterViewInit {
 
   public previousImage(): void {
     clearInterval(this.interval);
+    this.interval=null;
     this.index -= 1;
     this.showImages();
     this.carouselContainerHTML!.scrollLeft -= 25;
@@ -67,8 +69,14 @@ export class AppImageSliderComponent implements AfterViewInit {
 
   public setImage(image:string,i:number):void{
     clearInterval(this.interval);
+    this.interval=null;
     this.imagesHTML![i].src=image;
     this.index=i;
     this.showImages();   
+  }
+
+  public ngOnDestroy():void{
+    clearInterval(this.interval);
+    this.interval=null;
   }
 }

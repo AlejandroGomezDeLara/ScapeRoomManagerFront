@@ -23,264 +23,110 @@ export class MapComponent implements OnInit, OnChanges {
   options: google.maps.MapOptions = {
     disableDoubleClickZoom: true,
     mapTypeControl: false,
+    disableDefaultUI:true,
+    zoomControl:true,
+    fullscreenControl:true,
     mapTypeId: google.maps.MapTypeId['ROADMAP'],
     styles: [
       {
-        "featureType": "administrative",
-        "elementType": "all",
-        "stylers": [
-          {
-            "saturation": "-100"
-          }
-        ]
+          "featureType": "landscape",
+          "stylers": [
+              {
+                  "saturation": -100
+              },
+              {
+                  "lightness": 60
+              }
+          ]
       },
       {
-        "featureType": "administrative.country",
-        "elementType": "labels.text",
-        "stylers": [
-          {
-            "visibility": "on"
-          }
-        ]
+          "featureType": "road.local",
+          "stylers": [
+              {
+                  "saturation": -100
+              },
+              {
+                  "lightness": 40
+              },
+              {
+                  "visibility": "on"
+              }
+          ]
       },
       {
-        "featureType": "administrative.country",
-        "elementType": "labels.icon",
-        "stylers": [
-          {
-            "visibility": "on"
-          }
-        ]
+          "featureType": "transit",
+          "stylers": [
+              {
+                  "saturation": -100
+              },
+              {
+                  "visibility": "simplified"
+              }
+          ]
       },
       {
-        "featureType": "administrative.province",
-        "elementType": "all",
-        "stylers": [
-          {
-            "visibility": "off"
-          }
-        ]
+          "featureType": "administrative.province",
+          "stylers": [
+              {
+                  "visibility": "off"
+              }
+          ]
       },
       {
-        "featureType": "landscape",
-        "elementType": "all",
-        "stylers": [
-          {
-            "saturation": -100
-          },
-          {
-            "lightness": 65
-          },
-          {
-            "visibility": "on"
-          }
-        ]
+          "featureType": "water",
+          "stylers": [
+              {
+                  "visibility": "on"
+              },
+              {
+                  "lightness": 30
+              }
+          ]
       },
       {
-        "featureType": "poi",
-        "elementType": "all",
-        "stylers": [
-          {
-            "saturation": -100
-          },
-          {
-            "lightness": "50"
-          },
-          {
-            "visibility": "simplified"
-          }
-        ]
+          "featureType": "road.highway",
+          "elementType": "geometry.fill",
+          "stylers": [
+              {
+                  "color": "#ef8c25"
+              },
+              {
+                  "lightness": 40
+              }
+          ]
       },
       {
-        "featureType": "poi",
-        "elementType": "labels.text",
-        "stylers": [
-          {
-            "visibility": "off"
-          }
-        ]
+          "featureType": "road.highway",
+          "elementType": "geometry.stroke",
+          "stylers": [
+              {
+                  "visibility": "off"
+              }
+          ]
       },
       {
-        "featureType": "poi.attraction",
-        "elementType": "geometry.stroke",
-        "stylers": [
-          {
-            "visibility": "on"
-          }
-        ]
+          "featureType": "poi.park",
+          "elementType": "geometry.fill",
+          "stylers": [
+              {
+                  "color": "#b6c54c"
+              },
+              {
+                  "lightness": 40
+              },
+              {
+                  "saturation": -40
+              }
+          ]
       },
-      {
-        "featureType": "road",
-        "elementType": "all",
-        "stylers": [
-          {
-            "saturation": "-100"
-          }
-        ]
-      },
-      {
-        "featureType": "road",
-        "elementType": "labels.text",
-        "stylers": [
-          {
-            "visibility": "off"
-          }
-        ]
-      },
-      {
-        "featureType": "road.highway",
-        "elementType": "all",
-        "stylers": [
-          {
-            "visibility": "simplified"
-          }
-        ]
-      },
-      {
-        "featureType": "road.highway",
-        "elementType": "labels.text.fill",
-        "stylers": [
-          {
-            "visibility": "off"
-          }
-        ]
-      },
-      {
-        "featureType": "road.highway.controlled_access",
-        "elementType": "labels.text",
-        "stylers": [
-          {
-            "visibility": "on"
-          }
-        ]
-      },
-      {
-        "featureType": "road.arterial",
-        "elementType": "all",
-        "stylers": [
-          {
-            "lightness": "30"
-          }
-        ]
-      },
-      {
-        "featureType": "road.arterial",
-        "elementType": "geometry",
-        "stylers": [
-          {
-            "visibility": "on"
-          }
-        ]
-      },
-      {
-        "featureType": "road.arterial",
-        "elementType": "labels.text",
-        "stylers": [
-          {
-            "visibility": "off"
-          }
-        ]
-      },
-      {
-        "featureType": "road.local",
-        "elementType": "all",
-        "stylers": [
-          {
-            "lightness": "40"
-          }
-        ]
-      },
-      {
-        "featureType": "road.local",
-        "elementType": "labels.text",
-        "stylers": [
-          {
-            "visibility": "off"
-          }
-        ]
-      },
-      {
-        "featureType": "road.local",
-        "elementType": "labels.text.fill",
-        "stylers": [
-          {
-            "visibility": "off"
-          }
-        ]
-      },
-      {
-        "featureType": "road.local",
-        "elementType": "labels.text.stroke",
-        "stylers": [
-          {
-            "visibility": "off"
-          }
-        ]
-      },
-      {
-        "featureType": "road.local",
-        "elementType": "labels.icon",
-        "stylers": [
-          {
-            "visibility": "off"
-          }
-        ]
-      },
-      {
-        "featureType": "transit",
-        "elementType": "all",
-        "stylers": [
-          {
-            "saturation": -100
-          },
-          {
-            "visibility": "simplified"
-          }
-        ]
-      },
-      {
-        "featureType": "transit",
-        "elementType": "labels.text",
-        "stylers": [
-          {
-            "visibility": "off"
-          }
-        ]
-      },
-      {
-        "featureType": "water",
-        "elementType": "geometry",
-        "stylers": [
-          {
-            "hue": "#ffff00"
-          },
-          {
-            "lightness": -25
-          },
-          {
-            "saturation": -97
-          }
-        ]
-      },
-      {
-        "featureType": "water",
-        "elementType": "labels",
-        "stylers": [
-          {
-            "lightness": -25
-          },
-          {
-            "saturation": -100
-          }
-        ]
-      }
-    ]
+  ]
+  
 
   };
   markers = [] as any;
 
   constructor(private geocoderService: GeocodingService,
-    private router:Router) { }
+    private router: Router) { }
 
   ngOnChanges(changes: SimpleChanges): void {
     this.markers = [];
@@ -291,44 +137,61 @@ export class MapComponent implements OnInit, OnChanges {
 
   }
 
-  dropMarker(location:google.maps.LatLng,address?: GameAddress) {
+  dropMarker(location: google.maps.LatLng, icon: any, address?: GameAddress,) {
     this.center = location;
 
-    
+
+
     this.markers.push({
       position: location,
-      clickable:true,
-      game_id:address?.id,
+      clickable: true,
+      game_id: address?.id,
       animation: google.maps.Animation.DROP,
+
+      options: {
+        icon: icon,
+        scaledSize: new google.maps.Size(50, 50), // scaled size
+      }
+
     });
-    
-   
-    
+
+
+
   }
 
   public setMarkersByAddress(): void {
     if (this.addresses.length > 0) {
       for (let address of this.addresses) {
         this.geocoderService.getLocation(address.address).subscribe((res) => {
-          if(res.results.length>0){
+          if (res.results.length > 0) {
             let location = res.results[0].geometry.location;
-            this.dropMarker(location,address);
+            const icon = {
+              url: "assets/imgs/location-dot-funly.png", // url
+              scaledSize: new google.maps.Size(30, 30), // scaled size
+
+            };
+            this.dropMarker(location,icon, address );
           }
         });
       }
     } else {
       this.geocoderService.getLocation(this.address!).subscribe((res) => {
-        if(res.results.length>0){
+        if (res.results.length > 0) {
           let location = res.results[0].geometry.location;
-          this.dropMarker(location);
+          const icon = {
+            url: "assets/imgs/location-dot-funly.png", // url
+            scaledSize: new google.maps.Size(60, 60), // scaled size
+
+          };
+          this.dropMarker(location, icon);
         }
-       
+
       });
     }
   }
 
-  public redirectGame(game_id:number):void{
-    if(!this.address)
-      this.router.navigate(['search/'+game_id+'/interior']);
+  public redirectGame(game_id: number): void {
+    if (!this.address)
+      this.router.navigate(['search/' + game_id + '/interior']);
   }
 }

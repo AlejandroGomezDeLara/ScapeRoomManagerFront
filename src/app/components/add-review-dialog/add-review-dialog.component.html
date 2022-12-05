@@ -27,6 +27,6 @@
     </div>
 
     <div class="rate-btn">
-        <button [style.background]="game.category?.color" (click)="addReview()">Enviar valoración <i class="fa fa-paper-plane"></i></button>
+        <button [style.background]="game.category?.color" (click)="addReview()" [disabled]="!gameReview.text || !gameReview.stars">Enviar valoración <i class="fa fa-paper-plane"></i></button>
     </div>
 </div>
