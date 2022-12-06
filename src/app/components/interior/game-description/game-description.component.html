@@ -62,7 +62,7 @@
             </div>
 
         </div>
-        <div class="open-reservations-header my-auto">
+        <div class="open-reservations-header my-auto" *ngIf="openReservations.length>0">
             <h1 class="title">¡Reservas individuales FUNLY <img src="assets/imgs/box-transparent.svg" style="width:30px"
                     alt="">
                 disponibles!</h1>
@@ -75,15 +75,10 @@
         </div>
 
 
-        <div class="open-reservations my-auto game-item">
-
+        <div class="open-reservations my-auto game-item" *ngIf="openReservations.length>0">
             <app-open-reservation-small [reservation]="reservation" [game]="game"
                 *ngFor="let reservation of openReservations">
             </app-open-reservation-small>
-
-<!--             <app-new-open-reservation *ngFor="let hour of disponible_hours" [game]="game" [hour]="hour">
-            </app-new-open-reservation> -->
-
         </div>
 
 
@@ -93,7 +88,6 @@
 
 
         <div class="row game-item reviews-container">
-
             <div class="col-6 reviews-label">
                 <h1><span [style.color]="game.category?.color"> {{game.gameReviewSummary?.reviewsCount}}</span>
                     Valoraciones
