@@ -1,55 +1,82 @@
-.filters{
+::ng-deep {
+    .ng5-slider .ng5-slider-bar {
+        background: #ffe4d1 !important;
+        height: 5px !important;
+    }
+    .ng5-slider .ng5-slider-selection {
+        background: #fc5817 !important;
+    }
+
+
+    .ng5-slider .ng5-slider-pointer {
+        width: 25px !important;
+        height: 25px !important;
+        top: -10px !important; /* to remove the default positioning */
+        bottom: 0 !important;
+        background-color: #fc5817 !important;
+        border-radius: 50px !important;
+    }
+    .ng5-slider .ng5-slider-pointer:after {
+        display: none !important;
+    }
+
+    .ng5-slider .ng5-slider-bubble{
+        font-weight: bold !important;
+        color: var(--color-primary) !important;
+    }
+}
+
+.filters {
     box-shadow: var(--item-box-shadow);
     position: relative;
     border-radius: 10px;
     background: white;
     margin-left: 25px;
-    padding:15px;
-    .filter-items{
-        padding:10px;
+    padding: 15px;
+    .filter-items {
+        padding: 10px;
     }
-    p{
+    p {
         margin: 0;
     }
-    .form-check-label{
+    .form-check-label {
         font-weight: bold;
     }
-    .form-check-input{
+    .form-check-input {
         transform: scale(1.2);
-
     }
-    .filters-title{
-        color:var(--color-primary);
+    .filters-title {
+        color: var(--color-primary);
         font-weight: bold;
         text-align: center;
         margin-bottom: 30px;
         font-size: 16px;
-        .filter-by{
+        .filter-by {
             margin-bottom: 10px;
         }
-        .order-by{
+        .order-by {
             margin: 10px;
         }
-        .form-check{
+        .form-check {
             text-align: left;
             font-weight: lighter;
-            
-            color:black;
+
+            color: black;
             font-size: 14px;
         }
         border-bottom: 1px solid #ccc;
     }
-    .filter{
+    .filter {
         font-size: 14px;
     }
 
-    .filter-range-option{
+    .filter-range-option {
         font-size: 16px;
         font-weight: bold;
-        color:var(--color-primary);
+        color: var(--color-primary);
     }
 }
-.map{
+.map {
     box-shadow: var(--item-box-shadow);
     border-radius: 10px;
     background: white;
@@ -58,77 +85,76 @@
     margin-left: 25px;
     height: 500px;
     position: relative;
-    img{
+    img {
         border-radius: 10px 10px 0px 0px;
         width: 100%;
         height: 100px;
         object-fit: cover;
     }
-    p{
+    p {
         position: relative;
-        padding:5px;
-        border-top: 1px solid #ccc;        
+        padding: 5px;
+        border-top: 1px solid #ccc;
         font-weight: bold;
         text-align: center;
-        margin:0;
+        margin: 0;
         color: var(--color-primary);
     }
 }
-.map:hover{
-    background-color: rgba(33,33,33,0.05);
+.map:hover {
+    background-color: rgba(33, 33, 33, 0.05);
     cursor: pointer;
 }
 
-.searchbar{
+.searchbar {
     margin: 0 auto;
     position: relative;
     overflow: auto;
-    .input-container{
+    .input-container {
         position: relative;
-        padding:15px;
+        padding: 15px;
         overflow: hidden;
-        label{
+        label {
             font-size: 16px;
             font-weight: bold;
-            color:var(--color-primary);
+            color: var(--color-primary);
             margin-bottom: 10px;
-        }   
-        .close-icon{
+        }
+        .close-icon {
             position: absolute;
             top: 25%;
             left: 47%;
             opacity: 0.5;
             font-size: 18px;
-            color:var(--color-primary);
+            color: var(--color-primary);
         }
     }
-    input{
+    input {
         border-radius: 15px;
         padding: 10px;
         padding-left: 15px;
         font-size: 14px;
-        width:100%;
+        width: 100%;
         float: left;
         margin-bottom: 10px;
         border: none;
         box-shadow: var(--item-box-shadow);
     }
-    .name{
-        border-left:1px solid #ccc;
-        width:100%;
+    .name {
+        border-left: 1px solid #ccc;
+        width: 100%;
     }
-    
-    .close-icon{
+
+    .close-icon {
         position: absolute;
         top: 33%;
         left: 47%;
         opacity: 0.5;
         font-size: 18px;
-        color:var(--color-primary);
+        color: var(--color-primary);
     }
-    
-    input:focus{
+
+    input:focus {
         outline: none;
     }
-    
 }

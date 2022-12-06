@@ -1,5 +1,6 @@
 import { AfterViewInit, Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Options } from 'ng5-slider';
 import { combineLatest, debounceTime, delay, forkJoin, Observable, Subject } from 'rxjs';
 import { GameCategory } from 'src/app/models/GameCategory';
 import { GameSubcategory } from 'src/app/models/GameSubcategory';
@@ -16,6 +17,20 @@ export class GameListFiltersComponent implements OnInit,AfterViewInit {
   @ViewChild('addresstext') addresstext: any;
   autocompleteInput!: string;
 
+  public priceOptions:Options={
+    floor:0,
+    ceil:200,
+  }
+
+  public peopleOptions:Options={
+    floor:1,
+    ceil:100,
+  }
+
+  public durationOptions:Options={
+    floor:15,
+    ceil:300,
+  }
 
   public min_price:number=0;
   public max_price:number=200;
@@ -26,16 +41,6 @@ export class GameListFiltersComponent implements OnInit,AfterViewInit {
   public min_duration:number=15;
   public max_duration:number=300;
 
-
-
-  public min_price_selected:number=0;
-  public min_people_selected:number=0;
-
-  public max_people_selected:number=0;
-  public max_price_selected:number=0;
-
-  public min_duration_selected:number=0;
-  public max_duration_selected:number=0;
 
   public selected_categories:GameCategory[]=[];
 
@@ -51,18 +56,14 @@ export class GameListFiltersComponent implements OnInit,AfterViewInit {
   public selected_address?:string; // a
   public selected_name?:string; // q
 
-  private priceChanged: Subject<[number,number]> = new Subject<[number,number]>();
-  private peopleChanged: Subject<[number,number]> = new Subject<[number,number]>();
-  private durationChanged: Subject<[number,number]> = new Subject<[number,number]>();
   private nameChanged:Subject<string>=new Subject<string>();
 
   constructor(private apiService:ApiService,
     private route:ActivatedRoute) { }
 
   ngOnInit(): void {
-    combineLatest([this.priceChanged,this.peopleChanged,this.durationChanged,this.nameChanged]).pipe(debounceTime(500)).subscribe(([price,people,duration,name])=>{
-      this.filterGames();
-    });
+    this.filterGames();
+ 
     //Realizar para ejecutar método búsqueda con nombre ("")
     this.nameChanged.next("");
 
@@ -86,12 +87,12 @@ export class GameListFiltersComponent implements OnInit,AfterViewInit {
 
   public filterGames():void{
     let filters={
-      min_price:this.min_price_selected,
-      max_price:this.max_price_selected,
-      min_people:this.min_people_selected,
-      max_people:this.max_people_selected,
-      min_duration:this.min_duration_selected,
-      max_duration:this.max_duration_selected,
+      min_price:this.min_price,
+      max_price:this.max_price,
+      min_people:this.min_people,
+      max_people:this.max_people,
+      min_duration:this.min_duration,
+      max_duration:this.max_duration,
       selected_categories:this.selected_categories,
       selected_subcategories:this.selected_subcategories,
       selected_categories_ids:this.selected_categories_ids,
@@ -103,22 +104,27 @@ export class GameListFiltersComponent implements OnInit,AfterViewInit {
   }
 
   public changePrice(e:any):void{
-    this.priceChanged.next(e);
-    this.min_price_selected=e[0];
-    this.max_price_selected=e[1];
+    this.min_price=e.value;
+    this.max_price=e.highValue;
+    setTimeout(()=>{
+      this.filterGames();
+    },500)
   }
 
   public changePeople(e:any):void{
-    this.peopleChanged.next(e);
-    this.min_people_selected=e[0];
-    this.max_people_selected=e[1];
-
+    this.min_people=e.value;
+    this.max_people=e.highValue;
+     setTimeout(()=>{
+      this.filterGames();
+    },500)
   }
 
   public changeDuration(e:any):void{
-    this.durationChanged.next(e);
-    this.min_duration_selected=e[0];
-    this.max_duration_selected=e[1];
+    this.min_duration=e.value;
+    this.max_duration=e.highValue;
+    setTimeout(()=>{
+      this.filterGames();
+    },500)
   }
 
   public getCategories():void{
@@ -194,9 +200,6 @@ export class GameListFiltersComponent implements OnInit,AfterViewInit {
   }
 
   ngOnDestroy(): void {
-    this.priceChanged.unsubscribe();
-    this.peopleChanged.unsubscribe();
-    this.durationChanged.unsubscribe();
     this.nameChanged.unsubscribe();
   }
  
