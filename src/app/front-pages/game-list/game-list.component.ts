@@ -22,17 +22,17 @@ export class GameListComponent implements OnInit {
   public filteredGames: Game[] = [];
   public regionFilteredGames: Game[] = [];
   public games: Game[] = [];
-  public addresses:GameAddress[]=[];
+  public addresses: GameAddress[] = [];
   public openReservations: OpenReservation[] = [];
   //game filtros
-  min_price?: number;
-  max_price?: number;
-  min_people?: number;
-  max_people?: number;
-  min_duration?: number;
-  max_duration?: number;
-  selected_categories_ids?: [number];
-  selected_subcategories_ids?: [number];
+  min_price: number = 0;
+  max_price: number = 200;
+  min_people: number = 1;
+  max_people: number = 100;
+  min_duration: number = 15;
+  max_duration: number = 300;
+  selected_categories_ids: number[] = [];
+  selected_subcategories_ids: number[] = [];
   selected_categories: GameCategory[] = [];
   selected_subcategories: GameSubcategory[] = [];
   actual_page?: number = 1;
@@ -44,13 +44,21 @@ export class GameListComponent implements OnInit {
   constructor(private apiService: ApiService,
     private ngZone: NgZone,
     private router: ActivatedRoute,
-    public loading:LoadingService) { 
-      
-    }
+    public loading: LoadingService) {
+    let category = router.snapshot.queryParamMap.get('c');
+    let address = router.snapshot.queryParamMap.get('a');
+    let name = router.snapshot.queryParamMap.get('q');
+    if (address)
+      this.selected_address = address;
+    if (category)
+      this.selected_categories_ids?.push(+category);
+    if (name)
+      this.selected_name = name;
+  }
 
 
   ngOnInit(): void {
-    this.loading.startLoading();
+    this.setGamesAndOpenReservations();
   }
 
 
@@ -103,7 +111,8 @@ export class GameListComponent implements OnInit {
     this.setGamesAndOpenReservations();
   }
 
-  public setGamesAndOpenReservations():void{
+  public setGamesAndOpenReservations(): void {
+    this.loading.startLoading();
     this.getGamesAndOpenReservations().subscribe({
       next: (data) => {
 
@@ -112,18 +121,18 @@ export class GameListComponent implements OnInit {
         const addresses: GameAddress[] = data[2] as GameAddress[];
 
         this.games = gameData.data!;
-        this.addresses=addresses;
-        this.total_games=gameData.total;   
-        this.total_game_pages=gameData.last_page;           
-        this.filteredGames=[...gameData.data!];
+        this.addresses = addresses;
+        this.total_games = gameData.total;
+        this.total_game_pages = gameData.last_page;
+        this.filteredGames = [...gameData.data!];
         this.loading.stopLoading();
         this.openReservations = openReservations;
         console.log("GAMES AND RESERVATIONS", data);
-        window.scroll({
-          top: 0,
-          left: 0,
-          behavior: 'smooth'
-        });
+        /*  window.scroll({
+           top: 0,
+           left: 0,
+           behavior: 'smooth'
+         }); */
       },
       error: (error) => {
         console.log(error);
@@ -131,9 +140,9 @@ export class GameListComponent implements OnInit {
       }
     });
 
-   /*  setTimeout(()=>{
-      this.setGamesAndOpenReservations();
-    },20000); */
+    /*  setTimeout(()=>{
+       this.setGamesAndOpenReservations();
+     },20000); */
 
   }
 
@@ -158,9 +167,9 @@ export class GameListComponent implements OnInit {
     params += '&page=' + this.actual_page;
 
     let obGames: Observable<GameData> = this.apiService.getEntity(gamesUrl + params);
-    let obAddresses: Observable<GameAddress> = this.apiService.getEntity(addressUrl +params);
+    let obAddresses: Observable<GameAddress> = this.apiService.getEntity(addressUrl + params);
     let obReservations: Observable<OpenReservation[]> = this.apiService.getEntity(openReservationsUrl + params);
-    let requests = [obGames, obReservations,obAddresses];
+    let requests = [obGames, obReservations, obAddresses];
 
     return forkJoin(requests);
   }

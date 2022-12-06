@@ -62,7 +62,6 @@ export class GameListFiltersComponent implements OnInit,AfterViewInit {
     private route:ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.filterGames();
  
     //Realizar para ejecutar método búsqueda con nombre ("")
     this.nameChanged.next("");
@@ -75,6 +74,10 @@ export class GameListFiltersComponent implements OnInit,AfterViewInit {
         this.selected_name= params["q"];
       }
     );
+
+    this.nameChanged.pipe(debounceTime(1000)).subscribe(()=>{
+      this.filterGames();
+    });
    
     //Obtenemos categorias y subcategorias
     this.getCategories();
