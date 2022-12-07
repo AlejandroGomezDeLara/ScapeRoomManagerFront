@@ -13,10 +13,10 @@
                     <div class="col-10 my-auto">
                         <p class="chat-name">{{chat.name}} - {{chat.open_reservation?.date | date}} - {{chat.open_reservation?.game_reservation_hour?.hour | slice:0:5}} <span class="chat-hour">{{chat.last_message?.created_at|
                                 date:'hh:mm'}}</span></p>
-                        <p class="chat-last-message" *ngIf="chat.last_message">{{chat.last_message.user?.name}}:
-                            {{chat.last_message.text}}</p>
+                        <p class="chat-last-message" *ngIf="chat.last_message"> <img class="avatar" [src]="chat.last_message.user?.avatar" alt=""> <b> {{chat.last_message.user?.name}}</b>: 
+                             {{chat.last_message.text}}</p>
                         <p class="chat-last-message" *ngIf="!chat.last_message">Sin mensajes aún</p>
-
+                        <span class="new-messages-count" *ngIf="chat.unread_messages_count">{{chat.unread_messages_count}}</span>
                     </div>
                 </div>
             </div>
@@ -30,8 +30,6 @@
                         <img class="user-avatar" [src]="user.avatar" alt="" *ngIf="i<6">
                         <span *ngIf="i==6">y {{selectedChat.users?.length! - 6}} más</span>
                     </ng-container>
-
-
                 </div>
             </div>
 

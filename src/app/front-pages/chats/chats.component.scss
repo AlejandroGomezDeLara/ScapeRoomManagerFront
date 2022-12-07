@@ -6,9 +6,9 @@
     
     .void-text {
         font-size: 26px;
-        top: 50%;
-        position: absolute;
-        left: 50%;
+        margin-top: 400px;
+        text-align: center;
+        
         font-weight: bold;
         transform: translateY(-50%);
     }
@@ -64,7 +64,25 @@
                 height: 100%;
                 color:white;
                 .chats-item {
+                    position: relative;
+                    .new-messages-count{
+                        position: absolute;
+                        bottom: 30px;
+                        padding:0px 5px;
+                        color:white;
+                        background:var(--color-primary);
+                        right: 25px;
+                        font-weight: bold;
+                        font-size: 14px;
+                        border-radius: 5px;
+                    }
                     .chat-last-message{
+                        .avatar{
+                            height: 20px;
+                            width: 20px;
+                            object-fit: cover;
+                            border-radius: 50%;
+                        }
                         white-space: nowrap;
                         overflow: hidden;
                         text-overflow: ellipsis;
@@ -179,6 +197,7 @@
                             font-size: 12px;
                         }
                     }
+                    
                     .message-left {
                         float: left;
                         background: var(--chat-message-left-background);

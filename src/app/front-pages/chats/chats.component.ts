@@ -45,6 +45,7 @@ export class ChatsComponent implements OnInit {
 
   public selectChat(chat:Chat):void{
     this.selectedChat=chat;
+    chat.unread_messages_count=0;
     this.getChatMessages();
   }
 

@@ -9,4 +9,5 @@ export interface Chat {
     users?:User[];
     open_reservation?:OpenReservation;
     image?:string;
+    unread_messages_count?:number;
 }
