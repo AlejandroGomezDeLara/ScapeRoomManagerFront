@@ -107,7 +107,7 @@
                     }
                 }
                 .chats-item:hover {
-                    background: var(--color-primary-light);
+                    background: var(--color-primary);
                     scale: 1.005;
                 }
             }
@@ -155,8 +155,7 @@
             .messages-container {
                 padding: 50px 70px 20px 40px;
                 overflow-y: scroll;
-                height: 100%;
-                padding-bottom: 200px;
+                height: 70%;
                 .no-messages-text{
                     text-align: center;
                     font-size: 22px;
@@ -185,6 +184,11 @@
                         margin-bottom: 10px;
                         max-width: 75%;
                         display: inline-block;
+                        .message-username{
+                            margin: 0;
+                            font-size: 14px;
+                            color:var(--chat-message-right-background);
+                        }
                         .message-user {
                             font-weight: bold;
                             margin: 0;
@@ -194,7 +198,9 @@
                         }
                         .message-hour {
                             margin: 0;
-                            text-align: right;
+                            float: right;
+                            margin-left: 10px;
+                            margin-top: 5px;
                             font-size: 12px;
                         }
                     }
