@@ -45,6 +45,10 @@ export class ChatsComponent implements OnInit {
     this.apiService.getEntity('chats').subscribe((chats: Chat[]) => {
       console.log(chats);
       this.chats = chats;
+      let new_messages=chats.some(x=>x.unread_messages_count!>0);
+      if(new_messages){
+        //Sonido notificación
+      }
     }, (error: HttpErrorResponse) => {
       console.log(error);
     });
@@ -56,6 +60,9 @@ export class ChatsComponent implements OnInit {
     clearInterval(this.messagesInterval);
     this.messagesInterval = null;
     this.getChatMessages();
+    setTimeout(() => {
+      this.scrollToBottom();
+    }, 100)
     this.messagesInterval = setInterval(() => {
       this.getChatMessages();
     }, 5000);
@@ -64,9 +71,7 @@ export class ChatsComponent implements OnInit {
   public getChatMessages(): void {
     this.apiService.getSubEntity('chats', this.selectedChat?.id!, 'messages').subscribe((messages: ChatMessage[]) => {
       this.messages = messages;
-      setTimeout(() => {
-        this.scrollToBottom();
-      }, 100)
+      
     }, (error: HttpErrorResponse) => {
       console.log(error);
     });
@@ -77,6 +82,9 @@ export class ChatsComponent implements OnInit {
       this.apiService.addSubEntity('chats', this.selectedChat?.id!, 'messages', this.actualMessage).subscribe((message: ChatMessage) => {
         console.log(message);
         this.actualMessage!.text = "";
+        setTimeout(() => {
+          this.scrollToBottom();
+        }, 100);
         this.getChatMessages();
       }, (error: HttpErrorResponse) => {
         console.log(error);
