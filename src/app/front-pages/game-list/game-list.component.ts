@@ -48,6 +48,7 @@ export class GameListComponent implements OnInit {
     let category = router.snapshot.queryParamMap.get('c');
     let address = router.snapshot.queryParamMap.get('a');
     let name = router.snapshot.queryParamMap.get('q');
+    
     if (address)
       this.selected_address = address;
     if (category)

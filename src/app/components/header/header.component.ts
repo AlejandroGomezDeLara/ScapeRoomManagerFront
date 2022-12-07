@@ -41,6 +41,34 @@ export class HeaderComponent implements OnInit,AfterContentInit {
 
   ];
 
+  public authUserPages=[
+    {
+      name:'Eventos',
+      route:'/search',
+      icon:'search'
+    },
+    {
+      name:'Ranking',
+      route:'/',
+      icon:'star'
+    },
+    {
+      name:'Mapa',
+      route:'/',
+      icon:'map'
+    },
+    {
+      name:'Publicaciones',
+      route:'/',
+      icon:'thumbs-up'
+    },
+    {
+      name:'Chats',
+      route:'/chats',
+      icon:'comments'
+    }
+  ];
+
   public user!:User;
 
   constructor(private auth:AuthenticationService,

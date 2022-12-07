@@ -8,9 +8,16 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarText" mdbCollapse>
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item" *ngFor="let page of pages">
-                    <a class="nav-link active" aria-current="page" [routerLink]="page?.route"><i class="fa fa-{{page.icon}}"></i> {{page?.name}} </a>
-                </li>
+                <ng-container *ngIf="utilities.isEmptyObject(user)">
+                    <li class="nav-item" *ngFor="let page of pages" >
+                        <a class="nav-link active" aria-current="page" [routerLink]="page?.route"><i class="fa fa-{{page.icon}}"></i> {{page?.name}} </a>
+                    </li>
+                </ng-container>
+                <ng-container *ngIf="!utilities.isEmptyObject(user)">
+                    <li class="nav-item" *ngFor="let page of authUserPages" >
+                        <a class="nav-link active" aria-current="page" [routerLink]="page?.route"><i class="fa fa-{{page.icon}}"></i> {{page?.name}} </a>
+                    </li>
+                </ng-container>
                 <li class="nav-item" *ngIf="!utilities.isEmptyObject(user)">
                     <a class="nav-link active" (click)="logout()">Cerrar sesion</a>
                 </li>
