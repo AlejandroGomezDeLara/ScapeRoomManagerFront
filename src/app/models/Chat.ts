@@ -1,4 +1,5 @@
 import { ChatMessage } from "./ChatMessage";
+import { OpenReservation } from "./OpenReservation";
 import { User } from "./User";
 
 export interface Chat {
@@ -6,5 +7,6 @@ export interface Chat {
     name: string;
     last_message?:ChatMessage;
     users?:User[];
+    open_reservation?:OpenReservation;
     image?:string;
 }

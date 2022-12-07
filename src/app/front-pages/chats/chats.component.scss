@@ -1,6 +1,8 @@
+
 .chat-container {
     width: 100%;
-    height: 89%;
+    overflow-y:hidden;
+    height: 92vh;
     
     .void-text {
         font-size: 26px;
@@ -15,11 +17,15 @@
         .chats-sidebar {
             height: 100%;
             padding: 0;
-            background: white;
+            background-color: var(--dark-background);
+            background-image: url(../../../assets/imgs/box-transparent-dark.svg);
+            background-repeat: space;
+    
+            background-size: 150px;
             border-right: 0.5px solid #ccc;
             .chats-searchbar-container {
                 width: 100%;
-                background: #fafafa;
+                background:var(--chat-message-left-background);
                 padding: 20px;
                 position: relative;
                 .search-icon {
@@ -32,7 +38,6 @@
             }
             .chats-searchbar {
                 border: none;
-                box-shadow: var(--item-box-shadow);
                 background: white;
                 border-radius: 25px;
                 width: 100%;
@@ -55,6 +60,9 @@
             }
             .chats-items-container {
                 padding: 0px 20px;
+                overflow-y: scroll;
+                height: 100%;
+                color:white;
                 .chats-item {
                     .chat-last-message{
                         white-space: nowrap;
@@ -91,6 +99,7 @@
             padding: 0;
             position: relative;
             height: 100%;
+           
             .chat-title-container {
                 background: white;
                 padding: 0;
@@ -98,6 +107,7 @@
                 border-bottom: 0.5px solid #ccc;
                 padding: 20px;
                 .chat-users{
+                    margin-top: 10px;
                     text-align: center;
                     .user-avatar{
                         width: 25px;
@@ -127,7 +137,8 @@
             .messages-container {
                 padding: 50px 70px 20px 40px;
                 overflow-y: scroll;
-                height: 80%;
+                height: 100%;
+                padding-bottom: 200px;
                 .no-messages-text{
                     text-align: center;
                     font-size: 22px;
@@ -183,8 +194,11 @@
                 width: 100%;
                 margin: 0 auto;
                 padding-top: 10px;
-                background: #fafafa;
                 text-align: center;
+                position: fixed;
+                left: 32%;
+                bottom: 50px;
+                width: 70%;
                 .input-container {
                     position: relative;
                     .send-button,
