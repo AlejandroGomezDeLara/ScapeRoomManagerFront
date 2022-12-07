@@ -168,6 +168,7 @@
                         padding: 0;
                         text-align: center;
                         img {
+                            box-shadow: var(--item-box-shadow);
                             border-radius: 50%;
                             height: 50px;
                             width: 50px;
