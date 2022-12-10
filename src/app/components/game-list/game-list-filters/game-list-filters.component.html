@@ -29,14 +29,14 @@
             <p> Personas <span class="filter-range-option">{{min_people}} -
                     {{max_people}}</span></p>
             <ng5-slider [value]="min_people" [highValue]="max_people" [options]="peopleOptions"
-                (userChange)="changePeople($event)"></ng5-slider>
+                (userChangeEnd)="changePeople($event)"></ng5-slider>
         </div>
 
         <div class="filter">
             <p> Duración <span class="filter-range-option">{{min_duration}} -
                     {{max_duration}} min</span></p>
             <ng5-slider [value]="min_duration" [highValue]="max_duration" [options]="durationOptions"
-                (userChange)="changeDuration($event)"></ng5-slider>
+                (userChangeEnd)="changeDuration($event)"></ng5-slider>
         </div>
 
     </div>

@@ -1,0 +1,43 @@
+<div class="map-search-container" [hidden]="(loading.isLoading | async)">
+    <div class="description-header">
+        <p class="title">¡Encuentra eventos FUNLY <img src="assets/imgs/box-transparent.svg" style="width:30px;"> por
+            todo el mapa!</p>
+        <p class="results">Mostrando {{addresses.length}} resultados disponibles en {{selected_address ?
+            selected_address : 'España'}}</p>
+    </div>
+    <div class="row content">
+
+        <div class="col-lg-4 col-sm-12 filters-container">
+            <app-game-list-filters [locate]="true" (filter)="applyFilters($event)"></app-game-list-filters>
+            <app-game-recomendations></app-game-recomendations>
+
+        </div>
+        <div class="col-lg-8 col-sm-12 map-container">
+            <app-map [markerIconSize]="50" [zoom]="selected_address && addresses.length>0 ? 13 : 6"
+                [addresses]="addresses"></app-map>
+
+            <ng-container *ngIf="openReservations?.length!>0">
+                <h1 class="open-reservations-title">¡Hay {{openReservations.length}} reservas Funly <img
+                        style="width: 25px" src="assets/imgs/box-transparent.svg" alt=""> disponibles! ¡Reserva antes de
+                    que empiecen!</h1>
+                <p class="open-reservations-description">La reserva será cancelada si no hay suficientes personas cuando
+                    se
+                    termine la cuenta atrás</p>
+                <div class="open-reservations my-auto">
+
+                    <app-open-reservation routerLink="{{reservation.game?.id}}/interior" [reservation]="reservation"
+                        *ngFor="let reservation of openReservations">
+                    </app-open-reservation>
+                </div>
+            </ng-container>
+
+            <h1 class="open-reservations-title" *ngIf="openReservations.length<=0">No hay reservas Funly <img
+                style="width: 25px" src="assets/imgs/box-transparent.svg" alt=""> disponibles con esos filtros</h1>
+
+        </div>
+    </div>
+
+
+</div>
+<home-footer [hidden]="(loading.isLoading | async)"></home-footer>
+<app-loading [hidden]="!(loading.isLoading | async)" [text]="'Buscando eventos en tu localización'"></app-loading>

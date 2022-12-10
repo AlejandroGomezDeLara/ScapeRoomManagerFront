@@ -25,7 +25,7 @@ export class HeaderComponent implements OnInit,AfterContentInit {
     },
     {
       name:'Mapa',
-      route:'/',
+      route:'/map',
       icon:'map'
     },
     {
@@ -54,7 +54,7 @@ export class HeaderComponent implements OnInit,AfterContentInit {
     },
     {
       name:'Mapa',
-      route:'/',
+      route:'/map',
       icon:'map'
     },
     {

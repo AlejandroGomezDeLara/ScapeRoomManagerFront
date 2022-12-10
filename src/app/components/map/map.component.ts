@@ -1,5 +1,5 @@
-import { Component, Input, OnChanges, OnInit, SimpleChanges, ViewChild } from '@angular/core';
-import { GoogleMap } from '@angular/google-maps';
+import { Component, Input, NgZone, OnChanges, OnInit, SimpleChanges, ViewChild } from '@angular/core';
+import { GoogleMap, MapInfoWindow, MapMarker } from '@angular/google-maps';
 import { Router } from '@angular/router';
 import { Game } from 'src/app/models/Game';
 import { GameAddress } from 'src/app/models/GameAddress';
@@ -13,13 +13,21 @@ import { GeocodingService } from 'src/app/services/geocoding.service';
 })
 export class MapComponent implements OnInit, OnChanges {
 
+  @ViewChild('myGoogleMap', { static: false }) map!: GoogleMap;
+  @ViewChild(MapInfoWindow, { static: false }) infoWindow!: MapInfoWindow
+
   @Input() addresses: GameAddress[] = [];
   @Input() address?: string;
   @Input() zoom!: number;
+  @Input() markerIconSize: number = 40;
+  @Input() center?: google.maps.LatLng | google.maps.LatLngLiteral = { lat: 39.6575069, lng: -4.1400885 };
 
-  @ViewChild('myGoogleMap', { static: false })
-  map!: GoogleMap;
-  @Input() center?: google.maps.LatLng | google.maps.LatLngLiteral = { lat: 40.130067, lng: -8.2042286 };
+  infoContent={
+    game_name:'',
+    game_image:'',
+    game_address:'',
+  };
+
   options: google.maps.MapOptions = {
     disableDoubleClickZoom: true,
     mapTypeControl: false,
@@ -126,11 +134,18 @@ export class MapComponent implements OnInit, OnChanges {
   markers = [] as any;
 
   constructor(private geocoderService: GeocodingService,
-    private router: Router) { }
+    private router: Router,
+    private zone:NgZone) { }
 
   ngOnChanges(changes: SimpleChanges): void {
-    this.markers = [];
-    this.setMarkersByAddress();
+    this.zone.run(()=>{
+      console.log(changes);
+      if(this.addresses.length>0)
+      this.addresses=changes["addresses"].currentValue;
+      this.markers = [];      
+      this.setMarkersByAddress();
+    })
+   
   }
 
   ngOnInit(): void {
@@ -145,12 +160,15 @@ export class MapComponent implements OnInit, OnChanges {
     this.markers.push({
       position: location,
       clickable: true,
+      game_address:address?.address,
       game_id: address?.id,
+      game_image:address?.game_image,
+      game_name:address?.game_name,
       animation: google.maps.Animation.DROP,
 
       options: {
         icon: icon,
-        scaledSize: new google.maps.Size(50, 50), // scaled size
+        scaledSize: new google.maps.Size(this.markerIconSize,this.markerIconSize), // scaled size
       }
 
     });
@@ -167,7 +185,7 @@ export class MapComponent implements OnInit, OnChanges {
             let location = res.results[0].geometry.location;
             const icon = {
               url: "assets/imgs/location-dot-funly.png", // url
-              scaledSize: new google.maps.Size(30, 30), // scaled size
+              scaledSize: new google.maps.Size(this.markerIconSize,this.markerIconSize), // scaled size
 
             };
             this.dropMarker(location,icon, address );
@@ -193,5 +211,18 @@ export class MapComponent implements OnInit, OnChanges {
   public redirectGame(game_id: number): void {
     if (!this.address)
       this.router.navigate(['search/' + game_id + '/interior']);
+  }
+
+  openInfo(marker: any,info:any) {
+    console.log(info);
+    this.infoContent.game_image=info.game_image;
+    this.infoContent.game_name=info.game_name;
+    this.infoContent.game_address=info.game_address;
+
+    this.infoWindow.open(marker);
+  }
+
+  closeInfo(){
+    this.infoWindow.close();
   }
 }

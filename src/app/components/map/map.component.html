@@ -1,7 +1,17 @@
 <div class="map-container">
     <google-map #myGoogleMap height="100%" width="100%" [zoom]="zoom" [options]="options" [center]="center!">
         <map-marker #markerElem="mapMarker" *ngFor="let marker of markers" [position]="marker.position"
-            [label]="marker.label" [title]="marker.title" [options]="marker.options" (mapClick)="redirectGame(marker.game_id)" >
+            [label]="marker.label" [title]="marker.title" [options]="marker.options"
+            (mapClick)="redirectGame(marker.game_id)" (mapMouseover)="openInfo(markerElem,marker)"
+            (mapMouseout)="closeInfo()">
         </map-marker>
+        <map-info-window *ngIf="addresses.length>0">
+            <div style="text-align: center;margin: 0 auto;">
+                <img src="{{infoContent.game_image}}" alt="" style="width: 250px;object-fit: cover;height: 200px;">
+                <p style="font-size: 18px;font-weight: bold;"> {{infoContent.game_name}}</p>
+                <p style="color:#ccc"><i class="fa fa-location-dot"></i>
+                    {{infoContent.game_address}} </p>
+            </div>
+        </map-info-window>
     </google-map>
 </div>

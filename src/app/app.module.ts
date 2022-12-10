@@ -15,7 +15,6 @@ import { RatingModule } from './components/game-list/rating/rating.module';
 import { ReservationConfirmedDialogComponent } from './reservation-confirmed-dialog/reservation-confirmed-dialog.component';
 import { ReservationFailedDialogComponent } from './reservation-failed-dialog/reservation-failed-dialog.component';
 
-
 @NgModule({
   declarations: [
     AppComponent,

@@ -10,6 +10,7 @@ const routes: Routes = [
   { path: 'login', loadChildren: () => import('./front-pages/login/login.module').then(m => m.LoginModule) },
   { path: 'logout', redirectTo: 'login', pathMatch: 'full' },
   { path: 'register', loadChildren: () => import('./front-pages/register/register.module').then(m => m.RegisterModule) },
+  { path: 'map', loadChildren: () => import('./front-pages/map-search/map-search.module').then(m => m.MapSearchModule) },
 
 
 ];

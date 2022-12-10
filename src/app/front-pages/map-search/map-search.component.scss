@@ -1,0 +1,81 @@
+.map-search-container{
+    padding:20px;
+    /* background-color: var(--open-reservation-small-background);
+    background-image: url(../../../assets/imgs/box-transparent-dark.svg);
+    background-repeat: space;
+
+    background-size: 200px;
+    z-index: 1;
+    background-position: center; */
+    .description-header{
+        padding-top:30px;
+        .title{
+            font-size: 32px;
+            color:black;
+            text-align: center;
+            font-weight: bold;
+        }
+        .results{
+            font-weight: bold;
+            font-size: 28px;
+            text-align: center;
+            color:var(--color-primary);
+        }
+    }
+    .map-container{
+        height: 700px;
+        .open-reservations{
+            width: 100%;
+            overflow: hidden;
+            text-align: center;
+            overflow-x: auto;
+            white-space: nowrap;
+            position: relative;
+            padding:50px;
+            background-color: var(--dark-background);
+            background-image: url(../../../assets/imgs/box-transparent-dark.svg);
+            background-repeat: space;
+    
+            background-size: 200px;
+            z-index: 1;
+            background-position: center;
+            video{
+                filter: brightness(50%);
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                height: 100%;
+                z-index: 1;
+                left: 0;
+                top: 0;
+                position: absolute;
+            }
+        }
+        .open-reservations-title{
+            color:var(--color-primary);
+            font-size: 32px;
+            text-align: center;
+            font-weight: bold;
+            padding-bottom: 15px;
+            padding-top: 5vh;
+        }
+        .open-reservations-description{
+            color:black;
+            font-size: 16px;
+            text-align: center;
+            font-weight: bold;
+            padding-bottom: 15px;
+            span{
+                color:var(--color-primary);
+                font-size: 22px;
+            }
+        }
+    }
+    .filters-container{
+        right: 0;
+    }
+    .content{
+        padding:40px;
+    }
+   
+}

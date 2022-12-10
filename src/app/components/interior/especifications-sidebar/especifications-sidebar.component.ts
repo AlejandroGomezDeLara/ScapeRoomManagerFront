@@ -11,22 +11,16 @@ import { ApiService } from 'src/app/services/api.service';
 export class EspecificationsSidebarComponent implements OnInit {
 
   @Input() game!:Game; 
-  public recomendations:Game[]=[];
   
   constructor(private apiService:ApiService,
     private router:Router) { }
 
   ngOnInit(): void {
-    this.getRecomendations();
   }
 
  
 
-  public getRecomendations():void{
-    this.apiService.getEntity('recomendations').subscribe((recomendations:Game[])=>{
-      this.recomendations=recomendations;
-    });
-  }
+ 
 
  
 }

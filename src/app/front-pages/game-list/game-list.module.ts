@@ -17,6 +17,7 @@ import { OpenReservationModule } from 'src/app/components/game-list/open-reserva
 import { RatingModule } from 'src/app/components/game-list/rating/rating.module';
 import { MapModule } from 'src/app/components/map/map.module';
 import { Ng5SliderModule } from 'ng5-slider';
+import { GameListFiltersModule } from 'src/app/components/game-list/game-list-filters/game-list-filters.module';
 
 const routes: Routes = [
   {
@@ -29,7 +30,6 @@ const routes: Routes = [
   declarations: [
     GameListComponent,
     GameItemComponent,
-    GameListFiltersComponent,
     GameListPaginationComponent,
 ],
   imports: [
@@ -45,6 +45,7 @@ const routes: Routes = [
     Ng5SliderModule,
     RatingModule,
     MapModule,
+    GameListFiltersModule,
     RouterModule.forChild(routes)
   ]
 })
