@@ -7,34 +7,44 @@
         <div class="input-container">
             <label for="location">Localidad o Ciudad</label>
             <input name="location" class="input" type="text" [(ngModel)]="autocompleteInput" #addresstext
-                placeholder="Ciudad o región" [(ngModel)]="selected_address" (input)="checkAddressEmpty()">
+                placeholder="Ciudad o región" [(ngModel)]="selected_address">
+            <i class="close-icon fa fa-close" (click)="clearSelectedAddress()" *ngIf="selected_address"></i>
         </div>
         <div class="input-container">
             <label for="name">Nombre</label>
             <input name="name" class="input" type="text" placeholder="Nombre" [(ngModel)]="selected_name"
                 (keyup)="checkName()">
+            <i class="close-icon fa fa-close" (click)="clearSelectedName()" *ngIf="selected_name"></i>
         </div>
     </div>
 
     <div class="filter-items">
         <!-- Filtro precio -->
         <div class="filter">
-            <p> Precio <span class="filter-range-option">{{min_price}}€ -
-                    {{max_price}}€</span></p>
+            <p> Precio
+                <input class="filter-input" type="number" [(ngModel)]="min_price" (ngModelChange)="changePriceInput($event)"> -
+                <input class="filter-input" type="number" [(ngModel)]="max_price" (ngModelChange)="changePriceInput($event)"> €
+            </p>
             <ng5-slider [value]="min_price" [highValue]="max_price" [options]="priceOptions"
-                (userChangeEnd)="changePrice($event)"></ng5-slider>
+                (userChangeEnd)="changePrice($event)">
+            </ng5-slider>
         </div>
 
         <div class="filter">
-            <p> Personas <span class="filter-range-option">{{min_people}} -
-                    {{max_people}}</span></p>
+            <p> Personas
+                <input class="filter-input" type="number" [(ngModel)]="min_people" (ngModelChange)="changePeopleInput($event)"> -
+                <input class="filter-input" type="number" [(ngModel)]="max_people" (ngModelChange)="changePeopleInput($event)">
+            </p>
+
             <ng5-slider [value]="min_people" [highValue]="max_people" [options]="peopleOptions"
                 (userChangeEnd)="changePeople($event)"></ng5-slider>
         </div>
 
         <div class="filter">
-            <p> Duración <span class="filter-range-option">{{min_duration}} -
-                    {{max_duration}} min</span></p>
+            <p> Duración
+                <input class="filter-input" type="number" [(ngModel)]="min_duration" (ngModelChange)="changeDurationInput($event)"> -
+                <input class="filter-input" type="number" [(ngModel)]="max_duration" (ngModelChange)="changeDurationInput($event)"> min
+            </p>
             <ng5-slider [value]="min_duration" [highValue]="max_duration" [options]="durationOptions"
                 (userChangeEnd)="changeDuration($event)"></ng5-slider>
         </div>

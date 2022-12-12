@@ -60,6 +60,12 @@ export class GameListFiltersComponent implements OnInit, AfterViewInit {
 
   private nameChanged: Subject<string> = new Subject<string>();
 
+  private priceChanged: Subject<number> = new Subject<number>();
+  private peopleChanged: Subject<number> = new Subject<number>();
+  private durationChanged: Subject<number> = new Subject<number>();
+
+
+
   constructor(private apiService: ApiService,
     private route: ActivatedRoute,
     private loading:LoadingService) { }
@@ -77,10 +83,25 @@ export class GameListFiltersComponent implements OnInit, AfterViewInit {
         this.selected_name = params["q"];
       }
       );
-
     this.nameChanged.pipe(debounceTime(1000)).subscribe(() => {
       this.filterGames();
     });
+
+    //Precio
+    this.priceChanged.pipe(debounceTime(1000)).subscribe(() => {
+      this.filterGames();
+    });
+
+    this.peopleChanged.pipe(debounceTime(1000)).subscribe(() => {
+      this.filterGames();
+    });
+
+    //personas
+    this.durationChanged.pipe(debounceTime(1000)).subscribe(() => {
+      this.filterGames();
+    });
+
+
 
     //Obtenemos categorias y subcategorias
     this.getCategories();
@@ -116,9 +137,22 @@ export class GameListFiltersComponent implements OnInit, AfterViewInit {
   public changePrice(e: any): void {
     this.min_price = e.value;
     this.max_price = e.highValue;
+    
     setTimeout(() => {
       this.filterGames();
     }, 1000)
+  }
+
+  public changePriceInput(e:any):void{
+    this.priceChanged.next(e);
+  }
+
+  public changePeopleInput(e:any):void{
+    this.peopleChanged.next(e);
+  }
+
+  public changeDurationInput(e:any):void{
+    this.durationChanged.next(e);
   }
 
   public changePeople(e: any): void {
@@ -199,10 +233,14 @@ export class GameListFiltersComponent implements OnInit, AfterViewInit {
     });
   }
 
+  public clearSelectedAddress():void{
+    this.selected_address="";
+    this.filterGames();
+  }
 
-
-  public checkAddressEmpty(): void {
-    if (this.selected_address == "") this.filterGames();
+  public clearSelectedName():void{
+    this.selected_name="";
+    this.filterGames();
   }
 
   public checkName(): void {
@@ -211,6 +249,9 @@ export class GameListFiltersComponent implements OnInit, AfterViewInit {
 
   ngOnDestroy(): void {
     this.nameChanged.unsubscribe();
+    this.priceChanged.unsubscribe();
+    this.peopleChanged.unsubscribe();
+    this.durationChanged.unsubscribe();
   }
 
   public setActualLocation(): void {
@@ -237,9 +278,6 @@ export class GameListFiltersComponent implements OnInit, AfterViewInit {
       console.log(error);
       this.filterGames();
     });
-
-
-
 
   }
 

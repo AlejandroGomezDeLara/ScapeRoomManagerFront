@@ -7,7 +7,6 @@
         background: #fc5817 !important;
     }
 
-
     .ng5-slider .ng5-slider-pointer {
         width: 25px !important;
         height: 25px !important;
@@ -20,7 +19,7 @@
         display: none !important;
     }
 
-    .ng5-slider .ng5-slider-bubble{
+    .ng5-slider .ng5-slider-bubble {
         font-weight: bold !important;
         color: var(--color-primary) !important;
     }
@@ -67,7 +66,17 @@
         border-bottom: 1px solid #ccc;
     }
     .filter {
-        font-size: 14px;
+        font-size: 16px;
+        margin-bottom: 10px;
+        .filter-input {
+            text-align: center;
+            font-size: 18px;
+            font-weight: bold;
+            color:var(--color-primary);
+            width: 60px;
+            border-radius: 5px;
+            border:0.5px solid #b4b4b4;
+        }
     }
 
     .filter-range-option {
@@ -114,6 +123,7 @@
         position: relative;
         padding: 15px;
         overflow: hidden;
+      
         label {
             font-size: 16px;
             font-weight: bold;
@@ -122,9 +132,10 @@
         }
         .close-icon {
             position: absolute;
-            top: 25%;
-            left: 47%;
+            top: 55px;
+            right: 40px;
             opacity: 0.5;
+            cursor: pointer;
             font-size: 18px;
             color: var(--color-primary);
         }
@@ -143,15 +154,6 @@
     .name {
         border-left: 1px solid #ccc;
         width: 100%;
-    }
-
-    .close-icon {
-        position: absolute;
-        top: 33%;
-        left: 47%;
-        opacity: 0.5;
-        font-size: 18px;
-        color: var(--color-primary);
     }
 
     input:focus {
