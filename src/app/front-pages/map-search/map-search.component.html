@@ -24,7 +24,7 @@
                     termine la cuenta atrás</p>
                 <div class="open-reservations my-auto">
 
-                    <app-open-reservation routerLink="{{reservation.game?.id}}/interior" [reservation]="reservation"
+                    <app-open-reservation routerLink="/search/{{reservation.game?.id}}/interior" [reservation]="reservation"
                         *ngFor="let reservation of openReservations">
                     </app-open-reservation>
                 </div>

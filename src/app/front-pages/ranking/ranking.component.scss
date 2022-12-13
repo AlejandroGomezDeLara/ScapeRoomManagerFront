@@ -1,0 +1,174 @@
+.ranking-header {
+    .title {
+        font-weight: bold;
+        font-size: 32px;
+        margin-bottom: 30px;
+        color: black;
+        text-align: center;
+    }
+}
+.row {
+    margin: 0 !important;
+}
+.up {
+    font-size: 20px !important;
+    color: var(--color-open-reservation) !important;
+}
+.down {
+    font-size: 20px !important;
+    color: var(--color-danger) !important;
+}
+.ranking-container {
+    padding: 50px;
+
+    .top-user-item {
+        text-align: center;
+        background: white;
+        border-radius: 10px;
+        box-shadow: var(--item-box-shadow);
+        margin: 15px;
+       
+        .user-avatar {
+            padding-top:20px;
+            img {
+                width: 100px;
+                height: 100px;
+                border-radius: 50%;
+                object-fit: cover;
+                margin-bottom: 15px;
+                box-shadow: var(--item-box-shadow);
+            }
+        }
+
+        .user-name {
+            font-weight: bold;
+            font-size: 20px;
+            text-transform: capitalize;
+            margin: 0;
+        }
+        .user-alias {
+            color: #ccc;
+            font-style: italic;
+            font-size: 14px;
+        }
+        .user-summary {
+            border-top: 0.5px solid #ccc;
+
+            .user-summary-item {
+                padding: 10px;
+                color:var(--dark-background);
+                font-weight: bold;
+                p {
+                    font-size: 24px;
+                    i{
+                        font-size: 16px;
+                        color:var(--color-primary);
+                    }
+                }
+                .position-first{
+                    font-size: 26px;
+                    i{
+                        font-size: 26px;
+                        color:#FFD700;
+                    }
+                }
+                .position-second{
+                    font-size: 22px;
+                    i{
+                        font-size: 22px;
+                        color:#C0C0C0;
+
+                    }
+                }
+                .position-third{
+                    font-size: 18px;
+                    i{
+                        font-size: 18px;
+                        color:#CD7F32;
+                    }
+                }
+            }
+           
+        }
+    }
+
+    .ranking-users{
+        padding-top: 70px;
+        .ranking-users-header{
+            .user-label{
+                p{
+                    text-align: left;
+                }
+            }
+            p{
+                padding:10px;
+                color:rgb(103, 103, 103);
+                text-align: center;
+            }
+        }
+        .ranking-users-container{
+            max-height: 700px;
+            overflow-y: scroll;
+            .ranking-user{
+                padding:10px;
+                background: white;
+                box-shadow: var(--item-box-shadow);
+                border-radius: 10px;
+                margin-bottom: 15px !important; 
+                .ranking-position{
+                    font-size: 18px;
+                    color: #ccc;
+                }
+                p{
+                    text-align: center;
+                    margin:0;
+                }
+                .user-image{
+                    text-align: center;
+                    img{
+                        width: 50px;
+                        height: 50px;
+                        object-fit: cover;
+                        border-radius: 50%;
+                    }
+                    
+                }
+                .completed-events{
+                    i{
+                        color:var(--color-primary);
+                    }
+                    span{
+                        font-size: 20px;
+                        font-weight: bold;
+                    }
+                }
+                .funly-points{
+                    span{
+                        font-size: 20px;
+                        font-weight: bold;
+                    }
+                }
+
+                .user{
+                    padding-left: 0;
+                    p{
+                        text-align: left;
+                        margin: 0;
+                    }
+                    .name{
+                        font-size: 16px;
+                        font-weight: bold;
+                        margin-left: 10px;
+                    }
+                    .user-alias{
+                        color: #ccc;
+                        padding-left: 15px;
+                        font-style: italic;
+                        font-size: 14px; 
+                    }
+                }
+               
+            }
+        }
+    }
+}

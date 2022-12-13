@@ -11,6 +11,7 @@ const routes: Routes = [
   { path: 'logout', redirectTo: 'login', pathMatch: 'full' },
   { path: 'register', loadChildren: () => import('./front-pages/register/register.module').then(m => m.RegisterModule) },
   { path: 'map', loadChildren: () => import('./front-pages/map-search/map-search.module').then(m => m.MapSearchModule) },
+  { path: 'ranking', loadChildren: () => import('./front-pages/ranking/ranking.module').then(m => m.RankingModule) },
 
 
 ];

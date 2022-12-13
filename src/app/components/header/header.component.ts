@@ -20,7 +20,7 @@ export class HeaderComponent implements OnInit,AfterContentInit {
     },
     {
       name:'Ranking',
-      route:'/',
+      route:'/ranking',
       icon:'star'
     },
     {
