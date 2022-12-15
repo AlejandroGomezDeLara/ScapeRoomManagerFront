@@ -1,8 +1,15 @@
 .ranking-header {
     .title {
         font-weight: bold;
-        font-size: 32px;
+        font-size: 36px;
         margin-top: 30px;
+        color: black;
+        text-align: center;
+    }
+    .subtitle{
+        font-weight: bold;
+        font-size: 18px;
+        margin-bottom: 30px;
         color: black;
         text-align: center;
     }
@@ -20,8 +27,31 @@
 }
 .ranking-container {
     padding-bottom: 50px;
+    .filters-labels-container{
+        padding:20px;
+        margin-bottom: 20px;
+        .filter-label{
+            i{
+                font-size: 18px;
+                color: var(--color-primary);
+            }
+            font-weight: bold;
+        }
+    }
+    .top-users-title{
+        text-align: center;
+        font-size: 32px;
+        font-weight: bold;
+        margin-bottom: 30px;
+        i{
+            color:#FFD700;
+        }
+        
+    }
     .top-users{
+        background: #fafafa;
         position: relative;
+        padding:35px;
         .winner-user{
             padding:30px 30px 0px 30px;
             .user-avatar {
@@ -39,17 +69,9 @@
         
         .second-user,.third-user{
             margin-top: 12vh;
+            padding:30px 30px 0px 30px;
         }
-        .top-users-title{
-            text-align: center;
-            font-size: 26px;
-            font-weight: bold;
-            margin-bottom: 30px;
-            i{
-                color:#FFD700;
-            }
-            
-        }
+        
         padding:20px;
     }
     .top-user-item {
@@ -58,12 +80,12 @@
         border-radius: 10px;
         box-shadow: var(--item-box-shadow);
         margin: 15px;
-        
+        transition: 0.2s ease;
         .user-avatar {
             padding-top:20px;
             img {
-                width: 100px;
-                height: 100px;
+                width: 125px;
+                height: 125px;
                 border-radius: 50%;
                 object-fit: cover;
                 margin-bottom: 15px;
@@ -132,7 +154,44 @@
            
         }
     }
+  
+    .top-user-item:hover {
+        cursor: pointer;
+        transform: scale(1.05);
+    }
+    
+    .redeem-funly-points{
+        background-color: var(--dark-background);
+        background-image: url(../../../assets/imgs/box-transparent-dark.svg);
+        background-repeat: space;
 
+        background-size: 150px;
+        z-index: 1;
+        color:white;
+        padding:50px;
+        box-shadow: var(--item-box-shadow);
+        p{
+            font-size: 32px;
+            font-weight: bold;
+        }
+        .redeem-funly-points-button{
+            padding:10px 20px;
+            border-radius: 25px;
+            box-shadow: var(--item-box-shadow);
+            color:white;
+            font-size: 18px;
+            font-weight: bold;
+            background: var(--color-primary);
+            border:none;
+            transition: 0.2s ease;
+            span{
+                font-size: 22px;
+            }
+        }
+        .redeem-funly-points-button:hover{
+            transform: scale(1.05);
+        }
+    }
     .ranking-users{
         padding-top: 50px;
         padding-bottom: 50px;
@@ -154,11 +213,12 @@
             overflow-y: scroll;
             .ranking-user{
                 margin-right: 20px !important;
-                padding:10px;
+                padding:15px;
                 background: white;
                 box-shadow: var(--item-box-shadow);
                 border-radius: 10px;
-                margin-bottom: 15px !important; 
+                margin-bottom: 15px !important;
+                transition: 0.2s ease; 
                 .ranking-position{
                     font-size: 18px;
                     color: #ccc;
@@ -179,7 +239,7 @@
                 }
                 .completed-events{
                     i{
-                        color:#ccc;
+                        color:var(--color-primary);
                     }
                     span{
                         font-size: 20px;
@@ -196,21 +256,21 @@
                 .user{
                     padding-left: 0;
                     img{
+                        float: left;
                         width: 50px;
                         height: 50px;
                         object-fit: cover;
                         border-radius: 50%;
                     }
-                    p{
-                        text-align: center;
-                        margin: 0;
-                    }
+                    
                     .name{
+                        margin: 0;
                         font-size: 16px;
                         font-weight: bold;
                         margin-left: 10px;
                     }
                     .user-alias{
+                        margin: 0;
                         color: #ccc;
                         padding-left: 15px;
                         font-style: italic;
@@ -218,6 +278,10 @@
                     }
                 }
                
+            }
+            .ranking-user:hover {
+                cursor: pointer;
+                transform: scale(1.05);
             }
         }
     }
