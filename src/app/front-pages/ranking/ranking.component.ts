@@ -1,5 +1,6 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { RankingData } from 'src/app/models/RankingData';
 import { User } from 'src/app/models/User';
 import { ApiService } from 'src/app/services/api.service';
 
@@ -22,9 +23,9 @@ export class RankingComponent implements OnInit {
   }
 
   public getRanking():void{
-    this.apiService.getEntity('ranking').subscribe((users:User[])=>{
-      this.users=users;
-      console.log(users);
+    this.apiService.getEntity('ranking').subscribe((res:RankingData)=>{
+      this.users=res.data!;
+      console.log(this.users);
     },(error:HttpErrorResponse)=>{
       console.log(error);
     });

@@ -21,7 +21,7 @@ export class HeaderComponent implements OnInit,AfterContentInit {
     {
       name:'Ranking',
       route:'/ranking',
-      icon:'star'
+      icon:'trophy'
     },
     {
       name:'Mapa',
@@ -49,8 +49,8 @@ export class HeaderComponent implements OnInit,AfterContentInit {
     },
     {
       name:'Ranking',
-      route:'/',
-      icon:'star'
+      route:'/ranking',
+      icon:'trophy'
     },
     {
       name:'Mapa',

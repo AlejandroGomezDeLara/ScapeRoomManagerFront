@@ -195,7 +195,15 @@
     .ranking-users{
         padding-top: 50px;
         padding-bottom: 50px;
-    
+        .ranking-users-title{
+            text-align: center;
+            font-size: 32px;
+            font-weight: bold;
+            margin-bottom: 30px;
+            i{
+                color:#C0C0C0;
+            }
+        }
         .ranking-users-header{
             .user-label{
                 p{
@@ -211,6 +219,8 @@
         .ranking-users-container{
             max-height: 700px;
             overflow-y: scroll;
+            display: flex;
+          
             .ranking-user{
                 margin-right: 20px !important;
                 padding:15px;

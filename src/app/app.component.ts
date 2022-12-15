@@ -14,38 +14,33 @@ import { UtilitiesService } from './services/utilities.service';
 })
 export class AppComponent implements OnInit {
 
-  
-  constructor(private auth:AuthenticationService,
-    private utilities:UtilitiesService,
-    private router:Router,
-    private apiService:ApiService){
+
+  constructor(private auth: AuthenticationService,
+    private utilities: UtilitiesService,
+    private router: Router,
+    private apiService: ApiService) {
 
   }
   ngOnInit(): void {
     this.auth.authenticationState.subscribe(token => {
       if (token != 'logout' && token != '') {
-        let user:User=this.auth.getStorageUser();
-        let token=localStorage.getItem('auth-token');
+        let user: User = this.auth.getStorageUser();
+        let token = localStorage.getItem('auth-token');
         this.apiService.setTokenToHeaders(token);
-        /* if(user.role_id)
-          this.redirectFromRoleId(user.role_id); */
+        this.redirect();
       } else if (token == 'logout') {
-      
+
         this.router.navigateByUrl('/');
         this.apiService.setTokenToHeaders(null);
 
       } else {
         console.log("primera vez");
       }
-    });  
+    });
   }
 
-  public redirectFromRoleId(role_id:number):void{
-    if(role_id == 1 || role_id == 3)
-      this.router.navigateByUrl('/');
-    if(role_id == 3)
-      this.router.navigateByUrl('/intranet');
-
+  public redirect(): void {
+    this.router.navigateByUrl('/');
   }
- 
+
 }

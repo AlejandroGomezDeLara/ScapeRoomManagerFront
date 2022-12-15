@@ -22,7 +22,9 @@
             box-shadow: var(--item-box-shadow);
             border-radius: 50%;
         }
-        
+        .avatar-placeholder{
+            filter: brightness(1) contrast(0);
+        }
         .name{
             margin: 0;
             font-weight:bold;

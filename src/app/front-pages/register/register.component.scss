@@ -17,7 +17,6 @@ a {
     }
     .container{
         background:white;
-        width: 35%;
         padding:0px;
         border-radius: 15px;
         z-index: 99;
@@ -105,3 +104,9 @@ a {
 u{
     cursor: pointer;
 }
+
+
+/* smartphones, portrait iPhone, portrait 480x320 phones (Android) */
+@media (max-width:320px)  { .container{height: 100%;border-radius: 0 !important} }
+/* smartphones, Android phones, landscape iPhone */
+@media (max-width:480px)  { .container{height: 100%;border-radius: 0 !important;} }

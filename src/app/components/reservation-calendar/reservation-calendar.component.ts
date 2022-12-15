@@ -1,6 +1,7 @@
 import { ThisReceiver } from '@angular/compiler';
 import { Component, Input, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 import { Game } from 'src/app/models/Game';
 import { GamePrice } from 'src/app/models/GamePrice';
 import { GameReservationHour } from 'src/app/models/GameReservationHour';
@@ -25,7 +26,8 @@ export class ReservationCalendarComponent implements OnInit {
 
   constructor(private apiService: ApiService,
     private loading: LoadingService,
-    private dialog:MatDialog) { }
+    private dialog:MatDialog,
+    private route:Router) { }
 
   ngOnInit(): void {
   }
@@ -156,7 +158,7 @@ export class ReservationCalendarComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
-      location.reload();
+      this.route.navigateByUrl('/chats');
     });
   }
 }
