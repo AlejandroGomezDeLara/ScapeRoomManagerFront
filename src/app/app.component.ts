@@ -40,7 +40,6 @@ export class AppComponent implements OnInit {
   }
 
   public redirect(): void {
-    this.router.navigateByUrl('/');
   }
 
 }

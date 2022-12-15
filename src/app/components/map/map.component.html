@@ -5,7 +5,7 @@
             (mapClick)="redirectGame(marker.game_id)" (mapMouseover)="openInfo(markerElem,marker)"
             (mapMouseout)="closeInfo()">
         </map-marker>
-        <map-info-window *ngIf="addresses.length>0">
+        <map-info-window *ngIf="games.length>0">
             <div style="text-align: center;margin: 0 auto;">
                 <img src="{{infoContent.game_image}}" alt="" style="width: 250px;object-fit: cover;height: 200px;">
                 <p style="font-size: 18px;font-weight: bold;"> {{infoContent.game_name}}</p>

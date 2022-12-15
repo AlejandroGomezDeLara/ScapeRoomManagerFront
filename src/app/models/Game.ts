@@ -26,6 +26,7 @@ export interface Game{
     prices:GamePrice[],
     schedule?:any[],
     images?:GameImage[],
+    category_id?:number,
     category?:GameCategory,
     subcategory?:GameSubcategory,
     open_reservations?:OpenReservation[],

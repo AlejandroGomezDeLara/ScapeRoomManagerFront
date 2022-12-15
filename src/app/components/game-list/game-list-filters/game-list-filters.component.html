@@ -56,7 +56,7 @@
     </div>
 
     <div class="form-check" *ngFor="let category of categories">
-        <label class="form-check-label" for="nombre">
+        <label class="form-check-label" for="nombre" >
             {{category.name}}
             <input class="form-check-input" name="Nombre" type="checkbox" value="{{category.id}}"
                 (click)="selectCategory(category.id!)" [checked]="url_category_id == category.id">

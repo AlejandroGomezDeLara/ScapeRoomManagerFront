@@ -16,159 +16,185 @@ export class MapComponent implements OnInit, OnChanges {
   @ViewChild('myGoogleMap', { static: false }) map!: GoogleMap;
   @ViewChild(MapInfoWindow, { static: false }) infoWindow!: MapInfoWindow
 
-  @Input() addresses: GameAddress[] = [];
-  @Input() address?: string;
+  @Input() games: Game[] = [];
   @Input() zoom!: number;
   @Input() markerIconSize: number = 40;
   @Input() center?: google.maps.LatLng | google.maps.LatLngLiteral = { lat: 39.6575069, lng: -4.1400885 };
 
-  infoContent={
-    game_name:'',
-    game_image:'',
-    game_address:'',
+  infoContent = {
+    game_name: '',
+    game_image: '',
+    game_address: '',
   };
 
   options: google.maps.MapOptions = {
     disableDoubleClickZoom: true,
     mapTypeControl: false,
-    disableDefaultUI:true,
-    zoomControl:true,
-    fullscreenControl:true,
+    disableDefaultUI: true,
+    zoomControl: true,
+    fullscreenControl: true,
     mapTypeId: google.maps.MapTypeId['ROADMAP'],
     styles: [
       {
-          "featureType": "landscape",
-          "stylers": [
-              {
-                  "saturation": -100
-              },
-              {
-                  "lightness": 60
-              }
-          ]
+        "featureType": "landscape",
+        "stylers": [
+          {
+            "saturation": -100
+          },
+          {
+            "lightness": 60
+          }
+        ]
       },
       {
-          "featureType": "road.local",
-          "stylers": [
-              {
-                  "saturation": -100
-              },
-              {
-                  "lightness": 40
-              },
-              {
-                  "visibility": "on"
-              }
-          ]
+        "featureType": "road.local",
+        "stylers": [
+          {
+            "saturation": -100
+          },
+          {
+            "lightness": 40
+          },
+          {
+            "visibility": "on"
+          }
+        ]
       },
       {
-          "featureType": "transit",
-          "stylers": [
-              {
-                  "saturation": -100
-              },
-              {
-                  "visibility": "simplified"
-              }
-          ]
+        "featureType": "transit",
+        "stylers": [
+          {
+            "saturation": -100
+          },
+          {
+            "visibility": "simplified"
+          }
+        ]
       },
       {
-          "featureType": "administrative.province",
-          "stylers": [
-              {
-                  "visibility": "off"
-              }
-          ]
+        "featureType": "administrative.province",
+        "stylers": [
+          {
+            "visibility": "off"
+          }
+        ]
       },
       {
-          "featureType": "water",
-          "stylers": [
-              {
-                  "visibility": "on"
-              },
-              {
-                  "lightness": 30
-              }
-          ]
+        "featureType": "water",
+        "stylers": [
+          {
+            "visibility": "on"
+          },
+          {
+            "lightness": 30
+          }
+        ]
       },
       {
-          "featureType": "road.highway",
-          "elementType": "geometry.fill",
-          "stylers": [
-              {
-                  "color": "#ef8c25"
-              },
-              {
-                  "lightness": 40
-              }
-          ]
+        "featureType": "road.highway",
+        "elementType": "geometry.fill",
+        "stylers": [
+          {
+            "color": "#ef8c25"
+          },
+          {
+            "lightness": 40
+          }
+        ]
       },
       {
-          "featureType": "road.highway",
-          "elementType": "geometry.stroke",
-          "stylers": [
-              {
-                  "visibility": "off"
-              }
-          ]
+        "featureType": "road.highway",
+        "elementType": "geometry.stroke",
+        "stylers": [
+          {
+            "visibility": "off"
+          }
+        ]
       },
       {
-          "featureType": "poi.park",
-          "elementType": "geometry.fill",
-          "stylers": [
-              {
-                  "color": "#b6c54c"
-              },
-              {
-                  "lightness": 40
-              },
-              {
-                  "saturation": -40
-              }
-          ]
+        "featureType": "poi.park",
+        "elementType": "geometry.fill",
+        "stylers": [
+          {
+            "color": "#b6c54c"
+          },
+          {
+            "lightness": 40
+          },
+          {
+            "saturation": -40
+          }
+        ]
       },
-  ]
-  
+    ]
+
 
   };
   markers = [] as any;
 
+
   constructor(private geocoderService: GeocodingService,
     private router: Router,
-    private zone:NgZone) { }
+    private zone: NgZone) { }
 
   ngOnChanges(changes: SimpleChanges): void {
-    this.zone.run(()=>{
+    this.zone.run(() => {
       console.log(changes);
-      if(this.addresses.length>0)
-      this.addresses=changes["addresses"].currentValue;
-      this.markers = [];      
+      if (this.games.length > 0)
+        this.games = changes["games"].currentValue;
+      this.markers = [];
       this.setMarkersByAddress();
     })
-   
+
   }
 
   ngOnInit(): void {
 
   }
 
-  dropMarker(location: google.maps.LatLng, icon: any, address?: GameAddress,) {
+  dropMarker(location: google.maps.LatLng, game: Game) {
     this.center = location;
 
+    let icon = {
+      url: "assets/imgs/location-dot-funly.png", // url
+      scaledSize: new google.maps.Size(this.markerIconSize, this.markerIconSize), // scaled size
 
+    };
+    if (game.category_id == 1) {
+      //Scape-room icon
+      icon.url = "assets/imgs/location-dot-funly.png";
+    } else if (game.category_id == 2) {
+      //Laser-tag icon
+      icon.url = "assets/imgs/location-dot-funly-laser-tag.png";
+    } else if (game.category_id == 3) {
+      //Karts icon
+      icon.url = "assets/imgs/location-dot-funly-karts.png";
+    } else if (game.category_id == 4) {
+      //Experiencia icon
+      icon.url = "assets/imgs/location-dot-funly-experience.png";
+    } else if (game.category_id == 5) {
+      //Hall-game icon
+      icon.url = "assets/imgs/location-dot-funly-hall-game.png";
+    } else if (game.category_id == 6) {
+      //Al aire libre icon
+      icon.url = "assets/imgs/location-dot-funly-outdoor.png";
+    } else if (game.category_id == 7) {
+      //VR icon
+      icon.url = "assets/imgs/location-dot-funly-vr.png";
+    }
 
     this.markers.push({
       position: location,
       clickable: true,
-      game_address:address?.address,
-      game_id: address?.id,
-      game_image:address?.game_image,
-      game_name:address?.game_name,
+      game_address: game?.address,
+      game_id: game?.id,
+      game_image: game?.image,
+      game_name: game?.name,
       animation: google.maps.Animation.DROP,
 
       options: {
         icon: icon,
-        scaledSize: new google.maps.Size(this.markerIconSize,this.markerIconSize), // scaled size
+        scaledSize: new google.maps.Size(this.markerIconSize, this.markerIconSize), // scaled size
       }
 
     });
@@ -178,51 +204,36 @@ export class MapComponent implements OnInit, OnChanges {
   }
 
   public setMarkersByAddress(): void {
-    if (this.addresses.length > 0) {
-      for (let address of this.addresses) {
-        this.geocoderService.getLocation(address.address).subscribe((res) => {
-          if (res.results.length > 0) {
-            let location = res.results[0].geometry.location;
-            const icon = {
-              url: "assets/imgs/location-dot-funly.png", // url
-              scaledSize: new google.maps.Size(this.markerIconSize,this.markerIconSize), // scaled size
-
-            };
-            this.dropMarker(location,icon, address );
-          }
-        });
-      }
-    } else {
-      this.geocoderService.getLocation(this.address!).subscribe((res) => {
+    for (let game of this.games) {
+      this.geocoderService.getLocation(game.address!).subscribe((res) => {
         if (res.results.length > 0) {
           let location = res.results[0].geometry.location;
-          const icon = {
-            url: "assets/imgs/location-dot-funly.png", // url
-            scaledSize: new google.maps.Size(60, 60), // scaled size
 
-          };
-          this.dropMarker(location, icon);
+
+
+          this.dropMarker(location, game);
         }
-
       });
     }
   }
 
   public redirectGame(game_id: number): void {
-    if (!this.address)
+    if (this.games.length > 1)
       this.router.navigate(['search/' + game_id + '/interior']);
   }
 
-  openInfo(marker: any,info:any) {
+  openInfo(marker: any, info: any) {
     console.log(info);
-    this.infoContent.game_image=info.game_image;
-    this.infoContent.game_name=info.game_name;
-    this.infoContent.game_address=info.game_address;
-
-    this.infoWindow.open(marker);
+    if(this.games.length>1){
+      this.infoContent.game_image = info.game_image;
+      this.infoContent.game_name = info.game_name;
+      this.infoContent.game_address = info.game_address;
+      this.infoWindow.open(marker);
+    }
+    
   }
 
-  closeInfo(){
+  closeInfo() {
     this.infoWindow.close();
   }
 }

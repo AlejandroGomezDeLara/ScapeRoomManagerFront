@@ -2,7 +2,7 @@
     <div class="description-header">
         <p class="title">¡Encuentra eventos FUNLY <img src="assets/imgs/box-transparent.svg" style="width:30px;"> por
             todo el mapa!</p>
-        <p class="results">Mostrando {{addresses.length}} resultados {{selected_name ? 'de "'+selected_name+'"' : ''}} disponibles en {{selected_address ?
+        <p class="results">Mostrando {{games.length}} resultados {{selected_name ? 'de "'+selected_name+'"' : ''}} disponibles en {{selected_address ?
             selected_address : 'España'}}</p>
     </div>
     <div class="row content">
@@ -13,8 +13,8 @@
         </div>
 
         <div class="col-lg-8 col-sm-12 map-container">
-            <app-map [markerIconSize]="50" [zoom]="selected_address && addresses.length>0 ? 13 : 6"
-                [addresses]="addresses"></app-map>
+            <app-map [markerIconSize]="50" [zoom]="selected_address && games.length>0 ? 13 : 6"
+                [games]="games"></app-map>
 
             <ng-container *ngIf="openReservations?.length!>0">
                 <h1 class="open-reservations-title">¡Hay {{openReservations.length}} reservas FUNLY <img

@@ -19,7 +19,7 @@ export class MapSearchComponent {
 
   public selected_address: string = '';
   public selected_name: string = '';
-  public addresses: GameAddress[] = [];
+  public games: Game[] = [];
   public openReservations:OpenReservation[]=[];
   //game filtros
   min_price: number = 0;
@@ -109,13 +109,13 @@ export class MapSearchComponent {
       params += '&selected_name=' + this.selected_name;
     params += '&page=' + this.actual_page;
 
-    let obAddresses: Observable<GameAddress[]> = this.apiService.getEntity(addressUrl + params);
+    let obGames: Observable<Game[]> = this.apiService.getEntity(addressUrl + params);
     let obReservations: Observable<OpenReservation[]> = this.apiService.getEntity(openReservationsUrl + params);
 
-    obAddresses.subscribe({
+    obGames.subscribe({
       next: (data) => {
-        const addresses: GameAddress[] = data;
-        this.addresses = addresses;
+        const games: Game[] = data;
+        this.games = games;
         this.loading.stopLoading();
       },
       error: (error) => {

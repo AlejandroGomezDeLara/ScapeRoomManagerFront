@@ -36,7 +36,7 @@
 
             <div class="filters col-lg-3 col-sm-12">
                 <div class="map" *ngIf="addresses.length>0">
-                    <app-map [addresses]="addresses" [zoom]="4.5" [center]="{lat:40.289479, lng:-3.963506}"></app-map>
+                    <app-map [games]="addresses" [zoom]="4.5" [center]="{lat:40.289479, lng:-3.963506}"></app-map>
                 </div>
                 <app-game-list-filters (filter)="applyFilters($event)"></app-game-list-filters>
             </div>
