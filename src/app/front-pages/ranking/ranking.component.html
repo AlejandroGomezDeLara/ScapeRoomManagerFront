@@ -5,153 +5,116 @@
     </div>
     <div class="top-users justify-content-center row">
 
-        <div class="top-user-item col-2">
+        <p class="top-users-title">Top <span><i class="fa fa-trophy"></i> 3 </span> mejores usuarios</p>
+
+        
+        <div class="top-user-item col-lg-2 col-sm-12 second-user h-25 d-inline-block " *ngIf="users.length>=2">
             <div class="col-12 user-avatar">
-                <img src="assets/imgs/placeholder.png" alt="">
+                <img [src]="users[1].avatar" alt="">
             </div>
             <div class="col-12">
-                <p class="user-name">Pepito Gonzales</p>
-                <p class="user-alias">@Gonsales</p>
+                <p class="user-name">{{users[1].name}}</p>
+                <p class="user-alias"><i class="fa-brands fa-twitter" *ngIf="users[1].twitter_user"></i>{{users[1].twitter_user ? users[1].twitter_user : users[1].name}}</p>
             </div>
             <div class="col-12">
                 <div class="row justify-content-center user-summary">
                     <div class="col-4 my-auto user-summary-item">
-                        <p class="position-first"><i class="fa fa-trophy"></i> 1 <i class="up fa fa-caret-up"></i></p>
+                        <p class="position-second"><i class="fa fa-trophy"></i> 2 </p>
                     </div>
                     <div class="col-4 my-auto user-summary-item">
                         <p> <i class="fa fa-building"></i> 12 </p>
                     </div>
                     <div class="col-4 my-auto user-summary-item">
-                        <p><img src="assets/imgs/box-transparent.svg" style="width:15px;" alt=""> 125 </p>
+                        <p><img src="assets/imgs/box-transparent.svg" style="width:15px;" alt="">
+                            {{users[1].funly_points}} </p>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="top-user-item col-2">
+        <div class="top-user-item winner-user col-lg-3 col-sm-12" *ngIf="users.length>=1">
             <div class="col-12 user-avatar">
-                <img src="assets/imgs/placeholder.png" alt="">
+                <img [src]="users[0].avatar" alt="">
             </div>
             <div class="col-12">
-                <p class="user-name">Pepito Gonzales</p>
-                <p class="user-alias">@Gonsales</p>
+                <p class="user-name">{{users[0].name}}</p>
+                <p class="user-alias"><i class="fa-brands fa-twitter" *ngIf="users[0].twitter_user"></i>{{users[0].twitter_user ? users[0].twitter_user : users[0].name}}</p>
             </div>
             <div class="col-12">
                 <div class="row justify-content-center user-summary">
                     <div class="col-4 my-auto user-summary-item">
-                        <p class="position-second"><i class="fa fa-trophy"></i> 2 <i class="up fa fa-caret-up"></i></p>
+                        <p class="position-first"><i class="fa fa-trophy"></i> 1 </p>
                     </div>
                     <div class="col-4 my-auto user-summary-item">
                         <p> <i class="fa fa-building"></i> 12 </p>
                     </div>
                     <div class="col-4 my-auto user-summary-item">
-                        <p><img src="assets/imgs/box-transparent.svg" style="width:15px;" alt=""> 125 </p>
+                        <p><img src="assets/imgs/box-transparent.svg" style="width:15px;" alt="">
+                            {{users[0].funly_points}} </p>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="top-user-item col-2">
+
+        <div class="top-user-item col-lg-2 col-sm-12 h-25 d-inline-block third-user" *ngIf="users.length>=3">
             <div class="col-12 user-avatar">
-                <img src="assets/imgs/placeholder.png" alt="">
+                <img [src]="users[2].avatar" alt="">
             </div>
             <div class="col-12">
-                <p class="user-name">Pepito Gonzales</p>
-                <p class="user-alias">@Gonsales</p>
+                <p class="user-name">{{users[2].name}}</p>
+                <p class="user-alias"><i class="fa-brands fa-twitter" *ngIf="users[2].twitter_user"></i> {{users[2].twitter_user ? users[2].twitter_user : users[2].name}}</p>
             </div>
             <div class="col-12">
                 <div class="row justify-content-center user-summary">
                     <div class="col-4 my-auto user-summary-item">
-                        <p class="position-third"><i class="fa fa-trophy"></i> 3 <i class="up fa fa-caret-up"></i></p>
+                        <p class="position-third"><i class="fa fa-trophy"></i> 3 </p>
                     </div>
                     <div class="col-4 my-auto user-summary-item">
                         <p> <i class="fa fa-building"></i> 12</p>
                     </div>
                     <div class="col-4 my-auto user-summary-item">
-                        <p><img src="assets/imgs/box-transparent.svg" style="width:15px;" alt=""> 125 </p>
+                        <p><img src="assets/imgs/box-transparent.svg" style="width:15px;" alt="">
+                            {{users[2].funly_points}} </p>
                     </div>
                 </div>
             </div>
         </div>
 
+
     </div>
 
     <div class="ranking-users row">
-        <div class="ranking-users-header justify-content-center row">
-            <div class="col-9 row">
-                <div class="col-1">
-                    <p><i class="fa fa-trophy"></i> Posición</p>
-                </div>
-                <div class="col-1"></div>
-                <div class="col-3 user-label">
-                    <p><i class="fa fa-user"></i> Usuario</p>
-                </div>
-                <div class="col-3">
-                    <p><i class="fa fa-building"></i> Eventos completados</p>
-                </div>
-                <div class="col-3">
-                    <p><img style="width:15px ;" src="assets/imgs/box-transparent-dark.svg" alt=""> Puntos funly</p>
-                </div>
-            </div>
-        </div>
+        <!-- <div class="ranking-users-header justify-content-center row">
+            <p>Ranking general usuarios FUNLY</p>
+        </div> -->
         <div class="ranking-users-container justify-content-center row">
-            <div class="ranking-user  col-9 row">
-                <div class="col-1 my-auto">
-                    <p class="ranking-position"><i class="fa fa-trophy"></i> 4 <i class="up fa fa-caret-up"></i> </p>
-                </div>
-                <div class="col-1 my-auto user-image">
-                    <img src="assets/imgs/placeholder.png" alt="">
-                </div>
-                <div class="col-3 my-auto user">
-                    <p class="name"> Pepito García</p>
-                    <p class="user-alias">@elpepe92</p>
-                </div>
-                <div class="col-3 my-auto completed-events">
-                    <p><i class="fa fa-building"></i> <span> 25</span> eventos completados</p>
-                </div>
-                <div class="col-3 my-auto funly-points">
-                    <p><img style="width: 20px;" src="assets/imgs/box-transparent.svg" alt=""> <span> 1252</span> puntos
-                    </p>
-                </div>
-            </div>
+            <ng-container *ngFor="let user of users;let i=index">
 
-            <div class="ranking-user  col-9 row">
-                <div class="col-1 my-auto">
-                    <p class="ranking-position"><i class="fa fa-trophy"></i> 4 <i class="up fa fa-caret-up"></i> </p>
-                </div>
-                <div class="col-1 my-auto user-image">
-                    <img src="assets/imgs/placeholder.png" alt="">
-                </div>
-                <div class="col-3 my-auto user">
-                    <p class="name"> Pepito García</p>
-                    <p class="user-alias">@elpepe92</p>
-                </div>
-                <div class="col-3 my-auto completed-events">
-                    <p><i class="fa fa-building"></i> <span> 25</span> eventos completados</p>
-                </div>
-                <div class="col-3 my-auto funly-points">
-                    <p><img style="width: 20px;" src="assets/imgs/box-transparent.svg" alt=""> <span> 1252</span> puntos
-                    </p>
-                </div>
-            </div>
+                <div class="ranking-user col-lg-5  col-sm-12 row" *ngIf="i>=3">
+                    <div class="col-lg-1 col-3 my-auto">
+                        <p class="ranking-position"><i class="fa fa-trophy"></i> {{i+1}} <i
+                                class="up fa fa-caret-up"></i>
+                        </p>
+                    </div>
 
-            <div class="ranking-user  col-9 row">
-                <div class="col-1 my-auto">
-                    <p class="ranking-position"><i class="fa fa-trophy"></i> 4 <i class="up fa fa-caret-up"></i> </p>
+                    <div class="col-lg-4 col-9 my-auto user">
+                        <img [src]="user.avatar" alt="">
+                        <span class="name">{{user.name}}</span>
+                        <span class="user-alias"><i class="fa-brands fa-twitter" *ngIf="user.twitter_user"></i>{{user.twitter_user ? user.twitter_user : user.name}}</span>
+                    </div>
+                    <div class="col-lg-3 col-6 my-auto completed-events">
+                        <p><i class="fa fa-building"></i> <span> 25</span> eventos </p>
+                    </div>
+                    <div class="col-lg-3 col-6 my-auto funly-points">
+                        <p><img style="width: 20px;" src="assets/imgs/box-transparent.svg" alt=""> <span>
+                                {{user.funly_points}}</span> puntos
+                        </p>
+                    </div>
                 </div>
-                <div class="col-1 my-auto user-image">
-                    <img src="assets/imgs/placeholder.png" alt="">
-                </div>
-                <div class="col-3 my-auto user">
-                    <p class="name"> Pepito García</p>
-                    <p class="user-alias">@elpepe92</p>
-                </div>
-                <div class="col-3 my-auto completed-events">
-                    <p><i class="fa fa-building"></i> <span> 25</span> eventos completados</p>
-                </div>
-                <div class="col-3 my-auto funly-points">
-                    <p><img style="width: 20px;" src="assets/imgs/box-transparent.svg" alt=""> <span> 1252</span> puntos
-                    </p>
-                </div>
-            </div>
+            </ng-container>
+
+
+
+
         </div>
     </div>
 </div>

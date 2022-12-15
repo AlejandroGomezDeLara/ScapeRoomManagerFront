@@ -9,5 +9,7 @@ export interface User{
     instagram_user?:string;
     facebook_user?:string;
     twitter_user?:string;
+    funly_points?:number;
+    alias?:string;
 
 }

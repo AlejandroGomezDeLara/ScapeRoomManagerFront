@@ -2,7 +2,7 @@
     .title {
         font-weight: bold;
         font-size: 32px;
-        margin-bottom: 30px;
+        margin-top: 30px;
         color: black;
         text-align: center;
     }
@@ -19,15 +19,46 @@
     color: var(--color-danger) !important;
 }
 .ranking-container {
-    padding: 50px;
-
+    padding-bottom: 50px;
+    .top-users{
+        position: relative;
+        .winner-user{
+            padding:30px 30px 0px 30px;
+            .user-avatar {
+                padding-top:20px;
+                img {
+                    width: 200px;
+                    height: 200px;
+                    border-radius: 50%;
+                    object-fit: cover;
+                    margin-bottom: 15px;
+                    box-shadow: var(--item-box-shadow);
+                }
+            } 
+        }
+        
+        .second-user,.third-user{
+            margin-top: 12vh;
+        }
+        .top-users-title{
+            text-align: center;
+            font-size: 26px;
+            font-weight: bold;
+            margin-bottom: 30px;
+            i{
+                color:#FFD700;
+            }
+            
+        }
+        padding:20px;
+    }
     .top-user-item {
         text-align: center;
         background: white;
         border-radius: 10px;
         box-shadow: var(--item-box-shadow);
         margin: 15px;
-       
+        
         .user-avatar {
             padding-top:20px;
             img {
@@ -55,10 +86,14 @@
             border-top: 0.5px solid #ccc;
 
             .user-summary-item {
-                padding: 10px;
+                padding-top: 10px;
+                padding-bottom: 10px;
                 color:var(--dark-background);
                 font-weight: bold;
                 p {
+                    span{
+                        font-size: 12px;
+                    }
                     font-size: 24px;
                     i{
                         font-size: 16px;
@@ -67,23 +102,29 @@
                 }
                 .position-first{
                     font-size: 26px;
+                    color:#FFD700;
+
                     i{
                         font-size: 26px;
                         color:#FFD700;
                     }
                 }
                 .position-second{
-                    font-size: 22px;
+                    font-size: 26px;
+                    color:#C0C0C0;
+
                     i{
-                        font-size: 22px;
+                        font-size: 26px;
                         color:#C0C0C0;
 
                     }
                 }
                 .position-third{
-                    font-size: 18px;
+                    font-size: 26px;
+                    color:#CD7F32;
+
                     i{
-                        font-size: 18px;
+                        font-size: 26px;
                         color:#CD7F32;
                     }
                 }
@@ -93,7 +134,9 @@
     }
 
     .ranking-users{
-        padding-top: 70px;
+        padding-top: 50px;
+        padding-bottom: 50px;
+    
         .ranking-users-header{
             .user-label{
                 p{
@@ -110,6 +153,7 @@
             max-height: 700px;
             overflow-y: scroll;
             .ranking-user{
+                margin-right: 20px !important;
                 padding:10px;
                 background: white;
                 box-shadow: var(--item-box-shadow);
@@ -135,7 +179,7 @@
                 }
                 .completed-events{
                     i{
-                        color:var(--color-primary);
+                        color:#ccc;
                     }
                     span{
                         font-size: 20px;
@@ -151,8 +195,14 @@
 
                 .user{
                     padding-left: 0;
+                    img{
+                        width: 50px;
+                        height: 50px;
+                        object-fit: cover;
+                        border-radius: 50%;
+                    }
                     p{
-                        text-align: left;
+                        text-align: center;
                         margin: 0;
                     }
                     .name{
