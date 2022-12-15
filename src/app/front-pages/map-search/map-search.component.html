@@ -13,8 +13,8 @@
         </div>
 
         <div class="col-lg-8 col-sm-12 map-container">
-            <app-map [markerIconSize]="50" [zoom]="selected_address && games.length>0 ? 13 : 6"
-                [games]="games"></app-map>
+            <app-map [markerIconSize]="40" [zoom]="selected_address && games.length>0 ? 13 : 6"
+                [games]="games" [selected_address]="selected_address"></app-map>
 
             <ng-container *ngIf="openReservations?.length!>0">
                 <h1 class="open-reservations-title">¡Hay {{openReservations.length}} reservas FUNLY <img
