@@ -20,8 +20,8 @@
 
     <div class="game-list-container row">
         <h1 *ngIf="!(loading.isLoading | async)">Mostrando {{total_games}} resultados
-             {{selected_address? 'en '+selected_address : ''}}</h1>
-       
+            {{selected_address? 'en '+selected_address : ''}}</h1>
+
         <div class="row">
             <div class="game-list col-lg-9 col-sm-12">
                 <ng-container *ngIf="!(loading.isLoading | async) && filteredGames.length> 0 && games">
@@ -34,7 +34,7 @@
                 </ng-container>
             </div>
 
-            <div class="filters col-lg-3 col-sm-12">
+            <div class="filters col-lg-3 col-sm-12" style="padding-left: 35px;">
                 <div class="map" *ngIf="addresses.length>0">
                     <app-map [games]="addresses" [zoom]="4.5" [center]="{lat:40.289479, lng:-3.963506}"></app-map>
                 </div>

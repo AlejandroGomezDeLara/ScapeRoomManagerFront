@@ -1,4 +1,4 @@
-<div class="chat-container">
+<div class="chat-container" [hidden]="(loading.isLoading | async)">
     <div class="chats-content row">
         <div class="chats-sidebar col-4">
             <div class="chats-searchbar-container">
@@ -117,3 +117,4 @@
         </div>
     </div>
 </div>
+<app-loading [hidden]="!(loading.isLoading | async)"></app-loading>

@@ -7,10 +7,10 @@
         font-size: 26px;
         margin-top: 400px;
         text-align: center;
-
         font-weight: bold;
         transform: translateY(-50%);
     }
+
     .chats-content {
         height: 100%;
         .chats-sidebar {
@@ -19,7 +19,6 @@
             background-color: var(--dark-background);
             background-image: url(../../../assets/imgs/box-transparent-dark.svg);
             background-repeat: space;
-
             background-size: 150px;
             border-right: 0.5px solid #ccc;
             .chats-searchbar-container {
@@ -176,7 +175,7 @@
 
                     .message {
                         padding: 10px 10px 5px 10px;
-                        border-radius: 10px;
+                        border-radius: 20px;
                         box-shadow: var(--item-box-shadow);
                         background: var(--color-primary-light);
                         color: white;
@@ -187,6 +186,7 @@
                         .message-username {
                             margin: 0;
                             font-size: 14px;
+                            font-weight: bold;
                             color: var(--chat-message-right-background);
                         }
                         .message-user {
@@ -205,7 +205,7 @@
                         }
                     }
                     .message-simple{
-                        margin: 2px;
+                        margin-top: 2px;
                         float: left;
                         background: var(--chat-message-left-background);
                     }
@@ -242,10 +242,12 @@
 
                     .message-left {
                         float: left;
+                        border-radius: 5px 20px 20px 20px;
                         background: var(--chat-message-left-background);
                     }
                     .message-right {
                         float: right;
+                        border-radius: 20px 5px 20px 20px;
                         background: var(--chat-message-right-background);
                     }
                 }

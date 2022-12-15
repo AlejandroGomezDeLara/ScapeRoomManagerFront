@@ -53,23 +53,23 @@
 
             <div class="row contact description-item">
                 <h1>Redes sociales</h1>
-                <div class="col-6">
+                <div class="col-12">
                     <p><i class="fa fa-envelope" [style.color]="game.category?.color"></i> {{game.user?.email}}</p>
 
 
                 </div>
-                <div class="col-6" *ngIf="game.user?.instagram_user">
+                <div class="col-12" *ngIf="game.user?.instagram_user">
                     <p><i class="fa-brands fa-instagram" [style.color]="game.category?.color"></i>
                         {{game.user?.instagram_user}}</p>
 
                 </div>
-                <div class="col-6" *ngIf="game.user?.facebook_user">
+                <div class="col-12" *ngIf="game.user?.facebook_user">
                     <p><i class="fa-brands fa-facebook" [style.color]="game.category?.color"></i>
                         {{game.user?.facebook_user}}</p>
 
 
                 </div>
-                <div class="col-6" *ngIf="game.user?.twitter_user">
+                <div class="col-12" *ngIf="game.user?.twitter_user">
                     <p><i class="fa-brands fa-twitter" [style.color]="game.category?.color"></i>
                         {{game.user?.twitter_user}}
                     </p>

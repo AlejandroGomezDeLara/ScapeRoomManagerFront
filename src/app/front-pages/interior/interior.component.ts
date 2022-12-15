@@ -53,6 +53,8 @@ export class InteriorComponent implements OnInit {
         const gameReservationHours: GameReservationHour[] = data[4] as GameReservationHour[];
         
         this.game = game;
+        if(this.game.images?.length!>0)
+        this.game.images?.unshift({game_id:game.id,image:game.image});
         this.game.gameReviewSummary = reviewsDataSummary;
         this.game.reviews = reviewsData.data;
         this.openReservations = openReservations;

@@ -34,6 +34,7 @@ export class ChatsComponent implements OnInit {
 
   ngOnInit(): void {
     this.user = this.auth.getStorageUser();
+    this.loading.startLoading();
     this.getChats();
     this.chatsInterval = setInterval(() => {
       this.getChats();
@@ -49,8 +50,10 @@ export class ChatsComponent implements OnInit {
       if(new_messages){
         //Sonido notificación
       }
+      this.loading.stopLoading();
     }, (error: HttpErrorResponse) => {
       console.log(error);
+      this.loading.stopLoading();
     });
   }
 
@@ -59,6 +62,7 @@ export class ChatsComponent implements OnInit {
     chat.unread_messages_count = 0;
     clearInterval(this.messagesInterval);
     this.messagesInterval = null;
+    this.loading.startLoading();
     this.getChatMessages();
     setTimeout(() => {
       this.scrollToBottom();
@@ -71,9 +75,10 @@ export class ChatsComponent implements OnInit {
   public getChatMessages(): void {
     this.apiService.getSubEntity('chats', this.selectedChat?.id!, 'messages').subscribe((messages: ChatMessage[]) => {
       this.messages = messages;
-      
+      this.loading.stopLoading();
     }, (error: HttpErrorResponse) => {
       console.log(error);
+      this.loading.stopLoading();
     });
   }
 
