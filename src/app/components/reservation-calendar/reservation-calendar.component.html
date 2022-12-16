@@ -1,13 +1,13 @@
-<div class="standard-reservation game-item row">
+<div class="standard-reservation game-item justify-content-center row">
     <h1>¡Reserva individual o grupal cuando quieras!</h1>
     <p class="funly-reservation-description">En {{game?.name}} hay que reservar con <span class="reservation-margin-hours" [style.color]="game?.category?.color">{{game?.reservation_margin_hours}} horas de antelación </span></p>
-    <div class="calendar row">
-        <div class="col-6 my-auto" [matCalendarColor]="game?.category?.color!">
+    <div class="calendar justify-content-center  row">
+        <div class="col-lg-6 col-12 my-auto" [matCalendarColor]="game?.category?.color!">
             <mat-calendar (selectedChange)="changeDate($event)" [selected]="day_selected" [dateFilter]="dateFilter">
             </mat-calendar>
         </div>
-        <div class="col-6 my-auto" *ngIf="day_selected">
-            <div class="row select-hour">
+        <div class="col-lg-6 col-12 my-auto" *ngIf="day_selected">
+            <div class="row justify-content-center  select-hour">
                 <p class="title-hour">¡Elige una hora!</p>
                 <p>Para el día {{day_selected | date}}</p>
                 <div class="hours-container">
@@ -22,22 +22,22 @@
                     </ng-container>
                 </div>
             </div>
-            <div class="row modality-btns">
+            <div class="row justify-content-center  modality-btns">
                 <p class="title-hour">¡Elige una modalidad!</p>
-                <div class="col-6">
+                <div class="col-lg-6 col-12">
                     <span [ngClass]="is_individual ? 'modality-btn modality-selected' : 'modality-btn' "
                         (click)="setIndividualReservation(true)">
                         Reserva individual <img src="assets/imgs/box-transparent.svg" style="width:20px;">
                         <span class="discount" [style.background]="game?.category?.color">-10%</span>
                     </span>
                 </div>
-                <div class="col-6">
+                <div class="col-lg-6 col-12">
                     <span [ngClass]="is_individual ? 'modality-btn ' : 'modality-btn modality-selected' "
                         (click)="setIndividualReservation(false)">Reserva grupal estándar</span>
                 </div>
             </div>
 
-            <div class="row select-price" *ngIf="!is_individual && hour_selected">
+            <div class="row justify-content-center  select-price" *ngIf="!is_individual && hour_selected">
                 <p class="title-hour">¡Elige un precio!</p>
                 <div class="prices-container">
                     <span [ngClass]="price.id == price_selected?.id ? 'price price-selected':'price'"
@@ -51,8 +51,8 @@
 
     </div>
 
-    <div class="row reservation-overview" *ngIf="day_selected && hour_selected && price_selected && !is_individual">
-        <div class="row">
+    <div class="row justify-content-center  reservation-overview" *ngIf="day_selected && hour_selected && price_selected && !is_individual">
+        <div class="row justify-content-center ">
             <p class="title">Resumen Reserva Grupal:</p>
             <p class="day">Día: <span [style.color]="game?.category?.color" class="day-selected"> {{day_selected
                     | date}}</span> a la hora: <span [style.color]="game?.category?.color" class="hour-selected">
@@ -70,10 +70,10 @@
         </div>
     </div>
     
-    <div class="row reservation-overview" *ngIf="day_selected && hour_selected && is_individual">
+    <div class="row justify-content-center  reservation-overview" *ngIf="day_selected && hour_selected && is_individual">
         <p class="funly-reservation-description">Crea ya una reserva FUNLY <img src="assets/imgs/box-transparent.svg" style="width:20px" alt="">, ¡las personas interesadas en asistir a esa hora se unirán y chatea con ellos!</p>
         <p class="funly-reservation-description">En {{game?.name}} hay que reservar con <span class="reservation-margin-hours" [style.color]="game?.category?.color">{{game?.reservation_margin_hours}} horas de antelación </span></p>
-        <div class="row">
+        <div class="row justify-content-center ">
             <app-new-open-reservation [date]="day_selected" [game]="game!" [hour]="hour_selected"></app-new-open-reservation>
         </div>
     </div>

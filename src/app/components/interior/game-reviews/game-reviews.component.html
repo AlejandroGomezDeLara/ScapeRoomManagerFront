@@ -1,6 +1,6 @@
 <div class="reviews-container row" *ngIf="game?.reviews?.length!>0">
 
-    <div class="col reviews">
+    <div class="col-12 reviews">
         <app-game-review-item [color]="game?.category?.color!" *ngFor="let review of game?.reviews" [review]="review">
         </app-game-review-item>
         <div class="text-center">

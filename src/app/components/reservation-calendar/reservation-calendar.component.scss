@@ -3,7 +3,7 @@
     margin: 0 auto;
     width: 100%;
     padding-top: 25px;
-    .funly-reservation-description{
+    .funly-reservation-description {
         font-weight: bold;
         font-size: 22px;
     }
@@ -27,15 +27,14 @@
         padding-top: 25px;
         .title {
             font-weight: bold;
-            font-size:26px;
+            font-size: 26px;
         }
-        .day-selected,.hour-selected,.price-selected{
+        .day-selected,
+        .hour-selected,
+        .price-selected {
             font-weight: bold;
             font-size: 24px;
         }
-        
-       
-       
     }
 }
 .calendar {
@@ -50,10 +49,10 @@
     .select-price {
         margin-top: 20px;
     }
-    .modality-btns{
-        margin:10px;
+    .modality-btns {
+        margin: 10px;
     }
-   
+
     .hour,
     .price,
     .modality-btn {
@@ -69,24 +68,25 @@
         transition: all 0.1s ease-in-out;
         background: var(--color-open-reservation);
         position: relative;
-        .discount{
+        .discount {
             position: absolute;
             top: -15px;
             right: -20px;
             font-size: 12px;
-            padding:5px;
-            color:white;
+            padding: 5px;
+            color: white;
             border-radius: 25px;
-
         }
     }
-    
-    .price:hover,.hour:hover,.modality-btn:hover {
+
+    .price:hover,
+    .hour:hover,
+    .modality-btn:hover {
         scale: 1.1;
         background: var(--dark-background);
         box-shadow: var(--item-box-shadow);
     }
-    
+
     .hour-disabled {
         padding: 10px;
         font-size: 18px;
@@ -99,11 +99,23 @@
         cursor: not-allowed;
         background: var(--color-danger);
     }
-    .hour-selected,.price-selected,.modality-selected{
-        background:var(--dark-background);
+    .hour-selected,
+    .price-selected,
+    .modality-selected {
+        background: var(--dark-background);
     }
     .title-hour {
         font-size: 18px;
         font-weight: bold;
+    }
+}
+
+@media (max-width: 902px) {
+    .reservation-overview {
+        padding: 0 !important;
+        padding-top: 10px;
+    }
+    .standard-reservation{
+        padding: 20px 0px !important;
     }
 }

@@ -43,3 +43,8 @@
         }
     }
 }
+
+/* smartphones, portrait iPhone, portrait 480x320 phones (Android) */
+@media (max-width:320px)  { .reviews{ margin-left: 0 !important} }
+/* smartphones, Android phones, landscape iPhone */
+@media (max-width:480px)  { .reviews{margin-left:0 !important} }

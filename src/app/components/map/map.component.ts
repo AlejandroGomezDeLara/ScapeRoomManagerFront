@@ -20,6 +20,7 @@ export class MapComponent implements OnInit, OnChanges {
   @Input() zoom!: number;
   @Input() markerIconSize: number = 40;
   @Input() center?: google.maps.LatLng | google.maps.LatLngLiteral = { lat: 39.6575069, lng: -4.1400885 };
+  @Input() selected_address?: string;
 
   infoContent = {
     game_name: '',
@@ -140,10 +141,12 @@ export class MapComponent implements OnInit, OnChanges {
   ngOnChanges(changes: SimpleChanges): void {
     this.zone.run(() => {
       console.log(changes);
-      if (this.games.length > 0)
+      if (this.games.length >0){
         this.games = changes["games"].currentValue;
-      this.markers = [];
-      this.setMarkersByAddress();
+        this.markers = [];
+        this.setMarkersByAddress();
+      }
+        
     })
 
   }
@@ -153,7 +156,14 @@ export class MapComponent implements OnInit, OnChanges {
   }
 
   dropMarker(location: google.maps.LatLng, game: Game) {
-    this.center = location;
+
+    if (this.selected_address || this.games.length == 1) {
+      this.center = location
+      this.zoom = 13;
+    } else {
+      this.center = { lat: 39.6575069, lng: -4.1400885 };
+      this.zoom = 6;
+    }
 
     let icon = {
       url: "assets/imgs/location-dot-funly.png", // url
@@ -208,9 +218,6 @@ export class MapComponent implements OnInit, OnChanges {
       this.geocoderService.getLocation(game.address!).subscribe((res) => {
         if (res.results.length > 0) {
           let location = res.results[0].geometry.location;
-
-
-
           this.dropMarker(location, game);
         }
       });
@@ -224,13 +231,12 @@ export class MapComponent implements OnInit, OnChanges {
 
   openInfo(marker: any, info: any) {
     console.log(info);
-    if(this.games.length>1){
-      this.infoContent.game_image = info.game_image;
-      this.infoContent.game_name = info.game_name;
-      this.infoContent.game_address = info.game_address;
-      this.infoWindow.open(marker);
-    }
-    
+    this.infoContent.game_image = info.game_image;
+    this.infoContent.game_name = info.game_name;
+    this.infoContent.game_address = info.game_address;
+    this.infoWindow.open(marker);
+
+
   }
 
   closeInfo() {

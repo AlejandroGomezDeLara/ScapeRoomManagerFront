@@ -1,13 +1,16 @@
-<div class="col-lg-8  col-md-12  game-description" *ngIf="game">
+<div class="col-lg-8  col-12  game-description" *ngIf="game">
     <div class="images">
         <ng-container *ngIf="game.schedule?.length!>0">
             <span class="closed-label open" *ngIf="!game.closed">Abierto ahora</span>
             <span class="closed-label closed" *ngIf="game.closed">Cerrado ahora</span>
         </ng-container>
-        <app-image-slider [images]="game.images!" *ngIf="game.images?.length!>0"></app-image-slider>
+        <div class="col-12">
+            <app-image-slider style="display: contents;" [images]="game.images!"
+                *ngIf="game.images?.length!>0"></app-image-slider>
+        </div>
         <img class="game-image" [src]="game.image" *ngIf="game.image && game.images?.length!<=0">
     </div>
-    <div class="game-data row">
+    <div class="game-data justify-content-center row">
         <div class="game-title"><span class="title">{{game.name}}</span> <span [style.color]="game.category?.color"
                 class="rating">{{game.gameReviewSummary?.avgStars}} <span> <em class="fa fa-star"></em></span>
             </span> <span class="reviews"> {{game.gameReviewSummary?.reviewsCount}} valoraciones</span>
@@ -33,11 +36,11 @@
                 </div>
 
                 <div class="row">
-                    <div class="description col-6">
+                    <div class="description col-lg-6 col-12">
                         <h1>Quiénes somos</h1>
                         <p>{{game.description}}</p>
                     </div>
-                    <div class="col-6 featured-reviews-container">
+                    <div class="col-lg-6 col-12 featured-reviews-container">
                         <h1>Qué dicen los usuarios</h1>
                         <div class="featured-reviews">
                             <ng-container *ngIf="game.gameReviewSummary?.featuredReviews?.length!>0">
@@ -69,7 +72,8 @@
             <p class="subtitle">
                 ¿No tienes nadie con quien ir?, no te preocupes, ¡ya hay personas que quieren participar contigo!
             </p>
-            <p class="subtitle">¡Corre, se cerrarán <span [style.color]="game.category?.color">{{game.reservation_margin_hours}} hora(s)</span> antes de
+            <p class="subtitle">¡Corre, se cerrarán <span
+                    [style.color]="game.category?.color">{{game.reservation_margin_hours}} hora(s)</span> antes de
                 que
                 empiece el evento!</p>
         </div>
@@ -82,13 +86,13 @@
         </div>
 
 
-        <div class="row game-item">
+        <div class="row calendar-container game-item">
             <app-reservation-calendar [game]="game"></app-reservation-calendar>
         </div>
 
 
         <div class="row game-item reviews-container">
-            <div class="col-6 reviews-label">
+            <div class="col-lg-6 col-12 reviews-label">
                 <h1><span [style.color]="game.category?.color"> {{game.gameReviewSummary?.reviewsCount}}</span>
                     Valoraciones
                     <span [style.color]="game.category?.color">{{game.gameReviewSummary?.avgStars}} <i
@@ -98,7 +102,7 @@
                     valoración al terminar!, te recompasaremos con puntos FUNLY <img style="width:20px;"
                         src="assets/imgs/box-transparent.svg" alt=""></p>
             </div>
-            <div class="col-6">
+            <div class="col-lg-6 col-12">
                 <app-reviews-summary [summary]="game.gameReviewSummary" [color]="game.category?.color!">
                 </app-reviews-summary>
             </div>

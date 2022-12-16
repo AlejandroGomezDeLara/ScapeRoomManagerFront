@@ -1,30 +1,30 @@
 <div class="game-rating-container">
     <i class="fa fa-close close-icon" (click)="closeDialog()"></i>
     <div class="game row">
-        <div class="col-7 my-auto game-image">
+        <div class="col-lg-7 col-12 my-auto game-image">
             <img [src]="game.image" alt="" *ngIf="game.image">
             <img src="assets/imgs/placeholder.png" alt="" *ngIf="!game.image">
 
         </div>
-        <div class="col-5 my-auto">
+        <div class="col-lg-5 col-12 my-auto">
             <p class="title">{{game.name}}</p>
             <p class="address"><i class="fa fa-location-dot" [style.color]="game.category?.color"></i> {{game.address}}
             </p>
         </div>
     </div>
 
-    <div class="rate">
+    <div class="rate row">
         <p class="rate-title">Puntúe su experiencia <span> (obligatorio)</span></p>
-        <div class="select-rating">
+        <div class="select-rating col-12">
             <i *ngFor="let item of [0,1,2,3,4]; let i = index"
                 [ngClass]="i + 1 <= gameReview.stars? 'fa fa-star':'fa-regular fa-star'" (click)="changeRating(i+1)"
                 [style.color]="game.category?.color"></i>
         </div>
-        <div class="description">
+        <div class="description col-12">
             <p class="rate-title" for="description">Detalle su valoración <span>(obligatorio)</span> </p>
             <textarea [(ngModel)]="gameReview.text" [style.border]="'2px solid '+game.category?.color" rows="4" cols="50" placeholder="Cuenta tu experiencia en el evento"></textarea>
         </div>
-        <div class="image">
+        <div class="image col-12">
             <p class="rate-title">Subir imagen <span>Opcional</span></p>
             <img class="upload-img" [src]="gameReview.image" alt="" *ngIf="gameReview.image">
             <input type="file" accept="image/*" (change)="setImageBase64($event)" />

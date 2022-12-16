@@ -1,113 +1,134 @@
 /* You can add global styles to this file, and also import other style files */
-@import url('./theme/variables.scss');
+@import url("./theme/variables.scss");
 @import "~bootstrap/dist/css/bootstrap.css";
 
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 body {
-    position: relative;
-    background: #f2f2f2;
-    background-image: url(assets/imgs/box-transparent-light.svg);
-    background-repeat: space;
-    background-size: 200px;
-    background-position: center;
-    background-repeat: space;
-    background-size: 200px;
-    z-index: 1;
-    background-position: center;
-    font-family: 'Raleway' !important;
+  position: relative;
+  background: #f2f2f2;
+  background-image: url(assets/imgs/box-transparent-light.svg);
+  background-repeat: space;
+  background-size: 200px;
+  background-position: center;
+  background-repeat: space;
+  background-size: 200px;
+  z-index: 1;
+  background-position: center;
+  font-family: "Raleway" !important;
 }
 
-.gm-style-cc { display:none; }
+.gm-style-cc {
+  display: none;
+}
 a[href^="http://maps.google.com/maps"],
 a[href^="https://maps.google.com/maps"],
-a[href^="https://www.google.com/maps"] {
-    display: none !important;
+a[href^="https://www.google.com/maps"]
+{
+  display: none !important;
 }
 
-//Estilos autocomplete google 
-.pac-container{
-    margin-top: -5px;
-    z-index: 999;
-    box-shadow: var(--item-box-shadow);
-    padding:15px;
-    border-radius: 0px 0px 25px 25px;
-    border:none;
+//Estilos autocomplete google
+.pac-container {
+  margin-top: -5px;
+  z-index: 999;
+  box-shadow: var(--item-box-shadow);
+  padding: 15px;
+  border-radius: 0px 0px 25px 25px;
+  border: none;
 }
-.pac-item-query{
-    font-size: 14px;
-    font-family: 'Ubuntu' !important;
-    border:none;
+.pac-item-query {
+  font-size: 14px;
+  font-family: "Ubuntu" !important;
+  border: none;
 }
-.pac-item:hover{
-    cursor: pointer;
-    background: rgba(107, 27, 145, 0.1);
-    color:var(--color-primary);
+.pac-item:hover {
+  cursor: pointer;
+  background: rgba(107, 27, 145, 0.1);
+  color: var(--color-primary);
 }
 .pac-container:after {
-    /* Disclaimer: not needed to show 'powered by Google' if also a Google Map is shown */
+  /* Disclaimer: not needed to show 'powered by Google' if also a Google Map is shown */
 
-    background-image: none !important;
-    height: 0px;
+  background-image: none !important;
+  height: 0px;
 }
-.pac-item{
-    color:var(--color-primary);
-    border:none;
+.pac-item {
+  color: var(--color-primary);
+  border: none;
 }
-.pac-matched{
-    border:none;
-    color:var(--color-primary);
-
+.pac-matched {
+  border: none;
+  color: var(--color-primary);
 }
 
-html, body { height: 100%; }
+html,
+body {
+  height: 100%;
+}
 
-
-
-.form-check-input:checked{
+.form-check-input:checked {
   background-color: var(--color-primary);
   border-color: var(--color-primary);
 }
 /* Estilos para input type range */
-.slider{
+.slider {
   margin: 10px 0px 20px 0px !important;
-  .values{
-    span{
-      color:var(--color-primary) !important;
+  .values {
+    span {
+      color: var(--color-primary) !important;
     }
   }
-  .bar{
-    .right-handle,.left-handle{
-      .handle-tooltip{
-        border:1px solid var(--color-primary) !important;
-        color:white !important;
-        background:var(--color-primary-light) !important;
+  .bar {
+    .right-handle,
+    .left-handle {
+      .handle-tooltip {
+        border: 1px solid var(--color-primary) !important;
+        color: white !important;
+        background: var(--color-primary-light) !important;
       }
-      .handle-tooltip::before{
+      .handle-tooltip::before {
         border-top-color: var(--color-primary) !important;
       }
-      .handle-tooltip::after{
+      .handle-tooltip::after {
         border-top-color: var(--color-primary-light) !important;
       }
-      border:5px solid var(--color-primary) !important;
+      border: 5px solid var(--color-primary) !important;
       background: var(--color-primary) !important;
     }
-    .filler{
-      border:1px solid var(--color-primary) !important;
-      span{
+    .filler {
+      border: 1px solid var(--color-primary) !important;
+      span {
         background: var(--color-primary-light) !important;
       }
     }
   }
-  
 }
 .mat-dialog-container {
   border-radius: 10px !important;
 }
 .backdropBackground {
-  background-color: rgba(0, 0, 0,0.7);
+  background-color: rgba(0, 0, 0, 0.7);
 }
+
+/* smartphones, portrait iPhone, portrait 480x320 phones (Android) */
+@media (max-width: 320px) {
+  .cdk-overlay-pane {
+    max-width: 100% !important;
+    width: 100% !important;
+  }
+  
+}
+/* smartphones, Android phones, landscape iPhone */
+@media (max-width: 480px) {
+  .cdk-overlay-pane {
+    max-width: 100% !important;
+    width: 100% !important;
+  }
+  
+}
+

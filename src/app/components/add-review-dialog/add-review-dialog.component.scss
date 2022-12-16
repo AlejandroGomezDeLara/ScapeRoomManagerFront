@@ -1,7 +1,12 @@
+
 .game-rating-container{
     padding: 15px;
     position: relative;
     text-align: center;
+    input,textarea{
+        max-width: 100%;
+
+    }
     .close-icon{
         position: absolute;
         top: 0;

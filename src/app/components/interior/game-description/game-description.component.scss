@@ -3,7 +3,7 @@
     z-index: 2;
     .images {
         position: relative;
-        .game-image{
+        .game-image {
             width: 100%;
             height: 550px;
             object-fit: contain;
@@ -114,7 +114,6 @@
             width: 100%;
             overflow: hidden;
             text-align: center;
-            padding: 20px;
             overflow-x: auto;
             white-space: nowrap;
         }
@@ -210,5 +209,17 @@
                 cursor: pointer;
             }
         }
+    }
+}
+
+@media (max-width: 902px) {
+    .game-data {
+        padding: 20px 10px !important;
+    }
+    .calendar-container{
+        padding:0 !important;
+    }
+    .game-description {
+        padding: 0 !important;
     }
 }
