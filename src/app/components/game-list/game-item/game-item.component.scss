@@ -122,3 +122,22 @@
     scale: 1.005;
     cursor: pointer;
 }
+
+@media (max-width: 902px) {
+    .game-logo img{
+       margin-bottom: 15px !important;
+    }
+    .game-content{
+        .title{
+            p{
+                max-width: 50% !important;
+            }
+        }
+        .address{
+            max-width: 60% !important;
+        }
+        .rating{
+            max-width: 50% !important;
+        }
+    }
+}

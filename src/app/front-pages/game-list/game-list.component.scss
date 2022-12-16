@@ -6,6 +6,7 @@
     z-index: 1;
     background-position: center;
     width: 100vw;
+    overflow-x: hidden;
     .map {
         box-shadow: var(--item-box-shadow);
         border-radius: 10px;
@@ -49,17 +50,7 @@
         background-size: 200px;
         z-index: 1;
         background-position: center;
-        video {
-            filter: brightness(50%);
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            height: 100%;
-            z-index: 1;
-            left: 0;
-            top: 0;
-            position: absolute;
-        }
+       
     }
     .game-list-container {
         padding: 40px;

@@ -3,10 +3,10 @@ a {
 }
 .login-page {
     width: 100%;
-    height: 100vh;
     display: inline-block;
     display: flex;
     align-items: center;
+    overflow: hidden;
     video{
         width: 100vw;
         object-fit: cover;
@@ -16,7 +16,9 @@ a {
         position: absolute;
     }
     .container{
-        background:white;
+        margin-top: 35px;
+        background-color: white;
+        box-shadow: var(--item-box-shadow);
         padding:0px;
         border-radius: 15px;
         z-index: 99;
@@ -106,6 +108,26 @@ u{
 }
 
 /* smartphones, portrait iPhone, portrait 480x320 phones (Android) */
-@media (max-width:320px)  { .container{height: 100%;border-radius: 0 !important} }
+@media (max-width: 320px) {
+    .container {
+        height: 100%;
+        border-radius: 0 !important;
+    }
+    .login-page {
+        video {
+            display: none !important;
+        }
+    }
+}
 /* smartphones, Android phones, landscape iPhone */
-@media (max-width:480px)  { .container{height: 100%;border-radius: 0 !important;} }
+@media (max-width: 480px) {
+    .container {
+        height: 100%;
+        border-radius: 0 !important;
+    }
+    .login-page {
+        video {
+            display: none !important;
+        }
+    }
+}

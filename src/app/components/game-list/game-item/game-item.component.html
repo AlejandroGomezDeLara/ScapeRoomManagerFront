@@ -4,12 +4,15 @@
         <img style="background: rgb(233, 233, 233)" src="assets/imgs/placeholder.png" alt="" *ngIf="!game.image">
     </div>
     <div class="game-content col-md-9">
-        <div class="title row">
+        <div class="title">
             <p [style.color]="game.category?.color">{{game.name}} </p>
-            <p class="enterprise"><i class="fa-solid fa-building" [style.color]="game.category?.color"></i> {{game.user?.name}}</p>
+            <p class="enterprise"><i class="fa-solid fa-building" [style.color]="game.category?.color"></i>
+                {{game.user?.name}}</p>
         </div>
-        <app-rating [color]="game.category?.color" [rating]="game.rating!" [reviews]="game.reviewsCount!" ></app-rating>
-
+        <div class="rating">
+            <app-rating [color]="game.category?.color" [rating]="game.rating!"
+                [reviews]="game.reviewsCount!"></app-rating>
+        </div>
         <div class="address">
             <p><i class="fa fa-location-dot"></i> {{game.address}}</p>
         </div>
@@ -17,16 +20,16 @@
         <!-- Data -->
         <span class="game-price">Desde <span class="price"
                 [style.color]="game.category?.color">{{game.min_price}}€</span>/persona</span>
-        <span class="game-duration"><i class="fa-regular fa-clock" [style.color]="game.category?.color"></i> <span class="duration"
-                [style.color]="game.category?.color"> {{game.max_duration}}</span> min</span>
+        <span class="game-duration"><i class="fa-regular fa-clock" [style.color]="game.category?.color"></i> <span
+                class="duration" [style.color]="game.category?.color"> {{game.max_duration}}</span> min</span>
         <button class="reservation-button" [style.background-color]="game.category?.background_color"
             [style.color]="game.category?.color">Ver más <i class="fa fa-arrow-right"></i></button>
         <p [style.color]="game.category?.color" class="people"><i class="fa fa-user-group"></i> {{game.min_people}} -
             {{game.max_people}} personas </p>
 
-       <!--  Componente rating -->
+        <!--  Componente rating -->
 
-        
+
 
         <!-- Categorias -->
         <div class="categories row">
@@ -36,11 +39,12 @@
                 {{game.subcategory?.name}} </span>
         </div>
 
-        
+
 
         <div class="data row">
             <p>{{game.description}}</p>
-            <p class="comment" *ngIf="game.firstReview"><img [src]="game.firstReview.user?.avatar" alt=""> "{{game.firstReview.text}}"</p>
+            <p class="comment" *ngIf="game.firstReview"><img [src]="game.firstReview.user?.avatar" alt="">
+                "{{game.firstReview.text}}"</p>
         </div>
     </div>
 

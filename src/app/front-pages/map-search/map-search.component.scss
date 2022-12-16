@@ -24,14 +24,16 @@
     }
     .map-container{
         height: 700px;
-        .open-reservations{
+        
+    }
+    .reservations{
+        .open-reservations {
             width: 100%;
             overflow: hidden;
             text-align: center;
             overflow-x: auto;
             white-space: nowrap;
             position: relative;
-            padding:50px;
             background-color: var(--dark-background);
             background-image: url(../../../assets/imgs/box-transparent-dark.svg);
             background-repeat: space;
@@ -39,17 +41,7 @@
             background-size: 200px;
             z-index: 1;
             background-position: center;
-            video{
-                filter: brightness(50%);
-                width: 100%;
-                height: 100%;
-                object-fit: cover;
-                height: 100%;
-                z-index: 1;
-                left: 0;
-                top: 0;
-                position: absolute;
-            }
+           
         }
         .open-reservations-title{
             color:var(--color-primary);
@@ -79,3 +71,10 @@
     }
    
 }
+
+@media (max-width: 902px) {
+    .map-search-container{
+        padding: 0 !important;
+    }
+}
+

@@ -1,16 +1,19 @@
 <div class="chat-container" [hidden]="(loading.isLoading | async)">
     <div class="chats-content row">
-        <div class="chats-sidebar col-4">
-            <div class="chats-searchbar-container">
+        
+       
+
+        <div class="chats-sidebar col-lg-4 col-12 row" *ngIf="showMenu && chats.length>0">
+            <div class="chats-searchbar-container col-12">
                 <input class="chats-searchbar" type="searchbar" placeholder="Buscar chat">
                 <i class="search-icon fa fa-search"></i>
             </div>
-            <div class="chats-items-container">
+            <div class="chats-items-container col-12">
                 <div class="chats-item row" *ngFor="let chat of chats" (click)="selectChat(chat)">
-                    <div class="col-2">
+                    <div class="col-lg-2 col-3">
                         <img class="chat-image" [src]="chat.image" alt="">
                     </div>
-                    <div class="col-10 my-auto">
+                    <div class="col-lg-10 col-9 my-auto">
                         <p class="chat-name">{{chat.name}} {{chat.open_reservation?.date | date:'dd/M'}} -
                             {{chat.open_reservation?.game_reservation_hour?.hour | slice:0:5}} <span
                                 class="chat-hour">{{chat.last_message?.created_at|
@@ -25,8 +28,12 @@
                 </div>
             </div>
         </div>
-        <div class="interior-chat col-8" *ngIf="selectedChat">
+
+        <div class="interior-chat col-lg-12 col-12" *ngIf="selectedChat">
             <div class="chat-title-container row">
+                <button class="chats-sidebar-menu" (click)="toggleShowMenu()">
+                    <i class="fa fa-bars"></i>
+                </button>
                 <p class="chat-title">{{selectedChat.name}} - {{selectedChat.open_reservation?.date | date:'dd/MMM'}} -
                     {{selectedChat.open_reservation?.game_reservation_hour?.hour | slice:0:5}} </p>
                 <div class="chat-users">
@@ -40,21 +47,21 @@
 
             <div id="messages-container-scroll" class="messages-container">
 
-                <div class="message-container row" *ngFor="let message of messages;let i=index">
+                <div class="message-container justify-content-center row" *ngFor="let message of messages;let i=index">
 
                     <ng-container *ngIf="i==0">
 
-                        <div class="col-1 user-image" *ngIf="user.id != message.user!.id">
-                            <img [src]="message.user!.avatar" alt="">
+                        <div class="col-lg-1 col-2 user-image" *ngIf="user.id != message?.user!.id" >
+                            <img [src]="message?.user!.avatar" alt="" >
                         </div>
-                        <div class="col">
+                        <div [ngClass]="user.id != message?.user!.id ? 'col-lg-11 col-10' : 'col-lg-11 col-11'">
                             <div
-                                [ngClass]="user.id == message.user!.id  ? 'message message-right' : 'message message-left'">
-                                <p class="message-username" *ngIf="user.id != message.user!.id">
-                                    {{message.user?.name}}
+                                [ngClass]="user.id == message?.user!.id  ? 'message message-right' : 'message message-left'">
+                                <p class="message-username" *ngIf="user.id != message?.user!.id">
+                                    {{message?.user?.name}}
                                 </p>
-                                <span class="message-text">{{message.text}} </span>
-                                <span class="message-hour"> {{message.created_at | date:'HH:mm'}}</span>
+                                <span class="message-text">{{message?.text}} </span>
+                                <span class="message-hour"> {{message?.created_at | date:'HH:mm'}}</span>
                             </div>
 
 
@@ -64,27 +71,27 @@
 
                     <ng-container *ngIf="i>=1">
 
-                        <div class="col-1 user-image" *ngIf="user.id != message.user!.id">
-                            <img [src]="message.user!.avatar" alt="" *ngIf="messages[i-1].user?.id != message.user?.id">
+                        <div class="col-lg-1 col-2 user-image" *ngIf="user.id != message?.user!.id">
+                            <img [src]="message?.user!.avatar" alt="" *ngIf="messages[i-1].user?.id != message.user?.id">
                         </div>
-                        <div class="col">
-                            <ng-container *ngIf="messages[i-1].user?.id != message.user?.id">
+                        <div [ngClass]="user.id != message?.user!.id ? 'col-lg-11 col-10' : 'col-lg-11 col-11'">
+                            <ng-container *ngIf="messages[i-1].user?.id != message?.user?.id">
                                 <div
-                                    [ngClass]="user.id == message.user!.id  ? 'message message-right' : 'message message-left'">
-                                    <p class="message-username" *ngIf="user.id != message.user!.id">
-                                        {{message.user?.name}}
+                                    [ngClass]="user.id == message?.user!.id  ? 'message message-right' : 'message message-left'">
+                                    <p class="message-username" *ngIf="user.id != message?.user!.id">
+                                        {{message?.user?.name}}
                                     </p>
-                                    <span class="message-text">{{message.text}} </span>
-                                    <span class="message-hour"> {{message.created_at | date:'HH:mm'}}</span>
+                                    <span class="message-text">{{message?.text}} </span>
+                                    <span class="message-hour"> {{message?.created_at | date:'HH:mm'}}</span>
                                 </div>
                             </ng-container>
 
-                            <ng-container *ngIf="messages[i-1].user?.id == message.user?.id">
+                            <ng-container *ngIf="messages[i-1].user?.id == message?.user?.id">
                                 <div
-                                    [ngClass]="user.id == message.user!.id  ? 'message-right-simple message' : 'message-simple message'">
+                                    [ngClass]="user.id == message?.user!.id  ? 'message-right-simple message' : 'message-simple message'">
 
-                                    <span class="message-text">{{message.text}} </span>
-                                    <span class="message-hour"> {{message.created_at | date:'HH:mm'}}</span>
+                                    <span class="message-text">{{message?.text}} </span>
+                                    <span class="message-hour"> {{message?.created_at | date:'HH:mm'}}</span>
                                 </div>
                             </ng-container>
                         </div>
@@ -101,19 +108,19 @@
 
             </div>
 
-            <div class="chat-footer">
-                <div class="input-container">
-                    <input class="message-input" (keydown.enter)="sendMessage()" [(ngModel)]="actualMessage!.text"
-                        type="text" placeholder="Escribe un mensaje">
-                    <button class="audio-button"><i class="fa fa-microphone"></i></button>
-                    <button class="send-button" type="submit" (click)="sendMessage()"><i
-                            class="fa fa-paper-plane"></i></button>
-                </div>
-            </div>
+           
         </div>
-
-        <div class="col-8" *ngIf="!selectedChat">
-            <p class="void-text">Selecciona un chat para ver sus mensajes</p>
+        <div class="col-lg-8 col-12 void-text" *ngIf="!selectedChat">
+            <p>Selecciona un chat para ver sus mensajes</p>
+        </div>
+    </div>
+    <div class="chat-footer" *ngIf="selectedChat">
+        <div class="input-container">
+            <input class="message-input" (keydown.enter)="sendMessage()" [(ngModel)]="actualMessage!.text"
+                type="text" placeholder="Escribe un mensaje">
+            <button class="audio-button"><i class="fa fa-microphone"></i></button>
+            <button class="send-button" type="submit" (click)="sendMessage()"><i
+                    class="fa fa-paper-plane"></i></button>
         </div>
     </div>
 </div>

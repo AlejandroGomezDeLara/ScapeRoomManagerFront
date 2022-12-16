@@ -17,6 +17,7 @@ export class ChatsComponent implements OnInit {
   public chats: Chat[] = [];
   public messages: ChatMessage[] = [];
   public selectedChat?: Chat;
+  public showMenu:boolean=true;
   public actualMessage?: ChatMessage = {
     text: "",
   };
@@ -24,7 +25,7 @@ export class ChatsComponent implements OnInit {
 
   public chatsInterval: any;
   public messagesInterval: any;
-
+  public refreshMessagesTime:number=2000;
 
   constructor(private apiService: ApiService,
     public loading: LoadingService,
@@ -38,7 +39,7 @@ export class ChatsComponent implements OnInit {
     this.getChats();
     this.chatsInterval = setInterval(() => {
       this.getChats();
-    }, 5000);
+    }, this.refreshMessagesTime);
   }
 
 
@@ -60,22 +61,24 @@ export class ChatsComponent implements OnInit {
   public selectChat(chat: Chat): void {
     this.selectedChat = chat;
     chat.unread_messages_count = 0;
+    this.showMenu=false;
     clearInterval(this.messagesInterval);
     this.messagesInterval = null;
     this.loading.startLoading();
     this.getChatMessages();
-    setTimeout(() => {
-      this.scrollToBottom();
-    }, 100)
+
     this.messagesInterval = setInterval(() => {
       this.getChatMessages();
-    }, 5000);
+    }, this.refreshMessagesTime);
   }
 
   public getChatMessages(): void {
     this.apiService.getSubEntity('chats', this.selectedChat?.id!, 'messages').subscribe((messages: ChatMessage[]) => {
       this.messages = messages;
       this.loading.stopLoading();
+      setTimeout(() => {
+        this.scrollToBottom();
+      }, 100);
     }, (error: HttpErrorResponse) => {
       console.log(error);
       this.loading.stopLoading();
@@ -84,13 +87,19 @@ export class ChatsComponent implements OnInit {
 
   public sendMessage(): void {
     if (this.actualMessage?.text != "") {
-      this.apiService.addSubEntity('chats', this.selectedChat?.id!, 'messages', this.actualMessage).subscribe((message: ChatMessage) => {
+      let message:ChatMessage={
+        text:this.actualMessage?.text!,
+        user:this.user,
+        created_at:new Date
+      };
+      setTimeout(() => {
+        this.scrollToBottom();
+      }, 100);
+      this.actualMessage!.text = "";
+      this.messages.push(message);
+      this.apiService.addSubEntity('chats', this.selectedChat?.id!, 'messages', message).subscribe((message: ChatMessage) => {
         console.log(message);
-        this.actualMessage!.text = "";
-        setTimeout(() => {
-          this.scrollToBottom();
-        }, 100);
-        this.getChatMessages();
+        this.actualMessage!.text = "";      
       }, (error: HttpErrorResponse) => {
         console.log(error);
       });
@@ -109,5 +118,10 @@ export class ChatsComponent implements OnInit {
     this.chatsInterval = null;
     clearInterval(this.messagesInterval);
     this.messagesInterval = null;
+  }
+
+  public toggleShowMenu():void{
+    this.showMenu=!this.showMenu;
+    this.selectedChat=undefined;
   }
 }

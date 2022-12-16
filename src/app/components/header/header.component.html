@@ -3,23 +3,23 @@
         <a class="navbar-brand" href="/">
             <img src="assets/imgs/logo-transparent.png" alt="">
         </a>
-        <button class="navbar-toggler" type="button" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false">
             <i class="fas fa-bars"></i>
         </button>
-        <div class="collapse navbar-collapse" id="navbarText" mdbCollapse>
+        <div class="collapse navbar-collapse" id="navbarText">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <ng-container *ngIf="utilities.isEmptyObject(user)">
                     <li class="nav-item" *ngFor="let page of pages" >
-                        <a class="nav-link active" aria-current="page" [routerLink]="page?.route"><i class="fa fa-{{page.icon}}"></i> {{page?.name}} </a>
+                        <a class="nav-link active" data-bs-toggle="collapse" data-bs-target=".navbar-collapse.show" aria-current="page" [routerLink]="page?.route"><i class="fa fa-{{page.icon}}"></i> {{page?.name}} </a>
                     </li>
                 </ng-container>
                 <ng-container *ngIf="!utilities.isEmptyObject(user)">
                     <li class="nav-item" *ngFor="let page of authUserPages" >
-                        <a class="nav-link active" aria-current="page" [routerLink]="page?.route"><i class="fa fa-{{page.icon}}"></i> {{page?.name}} </a>
+                        <a class="nav-link active" data-bs-toggle="collapse" data-bs-target=".navbar-collapse.show" aria-current="page" [routerLink]="page?.route"><i class="fa fa-{{page.icon}}"></i> {{page?.name}} </a>
                     </li>
                 </ng-container>
                 <li class="nav-item" *ngIf="!utilities.isEmptyObject(user)">
-                    <a class="nav-link active" (click)="logout()">Cerrar sesion</a>
+                    <a class="nav-link active" data-bs-toggle="collapse" data-bs-target=".navbar-collapse.show" (click)="logout()">Cerrar sesion</a>
                 </li>
             </ul>
             <div class="row user" *ngIf="!utilities.isEmptyObject(user)" routerLink="/profile">
@@ -31,7 +31,7 @@
                 </div>
             </div>
 
-            <div class="row user" *ngIf="utilities.isEmptyObject(user)" routerLink="/login">
+            <div class="row user" *ngIf="utilities.isEmptyObject(user)" routerLink="/login" data-bs-toggle="collapse" data-bs-target=".navbar-collapse.show">
                 <div class="col-3 my-auto">
                     <img class="avatar-placeholder" src="assets/imgs/user.png" alt="">
                 </div>
@@ -40,5 +40,6 @@
                 </div>
             </div>
         </div>
+       
     </div>
 </nav>

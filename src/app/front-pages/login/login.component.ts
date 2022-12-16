@@ -43,6 +43,7 @@ export class LoginComponent implements OnInit {
         if(user.api_token){
           this.apiService.setTokenToHeaders(user.api_token);
           this.auth.login(user);
+          this.router.navigateByUrl('/search');
         }
       },error=>{
         alert("Error de autentificación")
