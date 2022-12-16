@@ -68,10 +68,9 @@
       }
       
     .searchbar-container{
-        width: 100vw;
         position: relative;
         z-index: 999;
-        
+        padding:0 25vw;        
         .searchbar{
             margin: 0 auto;
             width: 20vw;
@@ -180,4 +179,11 @@
 .map:hover{
     background-color: rgba(33,33,33,0.05);
     cursor: pointer;
+}
+
+@media (max-width: 902px) {
+    .searchbar-container {
+        padding: 0 10vw !important;
+    }
+    
 }

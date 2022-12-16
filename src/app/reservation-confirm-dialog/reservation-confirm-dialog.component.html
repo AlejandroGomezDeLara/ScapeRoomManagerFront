@@ -7,12 +7,12 @@
 
     <i class="fa fa-close close-icon" (click)="closeDialog()"></i>
     <div class="game row">
-        <div class="col-5 my-auto game-image">
+        <div class="col-lg-5 col-12 my-auto game-image">
             <img [src]="game.image" alt="" *ngIf="game.image">
             <img src="assets/imgs/placeholder.png" alt="" *ngIf="!game.image">
 
         </div>
-        <div class="col-7 my-auto">
+        <div class="col-lg-7 col-12 my-auto">
             <p class="game-title">{{game.name}}</p>
             <app-rating [rating]="game.gameReviewSummary?.avgStars! 
             " [reviews]="game.gameReviewSummary?.reviewsCount!"></app-rating>

@@ -1,11 +1,11 @@
-<div class="searchbar">
-    <div class="input-container">
+<div class="searchbar row">
+    <div class="input-container col-12 col-lg-6">
         <input class="input" type="text" [(ngModel)]="autocompleteInput" #addresstext placeholder="Ciudad o región"
             [(ngModel)]="selected_address" >
         <i class="search-icon fa fa-location-dot"></i>
         <i class="close-icon fa-solid fa-circle-xmark" (click)="deleteAddress()" *ngIf="selected_address"></i>
     </div>
-    <div class="name-container" (click)="openDialog()">
+    <div class="name-container col-12 col-lg-6" (click)="openDialog()">
         <img class="name-icon" src="assets/imgs/box-transparent.svg">
         <input class="input name" type="text" placeholder="¿Qué buscas?" [(ngModel)]="selected_name" disabled>
     </div>
