@@ -162,7 +162,7 @@ export class MapComponent implements OnInit, OnChanges {
       this.zoom = 13;
     } else {
       this.center = { lat: 39.6575069, lng: -4.1400885 };
-      this.zoom = 6;
+      this.zoom = 5;
     }
 
     let icon = {

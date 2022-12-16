@@ -26,9 +26,10 @@
                         *ngFor="let reservation of openReservations">
                     </app-open-reservation>
                 </div>
-            </div>
-            <h1 class="open-reservations-title" *ngIf="openReservations.length<=0">No hay reservas Funly <img
+                <h1 class="open-reservations-title" *ngIf="openReservations.length<=0">No hay reservas Funly <img
                     style="width: 25px" src="assets/imgs/box-transparent.svg" alt=""> disponibles con esos filtros</h1>
+            </div>
+            
 
         </div>
 
@@ -43,4 +44,4 @@
 
 </div>
 <home-footer [hidden]="(loading.isLoading | async)"></home-footer>
-<app-loading [hidden]="!(loading.isLoading | async)" [text]="'Buscando eventos en tu localización'"></app-loading>
+<app-loading [hidden]="!(loading.isLoading | async)" ></app-loading>
