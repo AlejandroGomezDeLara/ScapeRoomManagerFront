@@ -1,4 +1,4 @@
-.content{
+.content {
     background: #f2f2f2;
     background-image: url(../../../assets/imgs/box-transparent-light.svg);
     background-repeat: space;
@@ -6,7 +6,7 @@
     z-index: 1;
     background-position: center;
     width: 100vw;
-    .map{
+    .map {
         box-shadow: var(--item-box-shadow);
         border-radius: 10px;
         background: white;
@@ -14,35 +14,34 @@
         margin-bottom: 25px;
         height: 500px;
         position: relative;
-       
     }
-    .open-reservations-title{
-        color:var(--color-primary);
+    .open-reservations-title {
+        color: var(--color-primary);
         font-size: 32px;
         text-align: center;
         font-weight: bold;
         padding-bottom: 15px;
         padding-top: 5vh;
     }
-    .open-reservations-description{
-        color:black;
+    .open-reservations-description {
+        color: black;
         font-size: 16px;
         text-align: center;
         font-weight: bold;
         padding-bottom: 15px;
-        span{
-            color:var(--color-primary);
+        span {
+            color: var(--color-primary);
             font-size: 22px;
         }
     }
-    .open-reservations{
-        width: 100vw;
+    .open-reservations {
+        width: 100%;
         overflow: hidden;
         text-align: center;
         overflow-x: auto;
         white-space: nowrap;
         position: relative;
-        padding:50px;
+        padding: 50px 0px;
         background-color: var(--dark-background);
         background-image: url(../../../assets/imgs/box-transparent-dark.svg);
         background-repeat: space;
@@ -50,7 +49,7 @@
         background-size: 200px;
         z-index: 1;
         background-position: center;
-        video{
+        video {
             filter: brightness(50%);
             width: 100%;
             height: 100%;
@@ -62,30 +61,37 @@
             position: absolute;
         }
     }
-    .game-list-container{
-        padding:40px;
-        h1{
+    .game-list-container {
+        padding: 40px;
+        .filters{
+            padding-left: 35px;
+        }
+        h1 {
             margin-bottom: 25px;
             color: var(--color-primary);
             font-weight: bold;
         }
-        .game-list{
-         /*    background: white;
+        .game-list {
+            /*    background: white;
             border: 0.5px solid #ccc; */
             margin-bottom: 25px;
-            
         }
-       
-        
-        
     }
-    .game-list-pagination{
-        padding:15px;
+    .game-list-pagination {
+        padding: 15px;
         box-shadow: var(--item-box-shadow);
         position: relative;
         border-radius: 10px;
         background: white;
         margin-bottom: 15px;
-        
+    }
+}
+
+@media (max-width: 902px) {
+    .game-list-container {
+        padding: 40px 10px !important;
+        .filters{
+            padding-left: 0px !important;
+        }
     }
 }
