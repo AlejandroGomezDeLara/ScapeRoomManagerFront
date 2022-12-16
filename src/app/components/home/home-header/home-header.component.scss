@@ -2,7 +2,12 @@
     border-bottom: 0.5px solid #ccc;
     position: relative;
     height: 60vh;
-    
+    background-color: var(--dark-background);
+    background-image: url(../../../../assets/imgs/box-transparent-dark.svg);
+    background-repeat: space;
+    background-size: 200px;
+    z-index: 1;
+    background-position: center;
     .city-selected{
 
         z-index: 999;
@@ -51,7 +56,7 @@
         margin: 0 auto; /* Gives that scrolling effect as the typing happens */
         margin-bottom: 20px;
         animation: 
-          typing 5s steps(80, end),
+          typing 1s steps(80, end),
           blink-caret .75s step-end infinite;
       }
       

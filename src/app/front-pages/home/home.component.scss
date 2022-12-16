@@ -1,51 +1,47 @@
-.content{
+.content {
     background: white;
     width: 100vw;
-    
+
     overflow-x: hidden;
-    .info{
-        background:white;
-        color:black;
+    .info {
+        background: white;
+        color: black;
         position: relative;
-        .text{
+        .text {
             text-align: center;
             padding: 50px;
-            .info-title{
+            .info-title {
                 font-size: 48px;
                 line-height: 1;
-               font-weight: bold;
-               
+                font-weight: bold;
             }
-            .info-app-name{
+            .info-app-name {
                 font-weight: bold;
                 margin-bottom: 35px;
                 font-size: 46px;
-                span{
+                span {
                     color: var(--color-primary);
                 }
-               }
-            .info-subtitle{
+            }
+            .info-subtitle {
                 font-size: 20px;
                 line-height: 1;
             }
         }
-        .image{
+        .image {
             height: 100%;
-            .info-image{
+            .info-image {
                 padding: 20px;
                 height: 100%;
                 width: 100%;
                 object-fit: cover;
             }
         }
-       
-       
-       
     }
-    .info-video{
+    .info-video {
         height: 60vh;
         position: relative;
-        video{
+        video {
             filter: brightness(40%);
             width: 100%;
             height: 100%;
@@ -53,11 +49,17 @@
             height: 100%;
             z-index: 1;
             position: absolute;
-        } 
+        }
     }
-    .app-download{
+    .app-download {
+        background-color: var(--dark-background);
+        background-image: url(../../../assets/imgs/box-transparent-dark.svg);
+        background-repeat: space;
+        background-size: 200px;
+        z-index: 1;
+        background-position: center;
         position: relative;
-        video{
+        video {
             filter: brightness(40%);
             width: 100%;
             height: 100%;
@@ -65,42 +67,40 @@
             height: 100%;
             z-index: 1;
             position: absolute;
-        }         color:white;
-        .text{
+        }
+        color: white;
+        .text {
             z-index: 99;
             text-align: center;
-            padding: 50px;   
-            padding-bottom: 0px;         
-            .app-download-title{
+            padding: 50px;
+            padding-bottom: 0px;
+            .app-download-title {
                 font-size: 48px;
                 line-height: 1;
-               font-weight: bold;
+                font-weight: bold;
             }
-           
-            .app-download-subtitle{
+
+            .app-download-subtitle {
                 font-size: 20px;
                 line-height: 1;
-                span{
-                    color:var(--color-primary);
+                span {
+                    color: var(--color-primary);
                     font-weight: bold;
                 }
             }
-            .download-button{
+            .download-button {
                 width: 100%;
                 object-fit: cover;
             }
         }
-        .image{
+        .image {
             height: 100%;
             z-index: 99;
-            .app-download-image{
+            .app-download-image {
                 width: 100%;
                 object-fit: cover;
                 height: 100%;
             }
         }
-       
-       
-       
     }
 }

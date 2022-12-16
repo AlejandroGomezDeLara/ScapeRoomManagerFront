@@ -1,8 +1,9 @@
 <div class="chat-container" [hidden]="(loading.isLoading | async)">
+    <div class="no-chats" *ngIf="chats.length<=0 && showMenu" >
+        <p >No tienes ningún chat activo, realiza una reserva!</p>
+        <button routerLink="/search">Reservar</button>
+    </div>
     <div class="chats-content row">
-        
-       
-
         <div class="chats-sidebar col-lg-4 col-12 row" *ngIf="showMenu && chats.length>0">
             <div class="chats-searchbar-container col-12">
                 <input class="chats-searchbar" type="searchbar" placeholder="Buscar chat">
@@ -51,8 +52,8 @@
 
                     <ng-container *ngIf="i==0">
 
-                        <div class="col-lg-1 col-2 user-image" *ngIf="user.id != message?.user!.id" >
-                            <img [src]="message?.user!.avatar" alt="" >
+                        <div class="col-lg-1 col-2 user-image" *ngIf="user.id != message?.user!.id">
+                            <img [src]="message?.user!.avatar" alt="">
                         </div>
                         <div [ngClass]="user.id != message?.user!.id ? 'col-lg-11 col-10' : 'col-lg-11 col-11'">
                             <div
@@ -72,7 +73,8 @@
                     <ng-container *ngIf="i>=1">
 
                         <div class="col-lg-1 col-2 user-image" *ngIf="user.id != message?.user!.id">
-                            <img [src]="message?.user!.avatar" alt="" *ngIf="messages[i-1].user?.id != message.user?.id">
+                            <img [src]="message?.user!.avatar" alt=""
+                                *ngIf="messages[i-1].user?.id != message.user?.id">
                         </div>
                         <div [ngClass]="user.id != message?.user!.id ? 'col-lg-11 col-10' : 'col-lg-11 col-11'">
                             <ng-container *ngIf="messages[i-1].user?.id != message?.user?.id">
@@ -108,7 +110,7 @@
 
             </div>
 
-           
+
         </div>
         <div class="col-lg-8 col-12 void-text" *ngIf="!selectedChat">
             <p>Selecciona un chat para ver sus mensajes</p>
@@ -116,11 +118,10 @@
     </div>
     <div class="chat-footer" *ngIf="selectedChat">
         <div class="input-container">
-            <input class="message-input" (keydown.enter)="sendMessage()" [(ngModel)]="actualMessage!.text"
-                type="text" placeholder="Escribe un mensaje">
+            <input class="message-input" (keydown.enter)="sendMessage()" [(ngModel)]="actualMessage!.text" type="text"
+                placeholder="Escribe un mensaje">
             <button class="audio-button"><i class="fa fa-microphone"></i></button>
-            <button class="send-button" type="submit" (click)="sendMessage()"><i
-                    class="fa fa-paper-plane"></i></button>
+            <button class="send-button" type="submit" (click)="sendMessage()"><i class="fa fa-paper-plane"></i></button>
         </div>
     </div>
 </div>

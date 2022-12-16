@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { User } from 'src/app/models/User';
 import { ApiService } from 'src/app/services/api.service';
 import { AuthenticationService } from 'src/app/services/authentication.service';
+import { LoadingService } from 'src/app/services/loading.service';
 import { confirmPassword } from 'src/app/utils/utils';
 
 @Component({
@@ -19,7 +20,8 @@ export class RegisterComponent implements OnInit {
   constructor(private readonly formBuilder: FormBuilder,
     private apiService:ApiService,
     private router:Router,
-    private auth:AuthenticationService) {}
+    private auth:AuthenticationService,
+    private loading:LoadingService) {}
 
   public ngOnInit(): void {
     //We initialize the form
@@ -38,10 +40,13 @@ export class RegisterComponent implements OnInit {
   public submitForm(): void {
     this.isSubmit = true;
     //We process the data
-    
+    this.loading.startLoading();
     this.apiService.register(this.form.value).subscribe(res=>{
       console.log(res);
+      this.loading.stopLoading();
+      this.router.navigateByUrl('/login');
     },error=>{
+      this.loading.stopLoading();
       console.log(error);
     });
     //Then we reset the form

@@ -156,7 +156,7 @@ export class NewOpenReservationComponent implements OnInit, OnChanges {
 
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
-      location.reload();
+      this.router.navigateByUrl('/chats');
     });
   }
 

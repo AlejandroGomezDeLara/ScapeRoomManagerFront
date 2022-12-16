@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { User } from 'src/app/models/User';
 import { ApiService } from 'src/app/services/api.service';
 import { AuthenticationService } from 'src/app/services/authentication.service';
+import { LoadingService } from 'src/app/services/loading.service';
 import { environment } from 'src/environments/environment';
 
 @Component({
@@ -20,7 +21,8 @@ export class LoginComponent implements OnInit {
   constructor(private readonly formBuilder: FormBuilder,
     private apiService:ApiService,
     private router:Router,
-    private auth:AuthenticationService) {}
+    private auth:AuthenticationService,
+    private loading:LoadingService) {}
 
   public ngOnInit(): void {
     //We initialize the form
@@ -37,6 +39,7 @@ export class LoginComponent implements OnInit {
   public submitForm(): void {
     this.isSubmit = true;
     //We process the data
+    this.loading.startLoading();
     if (this.form.valid) {
       this.apiService.login(this.form.value).subscribe((user:User)=>{
         console.log(user);
@@ -45,6 +48,7 @@ export class LoginComponent implements OnInit {
           this.auth.login(user);
           this.router.navigateByUrl('/search');
         }
+        this.loading.stopLoading();
       },error=>{
         alert("Error de autentificación")
       });

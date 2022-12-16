@@ -1,4 +1,4 @@
-<div class="content">
+<div class="content" [hidden]="(loading.isLoading | async)">
     
     <home-header [selected_address]="selected_address"> </home-header>
 
@@ -18,9 +18,9 @@
 
 
     <div class="app-download row">
-        <video autoplay loop>
+        <!-- <video autoplay loop>
             <source src="assets/videos/reserva.mp4" type="video/mp4" />
-        </video>
+        </video> -->
         <div class="text col-lg-6 col-12 my-auto">
             <p class="app-download-title">¿No tienes nada que hacer hoy?</p>
             <p class="app-download-subtitle">¡Descarga la app de <span>FUNLY</span>, descubre miles de eventos y haz
@@ -40,4 +40,4 @@
 
 
 </div>
-<app-loading *ngIf="isLoading"></app-loading>
+<app-loading [hidden]="!(loading.isLoading | async)"></app-loading>

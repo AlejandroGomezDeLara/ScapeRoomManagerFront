@@ -27,7 +27,7 @@ export class ApiService {
    * @param email 
    * @param password 
    */
-  public login(user: User) {
+  public login(user: User) : Observable<User> {
     return this.http.post<User>(environment.apiUrl + 'login', user);
   }
 
@@ -36,7 +36,7 @@ export class ApiService {
    * Método para el registro básico
    * @param user 
    */
-  public register(user: User) {
+  public register(user: User): Observable<User> {
     return this.http.post(environment.apiUrl + 'signup', user);
   }
 

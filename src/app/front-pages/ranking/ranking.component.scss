@@ -14,9 +14,7 @@
         text-align: center;
     }
 }
-.row {
-    margin: 0 !important;
-}
+
 .up {
     font-size: 20px !important;
     color: var(--color-open-reservation) !important;
@@ -26,7 +24,8 @@
     color: var(--color-danger) !important;
 }
 .ranking-container {
-    padding-bottom: 50px;
+    padding:0px 0px 50px 0px;
+    overflow-x: hidden;
     .filters-labels-container{
         padding:20px;
         margin-bottom: 20px;
@@ -193,8 +192,7 @@
         }
     }
     .ranking-users{
-        padding-top: 50px;
-        padding-bottom: 50px;
+        padding: 50px 20px;
         .ranking-users-title{
             text-align: center;
             font-size: 32px;
@@ -222,7 +220,7 @@
             display: flex;
           
             .ranking-user{
-                margin-right: 20px !important;
+                margin-right: 20px;
                 padding:15px;
                 background: white;
                 box-shadow: var(--item-box-shadow);
@@ -295,4 +293,19 @@
             }
         }
     }
+}
+
+
+@media (max-width: 902px) {
+    .second-user,.third-user{
+        margin-top: 0px !important;
+    }
+    .ranking-users{
+        .ranking-users-container{
+            .ranking-user{
+                margin-right: 0px !important;
+            }
+        }
+    }
+    
 }
