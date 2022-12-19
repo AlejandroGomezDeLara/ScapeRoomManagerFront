@@ -1,26 +1,34 @@
-.profile-container{
-    padding:5vw;
-    
-    .btn{
+.profile-container {
+    padding: 5vw;
+
+    .btn {
         background: var(--color-primary);
-        border:none;
+        border: none;
         border-radius: 25px;
-        color:white;
+        color: white;
+        i {
+            color: white !important;
+        }
         margin: 5px;
     }
-    .btn:hover{
+    .logout-btn {
+        background: var(--dark-background);
+    }
+    .logout-btn:hover {
+        background: var(--color-primary);
+    }
+    .btn:hover {
         background-color: var(--dark-background);
     }
-    .item{
+    .item {
         background: white;
         border-radius: 10px;
         box-shadow: var(--item-box-shadow);
-        padding:20px;
+        padding: 20px;
     }
-    .user-container{
-        
+    .user-container {
         .user-data {
-            i{
+            i {
                 color: var(--color-primary);
             }
             text-align: center;
@@ -30,34 +38,34 @@
             height: 0%;
             transition: 0.2s ease;
             padding: 30px;
-            margin:0px 0px 30px 0px;
-            .user-data-title{
+            margin: 0px 0px 30px 0px;
+            .user-data-title {
                 font-size: 26px;
                 font-weight: bold;
                 padding-bottom: 20px;
                 border-bottom: 0.5px solid #ccc;
             }
-            .user-data-content{
-                padding-top:20px;
+            .user-data-content {
+                padding-top: 20px;
                 padding-bottom: 20px;
             }
-            .user-data-form{
-                padding:20px;
-                .form-item{
-                    padding:5px;
-                    label{
+            .user-data-form {
+                padding: 20px;
+                .form-item {
+                    padding: 5px;
+                    label {
                         font-size: 16px;
                         font-weight: bold;
-                        padding:10px;
+                        padding: 10px;
                         text-align: start;
                     }
-                    input{
-                        padding:10px;
-                        border:none;
+                    input {
+                        padding: 10px;
+                        border: none;
                         box-shadow: var(--item-box-shadow);
                         border-radius: 5px;
                     }
-                    input:focus{
+                    input:focus {
                         outline-color: var(--color-primary);
                     }
                 }
@@ -65,15 +73,15 @@
             .user-avatar {
                 cursor: pointer;
                 img {
-                    width: 200px;
-                    height: 200px;
+                    width: 250px;
+                    height: 250px;
                     border-radius: 50%;
                     object-fit: cover;
                     margin-bottom: 15px;
                     box-shadow: var(--item-box-shadow);
                 }
             }
-    
+
             .user-name {
                 font-weight: bold;
                 font-size: 32px;
@@ -89,32 +97,30 @@
             }
             .user-summary {
                 border-top: 0.5px solid #ccc;
-    
+                padding-top: 15px;
                 .user-summary-item {
                     padding-top: 10px;
                     padding-bottom: 10px;
-                    color:var(--dark-background);
+                    color: var(--dark-background);
                     font-weight: bold;
                     p {
                         margin: 0;
-                        span{
+                        span {
                             font-size: 22px;
                         }
                         font-size: 22px;
-                        i{
+                        i {
                             font-size: 20px;
-                            color:var(--color-primary);
+                            color: var(--color-primary);
                         }
                     }
-                    
                 }
-               
             }
         }
     }
-    
-    .open-reservations-container{
-        padding:30px;
+
+    .open-reservations-container {
+        padding: 30px;
         background-color: var(--dark-background);
         background-image: url(../../../assets/imgs/box-transparent-dark.svg);
         background-repeat: space;
@@ -122,7 +128,7 @@
         z-index: 1;
         background-position: center;
         margin-bottom: 35px;
-        .open-reservations{
+        .open-reservations {
             width: 100%;
             overflow: hidden;
             text-align: center;
@@ -130,92 +136,96 @@
             white-space: nowrap;
             position: relative;
         }
-        .open-reservations-title{
+        .open-reservations-title {
             font-weight: bold;
             text-align: center;
             font-size: 24px;
-            color:white;
+            color: white;
             margin-bottom: 20px;
         }
-        .open-reservations-void{
+        .open-reservations-void {
             font-weight: bold;
             text-align: center;
             font-size: 18px;
-            color:white;
+            color: white;
         }
-       
     }
 
-    .completed-games,.open-reservations{
+    .completed-games,
+    .open-reservations {
         margin-bottom: 35px;
-        .completed-games-title{
+        .reservations-void {
+            font-weight: bold;
+            text-align: center;
+            font-size: 18px;
+            color: black;
+        }
+        .completed-games-title {
             font-weight: bold;
             text-align: center;
             font-size: 24px;
         }
-        .completed-games-container,.reserved-games-container{
-            .completed-game-item{
+        .completed-games-container,
+        .reserved-games-container {
+            .completed-game-item {
                 padding: 25px;
                 border-top: 0.5px solid #ccc;
                 background: #fafafa;
                 transition: ease 0.2s;
-                .game-image{
+                .game-image {
                     width: 125px;
                     height: 125px;
                     cursor: pointer;
                     object-fit: cover;
                 }
-                .game-name{
+                .game-name {
                     font-weight: bold;
                     font-size: 24px;
                     text-align: center;
                     margin: 0;
                 }
-                .game-address{
+                .game-address {
                     font-size: 14px;
-                    color:rgb(147, 147, 147);
+                    color: rgb(147, 147, 147);
                     margin: 0;
                 }
-                .reservation-date{
+                .reservation-date {
                     margin-top: 5px;
                     font-size: 24px;
                     font-weight: bold;
                 }
-                .categories{
-                    padding:5px;
+                .categories {
+                    padding: 5px;
                     margin-bottom: 20px;
-                    span{
+                    span {
                         background: var(--color-primary);
-                        color:white;
+                        color: white;
                         margin: 5px;
                         width: auto;
                         display: inline;
                         float: left;
-                        padding:5px 15px 5px 15px;
+                        padding: 5px 15px 5px 15px;
                         border-radius: 25px;
                     }
-                 }
-                .completed-game{
+                }
+                .completed-game {
                     border-radius: 25px;
                     background: var(--color-open-reservation);
-                    color:white;
+                    color: white;
                     font-weight: bold;
                     font-size: 18px;
-                    padding:10px;
+                    padding: 10px;
                     width: auto;
                     margin-bottom: 15px;
                 }
-                .game-points{
+                .game-points {
                     font-weight: bold;
                     font-size: 24px;
                 }
-                
             }
-            .completed-game-item:hover{
-               transform: scale(1.009);
-                
+            .completed-game-item:hover {
+                transform: scale(1.009);
             }
         }
     }
-    
 }

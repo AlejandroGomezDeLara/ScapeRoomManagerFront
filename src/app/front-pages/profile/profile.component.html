@@ -21,8 +21,9 @@
                         user.name}}</p>
                 </div>
 
-               
-               
+                <div class="col-lg-12 col-12 ">
+                    <button class="logout-btn btn" (click)="logout()"><i class="fa-solid fa-power-off"></i> Cerrar Sesión</button>
+                </div>
             </div>
             <div class="user-data-form col-lg-6  col-12 my-auto">
                 <div class="form-item row justify-content-center">
@@ -78,7 +79,7 @@
             <div class="open-reservations-container row item col-12">
                 <p class="open-reservations-title"><i class="fa fa-building"></i> Reservas FUNLY <img src="assets/imgs/box-transparent.svg" style="width: 20px;" alt=""></p>
                 <ng-container *ngIf="openReservations.length<=0">
-                    <p class="open-reservations-void">No tienes ninguna reserva abierta</p>
+                    <p class="open-reservations-void">No tienes ninguna reserva FUNLY <img src="assets/imgs/box-transparent.svg" style="width: 20px;" alt=""> </p>
                     <button class="btn" routerLink="/search">¡Reserva ya!</button>
                 </ng-container>
 
@@ -92,7 +93,10 @@
 
             <div class="completed-games row item col-12">
                 <p class="completed-games-title"><i class="fa fa-building"></i> Reservas tradicionales</p>
-
+                <ng-container *ngIf="reservations.length<=0">
+                    <p class="reservations-void">No tienes ninguna reserva tradicional</p>
+                    <button class="btn" routerLink="/search">¡Reserva ya!</button>
+                </ng-container>
                 <div class="completed-games-container">
                     <div class="completed-game-item justify-content-center row" *ngFor="let reservation of reservations">
                         <div class="col-lg-7 row col-12 justify-content-center my-auto text-center">
@@ -108,7 +112,7 @@
                                     <div class="categories row justify-content-center">
                                         <span [style.background]="reservation.game?.category?.color"><i class="fa fa-clock"></i> {{reservation.game?.min_duration}}-{{reservation.game?.max_duration}} min</span>
                                         <span [style.background]="reservation.game?.category?.color"><i class="fa fa-user-group"></i> {{reservation.people}} personas</span>
-                                        <span [style.background]="reservation.game?.category?.color"><i class="fa fa-money-bill"></i> {{reservation.game?.min_price}} €</span>
+                                        <span [style.background]="reservation.game?.category?.color"><i class="fa fa-money-bill"></i> {{reservation.game_price?.price}} €</span>
                                     </div>
                                 </div>
 
@@ -133,9 +137,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-lg-10 col-12 item">
-            <button class="btn" (click)="logout()">Cerrar Sesión</button>
-        </div>
+       
     </div>
 </div>
 

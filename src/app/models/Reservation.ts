@@ -10,7 +10,7 @@ export interface Reservation{
     people?:number;
     game_reservation_hour_id?:number;
     game_reservation_hour?:GameReservationHour;
-
+    game_price?:GamePrice;
     game_price_id?:number;
     user_id?:number;
     game?:Game;
