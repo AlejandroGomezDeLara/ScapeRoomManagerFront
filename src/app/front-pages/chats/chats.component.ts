@@ -76,9 +76,9 @@ export class ChatsComponent implements OnInit {
     this.apiService.getSubEntity('chats', this.selectedChat?.id!, 'messages').subscribe((messages: ChatMessage[]) => {
       this.messages = messages;
       this.loading.stopLoading();
-      setTimeout(() => {
+      /* setTimeout(() => {
         this.scrollToBottom();
-      }, 100);
+      }, 100); */
     }, (error: HttpErrorResponse) => {
       console.log(error);
       this.loading.stopLoading();

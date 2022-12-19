@@ -69,20 +69,6 @@ export class ApiService {
   }
 
 
-  /**
-   * Método para actualizar los datos del usuario
-   * @param user 
-   */
-  public updateUser(user?: User, request?:{}): any {
-    if (user) {
-      this.userChanges.next(user);
-      return this.http.post<User>(environment.apiUrl + 'update-user', user, this.httpOptions);
-    } else {
-      return this.http.post<User>(environment.apiUrl + 'update-user', request, this.httpOptions);
-    }
-    
-  }
-
 
 
   // ====================== Métodos API RESTFUL ==========================

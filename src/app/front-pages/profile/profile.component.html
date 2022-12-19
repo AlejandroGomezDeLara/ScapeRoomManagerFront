@@ -1,10 +1,17 @@
-<div class="profile-container">
+<div class="profile-container" [hidden]="(loading.isLoading| async)">
     <div class="row user-container justify-content-center">
-        <div class="user-data col-lg-12 col-12 row item">
+        <div class="user-data col-lg-10 col-12 row item">
             <p class="user-data-title">Editar datos del usuario <i class="fa fa-pencil"></i></p>
-            <div class="user-data-content col-lg-5 col-12 my-auto">
+            <div class="user-data-content col-lg-6 col-12 my-auto">
+
                 <div class="col-12 user-avatar ">
-                    <img [src]="user.avatar" alt="">
+                    <img [src]="user.avatar" alt="" *ngIf="!user.upload_image" >
+                    <img [src]="user.upload_image" alt="" *ngIf="user.upload_image" >
+
+                </div>
+                <div class="col-12">
+                    <input name="imageUrl" type="file" accept="image/*" (change)="setImageBase64($event)" />
+
                 </div>
                 <div class="col-12">
                     <p class="user-name"><img src="assets/imgs/box-transparent.svg" style="width: 30px;" alt=""> {{user.name}}</p>
@@ -13,8 +20,11 @@
                         ? user.twitter_user :
                         user.name}}</p>
                 </div>
+
+               
+               
             </div>
-            <div class="user-data-form col-lg-7 col-12 my-auto">
+            <div class="user-data-form col-lg-6  col-12 my-auto">
                 <div class="form-item row justify-content-center">
                     <label for="name"> <i class="fa fa-user"></i> Nombre de usuario  </label>
                     <input type="text" placeholder="Tu nombre de usuario" [(ngModel)]="user.name">
@@ -64,16 +74,16 @@
             </div>
         </div>
 
-        <div class=" col-lg-12 col-12 justify-content-center row">
+        <div class=" col-lg-10 col-12 justify-content-center row">
             <div class="open-reservations-container row item col-12">
-                <p class="open-reservations-title"><i class="fa fa-building"></i> Reservas abiertas</p>
+                <p class="open-reservations-title"><i class="fa fa-building"></i> Reservas FUNLY <img src="assets/imgs/box-transparent.svg" style="width: 20px;" alt=""></p>
                 <ng-container *ngIf="openReservations.length<=0">
                     <p class="open-reservations-void">No tienes ninguna reserva abierta</p>
                     <button class="btn" routerLink="/search">¡Reserva ya!</button>
                 </ng-container>
 
-                <div class="open-reservations my-auto">
-                    <app-open-reservation [joined]="true" routerLink="{{reservation.game?.id}}/interior"
+                <div class="open-reservations my-auto" *ngIf="openReservations.length>0">
+                    <app-open-reservation [joined]="true" routerLink="/chats"
                         [reservation]="reservation" *ngFor="let reservation of openReservations">
                     </app-open-reservation>
                 </div>
@@ -81,22 +91,24 @@
             </div>
 
             <div class="completed-games row item col-12">
-                <p class="completed-games-title"><i class="fa fa-building"></i> Eventos completados</p>
+                <p class="completed-games-title"><i class="fa fa-building"></i> Reservas tradicionales</p>
 
                 <div class="completed-games-container">
-                    <div class="completed-game-item justify-content-center row">
+                    <div class="completed-game-item justify-content-center row" *ngFor="let reservation of reservations">
                         <div class="col-lg-7 row col-12 justify-content-center my-auto text-center">
-                            <div class=" col-lg-3 col-12">
-                                <img class="game-image " src="assets/imgs/scape.jpeg" alt="">
+                            <div class=" col-lg-2 col-12 my-auto" routerLink="/search/{{reservation.game_id}}/interior">
+                                <img class="game-image " [src]="reservation.game?.image" alt="">
                             </div>
-                            <div class="col-lg-7 row">
+                            <div class="col-lg-8 row">
                                 <div class="col-lg-12 my-auto">
-                                    <p class="game-name">Los invitados Scape room</p>
-                                    <app-rating [rating]="2"></app-rating>
+                                    <p class="game-name">{{reservation.game?.name}}</p>
+                                    <p class="game-address"><i class="fa fa-location-dot"></i> {{reservation.game?.address}}</p>
+                                    <p class="reservation-date">{{reservation.date}} - {{reservation.game_reservation_hour?.hour | slice:0:5}}</p>
+                                    <app-rating [rating]="reservation.game?.rating!" [reviews]="reservation.game?.reviewsCount!" [color]="reservation.game?.category?.color"></app-rating>
                                     <div class="categories row justify-content-center">
-                                        <span><i class="fa fa-clock"></i> 70 min</span>
-                                        <span><i class="fa fa-user-group"></i> 4 personas</span>
-                                        <span><i class="fa fa-money-bill"></i> 12 €</span>
+                                        <span [style.background]="reservation.game?.category?.color"><i class="fa fa-clock"></i> {{reservation.game?.min_duration}}-{{reservation.game?.max_duration}} min</span>
+                                        <span [style.background]="reservation.game?.category?.color"><i class="fa fa-user-group"></i> {{reservation.people}} personas</span>
+                                        <span [style.background]="reservation.game?.category?.color"><i class="fa fa-money-bill"></i> {{reservation.game?.min_price}} €</span>
                                     </div>
                                 </div>
 
@@ -105,63 +117,28 @@
                         <div class="col-lg-5 col-12 my-auto justify-content-center row text-center">
 
                             <div class="col my-auto">
-                                <p class="game-points"><img src="assets/imgs/box-transparent.svg" style="width:20px;"
-                                        alt=""> 100/150</p>
+                                <p class="game-points"><img src="assets/imgs/box-transparent.svg" style="width:35px;"
+                                        alt=""> 0/{{reservation.game?.funly_points}}</p>
                             </div>
-                            <div class="col my-auto">
-                                <button class="btn"><i class="fa fa-star"></i> Valorar</button>
+                            <div class="col-lg col-12 my-auto">
+                                <button class="btn" [style.background]="reservation.game?.category?.color"><i class="fa fa-star"></i> Valorar</button>
                             </div>
-                            <div class="col my-auto">
-                                <button class="btn"><i class="fa fa-plus"></i> Detalle</button>
+                            <div class="col-lg col-12 my-auto">
+                                <button class="btn" [style.background]="reservation.game?.category?.color"><i class="fa fa-plus"></i> Detalle</button>
                             </div>
-                            <div class="col my-auto">
-                                <button class="btn"><i class="fa fa-comments"></i> Chat</button>
-                            </div>
-                        </div>
-                    </div>
-
-
-                    <div class="completed-game-item justify-content-center row">
-                        <div class="col-lg-7 row col-12 justify-content-center my-auto text-center">
-                            <div class=" col-lg-3 col-12">
-                                <img class="game-image " src="assets/imgs/scape.jpeg" alt="">
-                            </div>
-                            <div class="col-lg-7 row">
-                                <div class="col-lg-12 my-auto">
-                                    <p class="game-name">Los invitados Scape room</p>
-                                    <app-rating [rating]="2"></app-rating>
-                                    <div class="categories row justify-content-center">
-                                        <span><i class="fa fa-clock"></i> 70 min</span>
-                                        <span><i class="fa fa-user-group"></i> 4 personas</span>
-                                        <span><i class="fa fa-money-bill"></i> 12 €</span>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-                        <div class="col-lg-5 col-12 my-auto justify-content-center row text-center">
-
-                            <div class="col my-auto">
-                                <p class="game-points"><img src="assets/imgs/box-transparent.svg" style="width:20px;"
-                                        alt=""> 100/150</p>
-                            </div>
-                            <div class="col my-auto">
-                                <button class="btn"><i class="fa fa-star"></i> Valorar</button>
-                            </div>
-                            <div class="col my-auto">
-                                <button class="btn"><i class="fa fa-plus"></i> Detalle</button>
-                            </div>
-                            <div class="col my-auto">
-                                <button class="btn"><i class="fa fa-comments"></i> Chat</button>
-                            </div>
+                           
                         </div>
                     </div>
 
                 </div>
             </div>
         </div>
+        <div class="col-lg-10 col-12 item">
+            <button class="btn" (click)="logout()">Cerrar Sesión</button>
+        </div>
     </div>
-
-
 </div>
+
+<app-loading [hidden]="!(loading.isLoading| async)"></app-loading>
+
 <home-footer></home-footer>

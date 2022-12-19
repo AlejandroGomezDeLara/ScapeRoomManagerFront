@@ -11,5 +11,6 @@ export interface User{
     twitter_user?:string;
     funly_points?:number;
     alias?:string;
+    upload_image?:string;
 
 }
