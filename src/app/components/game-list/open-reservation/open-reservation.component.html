@@ -49,7 +49,7 @@
                     reservation.users?.length!}} <i class="fa fa-user-group"></i> </span> para poder empezar</p>
             <p class="remaining-people" *ngIf="reservation.users?.length! >= reservation.min_people!">¡Listo para poder
                 empezar!</p>
-            <div *ngIf="people?.length!>0">
+            <div class="row justify-content-center" *ngIf="people?.length!>0">
                 <div class="user" *ngFor="let user of people;let i =index">
                     <img class="avatar" [src]="user.avatar" alt="">
                     <p class="user-name">{{user.name}}</p>
@@ -61,8 +61,11 @@
         </div>
 
         <div class="reservation-price row">
-            <div class="reservation-button col-4" [style.background-color]="reservation.game_category?.color">
+            <div class="reservation-button col-4" [style.background-color]="reservation.game_category?.color" *ngIf="!joined">
                 <p class="price">Únete a la reserva <span>{{reservation.price_per_user}}€</span> </p>
+            </div>
+            <div class="reservation-button col-4 my-auto" [style.background-color]="reservation.game_category?.color" *ngIf="joined">
+                <p class="chat"><i class="fa fa-comments"></i> Ir al Chat</p>
             </div>
         </div>
     </div>

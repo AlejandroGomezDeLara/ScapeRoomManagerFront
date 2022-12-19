@@ -12,6 +12,7 @@ const routes: Routes = [
   { path: 'register', loadChildren: () => import('./front-pages/register/register.module').then(m => m.RegisterModule) },
   { path: 'map', loadChildren: () => import('./front-pages/map-search/map-search.module').then(m => m.MapSearchModule) },
   { path: 'ranking', loadChildren: () => import('./front-pages/ranking/ranking.module').then(m => m.RankingModule) },
+  { path: 'profile', loadChildren: () => import('./front-pages/profile/profile.module').then(m => m.ProfileModule) },
 
 
 ];

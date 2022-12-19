@@ -13,6 +13,11 @@
     color: black;
     overflow: auto;
     position: relative;
+    .chat{
+        font-weight: bold;
+        font-size: 18px;
+        margin: 0;
+    }
     .specifications{
         width: 100%;
         z-index: 99;

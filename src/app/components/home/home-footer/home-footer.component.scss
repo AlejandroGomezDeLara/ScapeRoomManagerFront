@@ -3,17 +3,18 @@
     background-color: var(--dark-background);
     background-image: url(../../../../assets/imgs/box-transparent-dark.svg);
     background-repeat: space;
-
     background-size: 200px;
     z-index: 1;
     background-position: center;
     color:white;
-    padding:20px;
+    padding:50px;
     position: relative;
     margin: 0;
     width: 100%;
+    text-align: center;
     .logo img{
-        width: 150px;
+        width: 175px;
+        padding:20px;
     }
     .copyright{
         position: absolute;

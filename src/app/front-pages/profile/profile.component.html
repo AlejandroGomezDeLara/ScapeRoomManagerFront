@@ -1,0 +1,167 @@
+<div class="profile-container">
+    <div class="row user-container justify-content-center">
+        <div class="user-data col-lg-12 col-12 row item">
+            <p class="user-data-title">Editar datos del usuario <i class="fa fa-pencil"></i></p>
+            <div class="user-data-content col-lg-5 col-12 my-auto">
+                <div class="col-12 user-avatar ">
+                    <img [src]="user.avatar" alt="">
+                </div>
+                <div class="col-12">
+                    <p class="user-name"><img src="assets/imgs/box-transparent.svg" style="width: 30px;" alt=""> {{user.name}}</p>
+                    <p class="user-alias"><i class="fa-brands fa-twitter"
+                            *ngIf="user.twitter_user"></i>{{user.twitter_user
+                        ? user.twitter_user :
+                        user.name}}</p>
+                </div>
+            </div>
+            <div class="user-data-form col-lg-7 col-12 my-auto">
+                <div class="form-item row justify-content-center">
+                    <label for="name"> <i class="fa fa-user"></i> Nombre de usuario  </label>
+                    <input type="text" placeholder="Tu nombre de usuario" [(ngModel)]="user.name">
+                </div>
+                <div class="form-item row justify-content-center">
+                    <label for="name"> <i class="fa fa-envelope"></i> Correo electrónico </label>
+                    <input type="mail" placeholder="Tu correo electrónico" [(ngModel)]="user.email">
+                </div>
+                <div class="form-item row justify-content-center">
+                    <label for="name"> <i class="fa fa-mobile"></i> Teléfono</label>
+                    <input type="text" placeholder="Tu usuario de twitter" [(ngModel)]="user.phone">
+                </div>
+                <div class="form-item row justify-content-center">
+                    <label for="name"><i class="fa-brands fa-instagram"></i> Instagram  </label>
+                    <input type="text" placeholder="Tu usuario de instagram" [(ngModel)]="user.instagram_user">
+                </div>
+                <div class="form-item row justify-content-center">
+                    <label for="name"><i class="fa-brands fa-facebook"></i> Facebook </label>
+                    <input type="text" placeholder="Tu usuario de Facebook" [(ngModel)]="user.facebook_user">
+                </div>
+                <div class="form-item row justify-content-center">
+                    <label for="name"> <i class="fa-brands fa-twitter"></i> Twitter </label>
+                    <input type="text" placeholder="Tu usuario de twitter" [(ngModel)]="user.twitter_user">
+                </div>
+                
+            </div>
+            <div class="col-12">
+                <div class="row justify-content-center user-summary">
+                    <div class="col-lg-3 col-12  my-auto user-summary-item">
+                        <p class="position-second"><i class="fa-solid fa-hashtag"></i> <span> 2</span> en el ranking
+                        </p>
+                    </div>
+                    <div class="col-lg-3 col-12 my-auto user-summary-item">
+                        <p> <i class="fa fa-building"></i> <span> 12</span> eventos completados </p>
+                    </div>
+                    <div class="col-lg-3 col-12 my-auto user-summary-item">
+                        <p><img src="assets/imgs/box-transparent-dark.svg" style="width:25px;" alt="">
+                            <span> {{user.funly_points}} </span>puntos conseguidos
+                        </p>
+                    </div>
+                    <div class="col-lg-3 col-12 my-auto user-summary-item">
+                        <p><img src="assets/imgs/box-transparent.svg" style="width:25px;" alt="">
+                            <span> {{user.funly_points}} </span> puntos disponibles
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class=" col-lg-12 col-12 justify-content-center row">
+            <div class="open-reservations-container row item col-12">
+                <p class="open-reservations-title"><i class="fa fa-building"></i> Reservas abiertas</p>
+                <ng-container *ngIf="openReservations.length<=0">
+                    <p class="open-reservations-void">No tienes ninguna reserva abierta</p>
+                    <button class="btn" routerLink="/search">¡Reserva ya!</button>
+                </ng-container>
+
+                <div class="open-reservations my-auto">
+                    <app-open-reservation [joined]="true" routerLink="{{reservation.game?.id}}/interior"
+                        [reservation]="reservation" *ngFor="let reservation of openReservations">
+                    </app-open-reservation>
+                </div>
+
+            </div>
+
+            <div class="completed-games row item col-12">
+                <p class="completed-games-title"><i class="fa fa-building"></i> Eventos completados</p>
+
+                <div class="completed-games-container">
+                    <div class="completed-game-item justify-content-center row">
+                        <div class="col-lg-7 row col-12 justify-content-center my-auto text-center">
+                            <div class=" col-lg-3 col-12">
+                                <img class="game-image " src="assets/imgs/scape.jpeg" alt="">
+                            </div>
+                            <div class="col-lg-7 row">
+                                <div class="col-lg-12 my-auto">
+                                    <p class="game-name">Los invitados Scape room</p>
+                                    <app-rating [rating]="2"></app-rating>
+                                    <div class="categories row justify-content-center">
+                                        <span><i class="fa fa-clock"></i> 70 min</span>
+                                        <span><i class="fa fa-user-group"></i> 4 personas</span>
+                                        <span><i class="fa fa-money-bill"></i> 12 €</span>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="col-lg-5 col-12 my-auto justify-content-center row text-center">
+
+                            <div class="col my-auto">
+                                <p class="game-points"><img src="assets/imgs/box-transparent.svg" style="width:20px;"
+                                        alt=""> 100/150</p>
+                            </div>
+                            <div class="col my-auto">
+                                <button class="btn"><i class="fa fa-star"></i> Valorar</button>
+                            </div>
+                            <div class="col my-auto">
+                                <button class="btn"><i class="fa fa-plus"></i> Detalle</button>
+                            </div>
+                            <div class="col my-auto">
+                                <button class="btn"><i class="fa fa-comments"></i> Chat</button>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="completed-game-item justify-content-center row">
+                        <div class="col-lg-7 row col-12 justify-content-center my-auto text-center">
+                            <div class=" col-lg-3 col-12">
+                                <img class="game-image " src="assets/imgs/scape.jpeg" alt="">
+                            </div>
+                            <div class="col-lg-7 row">
+                                <div class="col-lg-12 my-auto">
+                                    <p class="game-name">Los invitados Scape room</p>
+                                    <app-rating [rating]="2"></app-rating>
+                                    <div class="categories row justify-content-center">
+                                        <span><i class="fa fa-clock"></i> 70 min</span>
+                                        <span><i class="fa fa-user-group"></i> 4 personas</span>
+                                        <span><i class="fa fa-money-bill"></i> 12 €</span>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="col-lg-5 col-12 my-auto justify-content-center row text-center">
+
+                            <div class="col my-auto">
+                                <p class="game-points"><img src="assets/imgs/box-transparent.svg" style="width:20px;"
+                                        alt=""> 100/150</p>
+                            </div>
+                            <div class="col my-auto">
+                                <button class="btn"><i class="fa fa-star"></i> Valorar</button>
+                            </div>
+                            <div class="col my-auto">
+                                <button class="btn"><i class="fa fa-plus"></i> Detalle</button>
+                            </div>
+                            <div class="col my-auto">
+                                <button class="btn"><i class="fa fa-comments"></i> Chat</button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+<home-footer></home-footer>

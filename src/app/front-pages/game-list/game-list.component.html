@@ -32,6 +32,13 @@
                     <h1 style="margin-bottom: 150px;">Lo sentimos no hay eventos con esos filtros</h1>
                     <app-game-item *ngFor="let game of games" [game]="game"></app-game-item>
                 </ng-container>
+
+                <div class="row" *ngIf="filteredGames.length>0 && !(loading.isLoading| async) && total_game_pages!>1">
+                    <div class="col-12 game-list-pagination">
+                        <app-game-list-pagination [actualPage]="this.actual_page!" [totalPages]="this.total_game_pages!"
+                            (changePage)="changeGamesPage($event)"></app-game-list-pagination>
+                    </div>
+                </div>
             </div>
 
             <div class="filters col-lg-3 col-12">
@@ -42,12 +49,7 @@
             </div>
         </div>
 
-        <div class="row" *ngIf="filteredGames.length>0 && !(loading.isLoading| async) && total_game_pages!>1">
-            <div class="col-9 game-list-pagination">
-                <app-game-list-pagination [actualPage]="this.actual_page!" [totalPages]="this.total_game_pages!"
-                    (changePage)="changeGamesPage($event)"></app-game-list-pagination>
-            </div>
-        </div>
+        
     </div>
 
     <home-footer class="pagination-footer"></home-footer>

@@ -10,12 +10,15 @@ import { User } from 'src/app/models/User';
 export class OpenReservationComponent implements OnInit {
 
   @Input() reservation!: OpenReservation;
+  @Input() joined: boolean=false;
+
   public people: User[] = [];
   public target!: Date;
   public timeout: any;
 
   public target_date_str?: string;
   public actual_date_str?: string;
+
   constructor() { }
 
   ngOnInit(): void {
@@ -140,18 +143,21 @@ export class OpenReservationComponent implements OnInit {
   }
 
   public setUsers(): void {
-    this.people.push(
-      { avatar: 'assets/imgs/add-placeholder.png', name: 'Unirse' }
-    );
-    this.people.push(
-      { avatar: 'assets/imgs/add-placeholder.png', name: 'Unirse' }
-    );
-    this.people.push(
-      { avatar: 'assets/imgs/add-placeholder.png', name: 'Unirse' }
-    );
-    this.people.push(
-      { avatar: 'assets/imgs/add-placeholder.png', name: 'Unirse' }
-    );
+    if(!this.joined){
+      this.people.push(
+        { avatar: 'assets/imgs/add-placeholder.png', name: 'Unirse' }
+      );
+      this.people.push(
+        { avatar: 'assets/imgs/add-placeholder.png', name: 'Unirse' }
+      );
+      this.people.push(
+        { avatar: 'assets/imgs/add-placeholder.png', name: 'Unirse' }
+      );
+      this.people.push(
+        { avatar: 'assets/imgs/add-placeholder.png', name: 'Unirse' }
+      );
+    }
+    
     this.reservation?.users?.forEach((user, index) => {
       if (index <= 2) {
         this.people[index] = user;
