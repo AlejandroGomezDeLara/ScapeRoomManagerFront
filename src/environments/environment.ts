@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'https://api.funly.es/api/auth/',
+  apiUrl: 'http://127.0.0.1:8000/api/auth/',
   googleApiKey:'AIzaSyAp3sD3cJc6L3Nbrul7-GNTOM74l_NS2Qw',
 };
 
