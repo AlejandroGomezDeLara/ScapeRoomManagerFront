@@ -3,10 +3,18 @@ a {
 }
 .login-page {
     width: 100%;
+    height: 100vh;
     display: inline-block;
     display: flex;
     align-items: center;
     overflow:hidden;
+    background-color: var(--dark-background);
+    background-image: url(../../../assets/imgs/box-transparent-dark.svg);
+    background-repeat: space;
+
+    background-size: 200px;
+    z-index: 1;
+    background-position: center;
     video {
         width: 100vw;
         object-fit: cover;
@@ -17,7 +25,6 @@ a {
     }
     .container {
         padding: 0px;
-        margin-top: 35px;
         background-color: white;
         box-shadow: var(--item-box-shadow);
         border-radius: 15px;

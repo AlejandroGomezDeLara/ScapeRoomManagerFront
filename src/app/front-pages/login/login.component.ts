@@ -16,7 +16,6 @@ export class LoginComponent implements OnInit {
 
   form: FormGroup = new FormGroup({});
   isSubmit: boolean = false;
-  appName=environment.appName;
   
   constructor(private readonly formBuilder: FormBuilder,
     private apiService:ApiService,

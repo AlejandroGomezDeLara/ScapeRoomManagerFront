@@ -11,7 +11,6 @@ import { environment } from 'src/environments/environment';
 })
 export class HeaderComponent implements OnInit,AfterContentInit {
 
-  public appName=environment.appName;
   public pages=[
     {
       name:'Eventos',
