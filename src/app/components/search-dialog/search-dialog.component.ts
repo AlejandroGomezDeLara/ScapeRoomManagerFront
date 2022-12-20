@@ -2,6 +2,7 @@ import {MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { Component, Inject, OnInit } from '@angular/core';
 import { GameCategory } from 'src/app/models/GameCategory';
 import { Router } from '@angular/router';
+import { LoadingService } from 'src/app/services/loading.service';
 
 @Component({
   selector: 'app-search-dialog',
@@ -19,7 +20,8 @@ export class SearchDialogComponent implements OnInit {
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
     private dialogRef: MatDialogRef<SearchDialogComponent>,
-    private router:Router
+    private router:Router,
+    private loading:LoadingService
  ) { }
 
 
@@ -39,6 +41,7 @@ public makeSearch():void{
 
 public searchByGameCategory(category:GameCategory):void{
   console.log("CATEGORIA",category);
+  this.loading.startLoading();
   this.router.navigate(['/search'], { queryParams: { c: category.id,a:this.selected_address } });
   this.dialogRef.close(this.search);
 }

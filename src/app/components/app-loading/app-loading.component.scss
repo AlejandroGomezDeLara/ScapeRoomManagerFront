@@ -1,44 +1,52 @@
-.loader-container{
+.loader-container {
     text-align: center;
     z-index: 99999;
     position: fixed;
     height: 100%;
     overflow: hidden;
-    background: rgba(0,0,0,0.4);
-    top:0;
+    background-color: var(--dark-background);
+    background-image: url(../../../assets/imgs/box-transparent-dark.svg);
+    background-repeat: space;
+
+    background-size: 200px;
+    background-position: center;
+    top: 0;
     left: 0;
     right: 0;
-    .text{
-        color:var(--color-primary);
+    .text {
+        color: var(--color-primary);
         font-weight: bold;
         font-size: 24px;
-        margin-top: 10px;;
+        margin-top: 10px;
     }
-    .loader-text{
+    .loader-text {
         font-size: 22px;
         font-weight: bold;
-        color:var(--color-primary);
+        color: var(--color-primary);
         margin-bottom: 30px;
         opacity: 1;
     }
-    .loader{
+    .loader {
         width: 150px;
         height: 150px;
-        -moz-animation:spin 1s linear infinite;
-        animation:spin 1s linear infinite;
+        -moz-animation: spin 1.5s linear infinite;
+        animation: spin 1.5s linear infinite;
         opacity: 1;
     }
-    @-moz-keyframes spin { 
-        100% { -moz-transform: rotate(360deg); } 
+    @-moz-keyframes spin {
+        100% {
+            -moz-transform: rotate(360deg);
+        }
     }
-    @-webkit-keyframes spin { 
-        100% { -webkit-transform: rotate(360deg); } 
+    @-webkit-keyframes spin {
+        100% {
+            -webkit-transform: rotate(360deg);
+        }
     }
-    @keyframes spin { 
-        100% { 
-            -webkit-transform: rotate(360deg); 
-            transform:rotate(360deg); 
-        } 
+    @keyframes spin {
+        100% {
+            -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+        }
     }
-    
 }
