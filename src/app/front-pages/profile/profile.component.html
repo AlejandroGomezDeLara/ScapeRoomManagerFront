@@ -84,7 +84,7 @@
                 </ng-container>
 
                 <div class="open-reservations my-auto" *ngIf="openReservations.length>0">
-                    <app-open-reservation [joined]="true" routerLink="/chats"
+                    <app-open-reservation [joined]="true" routerLink="/chats/{{reservation.chat_id}}/interior-chat"
                         [reservation]="reservation" *ngFor="let reservation of openReservations">
                     </app-open-reservation>
                 </div>

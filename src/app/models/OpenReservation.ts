@@ -18,6 +18,7 @@ export interface OpenReservation{
     min_people?:number;
     actual_people?:number;
     date?:Date;
+    chat_id?:number;
     countdown?:any;
     closed?:boolean;
     price_per_user?:number;
