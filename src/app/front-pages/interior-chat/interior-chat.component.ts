@@ -39,7 +39,9 @@ export class InteriorChatComponent {
     this.getChat();
     this.user = this.auth.getStorageUser();
     this.loading.startLoading();
-    this.getChatMessages();
+    this.messagesInterval = setInterval(() => {
+      this.getChatMessages();
+    }, this.refreshMessagesTime);
   }
 
   public getChat():void{
@@ -51,26 +53,7 @@ export class InteriorChatComponent {
     });
   }
   
-  public selectChat(): void {
-    clearInterval(this.messagesInterval);
-    this.messagesInterval = null;
-    this.loading.startLoading();
-
-    this.apiService.getSubEntity('chats', this.chat_id!, 'messages').subscribe((messages: ChatMessage[]) => {
-      this.messages = messages;
-      setTimeout(() => {
-        this.scrollToBottom();
-      }, 100);
-
-    }, (error: HttpErrorResponse) => {
-      console.log(error);
-    });
-
-    this.messagesInterval = setInterval(() => {
-      this.getChatMessages();
-    }, this.refreshMessagesTime);
-  }
-
+  
   public getChatMessages(): void {
     this.apiService.getSubEntity('chats', this.chat_id!, 'messages').subscribe((messages: ChatMessage[]) => {
       this.loading.stopLoading();
