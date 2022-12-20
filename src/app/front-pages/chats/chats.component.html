@@ -112,10 +112,10 @@
 
 
         </div> -->
-        <div class="col-lg-8 col-12 void-text">
+        <div class="col-lg-8 col-12 void-text" *ngIf="chats.length>0">
             <p>Selecciona un chat para ver sus mensajes</p>
         </div>
     </div>
-   
+    
 </div>
 <app-loading [hidden]="!(loading.isLoading | async)"></app-loading>

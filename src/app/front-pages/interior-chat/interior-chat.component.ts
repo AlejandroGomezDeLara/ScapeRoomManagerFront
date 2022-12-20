@@ -39,6 +39,9 @@ export class InteriorChatComponent {
     this.getChat();
     this.user = this.auth.getStorageUser();
     this.loading.startLoading();
+    //obtenemos por primera vez
+    this.getChatMessages();
+
     this.messagesInterval = setInterval(() => {
       this.getChatMessages();
     }, this.refreshMessagesTime);
