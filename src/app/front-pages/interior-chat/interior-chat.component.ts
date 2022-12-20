@@ -120,6 +120,9 @@ export class InteriorChatComponent {
     window.history.back();
   }
  
+  public uploadImage():void{
+    
+  }
 }
 
 

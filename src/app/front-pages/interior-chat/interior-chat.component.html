@@ -1,4 +1,4 @@
-<div class="chat-container content" [hidden]="(loading.isLoading | async) || !selectedChat">
+<div class="chat-container content" [hidden]="(loading.isLoading | async)">
 
     <div class="chats-content row">
         <div class="interior-chat col-lg-12 col-12">
@@ -67,7 +67,8 @@
                     </ng-container>
                 </div>
 
-                <p class="unread-messages" *ngIf="selectedChat?.unread_messages_count!>0">{{selectedChat?.unread_messages_count}} mensajes no leídos</p>
+                <p class="unread-messages" *ngIf="selectedChat?.unread_messages_count!>0">
+                    {{selectedChat?.unread_messages_count}} mensajes sin leer</p>
 
                 <div class="row" *ngIf="messages.length<=0">
                     <p class="no-messages-text">No hay mensajes aún</p>
@@ -85,8 +86,9 @@
         <div class="input-container">
             <input class="message-input" (keydown.enter)="sendMessage()" [(ngModel)]="actualMessage!.text" type="text"
                 placeholder="Escribe un mensaje">
-            <button class="audio-button"><i class="fa fa-microphone"></i></button>
-            <button class="send-button" type="submit" (click)="sendMessage()"><i class="fa fa-paper-plane"></i></button>
+            <button class="send-button" type="button" (click)="uploadImage()"><i class="fa fa-camera"></i></button>
+            <button class="send-button" type="submit" (click)="sendMessage()"><i
+                    class="fa fa-{{actualMessage?.text != '' ? 'paper-plane' : 'microphone'}}"></i></button>
         </div>
     </div>
 
