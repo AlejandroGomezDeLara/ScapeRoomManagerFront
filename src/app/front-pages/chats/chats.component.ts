@@ -65,10 +65,19 @@ export class ChatsComponent implements OnInit {
     clearInterval(this.messagesInterval);
     this.messagesInterval = null;
     this.loading.startLoading();
-    this.getChatMessages();
-    setTimeout(() => {
-      this.scrollToBottom();
-    }, 100);
+
+    this.apiService.getSubEntity('chats', this.selectedChat?.id!, 'messages').subscribe((messages: ChatMessage[]) => {
+      this.loading.stopLoading();
+      this.messages = messages;
+      setTimeout(() => {
+        this.scrollToBottom();
+      }, 100);
+
+    }, (error: HttpErrorResponse) => {
+      console.log(error);
+      this.loading.stopLoading();
+    });
+
     this.messagesInterval = setInterval(() => {
       this.getChatMessages();
     }, this.refreshMessagesTime);
@@ -76,9 +85,9 @@ export class ChatsComponent implements OnInit {
 
   public getChatMessages(): void {
     this.apiService.getSubEntity('chats', this.selectedChat?.id!, 'messages').subscribe((messages: ChatMessage[]) => {
-      this.messages = messages;
       this.loading.stopLoading();
-      if (messages.length > this.messages.length) {
+      if (this.messages.length + 1 == messages.length) {
+        this.messages = messages;
         setTimeout(() => {
           this.scrollToBottom();
         }, 100);
@@ -96,11 +105,12 @@ export class ChatsComponent implements OnInit {
         user: this.user,
         created_at: new Date
       };
+
+      this.actualMessage!.text = "";
+      this.messages.push(message);
       setTimeout(() => {
         this.scrollToBottom();
       }, 100);
-      this.actualMessage!.text = "";
-      this.messages.push(message);
       this.apiService.addSubEntity('chats', this.selectedChat?.id!, 'messages', message).subscribe((message: ChatMessage) => {
         console.log(message);
         this.actualMessage!.text = "";
