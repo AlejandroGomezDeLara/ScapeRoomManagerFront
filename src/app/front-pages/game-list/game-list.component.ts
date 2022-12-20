@@ -45,6 +45,7 @@ export class GameListComponent implements OnInit {
     private ngZone: NgZone,
     private router: ActivatedRoute,
     public loading: LoadingService) {
+
     let category = router.snapshot.queryParamMap.get('c');
     let address = router.snapshot.queryParamMap.get('a');
     let name = router.snapshot.queryParamMap.get('q');

@@ -15,6 +15,7 @@ import { RatingModule } from './components/game-list/rating/rating.module';
 import { ReservationConfirmedDialogComponent } from './reservation-confirmed-dialog/reservation-confirmed-dialog.component';
 import { ReservationFailedDialogComponent } from './reservation-failed-dialog/reservation-failed-dialog.component';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
+import { AppTabsModule } from './components/app-tabs/app-tabs.module';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { HashLocationStrategy, LocationStrategy } from '@angular/common';
     FormsModule,
     HeaderModule,
     RatingModule,
-    MatDialogModule
+    MatDialogModule,
+    AppTabsModule
   ],
   providers: [{provide: LocationStrategy, useClass: HashLocationStrategy}],
   bootstrap: [AppComponent]

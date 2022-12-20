@@ -137,6 +137,7 @@ u {
 /* smartphones, Android phones, landscape iPhone */
 @media (max-width: 480px) {
     .container {
+        padding-top: 50px !important;
         height: 100%;
         border-radius: 0 !important;
     }

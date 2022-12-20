@@ -1,0 +1,16 @@
+<nav [hidden]="(loading.isLoading | async)" class="app-navbar navbar sticky-bottom navbar-expand-lg  ">
+    <div class="container-fluid">
+        <ng-container *ngIf="utilities.isEmptyObject(user)">
+            <li class="nav-item" *ngFor="let page of pages">
+                <a class="nav-link active" data-bs-toggle="collapse" data-bs-target=".navbar-collapse.show"
+                    aria-current="page" [routerLink]="page?.route"><i class="fa fa-{{page.icon}}"></i> </a>
+            </li>
+        </ng-container>
+        <ng-container *ngIf="!utilities.isEmptyObject(user)">
+            <li class="nav-item" *ngFor="let page of authUserPages">
+                <a class="nav-link active" data-bs-toggle="collapse" data-bs-target=".navbar-collapse.show"
+                    aria-current="page" [routerLink]="page?.route"><i class="fa fa-{{page.icon}}"></i> </a>
+            </li>
+        </ng-container>
+    </div>
+</nav>

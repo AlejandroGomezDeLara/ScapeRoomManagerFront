@@ -1,6 +1,7 @@
 import { AfterContentInit, AfterViewInit, Component, OnInit } from '@angular/core';
 import { User } from 'src/app/models/User';
 import { AuthenticationService } from 'src/app/services/authentication.service';
+import { LoadingService } from 'src/app/services/loading.service';
 import { UtilitiesService } from 'src/app/services/utilities.service';
 import { environment } from 'src/environments/environment';
 
@@ -13,7 +14,7 @@ export class HeaderComponent implements OnInit,AfterContentInit {
 
   public pages=[
     {
-      name:'Eventos',
+      name:'Buscador',
       route:'/search',
       icon:'search'
     },
@@ -42,7 +43,7 @@ export class HeaderComponent implements OnInit,AfterContentInit {
 
   public authUserPages=[
     {
-      name:'Eventos',
+      name:'Buscador',
       route:'/search',
       icon:'search'
     },
@@ -71,7 +72,8 @@ export class HeaderComponent implements OnInit,AfterContentInit {
   public user!:User;
 
   constructor(private auth:AuthenticationService,
-    public utilities:UtilitiesService) { }
+    public utilities:UtilitiesService,
+    public loading:LoadingService) { }
 
   ngAfterContentInit(): void {
     this.user=this.auth.getStorageUser();

@@ -335,9 +335,18 @@
 
 @media (max-width: 902px) {
     .messages-container {
+        height: 70vh !important;
         padding:20px 20px 50px 20px !important;
     }
     .void-text{
         display: none !important;
     }
+}
+@media (max-width:480px) {
+    .chat-container{
+        .chat-footer{
+            bottom:60px !important;
+
+        }
+   }
 }

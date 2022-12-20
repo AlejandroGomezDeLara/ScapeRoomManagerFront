@@ -21,7 +21,7 @@ export class LoginComponent implements OnInit {
     private apiService:ApiService,
     private router:Router,
     private auth:AuthenticationService,
-    private loading:LoadingService) {}
+    public loading:LoadingService) {}
 
   public ngOnInit(): void {
     //We initialize the form
@@ -49,10 +49,12 @@ export class LoginComponent implements OnInit {
         }
         this.loading.stopLoading();
       },error=>{
+        this.loading.stopLoading();
         alert("Error de autentificación")
       });
       //this.resetForm();
     } else {
+      this.loading.stopLoading();
       console.log(this.form.errors);
     }
     //Then we reset the form

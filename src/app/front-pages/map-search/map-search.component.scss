@@ -74,8 +74,17 @@
 }
 
 @media (max-width: 902px) {
+    .description-header{
+        .title{
+            font-size: 24px !important;
+        }
+    }
+    .results{
+        font-size: 24px !important;
+    }
     .map-search-container{
-        padding: 0 !important;
+        padding-left: 0 !important;
+        padding-right: 0 !important;
         .map-container{
             height: 300px !important;
         }

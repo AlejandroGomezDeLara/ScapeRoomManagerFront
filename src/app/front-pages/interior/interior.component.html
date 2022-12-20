@@ -1,4 +1,4 @@
-<div class="game-container" [hidden]="!game && (loading.isLoading | async)">
+<div class="content game-container" [hidden]="!game && (loading.isLoading | async)">
     <div class="game-content row" *ngIf="game">
         <app-game-description [openReservations]="openReservations" (updateReviewSummary)="getReviewsAndSummary()"
             (loadMoreReviews)="loadMoreReviews()" [game]="game" style="display: contents;"></app-game-description>
