@@ -5,8 +5,8 @@
             <div class="user-data-content col-lg-6 col-12 my-auto">
 
                 <div class="col-12 user-avatar ">
-                    <img [src]="user.avatar" alt="" *ngIf="!user.upload_image" >
-                    <img [src]="user.upload_image" alt="" *ngIf="user.upload_image" >
+                    <img [src]="user.avatar" alt="" *ngIf="!user.upload_image" onError="this.src='assets/imgs/avatar.png'">
+                    <img [src]="user.upload_image" alt="" *ngIf="user.upload_image" onError="this.src='assets/imgs/avatar.png'">
 
                 </div>
                 <div class="col-12">

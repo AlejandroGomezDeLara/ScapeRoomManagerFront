@@ -22,7 +22,7 @@
             </ul>
             <div class="row user" *ngIf="!utilities.isEmptyObject(user)" routerLink="/profile" data-bs-toggle="collapse" data-bs-target=".navbar-collapse.show">
                 <div class="col-3 my-auto">
-                    <img class="avatar" [src]="user.avatar" alt="">
+                    <img class="avatar" [src]="user.avatar" alt="" onError="this.src='assets/imgs/avatar.png'">
                 </div>
                 <div class="col-7 offset-2 my-auto">
                     <p class="name">{{user.name}}</p>

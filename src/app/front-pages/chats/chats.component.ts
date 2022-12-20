@@ -1,8 +1,6 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Chat } from 'src/app/models/Chat';
-import { ChatMessage } from 'src/app/models/ChatMessage';
-import { User } from 'src/app/models/User';
 import { ApiService } from 'src/app/services/api.service';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { LoadingService } from 'src/app/services/loading.service';
@@ -15,16 +13,8 @@ import { LoadingService } from 'src/app/services/loading.service';
 export class ChatsComponent implements OnInit {
 
   public chats: Chat[] = [];
-  public messages: ChatMessage[] = [];
-  public selectedChat?: Chat;
   public showMenu: boolean = true;
-  public actualMessage?: ChatMessage = {
-    text: "",
-  };
-  public user!: User;
-
   public chatsInterval: any;
-  public messagesInterval: any;
   public refreshMessagesTime: number = 2000;
 
   constructor(private apiService: ApiService,
@@ -34,7 +24,6 @@ export class ChatsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.user = this.auth.getStorageUser();
     this.loading.startLoading();
     this.getChats();
     this.chatsInterval = setInterval(() => {
@@ -58,67 +47,11 @@ export class ChatsComponent implements OnInit {
     });
   }
 
-  public selectChat(chat: Chat): void {
-    this.selectedChat = chat;
-    chat.unread_messages_count = 0;
-    this.showMenu = false;
-    clearInterval(this.messagesInterval);
-    this.messagesInterval = null;
-    this.loading.startLoading();
+ 
 
-    this.apiService.getSubEntity('chats', this.selectedChat?.id!, 'messages').subscribe((messages: ChatMessage[]) => {
-      this.loading.stopLoading();
-      this.messages = messages;
-      setTimeout(() => {
-        this.scrollToBottom();
-      }, 100);
+  
 
-    }, (error: HttpErrorResponse) => {
-      console.log(error);
-      this.loading.stopLoading();
-    });
-
-    this.messagesInterval = setInterval(() => {
-      this.getChatMessages();
-    }, this.refreshMessagesTime);
-  }
-
-  public getChatMessages(): void {
-    this.apiService.getSubEntity('chats', this.selectedChat?.id!, 'messages').subscribe((messages: ChatMessage[]) => {
-      this.loading.stopLoading();
-      if (this.messages.length + 1 == messages.length) {
-        this.messages = messages;
-        setTimeout(() => {
-          this.scrollToBottom();
-        }, 100);
-      }
-    }, (error: HttpErrorResponse) => {
-      console.log(error);
-      this.loading.stopLoading();
-    });
-  }
-
-  public sendMessage(): void {
-    if (this.actualMessage?.text != "") {
-      let message: ChatMessage = {
-        text: this.actualMessage?.text!,
-        user: this.user,
-        created_at: new Date
-      };
-
-      this.actualMessage!.text = "";
-      this.messages.push(message);
-      setTimeout(() => {
-        this.scrollToBottom();
-      }, 100);
-      this.apiService.addSubEntity('chats', this.selectedChat?.id!, 'messages', message).subscribe((message: ChatMessage) => {
-        console.log(message);
-        this.actualMessage!.text = "";
-      }, (error: HttpErrorResponse) => {
-        console.log(error);
-      });
-    }
-  }
+  
 
   public scrollToBottom(): void {
     let messagesContainer = document.getElementById('messages-container-scroll');
@@ -130,12 +63,7 @@ export class ChatsComponent implements OnInit {
   public ngOnDestroy(): void {
     clearInterval(this.chatsInterval);
     this.chatsInterval = null;
-    clearInterval(this.messagesInterval);
-    this.messagesInterval = null;
+   
   }
 
-  public toggleShowMenu(): void {
-    this.showMenu = !this.showMenu;
-    this.selectedChat = undefined;
-  }
 }

@@ -51,7 +51,7 @@
                 empezar!</p>
             <div class="row justify-content-center" *ngIf="people?.length!>0">
                 <div class="user" *ngFor="let user of people;let i =index">
-                    <img class="avatar" [src]="user.avatar" alt="">
+                    <img class="avatar" [src]="user.avatar" alt="" onError="this.src='assets/imgs/avatar.png'">
                     <p class="user-name">{{user.name}}</p>
                 </div>
 

@@ -44,6 +44,7 @@ export class RegisterComponent implements OnInit {
     this.apiService.register(this.form.value).subscribe(res=>{
       console.log(res);
       this.loading.stopLoading();
+      alert("Registro realizado con éxito");
       this.router.navigateByUrl('/login');
     },error=>{
       this.loading.stopLoading();

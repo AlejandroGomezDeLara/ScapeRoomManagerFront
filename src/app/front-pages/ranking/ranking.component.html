@@ -23,7 +23,7 @@
 
         <div class="top-user-item col-lg-3 col-sm-12 second-user h-25 d-inline-block " *ngIf="users.length>=2">
             <div class="col-12 user-avatar">
-                <img [src]="users[1].avatar" alt="">
+                <img [src]="users[1].avatar" alt="" onError="this.src='assets/imgs/avatar.png'">
             </div>
             <div class="col-12">
                 <p class="user-name">{{users[1].name}}</p>
@@ -52,7 +52,7 @@
         </div>
         <div class="top-user-item winner-user col-lg-3 col-sm-12" *ngIf="users.length>=1">
             <div class="col-12 user-avatar">
-                <img [src]="users[0].avatar" alt="">
+                <img [src]="users[0].avatar" alt="" onError="this.src='assets/imgs/avatar.png'">
             </div>
             <div class="col-12">
                 <p class="user-name">{{users[0].name}}</p>
@@ -82,7 +82,7 @@
 
         <div class="top-user-item col-lg-3 col-sm-12 h-25 d-inline-block third-user" *ngIf="users.length>=3">
             <div class="col-12 user-avatar">
-                <img [src]="users[2].avatar" alt="">
+                <img [src]="users[2].avatar" alt="" onError="this.src='assets/imgs/avatar.png'">
             </div>
             <div class="col-12">
                 <p class="user-name">{{users[2].name}}</p>
@@ -141,7 +141,7 @@
                     </div>
 
                     <div class="col-lg-5 col-9 my-auto user">
-                        <img [src]="user.avatar" alt="">
+                        <img [src]="user.avatar" alt="" onError="this.src='assets/imgs/avatar.png'">
                         <p class="name">{{user.name}}</p>
                         <p class="user-alias"><i class="fa-brands fa-twitter"
                                 *ngIf="user.twitter_user"></i>{{user.twitter_user ? user.twitter_user :

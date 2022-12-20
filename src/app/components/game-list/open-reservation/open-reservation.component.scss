@@ -139,6 +139,8 @@
                     font-size: 46px;
                 }
                 .user-name {
+                    overflow: hidden;
+                    text-overflow: ellipsis;
                     font-size: 12px;
                 }
                 .avatar {
