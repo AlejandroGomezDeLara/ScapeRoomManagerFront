@@ -1,3 +1,4 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { AfterContentInit, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { MatDatepickerInputEvent } from '@angular/material/datepicker';
 import { MatDialog } from '@angular/material/dialog';
@@ -64,7 +65,10 @@ export class GameDescriptionComponent implements OnInit {
     this.apiService.addSubEntity('games', this.game?.id!, 'reviews', gameReview).subscribe((gameReview: GameReview) => {
       console.log(gameReview);
       this.updateReviewSummary.emit();
-    }, (error: Error) => {
+    }, (error: HttpErrorResponse) => {
+      if(error.status == 401){
+        this.route.navigateByUrl('/login');
+      }
       console.log(error);
     });
   }

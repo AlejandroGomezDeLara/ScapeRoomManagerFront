@@ -3,6 +3,7 @@ import {MatDialog} from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { GameCategory } from 'src/app/models/GameCategory';
 import { ApiService } from 'src/app/services/api.service';
+import { LoadingService } from 'src/app/services/loading.service';
 import { SearchDialogComponent } from '../../search-dialog/search-dialog.component';
 
 @Component({
@@ -24,7 +25,8 @@ export class AutocompleteSearchbarComponent implements OnInit,AfterViewInit {
 
   constructor(public dialog: MatDialog,
     private apiService:ApiService,
-    private router:Router) { }
+    private router:Router,
+    private loading:LoadingService) { }
 
   ngOnInit(): void {
     this.getCategories();
@@ -53,6 +55,7 @@ export class AutocompleteSearchbarComponent implements OnInit,AfterViewInit {
   }
 
   public search():void{    
+    this.loading.startLoading();
     this.router.navigate(['/search'], { queryParams: { a: this.selected_address, q:this.selected_name } });
   }
 

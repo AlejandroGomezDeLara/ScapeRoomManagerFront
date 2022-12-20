@@ -143,4 +143,4 @@
 
 <app-loading [hidden]="!(loading.isLoading| async)"></app-loading>
 
-<home-footer></home-footer>
+<home-footer [hidden]="(loading.isLoading| async)"></home-footer>

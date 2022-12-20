@@ -76,6 +76,7 @@ export class ProfileComponent implements OnInit, AfterContentInit {
       this.auth.setStorageUser(user);
       this.loading.stopLoading();
     }, (error: HttpErrorResponse) => {
+      console.log(error);
       this.loading.stopLoading();
     });
   }

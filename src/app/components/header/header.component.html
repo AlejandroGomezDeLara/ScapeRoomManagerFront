@@ -20,7 +20,7 @@
                 </ng-container>
                
             </ul>
-            <div class="row user" *ngIf="!utilities.isEmptyObject(user)" routerLink="/profile">
+            <div class="row user" *ngIf="!utilities.isEmptyObject(user)" routerLink="/profile" data-bs-toggle="collapse" data-bs-target=".navbar-collapse.show">
                 <div class="col-3 my-auto">
                     <img class="avatar" [src]="user.avatar" alt="">
                 </div>

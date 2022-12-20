@@ -3,6 +3,8 @@
     padding: 15px;
     position: relative;
     text-align: center;
+    max-height: 500px;
+    overflow-y: scroll;
     input,textarea{
         max-width: 100%;
 
