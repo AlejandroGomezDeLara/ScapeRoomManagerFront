@@ -17,7 +17,7 @@ export class ChatsComponent implements OnInit {
   public chats: Chat[] = [];
   public messages: ChatMessage[] = [];
   public selectedChat?: Chat;
-  public showMenu:boolean=true;
+  public showMenu: boolean = true;
   public actualMessage?: ChatMessage = {
     text: "",
   };
@@ -25,7 +25,7 @@ export class ChatsComponent implements OnInit {
 
   public chatsInterval: any;
   public messagesInterval: any;
-  public refreshMessagesTime:number=2000;
+  public refreshMessagesTime: number = 2000;
 
   constructor(private apiService: ApiService,
     public loading: LoadingService,
@@ -47,8 +47,8 @@ export class ChatsComponent implements OnInit {
     this.apiService.getEntity('chats').subscribe((chats: Chat[]) => {
       console.log(chats);
       this.chats = chats;
-      let new_messages=chats.some(x=>x.unread_messages_count!>0);
-      if(new_messages){
+      let new_messages = chats.some(x => x.unread_messages_count! > 0);
+      if (new_messages) {
         //Sonido notificación
       }
       this.loading.stopLoading();
@@ -61,12 +61,14 @@ export class ChatsComponent implements OnInit {
   public selectChat(chat: Chat): void {
     this.selectedChat = chat;
     chat.unread_messages_count = 0;
-    this.showMenu=false;
+    this.showMenu = false;
     clearInterval(this.messagesInterval);
     this.messagesInterval = null;
     this.loading.startLoading();
     this.getChatMessages();
-
+    setTimeout(() => {
+      this.scrollToBottom();
+    }, 100);
     this.messagesInterval = setInterval(() => {
       this.getChatMessages();
     }, this.refreshMessagesTime);
@@ -76,9 +78,11 @@ export class ChatsComponent implements OnInit {
     this.apiService.getSubEntity('chats', this.selectedChat?.id!, 'messages').subscribe((messages: ChatMessage[]) => {
       this.messages = messages;
       this.loading.stopLoading();
-      /* setTimeout(() => {
-        this.scrollToBottom();
-      }, 100); */
+      if (messages.length > this.messages.length) {
+        setTimeout(() => {
+          this.scrollToBottom();
+        }, 100);
+      }
     }, (error: HttpErrorResponse) => {
       console.log(error);
       this.loading.stopLoading();
@@ -87,10 +91,10 @@ export class ChatsComponent implements OnInit {
 
   public sendMessage(): void {
     if (this.actualMessage?.text != "") {
-      let message:ChatMessage={
-        text:this.actualMessage?.text!,
-        user:this.user,
-        created_at:new Date
+      let message: ChatMessage = {
+        text: this.actualMessage?.text!,
+        user: this.user,
+        created_at: new Date
       };
       setTimeout(() => {
         this.scrollToBottom();
@@ -99,7 +103,7 @@ export class ChatsComponent implements OnInit {
       this.messages.push(message);
       this.apiService.addSubEntity('chats', this.selectedChat?.id!, 'messages', message).subscribe((message: ChatMessage) => {
         console.log(message);
-        this.actualMessage!.text = "";      
+        this.actualMessage!.text = "";
       }, (error: HttpErrorResponse) => {
         console.log(error);
       });
@@ -120,8 +124,8 @@ export class ChatsComponent implements OnInit {
     this.messagesInterval = null;
   }
 
-  public toggleShowMenu():void{
-    this.showMenu=!this.showMenu;
-    this.selectedChat=undefined;
+  public toggleShowMenu(): void {
+    this.showMenu = !this.showMenu;
+    this.selectedChat = undefined;
   }
 }
