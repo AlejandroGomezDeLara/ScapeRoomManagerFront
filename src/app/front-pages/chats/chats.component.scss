@@ -42,10 +42,11 @@
                 width: 100%;
                 background: var(--chat-message-left-background);
                 padding: 20px;
-                position: relative;
+                padding-left: 40px;
+                height: 80px;
                 .search-icon {
-                    left: 40px;
-                    top: 39px;
+                    left: 43px;
+                    top: 31px;
                     position: absolute;
                     color: var(--color-primary);
                 }
@@ -55,7 +56,7 @@
                 background: white;
                 border-radius: 25px;
                 width: 100%;
-                padding: 15px;
+                padding: 10px;
                 padding-left: 40px;
             }
             .chats-searchbar:focus {
@@ -73,7 +74,7 @@
             }
             .chats-items-container {
                 padding: 0px 20px 20px 20px;
-                height: 90vh;
+                height: calc(100vh - 90px - 80px);
                 overflow-y: scroll;
                 color: white;
                 .chats-item {
@@ -139,6 +140,9 @@
     }
 }
 @media (max-width:480px) {
+    .chats-items-container{
+        height: calc(100vh - 72px - 80px) !important;
+    }
     .chat-container{
         .chat-footer{
             bottom:60px !important;

@@ -171,6 +171,7 @@
                 background: white;
                 padding: 0;
                 margin: 0;
+                height: 110px;
                 border-bottom: 0.5px solid #ccc;
                 padding: 20px;
                 .chat-users {
@@ -206,7 +207,7 @@
                 padding: 50px 70px 20px 40px;
                 overflow-y: scroll;
                 overflow-x: hidden;
-                height: 74vh;
+                height: calc(100vh - 272px) ;
                 .no-messages-text {
                     text-align: center;
                     font-size: 22px;
@@ -316,6 +317,7 @@
     .chat-footer {
         margin: 0 auto;
         padding-top: 10px;
+        height: 72px;
         position: absolute;
         text-align: center;
         left: 0;
@@ -414,10 +416,10 @@
 
 @media (max-width: 902px) {
     .messages-container {
-        height: 70vh !important;
+        height: calc(100vh - 182px) !important;
         padding: 20px 20px 50px 20px !important;
         .message{
-            max-width: 75%;
+            max-width: 250px !important;
         }
     }
     .void-text {

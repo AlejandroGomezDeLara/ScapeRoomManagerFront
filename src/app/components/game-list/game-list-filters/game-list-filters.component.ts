@@ -274,7 +274,6 @@ export class GameListFiltersComponent implements OnInit, AfterViewInit {
         }
       });
     }, error => {
-      alert('No se pudo obtener la geolocalización');
       console.log(error);
       this.filterGames();
     });
