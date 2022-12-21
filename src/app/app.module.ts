@@ -16,6 +16,7 @@ import { ReservationConfirmedDialogComponent } from './reservation-confirmed-dia
 import { ReservationFailedDialogComponent } from './reservation-failed-dialog/reservation-failed-dialog.component';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { AppTabsModule } from './components/app-tabs/app-tabs.module';
+import { AppLoadingModule } from './components/app-loading/app-loading.module';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { AppTabsModule } from './components/app-tabs/app-tabs.module';
     HeaderModule,
     RatingModule,
     MatDialogModule,
-    AppTabsModule
+    AppTabsModule,
+    AppLoadingModule
   ],
   providers: [{provide: LocationStrategy, useClass: HashLocationStrategy}],
   bootstrap: [AppComponent]

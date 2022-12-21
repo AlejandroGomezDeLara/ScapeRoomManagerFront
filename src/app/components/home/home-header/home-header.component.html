@@ -1,6 +1,6 @@
 <div class="header row">
 
-    <video oncanplay="this.play()" onloadedmetadata="this.muted = true" (loadedmetadata)="loading.stopLoading()" loop>
+    <video oncanplay="this.play()" onloadedmetadata="this.muted = true" (loadeddata)="loading.stopLoading()" loop>
         <source src="assets/videos/neon.mp4" type="video/mp4" />
     </video>
     <div class="logo text-center">

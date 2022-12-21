@@ -18,7 +18,6 @@ export class HomeHeaderComponent implements OnInit {
     public loading:LoadingService) { }
 
   ngOnInit(): void {
-    this.loading.startLoading();
   }
 
   public getFilter(filters:[string,string]):void{
