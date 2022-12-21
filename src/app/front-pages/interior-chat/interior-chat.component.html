@@ -57,8 +57,11 @@
                                 <p class="message-username" *ngIf="user.id != message?.user!.id">
                                     {{message?.user?.name}}
                                 </p>
+                                <img [src]="message.image" alt="" *ngIf="message.image">
+
                                 <span class="message-text">{{message?.text}} </span>
                                 <span class="message-hour"> {{message?.created_at | date:'HH:mm'}}</span>
+
                             </div>
                         </div>
                     </ng-container>
@@ -70,16 +73,20 @@
                         </div>
                         <div [ngClass]="user.id != message?.user!.id ? 'col-lg-11 col-10' : 'col-lg-11 col-11'">
                             <ng-container *ngIf="messages[i-1].user?.id != message?.user?.id">
-
+                                <!-- TEXTO -->
                                 <div [ngClass]="user.id == message?.user!.id  ? 'message message-right' : 'message message-left'"
                                     *ngIf="!message.audio">
                                     <p class="message-username" *ngIf="user.id != message?.user!.id">
                                         {{message?.user?.name}}
                                     </p>
+                                    <img [src]="message.image" alt="" *ngIf="message.image">
+
                                     <span class="message-text">{{message?.text}} </span>
                                     <span class="message-hour"> {{message?.created_at | date:'HH:mm'}}</span>
+
                                 </div>
 
+                                <!-- AUDIO -->
                                 <div [ngClass]="user.id == message?.user!.id  ? 'chat-audio message-right' : 'chat-audio message-left'"
                                     *ngIf="message.audio">
                                     <div class="col-3 user-audio-avatar my-auto">
@@ -106,13 +113,17 @@
                             </ng-container>
 
                             <ng-container *ngIf="messages[i-1].user?.id == message?.user?.id">
+                                <!-- TEXTO -->
+
                                 <div [ngClass]="user.id == message?.user!.id  ? 'message-right-simple message' : 'message-simple message'"
                                     *ngIf="!message.audio">
+                                    <img [src]="message.image" alt="" *ngIf="message.image">
 
                                     <span class="message-text">{{message?.text}} </span>
                                     <span class="message-hour"> {{message?.created_at | date:'HH:mm'}}</span>
                                 </div>
 
+                                <!-- AUDIO -->
                                 <div [ngClass]="user.id == message?.user!.id  ? 'chat-audio message-right-simple' : 'chat-audio message-simple'"
                                     *ngIf="message.audio">
                                     <div class="col-3 user-audio-avatar my-auto">
@@ -180,11 +191,11 @@
 
 
             <button class="send-button" type="button" (mousedown)="recordAudio()" (mouseup)="stopRecordingAudio()"
-                *ngIf="actualMessage?.text == ''">
+                *ngIf="actualMessage?.text == '' && !actualMessage?.image">
                 <i class="fa fa-microphone"></i>
             </button>
 
-            <button class="send-button" type="submit" (click)="sendMessage()" *ngIf="actualMessage?.text != ''">
+            <button class="send-button" type="submit" (click)="sendMessage()" *ngIf="actualMessage?.text != '' || actualMessage?.image">
                 <i class="fa fa-paper-plane"></i>
             </button>
         </div>

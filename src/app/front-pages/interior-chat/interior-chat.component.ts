@@ -89,13 +89,14 @@ export class InteriorChatComponent {
   }
 
   public sendMessage(): void {
-    if (this.actualMessage?.text != "") {
+    if (this.actualMessage?.text != "" || this.actualMessage.image) {
       let message: ChatMessage = {
         text: this.actualMessage?.text!,
         user: this.user,
+        image:this.actualMessage?.image,
         created_at: new Date
       };
-
+      this.deleteImage();
       this.actualMessage!.text = "";
       this.messages.push(message);
       this.selectedChat!.unread_messages_count = 0;
