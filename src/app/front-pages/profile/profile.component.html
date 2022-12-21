@@ -141,6 +141,6 @@
     </div>
 </div>
 
-<app-loading [hidden]="!(loading.isLoading| async)"></app-loading>
+<app-loading [hidden]="!(loading.isLoading| async)" [text]="'Cargando perfil'"></app-loading>
 
-<home-footer [hidden]="(loading.isLoading| async)"></home-footer>
+<home-footer></home-footer>

@@ -171,3 +171,4 @@
     </div>
 </div>
 <home-footer></home-footer>
+<app-loading [hidden]="!(loading.isLoading | async)" [text]="'Cargando ranking'"></app-loading>

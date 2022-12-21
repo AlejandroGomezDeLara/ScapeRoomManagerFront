@@ -13,19 +13,26 @@ import { UtilitiesService } from 'src/app/services/utilities.service';
 export class AppTabsComponent {
   public pages = [
     {
-      name: 'Buscador',
-      route: '/search',
-      icon: 'search'
+      name: 'Home',
+      route: '/',
+      icon: 'home'
     },
+   
     {
       name: 'Ranking',
       route: '/ranking',
       icon: 'trophy'
     },
     {
+      name: 'Buscador',
+      route: '/search',
+      icon: '',
+      image:'assets/imgs/box-transparent-light.svg'
+    },
+    {
       name: 'Mapa',
       route: '/map',
-      icon: 'location-dot'
+      icon: 'map-location-dot'
     },
     {
       name: 'Perfil',
@@ -36,11 +43,7 @@ export class AppTabsComponent {
   ];
 
   public authUserPages = [
-    {
-      name: 'Buscador',
-      route: '/search',
-      icon: 'search'
-    },
+   
     {
       name: 'Ranking',
       route: '/ranking',
@@ -49,9 +52,14 @@ export class AppTabsComponent {
     {
       name: 'Mapa',
       route: '/map',
-      icon: 'location-dot'
-    }
-    ,
+      icon: 'map-location-dot'
+    },
+    {
+      name: 'Buscador',
+      route: '/search',
+      icon: '',
+      image:'assets/imgs/box-transparent-light.svg'
+    },
     {
       name: 'Chats',
       route: '/chats',
