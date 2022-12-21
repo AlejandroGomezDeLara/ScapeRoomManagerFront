@@ -17,7 +17,7 @@ import { LoadingService } from 'src/app/services/loading.service';
 })
 export class InteriorChatComponent {
 
-  public messages: ChatMessage[] = [];
+  public messages?: ChatMessage[];
   public chat_id?: number;
   public selectedChat?: Chat;
   public recordedAudio?: any;
@@ -48,7 +48,7 @@ export class InteriorChatComponent {
 
     this.getChat();
     this.user = this.auth.getStorageUser();
-    this.loading.startLoading();
+    //this.loading.startLoading();
     //obtenemos por primera vez
     this.getChatMessages();
 
@@ -70,17 +70,13 @@ export class InteriorChatComponent {
   public getChatMessages(): void {
     this.apiService.getSubEntity('chats', this.chat_id!, 'messages').subscribe((messages: ChatMessage[]) => {
       this.loading.stopLoading();
-      if (this.messages.length == 0) {
+      if (!this.messages) {
         this.messages = messages;
-        setTimeout(() => {
-          this.scrollToBottom();
-        }, 100);
+        this.scrollToBottom();
       }
       if (this.messages.length + 1 == messages.length) {
         this.messages = messages;
-        setTimeout(() => {
-          this.scrollToBottom();
-        }, 100);
+        this.scrollToBottom();
       }
     }, (error: HttpErrorResponse) => {
       console.log(error);
@@ -89,22 +85,20 @@ export class InteriorChatComponent {
   }
 
   public sendMessage(): void {
-    if (this.actualMessage?.text != "" || this.actualMessage.image) {
+    if (this.actualMessage?.text != "" || this.actualMessage.image) {
       let message: ChatMessage = {
         text: this.actualMessage?.text!,
         user: this.user,
-        image:this.actualMessage?.image,
+        image: this.actualMessage?.image,
         created_at: new Date
       };
       this.deleteImage();
       this.actualMessage!.text = "";
-      this.messages.push(message);
+      this.messages?.push(message);
       this.selectedChat!.unread_messages_count = 0;
       console.log(this.selectedChat?.unread_messages_count);
 
-      setTimeout(() => {
-        this.scrollToBottom();
-      }, 100);
+      this.scrollToBottom();
       this.apiService.addSubEntity('chats', this.selectedChat?.id!, 'messages', message).subscribe((message: ChatMessage) => {
         console.log(message);
         this.actualMessage!.text = "";
@@ -116,7 +110,11 @@ export class InteriorChatComponent {
 
   public scrollToBottom(): void {
     let messagesContainer = document.getElementById('messages-container-scroll');
-    messagesContainer!.scrollTop = messagesContainer!.scrollHeight;
+    setTimeout(()=>{
+      messagesContainer?.scroll({top: messagesContainer!.scrollHeight, left: 0, behavior: 'smooth' });
+    },100);
+
+    /* messagesContainer!.scrollTop = messagesContainer!.scrollHeight; */
     console.log(messagesContainer);
 
   }
@@ -157,10 +155,8 @@ export class InteriorChatComponent {
 
     this.selectedChat!.unread_messages_count = 0;
 
-    setTimeout(() => {
-      this.scrollToBottom();
-    }, 100);
-    this.messages.push(message);
+    this.scrollToBottom();
+    this.messages?.push(message);
   }
 
   public togglePlay(message: ChatMessage): void {
@@ -208,13 +204,13 @@ export class InteriorChatComponent {
 
   _handleReaderLoaded(e: any) {
     let reader = e.target;
-    
+
     this.actualMessage!.image = reader.result;
     console.log(this.actualMessage);
   }
 
-  public deleteImage():void{
-    this.actualMessage!.image=undefined;
+  public deleteImage(): void {
+    this.actualMessage!.image = undefined;
   }
 
 
