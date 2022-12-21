@@ -37,13 +37,13 @@ export class AppComponent implements OnInit {
         this.apiService.setTokenToHeaders(null);
 
       } else {
-        
         console.log("sin token");
       }
     });
   }
 
   public redirect(): void {
+    console.log("redirigiendo");
     
     this.router.navigateByUrl('/chats');
   }
