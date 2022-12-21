@@ -1,11 +1,13 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component } from '@angular/core';
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 import { Chat } from 'src/app/models/Chat';
 import { ChatMessage } from 'src/app/models/ChatMessage';
 import { User } from 'src/app/models/User';
 import { ApiService } from 'src/app/services/api.service';
 import { AuthenticationService } from 'src/app/services/authentication.service';
+import { ChatAudioService } from 'src/app/services/chat-audio.service';
 import { LoadingService } from 'src/app/services/loading.service';
 
 @Component({
@@ -16,22 +18,29 @@ import { LoadingService } from 'src/app/services/loading.service';
 export class InteriorChatComponent {
 
   public messages: ChatMessage[] = [];
-  public chat_id?:number;
+  public chat_id?: number;
   public selectedChat?: Chat;
+  public recordedAudio?: any;
+  public recorder: any;
+
   public actualMessage?: ChatMessage = {
     text: "",
   };
-  public user!: User;
 
+  public user!: User;
   public messagesInterval: any;
   public refreshMessagesTime: number = 2000;
+
+  public currentTime: number = 0;
 
   constructor(private apiService: ApiService,
     public loading: LoadingService,
     private auth: AuthenticationService,
-    private activatedRoute:ActivatedRoute) {
+    private activatedRoute: ActivatedRoute,
+    public chatAudio: ChatAudioService,
+    public sanitizer: DomSanitizer) {
 
-      this.chat_id=+activatedRoute.snapshot.paramMap.get('id')!;
+    this.chat_id = +activatedRoute.snapshot.paramMap.get('id')!;
 
   }
 
@@ -47,21 +56,21 @@ export class InteriorChatComponent {
     }, this.refreshMessagesTime);
   }
 
-  public getChat():void{
-    this.apiService.getEntity('chats',this.chat_id).subscribe((chat:Chat)=>{
-      this.selectedChat=chat;
+  public getChat(): void {
+    this.apiService.getEntity('chats', this.chat_id).subscribe((chat: Chat) => {
+      this.selectedChat = chat;
       console.log(chat);
-    },(error:HttpErrorResponse)=>{
+    }, (error: HttpErrorResponse) => {
       console.log(error);
     });
   }
-  
-  
+
+
   public getChatMessages(): void {
     this.apiService.getSubEntity('chats', this.chat_id!, 'messages').subscribe((messages: ChatMessage[]) => {
       this.loading.stopLoading();
-      if(this.messages.length==0){
-        this.messages=messages;
+      if (this.messages.length == 0) {
+        this.messages = messages;
         setTimeout(() => {
           this.scrollToBottom();
         }, 100);
@@ -88,9 +97,9 @@ export class InteriorChatComponent {
 
       this.actualMessage!.text = "";
       this.messages.push(message);
-      this.selectedChat!.unread_messages_count=0;
+      this.selectedChat!.unread_messages_count = 0;
       console.log(this.selectedChat?.unread_messages_count);
-      
+
       setTimeout(() => {
         this.scrollToBottom();
       }, 100);
@@ -100,6 +109,8 @@ export class InteriorChatComponent {
       }, (error: HttpErrorResponse) => {
         console.log(error);
       });
+    } else {
+      this.recordAudio();
     }
   }
 
@@ -111,18 +122,82 @@ export class InteriorChatComponent {
   }
 
   public ngOnDestroy(): void {
-  
+
     clearInterval(this.messagesInterval);
     this.messagesInterval = null;
   }
 
-  public back():void{
+  public back(): void {
     window.history.back();
   }
- 
-  public uploadImage():void{
-    
+
+  public async recordAudio() {
+    console.log("Recording audio xd");
+    this.recordedAudio = undefined;
+    this.recorder = await this.chatAudio.startRecording();
+    this.recorder.start();
+
+
   }
+
+  public async stopRecordingAudio() {
+    console.log("stoping audio xd");
+    this.recordedAudio = await this.recorder.stop();
+    let audio= new Audio(this.recordedAudio.audioUrl);
+    
+    let message: ChatMessage = {
+      text: "",
+      audio:audio,
+      audio_url: this.recordedAudio.audioUrl,
+      user: this.user,
+      created_at: new Date
+    };
+
+    this.actualMessage!.text = "";
+
+    this.selectedChat!.unread_messages_count = 0;
+
+    setTimeout(() => {
+      this.scrollToBottom();
+    }, 100);
+    this.messages.push(message);
+  }
+
+  public togglePlay(message: ChatMessage): void {
+    message.is_playing_audio ? message.audio!.pause() : message.audio!.play();
+    console.log("DURACION",message.audio?.duration);
+    
+    message.audio!.ontimeupdate = (event) => {
+      this.currentTime = message.audio!.currentTime;
+    }
+    message.audio!.onplaying = () => {
+      message.is_playing_audio = true;
+    };
+    message.audio!.onpause = () => {
+      message.is_playing_audio = false;
+    };
+
+    message.audio!.addEventListener("ended", function () {
+      message.audio!.currentTime = 0;
+      this.currentTime=0;
+      console.log("ended");
+    });
+
+    message.audio!.addEventListener("loadeddata", function () {
+      console.log("Audio duration: " + this.duration);
+
+    });
+  }
+
+  floor(number:number):number{
+    return Math.floor(number);
+  }
+
+  public uploadImage(): void {
+
+  }
+
+
 }
 
 

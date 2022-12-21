@@ -6,6 +6,10 @@ export interface ChatMessage {
     text: string;
     user?:User;
     chat?:Chat;
+    audio?:HTMLAudioElement;
+    is_playing_audio?:boolean;
+    audio_url?:string;
+    audio_text?:string;
     image?:string;
     created_at?:Date;
 }
