@@ -45,6 +45,7 @@ export class InteriorChatComponent {
   }
 
   ngOnInit(): void {
+
     this.getChat();
     this.user = this.auth.getStorageUser();
     this.loading.startLoading();
@@ -109,8 +110,6 @@ export class InteriorChatComponent {
       }, (error: HttpErrorResponse) => {
         console.log(error);
       });
-    } else {
-      this.recordAudio();
     }
   }
 
@@ -143,11 +142,11 @@ export class InteriorChatComponent {
   public async stopRecordingAudio() {
     console.log("stoping audio xd");
     this.recordedAudio = await this.recorder.stop();
-    let audio= new Audio(this.recordedAudio.audioUrl);
-    
+    let audio = new Audio(this.recordedAudio.audioUrl);
+
     let message: ChatMessage = {
       text: "",
-      audio:audio,
+      audio: audio,
       audio_url: this.recordedAudio.audioUrl,
       user: this.user,
       created_at: new Date
@@ -165,8 +164,8 @@ export class InteriorChatComponent {
 
   public togglePlay(message: ChatMessage): void {
     message.is_playing_audio ? message.audio!.pause() : message.audio!.play();
-    console.log("DURACION",message.audio?.duration);
-    
+    console.log("DURACION", message.audio?.duration);
+
     message.audio!.ontimeupdate = (event) => {
       this.currentTime = message.audio!.currentTime;
     }
@@ -179,7 +178,7 @@ export class InteriorChatComponent {
 
     message.audio!.addEventListener("ended", function () {
       message.audio!.currentTime = 0;
-      this.currentTime=0;
+      this.currentTime = 0;
       console.log("ended");
     });
 
@@ -189,12 +188,32 @@ export class InteriorChatComponent {
     });
   }
 
-  floor(number:number):number{
+  floor(number: number): number {
     return Math.floor(number);
   }
 
-  public uploadImage(): void {
+  public uploadImage(e: any) {
+    var file = e.dataTransfer ? e.dataTransfer.files[0] : e.target.files[0];
+    var pattern = /image-*/;
+    var reader = new FileReader();
+    if (!file.type.match(pattern)) {
+      alert('invalid format');
+      return;
+    }
+    reader.onload = this._handleReaderLoaded.bind(this);
+    reader.readAsDataURL(file);
 
+  }
+
+  _handleReaderLoaded(e: any) {
+    let reader = e.target;
+    
+    this.actualMessage!.image = reader.result;
+    console.log(this.actualMessage);
+  }
+
+  public deleteImage():void{
+    this.actualMessage!.image=undefined;
   }
 
 

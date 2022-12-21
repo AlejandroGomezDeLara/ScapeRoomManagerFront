@@ -44,10 +44,12 @@
                                         [value]="message.audio.currentTime">
                                 </div>
                                 <span class="audio-duration"
-                                *ngIf="message.audio.currentTime==0">{{message.audio.duration}}</span>
-                            <span class="audio-duration"
-                                *ngIf="message.audio.currentTime>0">{{message.audio.currentTime}}</span>><span
-                                    class="audio-hour"> {{message?.created_at | date:'HH:mm'}}</span>
+                                    *ngIf="message.audio.currentTime==0">{{message.audio.duration*1000 |
+                                    date:'m:ss'}}</span>
+                                <span class="audio-duration"
+                                    *ngIf="message.audio.currentTime>0">{{message.audio.duration*1000 |
+                                    date:'m:ss'}}</span>
+                                <span class="audio-hour"> {{message?.created_at | date:'HH:mm'}}</span>
                             </div>
                             <!-- MENSAJE DE TEXTO -->
                             <div [ngClass]="user.id == message?.user!.id  ? 'message message-right' : 'message message-left'"
@@ -93,9 +95,11 @@
                                             [value]="message.audio.currentTime">
                                     </div>
                                     <span class="audio-duration"
-                                        *ngIf="message.audio.currentTime==0">{{message.audio.duration}}</span>
+                                        *ngIf="message.audio.currentTime==0">{{message.audio.duration*1000 |
+                                        date:'m:ss'}}</span>
                                     <span class="audio-duration"
-                                        *ngIf="message.audio.currentTime>0">{{message.audio.currentTime}}</span>
+                                        *ngIf="message.audio.currentTime>0">{{message.audio.duration*1000 |
+                                        date:'m:ss'}}</span>
                                     <span class="audio-hour"> {{message?.created_at | date:'HH:mm'}}</span>
                                 </div>
 
@@ -124,9 +128,11 @@
                                             [(ngModel)]="message.audio.currentTime">
                                     </div>
                                     <span class="audio-duration"
-                                        *ngIf="message.audio.currentTime==0">{{message.audio.duration*1000 | date:'m:ss'}}</span>
+                                        *ngIf="message.audio.currentTime==0">{{message.audio.duration*1000 |
+                                        date:'m:ss'}}</span>
                                     <span class="audio-duration"
-                                        *ngIf="message.audio.currentTime>0">{{message.audio.currentTime*1000 | date:'m:ss'}}</span>
+                                        *ngIf="message.audio.currentTime>0">{{message.audio.currentTime*1000 |
+                                        date:'m:ss'}}</span>
                                     <span class="audio-hour"> {{message?.created_at | date:'HH:mm'}}</span>
                                 </div>
                             </ng-container>
@@ -158,11 +164,29 @@
 
     <div class="chat-footer" *ngIf="selectedChat">
         <div class="input-container">
+            <div class="upload-image" *ngIf="actualMessage?.image">
+                <i class="delete-image-button fa fa-close" (click)="deleteImage()"></i>
+                <img [src]="actualMessage?.image" alt="">
+            </div>
             <input class="message-input" (keydown.enter)="sendMessage()" [(ngModel)]="actualMessage!.text" type="text"
                 placeholder="Escribe un mensaje">
-            <button class="send-button" type="button" (click)="uploadImage()"><i class="fa fa-camera"></i></button>
-            <button class="send-button" type="submit" (mousedown)="recordAudio()" (mouseup)="stopRecordingAudio()"><i
-                    class="fa fa-{{actualMessage?.text != '' ? 'paper-plane' : 'microphone'}}"></i></button>
+
+            <div class="upload-image-button">
+                <label for="file-upload" class="custom-file-upload">
+                    <i class="fa fa-camera"></i>
+                </label>
+                <input id="file-upload" type="file" (change)="uploadImage($event)" />
+            </div>
+
+
+            <button class="send-button" type="button" (mousedown)="recordAudio()" (mouseup)="stopRecordingAudio()"
+                *ngIf="actualMessage?.text == ''">
+                <i class="fa fa-microphone"></i>
+            </button>
+
+            <button class="send-button" type="submit" (click)="sendMessage()" *ngIf="actualMessage?.text != ''">
+                <i class="fa fa-paper-plane"></i>
+            </button>
         </div>
     </div>
 
