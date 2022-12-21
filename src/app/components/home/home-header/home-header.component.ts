@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, NgZone, OnInit, Output, ViewChild } from '@angular/core';
+import { LoadingService } from 'src/app/services/loading.service';
 
 @Component({
   selector: 'home-header',
@@ -13,9 +14,11 @@ export class HomeHeaderComponent implements OnInit {
   @Input() selected_address?:string;
   
   @Output() searchFilter = new EventEmitter<[string,string]>();
-  constructor(private ngZone:NgZone) { }
+  constructor(private ngZone:NgZone,
+    public loading:LoadingService) { }
 
   ngOnInit(): void {
+    this.loading.startLoading();
   }
 
   public getFilter(filters:[string,string]):void{
@@ -26,6 +29,10 @@ export class HomeHeaderComponent implements OnInit {
 
   public search():void{
     
+  }
+
+  public stopLoading(event:any):void{
+    this.loading.stopLoading();
   }
 
 }
