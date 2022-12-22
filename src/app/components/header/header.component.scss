@@ -38,15 +38,14 @@
     }
     .new-messages-count{
         position: absolute;
-        top:-6px;
+        top: -9px;
         right: -10px;
-        color:white;
+        color: #fff;
         font-size: 12px;
-        border-radius: 50%;
+        border-radius: 25px;
         height: 20px;
-        width: 20px;
-        font-weight: bold;
-        padding:0px 6px;
+        font-weight: 700;
+        padding: 0 6px;
         background: var(--color-primary);
     }
 }
