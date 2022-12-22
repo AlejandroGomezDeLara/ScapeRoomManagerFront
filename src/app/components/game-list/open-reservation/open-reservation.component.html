@@ -36,8 +36,8 @@
                 {{reservation.game_subcategory.name}} </span>
         </div>
 
-        <p class="game-address"><i class="fa-solid fa-location-dot"
-                style="margin-right: 5px"></i>{{reservation.game?.address}}</p>
+        <!-- <p class="game-address"><i class="fa-solid fa-location-dot"
+                style="margin-right: 5px"></i>{{reservation.game?.address}}</p> -->
 
         <div class="text-divider" [style.color]="reservation.game_category?.color">{{actual_date_str == target_date_str
             ? 'Hoy' : reservation.date| date:'dd/MMM'}} - {{reservation.game_reservation_hour?.hour | slice:0:5}}</div>
@@ -50,7 +50,7 @@
             <p class="remaining-people" *ngIf="reservation.users?.length! >= reservation.min_people!">¡Listo para poder
                 empezar!</p>
             <div class="row justify-content-center" *ngIf="people?.length!>0">
-                <div class="user" *ngFor="let user of people;let i =index">
+                <div class="user col-3" *ngFor="let user of people;let i =index">
                     <img class="avatar" [src]="user.avatar" alt="" onError="this.src='assets/imgs/avatar.png'">
                     <p class="user-name">{{user.name}}</p>
                 </div>

@@ -99,6 +99,8 @@ export class InteriorChatComponent {
       console.log(this.selectedChat?.unread_messages_count);
 
       this.scrollToBottom();
+      let audio=new Audio('assets/audio/send_message.mp3');
+      audio.play();
       this.apiService.addSubEntity('chats', this.selectedChat?.id!, 'messages', message).subscribe((message: ChatMessage) => {
         console.log(message);
         this.actualMessage!.text = "";

@@ -45,7 +45,7 @@ export class AppComponent implements OnInit {
   public redirect(): void {
     console.log("redirigiendo");
     
-    this.router.navigateByUrl('/chats');
+    this.router.navigateByUrl('/search');
   }
 
 }

@@ -45,7 +45,7 @@ export class GameListComponent implements OnInit {
     private ngZone: NgZone,
     private router: ActivatedRoute,
     public loading: LoadingService) {
-
+      this.loading.startLoading();
     let category = router.snapshot.queryParamMap.get('c');
     let address = router.snapshot.queryParamMap.get('a');
     let name = router.snapshot.queryParamMap.get('q');
@@ -114,7 +114,6 @@ export class GameListComponent implements OnInit {
   }
 
   public setGamesAndOpenReservations(): void {
-    this.loading.startLoading();
     this.getGamesAndOpenReservations().subscribe({
       next: (data) => {
 
