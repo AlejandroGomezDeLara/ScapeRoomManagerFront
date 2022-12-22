@@ -1,5 +1,6 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Injectable, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
 import { ApiService } from './api.service';
 import { AuthenticationService } from './authentication.service';
@@ -13,14 +14,23 @@ export class NewMessagesService {
   public newMessagesCount = new BehaviorSubject<number>(0);
 
   constructor(private apiService: ApiService, private auth: AuthenticationService,
-    private utilities: UtilitiesService) {
-   
+    private utilities: UtilitiesService,
+    private router:Router) {
+
   }
 
 
 
   public getNewMessagesCount(): void {
     this.apiService.getEntity('new-messages').subscribe((count: number) => {
+      if (count > this.newMessagesCount.value) {
+        console.log("MAS");
+        if(!this.router.url.includes('interior-chat') ){
+          let audio = new Audio('assets/audio/new_message.mp3');
+          audio.play();
+        }
+        
+      }
       this.newMessagesCount.next(count);
       console.log("Mensajes nuevos", count);
     }, (error: HttpErrorResponse) => {

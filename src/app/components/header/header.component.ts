@@ -2,6 +2,7 @@ import { AfterContentInit, AfterViewInit, Component, OnInit } from '@angular/cor
 import { User } from 'src/app/models/User';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { LoadingService } from 'src/app/services/loading.service';
+import { NewMessagesService } from 'src/app/services/new-messages.service';
 import { UtilitiesService } from 'src/app/services/utilities.service';
 import { environment } from 'src/environments/environment';
 
@@ -73,7 +74,8 @@ export class HeaderComponent implements OnInit,AfterContentInit {
 
   constructor(private auth:AuthenticationService,
     public utilities:UtilitiesService,
-    public loading:LoadingService) { }
+    public loading:LoadingService,
+    public newMessagesService:NewMessagesService) { }
 
   ngAfterContentInit(): void {
     this.user=this.auth.getStorageUser();
