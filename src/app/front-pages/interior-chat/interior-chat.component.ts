@@ -77,7 +77,9 @@ export class InteriorChatComponent {
       if (this.messages.length + 1 == messages.length) {
         this.messages = messages;
         this.scrollToBottom();
-        window.postMessage(messages, "https://funly.es")
+        console.log("POST MESSAGE");
+        
+        window.postMessage("Nuevo mensaje", "https://funly.es")
       }
     }, (error: HttpErrorResponse) => {
       console.log(error);
