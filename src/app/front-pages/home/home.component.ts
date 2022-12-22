@@ -12,9 +12,9 @@ export class HomeComponent implements OnInit {
 
   constructor(public loading:LoadingService) {
     
-    
   }
   ngOnInit(): void {
+    this.loading.startLoading();
   }
 
   
