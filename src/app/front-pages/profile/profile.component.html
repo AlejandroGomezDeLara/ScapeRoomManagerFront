@@ -1,4 +1,4 @@
-<div class="profile-container content" [hidden]="(loading.isLoading| async)">
+<div class="profile-container content" >
     <div class="row user-container justify-content-center">
         <div class="user-data col-lg-10 col-12 row item">
             <p class="user-data-title">Editar datos del usuario <i class="fa fa-pencil"></i></p>
@@ -141,6 +141,5 @@
     </div>
 </div>
 
-<app-loading [hidden]="!(loading.isLoading| async)" [text]="'Cargando perfil'"></app-loading>
 
 <home-footer></home-footer>

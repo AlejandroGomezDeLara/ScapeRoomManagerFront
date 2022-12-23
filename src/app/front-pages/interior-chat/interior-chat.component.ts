@@ -18,6 +18,7 @@ import { LoadingService } from 'src/app/services/loading.service';
 export class InteriorChatComponent {
 
   public messages?: ChatMessage[];
+  public messages_count: number = 50;
   public chat_id?: number;
   public selectedChat?: Chat;
   public recordedAudio?: any;
@@ -67,17 +68,29 @@ export class InteriorChatComponent {
   }
 
 
+
   public getChatMessages(): void {
-    this.apiService.getSubEntity('chats', this.chat_id!, 'messages').subscribe((messages: ChatMessage[]) => {
+    let messagesContainer = document.getElementById('messages-container-scroll');
+    let dif=messagesContainer?.scrollHeight! ;
+    this.apiService.getSubEntity('chats', this.chat_id!, 'messages?per_page=' + this.messages_count).subscribe((messages: ChatMessage[]) => {
       this.loading.stopLoading();
+      messages.sort(function (a, b) {
+        return new Date(a.created_at!).getTime() - new Date(b.created_at!).getTime();
+      });
       if (!this.messages) {
-        this.messages = messages;
         this.scrollToBottom();
-      }
-      if (this.messages.length + 1 == messages.length) {
         this.messages = messages;
-        this.scrollToBottom();
       }
+      if (this.messages.length < messages.length) {
+
+        this.messages.unshift(...messages);
+        setTimeout(() => {
+          messagesContainer!.scrollTop = messagesContainer?.scrollHeight! - dif;
+        }, 100);
+
+      }
+
+
     }, (error: HttpErrorResponse) => {
       console.log(error);
       this.loading.stopLoading();
@@ -99,7 +112,7 @@ export class InteriorChatComponent {
       console.log(this.selectedChat?.unread_messages_count);
 
       this.scrollToBottom();
-      let audio=new Audio('assets/audio/send_message.mp3');
+      let audio = new Audio('assets/audio/send_message.mp3');
       audio.play();
       this.apiService.addSubEntity('chats', this.selectedChat?.id!, 'messages', message).subscribe((message: ChatMessage) => {
         console.log(message);
@@ -112,9 +125,9 @@ export class InteriorChatComponent {
 
   public scrollToBottom(): void {
     let messagesContainer = document.getElementById('messages-container-scroll');
-    setTimeout(()=>{
-      messagesContainer?.scroll({top: messagesContainer!.scrollHeight, left: 0, behavior: 'smooth' });
-    },100);
+    setTimeout(() => {
+      messagesContainer?.scroll({ top: messagesContainer!.scrollHeight, left: 0, behavior: 'smooth' });
+    }, 100);
 
     /* messagesContainer!.scrollTop = messagesContainer!.scrollHeight; */
     console.log(messagesContainer);
@@ -213,6 +226,20 @@ export class InteriorChatComponent {
 
   public deleteImage(): void {
     this.actualMessage!.image = undefined;
+  }
+
+  public loadMoreMessages(): void {
+    let messagesContainer = document.getElementById('messages-container-scroll');
+
+    if (messagesContainer?.scrollTop == 0) {
+      if (this.messages?.length == this.messages_count) {
+        this.loading.startLoading();
+        this.messages_count += 50;
+
+      }
+    }
+
+
   }
 
 

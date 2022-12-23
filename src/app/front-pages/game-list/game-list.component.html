@@ -1,4 +1,4 @@
-<div class="content" [hidden]="(loading.isLoading | async)">
+<div class="content">
 
     <ng-container *ngIf="openReservations?.length!>0">
         <h1 class="open-reservations-title">¡Hay {{openReservations.length}} reservas FUNLY <img style="width: 25px"
@@ -55,4 +55,3 @@
     <home-footer class="pagination-footer"></home-footer>
 
 </div>
-<app-loading [hidden]="!(loading.isLoading | async)" [text]="'Cargando eventos'"></app-loading>

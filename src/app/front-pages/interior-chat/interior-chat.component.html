@@ -1,4 +1,4 @@
-<div class="chat-container content" [hidden]="(loading.isLoading | async)">
+<div class="chat-container content">
 
     <div class="chats-content row">
         <div class="interior-chat col-lg-12 col-12">
@@ -19,7 +19,7 @@
                 </div>
             </div>
 
-            <div id="messages-container-scroll" class="messages-container">
+            <div id="messages-container-scroll" (scroll)="loadMoreMessages()" class="messages-container">
 
                 <div class="message-container justify-content-center row" *ngFor="let message of messages;let i=index">
                     <ng-container *ngIf="messages">
@@ -205,4 +205,3 @@
     </div>
 
 </div>
-<app-loading [hidden]="!(loading.isLoading | async)" [text]="'Cargando mensajes'"></app-loading>

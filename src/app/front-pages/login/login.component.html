@@ -1,4 +1,4 @@
-<div class="login-page" [hidden]="(loading.isLoading | async)">
+<div class="login-page">
     <video oncanplay="this.play()" onloadedmetadata="this.muted = true" loop>
         <source src="assets/videos/neon.mp4" type="video/mp4" />
     </video>
@@ -58,4 +58,3 @@
         </form>
     </div>
 </div>
-<app-loading [hidden]="!(loading.isLoading |async)" [text]="'Entrando ...'"></app-loading>

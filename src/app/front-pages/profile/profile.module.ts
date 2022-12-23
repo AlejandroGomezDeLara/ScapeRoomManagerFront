@@ -8,7 +8,6 @@ import { OpenReservationModule } from 'src/app/components/game-list/open-reserva
 import { RatingModule } from 'src/app/components/game-list/rating/rating.module';
 import { HomeFooterModule } from 'src/app/components/home/home-footer/home-footer.module';
 import { FormsModule } from '@angular/forms';
-import { AppLoadingModule } from 'src/app/components/app-loading/app-loading.module';
 
 const routes:Routes=[
   { 
@@ -27,7 +26,6 @@ const routes:Routes=[
     RatingModule,
     FormsModule,
     HomeFooterModule,
-    AppLoadingModule
   ]
 })
 export class ProfileModule { }

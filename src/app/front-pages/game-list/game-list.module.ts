@@ -11,7 +11,6 @@ import { FormsModule } from '@angular/forms';
 import { GameListPaginationComponent } from 'src/app/components/game-list/game-list-pagination/game-list-pagination.component';
 import { MatMenuModule } from '@angular/material/menu';
 import { HomeFooterModule } from 'src/app/components/home/home-footer/home-footer.module';
-import { AppLoadingModule } from 'src/app/components/app-loading/app-loading.module';
 import { AppImageSliderModule } from 'src/app/components/app-image-slider/app-image-slider.module';
 import { OpenReservationModule } from 'src/app/components/game-list/open-reservation/open-reservation.module';
 import { RatingModule } from 'src/app/components/game-list/rating/rating.module';
@@ -39,7 +38,6 @@ const routes: Routes = [
     FormsModule,
     MatMenuModule,
     HomeFooterModule,
-    AppLoadingModule,
     AppImageSliderModule,
     OpenReservationModule,
     Ng5SliderModule,
