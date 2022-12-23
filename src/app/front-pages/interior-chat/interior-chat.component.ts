@@ -23,7 +23,7 @@ export class InteriorChatComponent {
   public selectedChat?: Chat;
   public recordedAudio?: any;
   public recorder: any;
-
+  public isLoading:boolean=false;
   public actualMessage?: ChatMessage = {
     text: "",
   };
@@ -82,10 +82,10 @@ export class InteriorChatComponent {
         this.messages = messages;
       }
       if (this.messages.length < messages.length) {
-
         this.messages=messages;
         setTimeout(() => {
           messagesContainer?.scroll({ top: messagesContainer?.scrollHeight! - dif, left: 0});
+          this.isLoading=false;
         }, 100);
 
       }
@@ -238,6 +238,7 @@ export class InteriorChatComponent {
       if (this.messages?.length == this.messages_count) {
         //this.loading.startLoading();
         this.messages_count += 50;
+        this.isLoading=true;
 
       }
     }

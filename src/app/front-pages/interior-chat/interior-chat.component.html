@@ -20,8 +20,13 @@
             </div>
 
             <div id="messages-container-scroll" (scroll)="loadMoreMessages()" class="messages-container">
-
+                <div class="loader-container row" *ngIf="isLoading">
+                    <div class="col-12">
+                        <img class="loader " src="assets/imgs/box-transparent.png" alt="">
+                    </div>
+                </div>
                 <div class="message-container justify-content-center row" *ngFor="let message of messages;let i=index">
+
                     <ng-container *ngIf="messages">
                         <ng-container *ngIf="i==0">
                             <div class="col-lg-1 col-2 user-image" *ngIf="user.id != message?.user!.id">

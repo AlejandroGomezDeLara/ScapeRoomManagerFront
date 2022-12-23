@@ -6,6 +6,7 @@ import { InteriorChatComponent } from './interior-chat.component';
 import { FormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeFooterModule } from 'src/app/components/home/home-footer/home-footer.module';
+import { AppLoadingModule } from 'src/app/components/app-loading/app-loading.module';
 
 const routes: Routes = [
   {
@@ -21,6 +22,7 @@ const routes: Routes = [
     InteriorChatRoutingModule,
     HomeFooterModule,
     FormsModule,
+    AppLoadingModule,
     RouterModule.forChild(routes)
   ]
 })

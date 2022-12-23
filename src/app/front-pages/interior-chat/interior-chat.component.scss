@@ -207,7 +207,57 @@
                 padding: 50px 70px 20px 40px;
                 overflow-y: scroll;
                 overflow-x: hidden;
-                height: calc(100vh - 272px) ;
+                height: calc(100vh - 272px);
+                position: relative;
+                .loader-container {
+                    text-align: center;
+                    position: fixed;
+                    overflow: hidden;
+                    left: 0;
+                    z-index: 9;
+                    right: 0;
+
+                    .loader {
+                        width: 50px;
+                        height: 50px;
+                        -moz-animation: spin 1.5s linear infinite;
+                        animation: spin 1.5s linear infinite;
+                        opacity: 1;
+                    }
+                    @-moz-keyframes spin {
+                        100% {
+                            -moz-transform: rotate(360deg);
+                        }
+                    }
+                    @-webkit-keyframes spin {
+                        100% {
+                            -webkit-transform: rotate(360deg);
+                        }
+                    }
+                    @keyframes spin {
+                        100% {
+                            -webkit-transform: rotate(360deg);
+                            transform: rotate(360deg);
+                        }
+                    }
+                }
+
+                @-moz-keyframes spin {
+                    100% {
+                        -moz-transform: rotate(360deg);
+                    }
+                }
+                @-webkit-keyframes spin {
+                    100% {
+                        -webkit-transform: rotate(360deg);
+                    }
+                }
+                @keyframes spin {
+                    100% {
+                        -webkit-transform: rotate(360deg);
+                        transform: rotate(360deg);
+                    }
+                }
                 .no-messages-text {
                     text-align: center;
                     font-size: 22px;
@@ -330,7 +380,7 @@
         .input-container {
             position: relative;
             .upload-image {
-                padding:20px;
+                padding: 20px;
                 img {
                     max-width: 100%;
                     border-radius: 10px;
@@ -417,7 +467,7 @@
     .messages-container {
         height: calc(100vh - 182px) !important;
         padding: 20px 20px 50px 20px !important;
-        .message{
+        .message {
             max-width: 250px !important;
         }
     }
