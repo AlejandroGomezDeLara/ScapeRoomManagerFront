@@ -83,9 +83,9 @@ export class InteriorChatComponent {
       }
       if (this.messages.length < messages.length) {
 
-        this.messages.unshift(...messages);
+        this.messages=messages;
         setTimeout(() => {
-          messagesContainer!.scrollTop = messagesContainer?.scrollHeight! - dif;
+          messagesContainer?.scroll({ top: messagesContainer?.scrollHeight! - dif, left: 0});
         }, 100);
 
       }
@@ -232,8 +232,11 @@ export class InteriorChatComponent {
     let messagesContainer = document.getElementById('messages-container-scroll');
 
     if (messagesContainer?.scrollTop == 0) {
+      console.log(this.messages?.length);
+      console.log(this.messages_count);
+
       if (this.messages?.length == this.messages_count) {
-        this.loading.startLoading();
+        //this.loading.startLoading();
         this.messages_count += 50;
 
       }
