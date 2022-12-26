@@ -71,7 +71,7 @@ export class InteriorChatComponent {
 
   public getChatMessages(): void {
     let messagesContainer = document.getElementById('messages-container-scroll');
-    let dif=messagesContainer?.scrollHeight! ;
+    let dif=messagesContainer?.scrollHeight!;
     this.apiService.getSubEntity('chats', this.chat_id!, 'messages?per_page=' + this.messages_count).subscribe((messages: ChatMessage[]) => {
       this.loading.stopLoading();
       messages.sort(function (a, b) {
@@ -81,8 +81,16 @@ export class InteriorChatComponent {
         this.scrollToBottom();
         this.messages = messages;
       }
-      if (this.messages.length < messages.length) {
+      //NUEVO MENSAJE
+      if (!this.messages.some(x=> x.id == messages[messages.length-1].id)) {
+
         this.messages=messages;
+
+        this.scrollToBottom();
+      }
+      //SCROLL 50 mensajes mas
+      if (this.messages.length < messages.length) {
+        this.messages=messages;        
         setTimeout(() => {
           messagesContainer?.scroll({ top: messagesContainer?.scrollHeight! - dif, left: 0});
           this.isLoading=false;
