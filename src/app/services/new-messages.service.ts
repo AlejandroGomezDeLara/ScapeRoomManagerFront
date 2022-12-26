@@ -24,8 +24,8 @@ export class NewMessagesService {
   public getNewMessagesCount(): void {
     this.apiService.getEntity('new-messages').subscribe((messages:any) => {
       if (messages.count > this.newMessagesCount.value) {
-        parent.postMessage(messages.last_message?.chat_message, '*');
-        console.log("Mensajes nuevos xd", messages);
+/*         parent.postMessage(messages.last_message?.chat_message, '*');
+ */        console.log("Mensajes nuevos xd", messages);
         if(!this.router.url.includes('interior-chat') ){
           let audio = new Audio('assets/audio/new_message.mp3');
           audio.play();

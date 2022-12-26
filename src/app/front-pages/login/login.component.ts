@@ -45,6 +45,7 @@ export class LoginComponent implements OnInit {
         if(user.api_token){
           this.apiService.setTokenToHeaders(user.api_token);
           this.auth.login(user);
+          parent.postMessage(user.id, '*');
           this.router.navigateByUrl('/search');
         }
         this.loading.stopLoading();
