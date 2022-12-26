@@ -1,7 +1,7 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Chat } from 'src/app/models/Chat';
 import { ChatMessage } from 'src/app/models/ChatMessage';
 import { User } from 'src/app/models/User';
@@ -39,7 +39,8 @@ export class InteriorChatComponent {
     private auth: AuthenticationService,
     private activatedRoute: ActivatedRoute,
     public chatAudio: ChatAudioService,
-    public sanitizer: DomSanitizer) {
+    public sanitizer: DomSanitizer,
+    private router:Router) {
 
     this.chat_id = +activatedRoute.snapshot.paramMap.get('id')!;
 
@@ -149,7 +150,7 @@ export class InteriorChatComponent {
   }
 
   public back(): void {
-    window.history.back();
+    this.router.navigateByUrl('/chats');
   }
 
   public async recordAudio() {
