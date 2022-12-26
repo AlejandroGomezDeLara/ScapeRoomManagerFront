@@ -38,7 +38,8 @@ export class AppComponent implements OnInit {
 
         this.router.navigateByUrl('/');
         this.apiService.setTokenToHeaders(null);
-
+        clearInterval(this.newMessagesInterval);
+        this.newMessagesInterval=null;
       } else {
         console.log("sin token");
       }
