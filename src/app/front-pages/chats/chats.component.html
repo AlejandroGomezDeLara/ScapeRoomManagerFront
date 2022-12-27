@@ -1,6 +1,6 @@
-<div class="chat-container content" >
-    <div class="no-chats" *ngIf="chats.length<=0 && showMenu" >
-        <p >No tienes ningún chat activo, realiza una reserva!</p>
+<div class="chat-container content">
+    <div class="no-chats" *ngIf="chats.length<=0 && showMenu">
+        <p>No tienes ningún chat activo, realiza una reserva!</p>
         <button routerLink="/search">Reservar</button>
     </div>
     <div class="chats-content row">
@@ -17,11 +17,12 @@
                         <img class="chat-image" [src]="chat.image" alt="">
                     </div>
                     <div class="col-lg-10 col-9 my-auto">
-                        <p class="chat-name">{{chat.name}} {{chat.open_reservation?.date | date:'dd/M'}} -
-                            {{chat.open_reservation?.game_reservation_hour?.hour | slice:0:5}} <span
-                                class="chat-hour">{{chat.last_message?.created_at|
+                        <p class="chat-name">{{chat.name}} <span class="chat-hour">{{chat.last_message?.created_at|
                                 date:'HH:mm'}}</span></p>
-                        <p class="chat-last-message" *ngIf="chat.last_message"> <!-- <img class="avatar"
+                        <p>{{chat.open_reservation?.date | date:'dd-M-yy'}} -
+                            {{chat.open_reservation?.game_reservation_hour?.hour | slice:0:5}}</p>
+                        <p class="chat-last-message" *ngIf="chat.last_message">
+                            <!-- <img class="avatar"
                                 [src]="chat.last_message.user?.avatar" alt="" onError="this.src='assets/imgs/avatar.png'"> --> <b> {{chat.last_message.user?.name}}</b>:
                             {{chat.last_message.text}}</p>
                         <p class="chat-last-message" *ngIf="!chat.last_message">Sin mensajes aún</p>
@@ -118,5 +119,5 @@
             <p>Selecciona un chat para ver sus mensajes</p>
         </div>
     </div>
-    
+
 </div>

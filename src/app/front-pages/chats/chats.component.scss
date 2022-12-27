@@ -80,6 +80,9 @@
                 color: white;
                 .chats-item {
                     position: relative;
+                    p{
+                        margin: 0;
+                    }
                     .new-messages-count {
                         position: absolute;
                         bottom: 30px;
@@ -102,7 +105,7 @@
                         overflow: hidden;
                         text-overflow: ellipsis;
                     }
-                    padding: 15px;
+                    padding:15px;
                     border-bottom: 0.5px solid var(--chat-message-left-background);
                     cursor: pointer;
                     
@@ -119,7 +122,7 @@
                     }
                     .chat-name {
                         font-weight: bold;
-                        font-size: 18px;
+                        font-size: 16px;
                     }
                 }
                 .chats-item:hover {
