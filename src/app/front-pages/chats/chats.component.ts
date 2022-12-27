@@ -35,7 +35,12 @@ export class ChatsComponent implements OnInit {
   public getChats(): void {
     this.apiService.getEntity('chats').subscribe((chats: Chat[]) => {
       console.log(chats);
+
+      chats.sort(function (a, b) {
+        return new Date(b.last_message?.created_at!).getTime() - new Date(a.last_message?.created_at!).getTime();
+      });
       this.chats = chats;
+
       let new_messages = chats.some(x => x.unread_messages_count! > 0);
       if (new_messages) {
         //Sonido notificación
@@ -65,5 +70,7 @@ export class ChatsComponent implements OnInit {
     this.chatsInterval = null;
    
   }
+
+
 
 }
