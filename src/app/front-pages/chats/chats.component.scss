@@ -103,12 +103,13 @@
                         text-overflow: ellipsis;
                     }
                     padding: 15px;
-                    border-radius: 10px;
+                    border-bottom: 0.5px solid var(--chat-message-left-background);
                     cursor: pointer;
+                    
                     .chat-image {
                         border-radius: 50%;
-                        width: 75px;
-                        height: 75px;
+                        width: 55px;
+                        height: 55px;
                         object-fit: cover;
                     }
                     .chat-hour {
