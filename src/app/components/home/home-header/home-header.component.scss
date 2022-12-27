@@ -187,8 +187,21 @@
 }
 
 @media (max-width: 902px) {
+    video{
+        display: none;
+    }
     .searchbar-container {
         padding: 0 10vw !important;
     }
+    .logo h1{
+        font-size: 36px !important;
+    }
+    .logo .subtitle{
+        padding:0 20px;
+    }
+    .header{
+        height: 50vh;
+    }
+   
     
 }

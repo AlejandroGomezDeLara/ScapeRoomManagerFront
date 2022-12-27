@@ -11,7 +11,6 @@ export class HomeHeaderComponent implements OnInit {
   title:string='Se acabó la rutina.';
   subtitle:string='Encuentra tu diversión con la plataforma Nº1 de ocio en España!';
 
-  @Input() selected_address?:string;
   
   @Output() searchFilter = new EventEmitter<[string,string]>();
   constructor(private ngZone:NgZone,

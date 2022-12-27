@@ -8,7 +8,6 @@ import { LoadingService } from 'src/app/services/loading.service';
 })
 export class HomeComponent implements OnInit {
 
-  public selected_address?:string;
 
   constructor(public loading:LoadingService) {
     
