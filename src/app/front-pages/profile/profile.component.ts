@@ -68,7 +68,6 @@ export class ProfileComponent implements OnInit, AfterContentInit {
   }
 
   public updateUser(): void {
-    this.loading.startLoading();
     this.apiService.updateEntity('users', this.user?.id!, this.user).subscribe((user: User) => {
       this.user = user;
       this.auth.userChanges.next(user);
