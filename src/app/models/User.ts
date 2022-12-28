@@ -19,5 +19,6 @@ export interface User{
     posts?:Post[];
     banner_img?:string;
     upload_image?:string;
+    upload_banner_image?:string;
 
 }

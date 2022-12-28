@@ -8,8 +8,9 @@
 
                 <div class="col-12 user-avatar ">
                     <label for="banner-input" class=" col-12 banner">
-
-                        <img [src]="user.banner_img" alt="" *ngIf="user.banner_img">
+                        <i class="fa fa-pencil"></i>
+                        <img [src]="user.banner_img" alt="" *ngIf="user.banner_img && !user.upload_banner_image">
+                        <img [src]="user.upload_banner_image" alt="" *ngIf="user.upload_banner_image">
 
                     </label>
                     <input style="display: none;" id="banner-input" name="imageUrl" type="file" accept="image/*"

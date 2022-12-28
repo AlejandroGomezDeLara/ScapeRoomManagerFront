@@ -120,7 +120,7 @@ export class ProfileComponent implements OnInit, AfterContentInit {
 
   _handleReaderBannerLoaded(e: any) {
     let reader = e.target;
-    this.user.banner_img = reader.result;
+    this.user.upload_banner_image = reader.result;
     console.log(this.user, "xd")
   }
 
