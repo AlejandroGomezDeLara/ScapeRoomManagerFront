@@ -14,6 +14,7 @@ export class ExternalProfileComponent implements OnInit {
 
   public userId?:number;
   public user?:User;
+  public userInterval:any;
 
   constructor(private apiService:ApiService,
     public loading:LoadingService,
@@ -22,11 +23,14 @@ export class ExternalProfileComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.loading.startLoading();
     this.getUserData();
+    this.userInterval=setInterval(()=>{
+      this.getUserData();
+    },2000);
   }
 
   public getUserData():void{
-    this.loading.startLoading();
     this.apiService.getEntity('users',this.userId).subscribe((user:User)=>{
       console.log(user);
       this.user=user;
@@ -35,5 +39,10 @@ export class ExternalProfileComponent implements OnInit {
       console.log(error);
       this.loading.stopLoading();
     });
+  }
+
+  ngOnDestroy(){
+    clearInterval(this.userInterval);
+    this.userInterval=null;
   }
 }

@@ -15,17 +15,22 @@ export class RankingComponent implements OnInit {
 
   public users:User[]=[];
 
+  public rankingInterval:any;
+
   constructor(private apiService:ApiService,
     public loading:LoadingService){
 
   }
 
   ngOnInit(): void {
+    this.loading.startLoading();
     this.getRanking();
+    this.rankingInterval=setInterval(()=>{
+      this.getRanking();
+    },4000);
   }
 
   public getRanking():void{
-    this.loading.startLoading();
     this.apiService.getEntity('ranking').subscribe((res:RankingData)=>{
       this.users=res.data!;
       console.log(this.users);
@@ -34,6 +39,11 @@ export class RankingComponent implements OnInit {
       console.log(error);
       this.loading.stopLoading();
     });
+  }
+
+  ngOnDestroy():void{
+    clearInterval(this.rankingInterval);
+    this.rankingInterval=null;
   }
 
 }

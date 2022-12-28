@@ -88,6 +88,22 @@
         height: 0%;
         transition: 0.2s ease;
         .user-avatar {
+            .avatar-content{
+                position: relative;
+                width: fit-content;
+                margin: 0 auto;
+                .user-online {
+                    position: absolute;
+                    bottom: 24px;
+                    right: 0px;
+                    background: var(--color-open-reservation);
+                    height: 35px;
+                    width: 35px;
+                    border: 5px solid white;
+                    border-radius: 50px;
+                    z-index: 9;
+                }
+            }
             padding-top:20px;
             img {
                 width: 150px;
@@ -241,6 +257,7 @@
                     margin:0;
                 }
                 .user-image{
+                    
                     text-align: center;
                     img{
                         width: 50px;
@@ -269,7 +286,23 @@
                 }
 
                 .user{
-                    padding-left: 0;
+                    .avatar-content{
+                        position: relative;
+                        overflow: hidden;
+                        display: inline;
+                        margin: 0 auto;
+                        .user-online {
+                            position: absolute;
+                            top: 30px;
+                            right: -8px;
+                            background: var(--color-open-reservation);
+                            height: 20px;
+                            width: 20px;
+                            border: 4px solid white;
+                            border-radius: 50px;
+                            z-index: 9;
+                        }
+                    }
                     img{
                         float: left;
                         width: 50px;

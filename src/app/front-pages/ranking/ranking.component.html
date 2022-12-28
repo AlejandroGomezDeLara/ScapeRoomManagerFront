@@ -7,7 +7,7 @@
         </p>
     </div>
 
-<!--     <div class="offset-lg-6 col-lg-6 col-12 filters-labels-container">
+    <!--     <div class="offset-lg-6 col-lg-6 col-12 filters-labels-container">
         <div class="row">
             <div class="col-4 filter-label"><img style="width: 20px;margin-right: 5px;"
                     src="assets/imgs/box-transparent-dark.svg" alt="">Puntos FUNLY
@@ -26,7 +26,10 @@
             <div class="top-user-item col-lg-3 col-sm-12 h-25 d-inline-block " *ngIf="i<3"
                 routerLink="/{{user.id}}/profile">
                 <div class="col-12 user-avatar">
-                    <img [src]="user.avatar" alt="" onError="this.src='assets/imgs/avatar.png'">
+                    <div class="avatar-content">
+                        <img [src]="user.avatar" alt="" onError="this.src='assets/imgs/avatar.png'">
+                        <span class="user-online" *ngIf="user.online"></span>
+                    </div>
                 </div>
                 <div class="col-12">
                     <p class="user-name">{{user.name}}</p>
@@ -90,7 +93,10 @@
                     </div>
 
                     <div class="col-lg-5 col-9 my-auto user">
-                        <img [src]="user.avatar" alt="" onError="this.src='assets/imgs/avatar.png'">
+                        <div class="avatar-content">
+                            <img [src]="user.avatar" alt="" onError="this.src='assets/imgs/avatar.png'">
+                            <span class="user-online" *ngIf="user.online"></span>
+                        </div>
                         <p class="name">{{user.name}}</p>
                         <p class="user-alias"><i class="fa-brands fa-twitter"
                                 *ngIf="user.twitter_user"></i>{{user.twitter_user ? user.twitter_user :
