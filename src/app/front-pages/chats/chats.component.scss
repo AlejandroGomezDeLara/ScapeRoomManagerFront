@@ -110,9 +110,11 @@
                     cursor: pointer;
                     
                     .chat-image {
+                        border:0.5px solid var(--chat-message-left-background);;
+                        box-shadow: var(--item-box-shadow);
                         border-radius: 50%;
-                        width: 55px;
-                        height: 55px;
+                        width: 65px;
+                        height: 65px;
                         object-fit: cover;
                     }
                     .chat-hour {

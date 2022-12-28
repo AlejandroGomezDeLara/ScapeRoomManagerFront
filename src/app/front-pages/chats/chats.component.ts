@@ -12,8 +12,7 @@ import { LoadingService } from 'src/app/services/loading.service';
 })
 export class ChatsComponent implements OnInit {
 
-  public chats: Chat[] = [];
-  public showMenu: boolean = true;
+  public chats?: Chat[];
   public chatsInterval: any;
   public refreshMessagesTime: number = 2000;
 
