@@ -2,7 +2,7 @@
     padding:15px;
     box-shadow: var(--item-box-shadow);
     position: relative;
-    border-radius: 10px;
+    border-radius: 15px;
     background: white;
     margin-bottom: 15px;
     .game-logo img{
@@ -12,7 +12,10 @@
         min-height: 225px;
         max-height: 200px;
         overflow: hidden;
-        object-fit: contain;
+        border: 10px solid white;
+        border-radius: 15px;
+        box-shadow: var(--item-box-shadow);
+        object-fit: cover;
         background: var(--dark-background);
     }
 
@@ -57,7 +60,7 @@
             font-weight: bold;
         }
         .title{
-            font-size: 24px;
+            font-size: 26px;
             color:var(--color-primary);
             p{
                 font-weight: bold;
@@ -124,6 +127,9 @@
 }
 
 @media (max-width: 902px) {
+    .game{
+        border-radius: 0 !important;
+    }
     .game-logo img{
        margin-bottom: 15px !important;
     }

@@ -59,6 +59,7 @@
     }
     .game-list-container {
         padding: 40px;
+        padding-top:10px !important;
         .filters{
             padding-left: 35px;
         }
@@ -85,9 +86,16 @@
 
 @media (max-width: 902px) {
     .game-list-container {
-        padding: 40px 10px !important;
-        .filters{
-            padding-left: 0px !important;
+        padding: 10px 0px !important;
+        h1{
+            text-align: center;
         }
+        .filters{
+            padding: 0px !important;
+        }
+    }
+   
+    .game-list-pagination{
+        border-radius: 0 !important;
     }
 }

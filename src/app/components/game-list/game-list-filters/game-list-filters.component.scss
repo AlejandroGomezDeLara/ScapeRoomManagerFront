@@ -164,3 +164,8 @@
         outline: none;
     }
 }
+@media (max-width: 902px) {
+    .filters{
+        border-radius: 0 !important;
+    }
+}

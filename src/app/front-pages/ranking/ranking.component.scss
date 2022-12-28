@@ -1,16 +1,26 @@
 .ranking-header {
+    background-color: var(--dark-background);
+    background-image: url(../../../assets/imgs/box-transparent-dark.svg);
+    background-repeat: space;
+    background-size: 200px;
+    z-index: 1;
+    background-position: center;
     .title {
         font-weight: bold;
-        font-size: 36px;
-        margin-top: 30px;
-        color: black;
+        font-size: 28px;
+        padding-top: 30px;
+        color: white;
+        padding-left:20px;
+        padding-right:20px;
         text-align: center;
     }
     .subtitle{
         font-weight: bold;
         font-size: 18px;
-        margin-bottom: 30px;
-        color: black;
+        padding-bottom: 30px;
+        padding-left:20px;
+        padding-right:20px;
+        color: white;
         text-align: center;
     }
 }
@@ -212,12 +222,10 @@
             }
         }
         .ranking-users-container{
-            max-height: 700px;
-            overflow-y: scroll;
-            display: flex;
+           
           
             .ranking-user{
-                margin-right: 20px;
+                margin-right: 40px;
                 padding:15px;
                 background: white;
                 box-shadow: var(--item-box-shadow);

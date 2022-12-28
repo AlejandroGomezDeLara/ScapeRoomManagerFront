@@ -61,6 +61,7 @@
             }
             .user-audio-avatar {
                 img {
+                    cursor: pointer;
                     border-radius: 50%;
                     object-fit: cover;
                     height: 60px;
@@ -182,6 +183,7 @@
                     margin-top: 10px;
                     text-align: center;
                     .user-avatar {
+                        cursor: pointer;
                         width: 25px;
                         height: 25px;
                         border-radius: 50%;
@@ -274,13 +276,15 @@
                     position: relative;
                     margin-bottom: 0px;
                     .user-image {
+                        cursor: pointer;
                         padding: 0;
                         text-align: center;
                         img {
+                            border:5px solid white;
                             box-shadow: var(--item-box-shadow);
                             border-radius: 50%;
-                            height: 50px;
-                            width: 50px;
+                            height: 75px;
+                            width: 75px;
                             object-fit: cover;
                         }
                     }
@@ -472,8 +476,18 @@
 
 @media (max-width: 902px) {
     .messages-container {
+        .user-image{
+            img{
+                border:none !important;
+                box-shadow: var(--item-box-shadow);
+                border-radius: 50%;
+                height: 55px !important;
+                width: 55px !important;
+                object-fit: cover;
+            }
+        }
        /*  height: calc(100vh - 182px) !important; */
-        padding: 20px 20px 50px 20px !important;
+        padding: 20px 5px 50px 25px !important;
         .message {
             max-width: 250px !important;
         }

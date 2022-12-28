@@ -1,5 +1,5 @@
 .profile-container {
-    padding: 5vw;
+    padding: 2vw 5vw;
     overflow-x: hidden;
     
     .btn {
@@ -172,7 +172,8 @@
     }
 
     .open-reservations-container {
-        padding: 30px;
+        
+        padding: 20px 0px;
         background-color: var(--dark-background);
         background-image: url(../../../assets/imgs/box-transparent-dark.svg);
         background-repeat: space;
