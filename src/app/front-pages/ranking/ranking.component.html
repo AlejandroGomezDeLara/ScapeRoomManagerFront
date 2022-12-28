@@ -37,7 +37,7 @@
                         <p class="position-second"><i class="fa fa-trophy"></i> 2 </p>
                     </div>
                     <div class="col-3 my-auto user-summary-item">
-                        <p> <i class="fa fa-building"></i> 12 </p>
+                        <p> <i class="fa fa-building"></i> 0 </p>
                     </div>
                     <div class="col-3 my-auto user-summary-item">
                         <p><img src="assets/imgs/box-transparent-dark.svg" style="width:15px;" alt="">
@@ -66,7 +66,7 @@
                         <p class="position-first"><i class="fa fa-trophy"></i> 1 </p>
                     </div>
                     <div class="col-3 my-auto user-summary-item">
-                        <p> <i class="fa fa-building"></i> 12 </p>
+                        <p> <i class="fa fa-building"></i> 0 </p>
                     </div>
                     <div class="col-3 my-auto user-summary-item">
                         <p><img src="assets/imgs/box-transparent-dark.svg" style="width:15px;" alt="">
@@ -95,7 +95,7 @@
                         <p class="position-third"><i class="fa fa-trophy"></i> 3 </p>
                     </div>
                     <div class="col-3 my-auto user-summary-item">
-                        <p> <i class="fa fa-building"></i> 12</p>
+                        <p> <i class="fa fa-building"></i> 0</p>
                     </div>
                     <div class="col-3 my-auto user-summary-item">
                         <p><img src="assets/imgs/box-transparent-dark.svg" style="width:15px;" alt="">
@@ -134,7 +134,7 @@
         <div class="ranking-users-container justify-content-center row">
             <ng-container *ngFor="let user of users;let i=index">
 
-                <div class="ranking-user col-lg-5  col-sm-12 row" *ngIf="i>=3">
+                <div class="ranking-user col-lg-5  col-sm-12 row" *ngIf="i>=3" routerLink="/{{user.id}}/profile">
                     <div class="col-lg-1 col-3 my-auto">
                         <p class="ranking-position">{{i+1}} <i class="up fa fa-caret-up"></i>
                         </p>

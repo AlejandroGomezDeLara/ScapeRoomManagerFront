@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { InteriorChatRoutingModule } from './interior-chat-routing.module';
 import { InteriorChatComponent } from './interior-chat.component';
 import { FormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
@@ -19,7 +18,6 @@ const routes: Routes = [
   declarations: [InteriorChatComponent],
   imports: [
     CommonModule,
-    InteriorChatRoutingModule,
     HomeFooterModule,
     FormsModule,
     AppLoadingModule,

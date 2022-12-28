@@ -1,24 +1,21 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
+import { ExternalProfileComponent } from './external-profile.component';
 import { RouterModule, Routes } from '@angular/router';
-import { RegisterComponent } from './register.component';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 const routes: Routes = [
   {
     path: '',
-    component: RegisterComponent
+    component: ExternalProfileComponent
   }
 ];
 
 @NgModule({
-  declarations: [RegisterComponent],
+  declarations: [ExternalProfileComponent],
   imports: [
     CommonModule,
-    FormsModule,
-    ReactiveFormsModule,
     RouterModule.forChild(routes)
-  ],
+  ]
 })
-export class RegisterModule { }
+export class ExternalProfileModule { }

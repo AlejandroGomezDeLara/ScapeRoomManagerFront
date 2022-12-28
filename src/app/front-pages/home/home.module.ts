@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { HomeRoutingModule } from './home-routing.module';
 import { HomeComponent } from './home.component';
 import { RouterModule, Routes } from '@angular/router';
 import { FormsModule } from '@angular/forms';
@@ -22,7 +21,6 @@ const routes: Routes = [
   imports: [
     CommonModule,
     FormsModule,
-    HomeRoutingModule,
     HomeFooterModule,
     HomeHeaderModule,
     RouterModule.forChild(routes)

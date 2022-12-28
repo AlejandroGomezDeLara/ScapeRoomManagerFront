@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { InteriorRoutingModule } from './interior-routing.module';
 import { InteriorComponent } from './interior.component';
 import { RouterModule, Routes } from '@angular/router';
 import { RatingModule } from 'src/app/components/game-list/rating/rating.module';
@@ -35,7 +34,6 @@ const routes: Routes = [
   ],
   imports: [
     CommonModule,
-    InteriorRoutingModule,
     RatingModule,
     ReviewsSummaryModule,
     AppImageSliderModule,

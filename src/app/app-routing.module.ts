@@ -16,6 +16,7 @@ const routes: Routes = [
   { path: 'map', loadChildren: () => import('./front-pages/map-search/map-search.module').then(m => m.MapSearchModule) },
   { path: 'ranking', loadChildren: () => import('./front-pages/ranking/ranking.module').then(m => m.RankingModule) },
   { path: 'profile', loadChildren: () => import('./front-pages/profile/profile.module').then(m => m.ProfileModule) },
+  { path: ':id/profile', loadChildren: () => import('./front-pages/external-profile/external-profile.module').then(m => m.ExternalProfileModule) },
 
 
 ];

@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { ProfileRoutingModule } from './profile-routing.module';
 import { ProfileComponent } from './profile.component';
 import { RouterModule, Routes } from '@angular/router';
 import { OpenReservationModule } from 'src/app/components/game-list/open-reservation/open-reservation.module';
@@ -20,7 +19,6 @@ const routes:Routes=[
   declarations: [ProfileComponent],
   imports: [
     CommonModule,
-    ProfileRoutingModule,
     RouterModule.forChild(routes),
     OpenReservationModule,
     RatingModule,

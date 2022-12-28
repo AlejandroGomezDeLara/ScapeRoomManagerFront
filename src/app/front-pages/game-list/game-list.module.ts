@@ -1,12 +1,10 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { GameListRoutingModule } from './game-list-routing.module';
 import { RouterModule, Routes } from '@angular/router';
 import { GameListComponent } from './game-list.component';
-import {MatCardModule} from '@angular/material/card';
+import { MatCardModule } from '@angular/material/card';
 import { GameItemComponent } from 'src/app/components/game-list/game-item/game-item.component';
-import { GameListFiltersComponent } from 'src/app/components/game-list/game-list-filters/game-list-filters.component';
 import { FormsModule } from '@angular/forms';
 import { GameListPaginationComponent } from 'src/app/components/game-list/game-list-pagination/game-list-pagination.component';
 import { MatMenuModule } from '@angular/material/menu';
@@ -30,10 +28,9 @@ const routes: Routes = [
     GameListComponent,
     GameItemComponent,
     GameListPaginationComponent,
-],
+  ],
   imports: [
     CommonModule,
-    GameListRoutingModule,
     MatCardModule,
     FormsModule,
     MatMenuModule,

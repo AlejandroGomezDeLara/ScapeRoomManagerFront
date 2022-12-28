@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { MapSearchRoutingModule } from './map-search-routing.module';
 import { MapSearchComponent } from './map-search.component';
 import { MapModule } from 'src/app/components/map/map.module';
 import { GameListFiltersModule } from 'src/app/components/game-list/game-list-filters/game-list-filters.module';
@@ -23,7 +22,6 @@ const routes:Routes=[
   ],
   imports: [
     CommonModule,
-    MapSearchRoutingModule,
     MapModule,
     HomeFooterModule,
     GameListFiltersModule,
