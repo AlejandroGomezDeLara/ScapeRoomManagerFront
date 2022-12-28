@@ -14,6 +14,8 @@ export interface User{
     funly_points?:number;
     alias?:string;
     online?:boolean;
+    followers_count?:number;
+    following_count?:number;
     posts?:Post[];
     banner_img?:string;
     upload_image?:string;

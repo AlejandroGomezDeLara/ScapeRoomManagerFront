@@ -105,6 +105,25 @@ export class ProfileComponent implements OnInit, AfterContentInit {
     console.log(this.user, "xd")
   }
 
+  public setBannerBase64(e: any) {
+    var file = e.dataTransfer ? e.dataTransfer.files[0] : e.target.files[0];
+    var pattern = /image-*/;
+    var reader = new FileReader();
+    if (!file.type.match(pattern)) {
+      alert('invalid format');
+      return;
+    }
+    reader.onload = this._handleReaderBannerLoaded.bind(this);
+    reader.readAsDataURL(file);
+
+  }
+
+  _handleReaderBannerLoaded(e: any) {
+    let reader = e.target;
+    this.user.banner_img = reader.result;
+    console.log(this.user, "xd")
+  }
+
 
 
 }

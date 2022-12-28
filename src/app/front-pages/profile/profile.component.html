@@ -7,24 +7,29 @@
             <div class="user-data-content col-lg-6 col-12 my-auto">
 
                 <div class="col-12 user-avatar ">
-                    <div class="col-12 banner">
+                    <label for="banner-input" class=" col-12 banner">
+
                         <img [src]="user.banner_img" alt="" *ngIf="user.banner_img">
-                    </div>
-                    <div class="avatar-content">
 
-                        
-                        <img [src]="user.avatar" alt="" *ngIf="!user.upload_image"
-                            onError="this.src='assets/imgs/avatar.png'">
-                        <img [src]="user.upload_image" alt="" *ngIf="user.upload_image"
-                            onError="this.src='assets/imgs/avatar.png'">
-                        <span class="user-online" ></span>
-                    </div>
+                    </label>
+                    <input style="display: none;" id="banner-input" name="imageUrl" type="file" accept="image/*"
+                        (change)="setBannerBase64($event)" />
+                    <label for="file-input">
+                        <div class="avatar-content">
+
+                            <img class="user-image" [src]="user.avatar" alt="" *ngIf="!user.upload_image"
+                                onError="this.src='assets/imgs/avatar.png'">
+                            <img class="user-image" [src]="user.upload_image" alt="" *ngIf="user.upload_image"
+                                onError="this.src='assets/imgs/avatar.png'">
+                            <span class="user-online"></span>
+
+                        </div>
+                    </label>
+                    <input id="file-input" name="imageUrl" type="file" accept="image/*"
+                        (change)="setImageBase64($event)" />
 
                 </div>
-                <div class="col-12">
-                    <input name="imageUrl" type="file" accept="image/*" (change)="setImageBase64($event)" />
 
-                </div>
                 <div class="col-12">
                     <p class="user-name"><img src="assets/imgs/box-transparent.svg" style="width: 30px;" alt="">
                         {{user.name}}</p>
@@ -73,7 +78,7 @@
                         </p>
                     </div>
                     <div class="col-lg-3 col-12 my-auto user-summary-item">
-                        <p> <i class="fa fa-building"></i> <span> 12</span> eventos completados </p>
+                        <p> <i class="fa fa-building"></i> <span> 0</span> eventos completados </p>
                     </div>
                     <div class="col-lg-3 col-12 my-auto user-summary-item">
                         <p><img src="assets/imgs/box-transparent-dark.svg" style="width:25px;" alt="">

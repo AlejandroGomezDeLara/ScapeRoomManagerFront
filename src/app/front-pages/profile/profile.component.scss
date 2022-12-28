@@ -1,23 +1,7 @@
 .profile-container {
     padding: 5vw;
-    .banner{
-        border-radius: 15px 15px 0 0;
-        background-color: var(--dark-background);
-        background-image: url(../../../assets/imgs/box-transparent-dark.svg);
-        background-repeat: space;
-
-        background-size: 200px;
-        z-index: 1;
-        background-position: center;
-        height: 30vh;
-        position: absolute;
-        img {
-            width: 100%;
-            height: 100%;
-            z-index: 1;
-            object-fit: cover;
-        }
-    }
+    overflow-x: hidden;
+    
     .btn {
         background: var(--color-primary);
         border: none;
@@ -57,7 +41,7 @@
             padding: 30px;
             margin: 0px 0px 30px 0px;
             .user-data-title {
-                font-size: 26px;
+                font-size: 24px;
                 font-weight: bold;
                 padding-bottom: 20px;
                 border-bottom: 0.5px solid #ccc;
@@ -88,8 +72,30 @@
                 }
             }
             .user-avatar {
+                .banner{
+                    border-radius: 15px 15px 0 0;
+                    background-color: var(--dark-background);
+                    background-image: url(../../../assets/imgs/box-transparent-dark.svg);
+                    background-repeat: space;
+                    cursor: pointer;
+                    display: block;
+                    background-size: 200px;
+                    z-index: 1;
+                    background-position: center;
+                    height: 30vh;
+                    position: absolute;
+                    img {
+                        border-radius: 15px 15px 0 0;
+                        width: 100%;
+                        height: 100%;
+                        z-index: 1;
+                        object-fit: cover;
+                    }
+                }
+                #file-input{
+                    display: none;
+                }
                 position: relative;
-                cursor: pointer;
                 .avatar-content{
                     position: relative;
                     width: fit-content;
@@ -106,7 +112,8 @@
                         z-index: 9;
                     }
                 }
-                img {
+                .user-image {
+                    cursor: pointer;
                     background: white;
                     margin-top: 15vh;
                     z-index: 2;
@@ -124,8 +131,7 @@
                 font-weight: bold;
                 font-size: 32px;
                 text-transform: capitalize;
-                margin: 10px;
-                margin-top: 25px;
+                margin-bottom: 5px;
             }
             .user-alias {
                 color: #ccc;
