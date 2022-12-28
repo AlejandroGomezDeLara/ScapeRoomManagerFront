@@ -1,5 +1,5 @@
 <div class="chat-container content">
-    <div class="no-chats" *ngIf="chats?.length!<=0 && !(loading.isLoading | async)">
+    <div class="no-chats" [hidden]="chats?.length!>0 || (loading.isLoading | async)">
         <p>No tienes ningún chat activo, realiza una reserva!</p>
         <button routerLink="/search">Reservar</button>
     </div>

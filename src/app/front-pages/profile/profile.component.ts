@@ -39,7 +39,6 @@ export class ProfileComponent implements OnInit, AfterContentInit {
   }
 
   public getUserReservations(): void {
-    this.loading.startLoading();
     let obOpenReservations: Observable<OpenReservation[]> = this.apiService.getEntity('user-open-reservations');
     let obReservations: Observable<Reservation[]> = this.apiService.getEntity('user-reservations');
 
@@ -74,10 +73,8 @@ export class ProfileComponent implements OnInit, AfterContentInit {
       this.user = user;
       this.auth.userChanges.next(user);
       this.auth.setStorageUser(user);
-      this.loading.stopLoading();
     }, (error: HttpErrorResponse) => {
       console.log(error);
-      this.loading.stopLoading();
     });
   }
 
