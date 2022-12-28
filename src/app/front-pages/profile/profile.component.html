@@ -1,12 +1,24 @@
-<div class="profile-container content" >
+<div class="profile-container content">
     <div class="row user-container justify-content-center">
+
         <div class="user-data col-lg-10 col-12 row item">
             <p class="user-data-title">Editar datos del usuario <i class="fa fa-pencil"></i></p>
+
             <div class="user-data-content col-lg-6 col-12 my-auto">
 
                 <div class="col-12 user-avatar ">
-                    <img [src]="user.avatar" alt="" *ngIf="!user.upload_image" onError="this.src='assets/imgs/avatar.png'">
-                    <img [src]="user.upload_image" alt="" *ngIf="user.upload_image" onError="this.src='assets/imgs/avatar.png'">
+                    <div class="col-12 banner">
+                        <img [src]="user.banner_img" alt="" *ngIf="user.banner_img">
+                    </div>
+                    <div class="avatar-content">
+
+                        
+                        <img [src]="user.avatar" alt="" *ngIf="!user.upload_image"
+                            onError="this.src='assets/imgs/avatar.png'">
+                        <img [src]="user.upload_image" alt="" *ngIf="user.upload_image"
+                            onError="this.src='assets/imgs/avatar.png'">
+                        <span class="user-online" ></span>
+                    </div>
 
                 </div>
                 <div class="col-12">
@@ -14,7 +26,8 @@
 
                 </div>
                 <div class="col-12">
-                    <p class="user-name"><img src="assets/imgs/box-transparent.svg" style="width: 30px;" alt=""> {{user.name}}</p>
+                    <p class="user-name"><img src="assets/imgs/box-transparent.svg" style="width: 30px;" alt="">
+                        {{user.name}}</p>
                     <p class="user-alias"><i class="fa-brands fa-twitter"
                             *ngIf="user.twitter_user"></i>{{user.twitter_user
                         ? user.twitter_user :
@@ -22,12 +35,13 @@
                 </div>
 
                 <div class="col-lg-12 col-12 ">
-                    <button class="logout-btn btn" (click)="logout()"><i class="fa-solid fa-power-off"></i> Cerrar Sesión</button>
+                    <button class="logout-btn btn" (click)="logout()"><i class="fa-solid fa-power-off"></i> Cerrar
+                        Sesión</button>
                 </div>
             </div>
-            <div class="user-data-form col-lg-6  col-12 my-auto">
+            <div class="user-data-form col-lg-5  col-12 my-auto">
                 <div class="form-item row justify-content-center">
-                    <label for="name"> <i class="fa fa-user"></i> Nombre de usuario  </label>
+                    <label for="name"> <i class="fa fa-user"></i> Nombre de usuario </label>
                     <input type="text" placeholder="Tu nombre de usuario" [(ngModel)]="user.name">
                 </div>
                 <div class="form-item row justify-content-center">
@@ -39,7 +53,7 @@
                     <input type="text" placeholder="Tu usuario de twitter" [(ngModel)]="user.phone">
                 </div>
                 <div class="form-item row justify-content-center">
-                    <label for="name"><i class="fa-brands fa-instagram"></i> Instagram  </label>
+                    <label for="name"><i class="fa-brands fa-instagram"></i> Instagram </label>
                     <input type="text" placeholder="Tu usuario de instagram" [(ngModel)]="user.instagram_user">
                 </div>
                 <div class="form-item row justify-content-center">
@@ -50,7 +64,7 @@
                     <label for="name"> <i class="fa-brands fa-twitter"></i> Twitter </label>
                     <input type="text" placeholder="Tu usuario de twitter" [(ngModel)]="user.twitter_user">
                 </div>
-                
+
             </div>
             <div class="col-12">
                 <div class="row justify-content-center user-summary">
@@ -77,9 +91,11 @@
 
         <div class=" col-lg-10 col-12 justify-content-center row">
             <div class="open-reservations-container row item col-12">
-                <p class="open-reservations-title"><i class="fa fa-building"></i> Reservas FUNLY <img src="assets/imgs/box-transparent.svg" style="width: 20px;" alt=""></p>
+                <p class="open-reservations-title"><i class="fa fa-building"></i> Reservas FUNLY <img
+                        src="assets/imgs/box-transparent.svg" style="width: 20px;" alt=""></p>
                 <ng-container *ngIf="openReservations.length<=0">
-                    <p class="open-reservations-void">No tienes ninguna reserva FUNLY <img src="assets/imgs/box-transparent.svg" style="width: 20px;" alt=""> </p>
+                    <p class="open-reservations-void">No tienes ninguna reserva FUNLY <img
+                            src="assets/imgs/box-transparent.svg" style="width: 20px;" alt=""> </p>
                     <button class="btn" routerLink="/search">¡Reserva ya!</button>
                 </ng-container>
 
@@ -98,7 +114,8 @@
                     <button class="btn" routerLink="/search">¡Reserva ya!</button>
                 </ng-container>
                 <div class="completed-games-container">
-                    <div class="completed-game-item justify-content-center row" *ngFor="let reservation of reservations">
+                    <div class="completed-game-item justify-content-center row"
+                        *ngFor="let reservation of reservations">
                         <div class="col-lg-7 row col-12 justify-content-center my-auto text-center">
                             <div class=" col-lg-2 col-12 my-auto" routerLink="/search/{{reservation.game_id}}/interior">
                                 <img class="game-image " [src]="reservation.game?.image" alt="">
@@ -106,13 +123,22 @@
                             <div class="col-lg-8 row">
                                 <div class="col-lg-12 my-auto">
                                     <p class="game-name">{{reservation.game?.name}}</p>
-                                    <p class="game-address"><i class="fa fa-location-dot"></i> {{reservation.game?.address}}</p>
-                                    <p class="reservation-date">{{reservation.date}} - {{reservation.game_reservation_hour?.hour | slice:0:5}}</p>
-                                    <app-rating [rating]="reservation.game?.rating!" [reviews]="reservation.game?.reviewsCount!" [color]="reservation.game?.category?.color"></app-rating>
+                                    <p class="game-address"><i class="fa fa-location-dot"></i>
+                                        {{reservation.game?.address}}</p>
+                                    <p class="reservation-date">{{reservation.date}} -
+                                        {{reservation.game_reservation_hour?.hour | slice:0:5}}</p>
+                                    <app-rating [rating]="reservation.game?.rating!"
+                                        [reviews]="reservation.game?.reviewsCount!"
+                                        [color]="reservation.game?.category?.color"></app-rating>
                                     <div class="categories row justify-content-center">
-                                        <span [style.background]="reservation.game?.category?.color"><i class="fa fa-clock"></i> {{reservation.game?.min_duration}}-{{reservation.game?.max_duration}} min</span>
-                                        <span [style.background]="reservation.game?.category?.color"><i class="fa fa-user-group"></i> {{reservation.people}} personas</span>
-                                        <span [style.background]="reservation.game?.category?.color"><i class="fa fa-money-bill"></i> {{reservation.game_price?.price}} €</span>
+                                        <span [style.background]="reservation.game?.category?.color"><i
+                                                class="fa fa-clock"></i>
+                                            {{reservation.game?.min_duration}}-{{reservation.game?.max_duration}}
+                                            min</span>
+                                        <span [style.background]="reservation.game?.category?.color"><i
+                                                class="fa fa-user-group"></i> {{reservation.people}} personas</span>
+                                        <span [style.background]="reservation.game?.category?.color"><i
+                                                class="fa fa-money-bill"></i> {{reservation.game_price?.price}} €</span>
                                     </div>
                                 </div>
 
@@ -125,19 +151,21 @@
                                         alt=""> 0/{{reservation.game?.funly_points}}</p>
                             </div>
                             <div class="col-lg col-12 my-auto">
-                                <button class="btn" [style.background]="reservation.game?.category?.color"><i class="fa fa-star"></i> Valorar</button>
+                                <button class="btn" [style.background]="reservation.game?.category?.color"><i
+                                        class="fa fa-star"></i> Valorar</button>
                             </div>
                             <div class="col-lg col-12 my-auto">
-                                <button class="btn" [style.background]="reservation.game?.category?.color"><i class="fa fa-plus"></i> Detalle</button>
+                                <button class="btn" [style.background]="reservation.game?.category?.color"><i
+                                        class="fa fa-plus"></i> Detalle</button>
                             </div>
-                           
+
                         </div>
                     </div>
 
                 </div>
             </div>
         </div>
-       
+
     </div>
 </div>
 
