@@ -1,1 +1,96 @@
-<p>external-profile works!</p>
+<div class="profile-container content">
+    <div class="row user-container justify-content-center" *ngIf="user && !(loading.isLoading | async)">
+        <div class="col-12 banner">
+            <img [src]="user.banner_img" alt="" *ngIf="user.banner_img">
+        </div>
+        <div class="user-data-content col-lg-6 col-12 my-auto">
+
+            <div class="col-12 user-avatar ">
+                <div class="avatar-content">
+                    <img [src]="user.avatar" alt="" *ngIf="!user.upload_image"
+                        onError="this.src='assets/imgs/avatar.png'">
+                    <img [src]="user.upload_image" alt="" *ngIf="user.upload_image"
+                        onError="this.src='assets/imgs/avatar.png'">
+                    <span class="user-online" *ngIf="user.online"></span>
+
+                </div>
+            </div>
+
+            <div class="col-12">
+                <p class="user-name"><img src="assets/imgs/box-transparent.svg" style="width: 30px;" alt="">
+                    {{user.name}}</p>
+                <p class="user-alias"><i class="fa-brands fa-twitter" *ngIf="user.twitter_user"></i>{{user.twitter_user
+                    ? user.twitter_user :
+                    user.name}}</p>
+            </div>
+            <div class="actions">
+                <button class="btn"><i class="fa-solid fa-user-plus"></i> Seguir</button>
+                <button class="btn"><i class="fa-solid fa-comment"></i> Enviar mensaje</button>
+            </div>
+
+        </div>
+
+        <div class="col-lg-6 col-12 row user-data">
+            <div class="user-rrss col-lg-6  col-12 my-auto">
+                <h2>Redes sociales</h2>
+
+                <div class="form-item row justify-content-center">
+                    <p><i class="fa-brands fa-instagram"></i> {{user.instagram_user ? user.instagram_user
+                        : user.name}} </p>
+                </div>
+                <div class="form-item row justify-content-center">
+                    <p><i class="fa-brands fa-facebook"></i> {{user.facebook_user ? user.facebook_user :
+                        user.name}} </p>
+                </div>
+                <div class="form-item row justify-content-center">
+                    <p> <i class="fa-brands fa-twitter"></i> {{user.twitter_user ? user.twitter_user:
+                        user.name}} </p>
+                </div>
+
+            </div>
+
+            <div class="col-lg-6 col-12 my-auto">
+                <h2>Estadísticas</h2>
+                <div class="row justify-content-center user-summary">
+                    <div class=" col-12  my-auto user-summary-item">
+                        <p class="position-second"><span> {{user.id}} </span> en el ranking
+                        </p>
+                    </div>
+                    <div class="col-12 my-auto user-summary-item">
+                        <p> <span> 0</span> publicaciones </p>
+                    </div>
+                    <div class=" col-12 my-auto user-summary-item">
+                        <p>
+                            <span> 0 </span> seguidores
+                        </p>
+                    </div>
+                    <div class="col-12 my-auto user-summary-item">
+                        <p>
+                            <span> 0 </span> seguidos
+                        </p>
+                    </div>
+                    <div class="col-12 my-auto user-summary-item">
+                        <p>
+                            <span> {{user.funly_points}} </span> puntos FUNLY
+                            <img src="assets/imgs/box-transparent.svg" style="width:25px;" alt="">
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+    <div class="justify-content-center row" *ngIf="user?.posts?.length!>0">
+
+        <div class="publications-container row item col-12">
+            <h2>Publicaciones</h2>
+        </div>
+
+
+    </div>
+</div>
+
+
+<home-footer></home-footer>

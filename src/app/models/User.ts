@@ -1,3 +1,5 @@
+import { Post } from "./Post";
+
 export interface User{
     id?:number;
     name?:string;
@@ -11,6 +13,9 @@ export interface User{
     twitter_user?:string;
     funly_points?:number;
     alias?:string;
+    online?:boolean;
+    posts?:Post[];
+    banner_img?:string;
     upload_image?:string;
 
 }

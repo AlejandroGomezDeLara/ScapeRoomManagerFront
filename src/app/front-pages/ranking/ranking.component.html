@@ -21,7 +21,7 @@
     <div class="top-users justify-content-center row">
         <p class="top-users-title">Top <span><i class="fa fa-trophy"></i> 3 </span> FUNLY enjoyers</p>
 
-        <div class="top-user-item col-lg-3 col-sm-12 second-user h-25 d-inline-block " *ngIf="users.length>=2">
+        <div class="top-user-item col-lg-3 col-sm-12 second-user h-25 d-inline-block " *ngIf="users.length>=2" routerLink="/{{users[1].id}}/profile">
             <div class="col-12 user-avatar">
                 <img [src]="users[1].avatar" alt="" onError="this.src='assets/imgs/avatar.png'">
             </div>
@@ -50,7 +50,7 @@
                 </div>
             </div>
         </div>
-        <div class="top-user-item winner-user col-lg-3 col-sm-12" *ngIf="users.length>=1">
+        <div class="top-user-item winner-user col-lg-3 col-sm-12" *ngIf="users.length>=1" routerLink="/{{users[0].id}}/profile">
             <div class="col-12 user-avatar">
                 <img [src]="users[0].avatar" alt="" onError="this.src='assets/imgs/avatar.png'">
             </div>
@@ -80,7 +80,7 @@
             </div>
         </div>
 
-        <div class="top-user-item col-lg-3 col-sm-12 h-25 d-inline-block third-user" *ngIf="users.length>=3">
+        <div class="top-user-item col-lg-3 col-sm-12 h-25 d-inline-block third-user" *ngIf="users.length>=3" routerLink="/{{users[2].id}}/profile">
             <div class="col-12 user-avatar">
                 <img [src]="users[2].avatar" alt="" onError="this.src='assets/imgs/avatar.png'">
             </div>

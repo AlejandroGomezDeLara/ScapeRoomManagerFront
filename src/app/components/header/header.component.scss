@@ -9,6 +9,9 @@
         position: relative;
         cursor: pointer;
         font-size: 16px;
+        i{
+            font-size: 20px;
+        }
     }
     .nav-item a:hover {
         color: var(--color-primary);
