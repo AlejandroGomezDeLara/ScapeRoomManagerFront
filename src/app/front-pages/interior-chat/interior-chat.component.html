@@ -11,12 +11,11 @@
                     -
                     {{selectedChat.open_reservation?.game_reservation_hour?.hour | slice:0:5}} </p>
                 <div class="chat-users" *ngIf="selectedChat">
-                    <span>Participantes </span>
                     <ng-container *ngFor="let user of selectedChat?.users;let i=index">
                         <div class="avatar-content">
                             <img class="user-avatar" [src]="user.avatar" alt="" *ngIf="i<6"
                                 onError="this.src='assets/imgs/avatar.png'">
-                                <span class="user-online" *ngIf="user.online"></span>
+                            <span class="user-online" *ngIf="user.online"></span>
                         </div>
                         <span *ngIf="i==6">y {{selectedChat.users?.length! - 6}} más</span>
                     </ng-container>
@@ -35,7 +34,11 @@
                         <ng-container *ngIf="i==0">
                             <div class="col-lg-1 col-2 user-image" *ngIf="user.id != message?.user!.id"
                                 routerLink="/{{message?.user!.id}}/profile">
-                                <img [src]="message?.user!.avatar" alt="" onError="this.src='assets/imgs/avatar.png'">
+                                <div class="avatar-content">
+                                    <img [src]="message?.user!.avatar" alt=""
+                                        onError="this.src='assets/imgs/avatar.png'">
+                                    <span class="user-online" *ngIf="message?.user!.online"></span>
+                                </div>
                             </div>
                             <div [ngClass]="user.id != message?.user!.id ? 'col-lg-11 col-10' : 'col-lg-11 col-11'">
 
@@ -44,7 +47,10 @@
                                     *ngIf="message.audio">
                                     <div class="col-3 user-audio-avatar my-auto"
                                         routerLink="/{{message?.user!.id}}/profile">
-                                        <img [src]="user.avatar" alt="">
+                                        <div class="avatar-content">
+                                            <img [src]="user.avatar" alt="">
+                                            <span class="user-online" *ngIf="user.online"></span>
+                                        </div>
                                     </div>
                                     <div class="col-3 play-button my-auto" (click)="togglePlay(message)">
                                         <i class="fa fa-play" *ngIf="!message.is_playing_audio"></i>
@@ -81,9 +87,11 @@
                         <ng-container *ngIf="i>=1">
                             <div class="col-lg-1 col-2 user-image" *ngIf="user.id != message?.user!.id"
                                 routerLink="/{{message?.user!.id}}/profile">
-                                <img [src]="message?.user!.avatar" alt=""
-                                    *ngIf="messages[i-1].user?.id != message.user?.id"
-                                    onError="this.src='assets/imgs/avatar.png'">
+                                <div class="avatar-content" *ngIf="messages[i-1].user?.id != message.user?.id">
+                                    <img [src]="message?.user!.avatar" alt=""
+                                        onError="this.src='assets/imgs/avatar.png'">
+                                    <span class="user-online" *ngIf="message?.user!.online"></span>
+                                </div>
                             </div>
                             <div [ngClass]="user.id != message?.user!.id ? 'col-lg-11 col-10' : 'col-lg-11 col-11'">
                                 <ng-container *ngIf="messages[i-1].user?.id != message?.user?.id">
