@@ -29,8 +29,8 @@ export class AppComponent implements OnInit {
       
   }
 
-  @HostListener("click")
-  protected onFocus() {
+  @HostListener('click', ['$event.target'])
+  protected onClick() {    
     this.auth.setUserIsOnline(true);
   }
 
