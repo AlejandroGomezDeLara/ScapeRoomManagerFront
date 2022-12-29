@@ -34,6 +34,12 @@ export class AppComponent implements OnInit {
     this.setUserIsOnline(true);
   }
 
+  @HostListener('window:beforeunload')
+  protected onOffline() {
+    this.setUserIsOnline(false);
+    
+  }
+
 
   ngOnInit(): void {
     this.auth.authenticationState.subscribe(token => {
@@ -43,6 +49,7 @@ export class AppComponent implements OnInit {
         let token = localStorage.getItem('auth-token');
         this.apiService.setTokenToHeaders(token);
         this.listenForMessages();
+        this.setUserIsOnline(true);
         this.redirect();
       } else if (token == 'logout') {
 
@@ -70,13 +77,17 @@ export class AppComponent implements OnInit {
   }
 
 
-  public setUserIsOnline(online:boolean): void {
+  public setUserIsOnline(online: boolean): void {
     let user = this.auth.getStorageUser();
     if (!this.utilities.isEmptyObject(user)) {
       user.online = online;
       this.auth.setStorageUser(user);
-      this.apiService.updateEntity('users', user.id!, user).subscribe(() => {
-        console.log("user online");
+      this.apiService.updateEntity('users', user.id!, user).subscribe((user:User) => {
+        if (user.online)
+          console.log("user online");
+        else
+          console.log("user offline");
+
       }, (error: HttpErrorResponse) => {
         console.log(error);
       });
