@@ -60,19 +60,22 @@ export class AuthenticationService {
 
   public setUserIsOnline(online: boolean): void {
     let user = this.getStorageUser();
-    if (!this.utilities.isEmptyObject(user)) {
-      user.online = online;
-      this.setStorageUser(user);
-      this.apiService.updateEntity('users', user.id!, user).subscribe((user: User) => {
-        if (user.online)
-          console.log("user online");
-        else
-          console.log("user offline");
+    if (user.online != online) {
+      if (!this.utilities.isEmptyObject(user)) {
+        user.online = online;
+        this.setStorageUser(user);
+        this.apiService.updateEntity('users', user.id!, user).subscribe((user: User) => {
+          if (user.online)
+            console.log("user online");
+          else
+            console.log("user offline");
 
-      }, (error: HttpErrorResponse) => {
-        console.log(error);
-      });
+        }, (error: HttpErrorResponse) => {
+          console.log(error);
+        });
+      }
     }
+
 
   }
 

@@ -29,7 +29,7 @@ export class AppComponent implements OnInit {
       
   }
 
-  @HostListener("window:focus")
+  @HostListener("click")
   protected onFocus() {
     this.auth.setUserIsOnline(true);
   }
