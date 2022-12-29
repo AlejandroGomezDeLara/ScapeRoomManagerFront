@@ -26,10 +26,7 @@ export class AppComponent implements OnInit {
     private apiService: ApiService,
     public loading: LoadingService,
     private newMessages: NewMessagesService) {
-      parent.addEventListener("visibilitychange", () => {
-        console.log("change");
-        
-      });
+      
   }
 
   @HostListener("window:focus")
@@ -39,9 +36,7 @@ export class AppComponent implements OnInit {
 
   @HostListener('document:visibilitychange') 
   protected onVisibilityChange() {
-    console.log("xddd");
-    
-    if (document.visibilityState === 'hidden') {
+        if (document.visibilityState === 'hidden') {
       this.auth.setUserIsOnline(false);
     }
   }
