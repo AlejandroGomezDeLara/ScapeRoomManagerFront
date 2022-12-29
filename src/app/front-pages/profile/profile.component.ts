@@ -31,10 +31,6 @@ export class ProfileComponent implements OnInit, AfterContentInit {
   }
 
   ngOnInit(): void {
-    this.auth.userChanges.subscribe((user: User) => {
-      this.user = user;
-      console.log("usuario actualizado", user);
-    });
     this.getUserReservations();
   }
 
@@ -68,17 +64,24 @@ export class ProfileComponent implements OnInit, AfterContentInit {
   }
 
   public updateUser(): void {
-    this.apiService.updateEntity('users', this.user?.id!, this.user).subscribe((user: User) => {
-      this.user = user;
-      this.auth.userChanges.next(user);
-      this.auth.setStorageUser(user);
-    }, (error: HttpErrorResponse) => {
-      console.log(error);
-    });
+    if (!this.utilities.isEqual(this.user, this.auth.getStorageUser())) {
+      this.apiService.updateEntity('users', this.user?.id!, this.user).subscribe((user: User) => {
+        this.user = user;
+        this.auth.userChanges.next(user);
+        this.auth.setStorageUser(user);
+      }, (error: HttpErrorResponse) => {
+        console.log(error);
+      });
+    } else {
+      console.log("Sin cambios");
+    }
   }
 
+
+
   public ngOnDestroy(): void {
-    this.updateUser();
+    if (!this.utilities.isEmptyObject(this.auth.getStorageUser()))
+      this.updateUser();
   }
 
 

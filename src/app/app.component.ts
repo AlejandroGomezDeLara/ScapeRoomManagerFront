@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, HostListener, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { User } from './models/User';
@@ -31,7 +31,7 @@ export class AppComponent implements OnInit {
 
   @HostListener("window:focus")
   protected onFocus() {
-    this.setUserOnline();
+    this.setUserIsOnline(true);
   }
 
 
@@ -48,6 +48,7 @@ export class AppComponent implements OnInit {
 
         this.router.navigateByUrl('/');
         this.apiService.setTokenToHeaders(null);
+        this.setUserIsOnline(false);
         clearInterval(this.newMessagesInterval);
         this.newMessagesInterval = null;
       } else {
@@ -69,30 +70,21 @@ export class AppComponent implements OnInit {
   }
 
 
-  public setUserOnline(): void {
-    if (this.user) {
-      this.user.online = true;
-      this.apiService.updateEntity('users', this.user.id!, this.user).subscribe(() => {
+  public setUserIsOnline(online:boolean): void {
+    let user = this.auth.getStorageUser();
+    if (!this.utilities.isEmptyObject(user)) {
+      user.online = online;
+      this.auth.setStorageUser(user);
+      this.apiService.updateEntity('users', user.id!, user).subscribe(() => {
         console.log("user online");
-      }, (error: HttpClient) => {
+      }, (error: HttpErrorResponse) => {
         console.log(error);
       });
     }
 
-  }
-
-  public setUserOffline(): void {
-    if (this.user) {
-      this.user.online = false;
-      this.apiService.updateEntity('users', this.user.id!, this.user).subscribe(() => {
-        console.log("user offline");
-      }, (error: HttpClient) => {
-        console.log(error);
-      });
-    }
   }
 
   ngOnDestroy(): void {
-    this.setUserOffline();
+    this.setUserIsOnline(false);
   }
 }
