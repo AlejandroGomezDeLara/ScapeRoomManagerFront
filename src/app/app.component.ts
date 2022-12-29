@@ -29,18 +29,11 @@ export class AppComponent implements OnInit {
 
   }
 
-  @HostListener('document:visibilitychange') 
-  protected onVisibilityChange() {
-    if (document.visibilityState === 'hidden') {
-      this.setUserOffline();
-    }
-  }
-
   @HostListener("window:focus")
   protected onFocus() {
     this.setUserOnline();
   }
-  
+
 
   ngOnInit(): void {
     this.auth.authenticationState.subscribe(token => {
@@ -76,8 +69,8 @@ export class AppComponent implements OnInit {
   }
 
 
-  public setUserOnline():void{
-    if(this.user){
+  public setUserOnline(): void {
+    if (this.user) {
       this.user.online = true;
       this.apiService.updateEntity('users', this.user.id!, this.user).subscribe(() => {
         console.log("user online");
@@ -85,11 +78,11 @@ export class AppComponent implements OnInit {
         console.log(error);
       });
     }
-    
+
   }
 
-  public setUserOffline():void{
-    if(this.user){
+  public setUserOffline(): void {
+    if (this.user) {
       this.user.online = false;
       this.apiService.updateEntity('users', this.user.id!, this.user).subscribe(() => {
         console.log("user offline");
@@ -97,5 +90,9 @@ export class AppComponent implements OnInit {
         console.log(error);
       });
     }
+  }
+
+  ngOnDestroy(): void {
+    this.setUserOffline();
   }
 }
