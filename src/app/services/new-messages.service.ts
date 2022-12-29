@@ -12,29 +12,44 @@ import { UtilitiesService } from './utilities.service';
 export class NewMessagesService {
 
   public newMessagesCount = new BehaviorSubject<number>(0);
+  public newMessagesInterval: any;
 
   constructor(private apiService: ApiService, private auth: AuthenticationService,
     private utilities: UtilitiesService,
-    private router:Router) {
+    private router: Router) {
 
   }
 
 
 
   public getNewMessagesCount(): void {
-    this.apiService.getEntity('new-messages').subscribe((messages:any) => {
+    this.apiService.getEntity('new-messages').subscribe((messages: any) => {
       if (messages.count > this.newMessagesCount.value) {
 /*         parent.postMessage(messages.last_message?.chat_message, '*');
  */        console.log("Mensajes nuevos xd", messages);
-        if(!this.router.url.includes('interior-chat') ){
+        if (!this.router.url.includes('interior-chat')) {
           let audio = new Audio('assets/audio/new_message.mp3');
           audio.play();
         }
-        
+
       }
       this.newMessagesCount.next(messages.count);
     }, (error: HttpErrorResponse) => {
       console.log(error);
     })
+  }
+
+  public setNewMessagesListener(): void {
+    this.newMessagesInterval = setInterval(() => {
+      this.getNewMessagesCount();
+    }, 2000);
+  }
+
+  public clearNewMessagesListener(): void {
+    if(this.newMessagesInterval){
+      clearInterval(this.newMessagesInterval);
+      this.newMessagesInterval =null;
+    }
+   
   }
 }

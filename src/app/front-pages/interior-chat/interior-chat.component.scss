@@ -182,14 +182,35 @@
                 .chat-users {
                     margin-top: 10px;
                     text-align: center;
-                    .user-avatar {
-                        cursor: pointer;
-                        width: 25px;
-                        height: 25px;
-                        border-radius: 50%;
-                        box-shadow: var(--item-box-shadow);
-                        object-fit: cover;
+                    .avatar-content{
+                        position: relative;
+                        overflow: hidden;
+                        display: inline;
+                        margin: 0 auto;
+                        .user-online {
+                            position: absolute;
+                            top: 11px;
+                            right: -2px;
+                            background: var(--color-open-reservation);
+                            height: 13px;
+                            width: 13px;
+                            border: 2px solid white;
+                            border-radius: 50px;
+                            z-index: 9;
+                        }
+                        .user-avatar {
+                            cursor: pointer;
+                            width: 32px;
+                            border: 2px solid white;
+                            margin-right: 2px;
+                            height: 32px;
+                            border-radius: 50%;
+                            box-shadow: var(--item-box-shadow);
+                            object-fit: cover;
+                        }
+                        
                     }
+                   
                 }
                 .chat-image {
                     border-radius: 50%;

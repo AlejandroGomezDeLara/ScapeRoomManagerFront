@@ -4,6 +4,7 @@ import { Chat } from 'src/app/models/Chat';
 import { ApiService } from 'src/app/services/api.service';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { LoadingService } from 'src/app/services/loading.service';
+import { NewMessagesService } from 'src/app/services/new-messages.service';
 
 @Component({
   selector: 'app-chats',
@@ -18,11 +19,13 @@ export class ChatsComponent implements OnInit {
 
   constructor(private apiService: ApiService,
     public loading: LoadingService,
-    private auth: AuthenticationService) {
+    private auth: AuthenticationService,
+    private newMessages:NewMessagesService) {
 
   }
 
   ngOnInit(): void {
+    this.newMessages.clearNewMessagesListener();
     this.loading.startLoading();
     this.getChats();
     this.chatsInterval = setInterval(() => {
@@ -67,6 +70,7 @@ export class ChatsComponent implements OnInit {
   public ngOnDestroy(): void {
     clearInterval(this.chatsInterval);
     this.chatsInterval = null;
+    this.newMessages.setNewMessagesListener();
    
   }
 

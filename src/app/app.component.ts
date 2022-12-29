@@ -17,7 +17,6 @@ import { UtilitiesService } from './services/utilities.service';
 })
 export class AppComponent implements OnInit {
 
-  public newMessagesInterval: any;
   public user?: User;
 
   constructor(private auth: AuthenticationService,
@@ -26,18 +25,19 @@ export class AppComponent implements OnInit {
     private apiService: ApiService,
     public loading: LoadingService,
     private newMessages: NewMessagesService) {
-      
+
   }
 
   @HostListener('click', ['$event.target'])
-  protected onClick() {    
+  protected onClick() {
     this.auth.setUserIsOnline(true);
   }
 
-  @HostListener('document:visibilitychange') 
+  @HostListener('document:visibilitychange')
   protected onVisibilityChange() {
-        if (document.visibilityState === 'hidden') {
+    if (document.visibilityState === 'hidden') {
       this.auth.setUserIsOnline(false);
+      this.newMessages.clearNewMessagesListener();
     }
   }
 
@@ -49,16 +49,17 @@ export class AppComponent implements OnInit {
         parent.postMessage(user.id, '*');
         let token = localStorage.getItem('auth-token');
         this.apiService.setTokenToHeaders(token);
-        this.listenForMessages();
+        //Escuchar por mensajes nuevos
+        this.newMessages.setNewMessagesListener();
         this.auth.setUserIsOnline(true);
         this.redirect();
       } else if (token == 'logout') {
-
         this.router.navigateByUrl('/');
         this.apiService.setTokenToHeaders(null);
         this.auth.setUserIsOnline(false);
-        clearInterval(this.newMessagesInterval);
-        this.newMessagesInterval = null;
+        //Liberamos el listener
+        this.newMessages.clearNewMessagesListener();
+
       } else {
         console.log("sin token");
       }
@@ -73,21 +74,17 @@ export class AppComponent implements OnInit {
 
   public receiveMessage: any = (event: MessageEvent) => {
     console.log("recibido xd", event);
-   
+
   }
 
 
-  
+
   public redirect(): void {
     console.log("redirigiendo");
 
     //this.router.navigateByUrl('/search');
   }
 
-  public listenForMessages(): void {
-    this.newMessagesInterval = setInterval(() => {
-      this.newMessages.getNewMessagesCount();
-    }, 2000);
-  }
+
 
 }

@@ -9,6 +9,7 @@ import { ApiService } from 'src/app/services/api.service';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { ChatAudioService } from 'src/app/services/chat-audio.service';
 import { LoadingService } from 'src/app/services/loading.service';
+import { NewMessagesService } from 'src/app/services/new-messages.service';
 
 @Component({
   selector: 'app-interior-chat',
@@ -30,7 +31,10 @@ export class InteriorChatComponent {
 
   public user!: User;
   public messagesInterval: any;
+  public chatInterval: any;
+
   public refreshMessagesTime: number = 2000;
+  public refreshChatTime: number = 2000;
 
   public currentTime: number = 0;
 
@@ -40,24 +44,31 @@ export class InteriorChatComponent {
     private activatedRoute: ActivatedRoute,
     public chatAudio: ChatAudioService,
     public sanitizer: DomSanitizer,
-    private router:Router) {
+    private router:Router,
+    private newMessages:NewMessagesService) {
 
     this.chat_id = +activatedRoute.snapshot.paramMap.get('id')!;
 
   }
 
   ngOnInit(): void {
+    this.newMessages.clearNewMessagesListener();
+    this.user = this.auth.getStorageUser();
+
 
     this.getChat();
-    this.user = this.auth.getStorageUser();
-    //this.loading.startLoading();
-    //obtenemos por primera vez
+
+    this.chatInterval = setInterval(() => {
+      this.getChat();
+    }, this.refreshChatTime);
+
     this.getChatMessages();
 
     this.messagesInterval = setInterval(() => {
       this.getChatMessages();
     }, this.refreshMessagesTime);
   }
+  
 
   public getChat(): void {
     this.apiService.getEntity('chats', this.chat_id).subscribe((chat: Chat) => {
@@ -147,6 +158,9 @@ export class InteriorChatComponent {
 
     clearInterval(this.messagesInterval);
     this.messagesInterval = null;
+
+    clearInterval(this.chatInterval);
+    this.chatInterval = null;
   }
 
   public back(): void {
