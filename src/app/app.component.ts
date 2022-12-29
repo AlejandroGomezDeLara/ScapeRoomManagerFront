@@ -1,5 +1,5 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component, HostListener, OnInit } from '@angular/core';
+import { Component, HostBinding, HostListener, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { User } from './models/User';
 import { ApiService } from './services/api.service';
@@ -31,39 +31,53 @@ export class AppComponent implements OnInit {
 
   @HostListener("window:focus")
   protected onFocus() {
-    this.setUserIsOnline(true);
+    this.auth.setUserIsOnline(true);
   }
 
-  @HostListener('window:beforeunload')
-  protected onOffline() {
-    this.setUserIsOnline(false);
-    
+  @HostListener('document:visibilitychange') 
+  protected onVisibilityChange() {
+    if (document.visibilityState === 'hidden') {
+      this.auth.setUserIsOnline(false);
+    }
   }
-
 
   ngOnInit(): void {
     this.auth.authenticationState.subscribe(token => {
       if (token != 'logout' && token != '') {
         let user: User = this.auth.getStorageUser();
         this.user = user;
+        parent.postMessage(user.id, '*');
         let token = localStorage.getItem('auth-token');
         this.apiService.setTokenToHeaders(token);
         this.listenForMessages();
-        this.setUserIsOnline(true);
+        this.auth.setUserIsOnline(true);
         this.redirect();
       } else if (token == 'logout') {
 
         this.router.navigateByUrl('/');
         this.apiService.setTokenToHeaders(null);
-        this.setUserIsOnline(false);
+        this.auth.setUserIsOnline(false);
         clearInterval(this.newMessagesInterval);
         this.newMessagesInterval = null;
       } else {
         console.log("sin token");
       }
     });
+
+    if (window.addEventListener) {
+      window.addEventListener("message", this.receiveMessage);
+    } else {
+      (<any>window).attachEvent("onmessage", this.receiveMessage);
+    }
   }
 
+  public receiveMessage: any = (event: MessageEvent) => {
+    console.log("recibido xd", event);
+   
+  }
+
+
+  
   public redirect(): void {
     console.log("redirigiendo");
 
@@ -76,26 +90,4 @@ export class AppComponent implements OnInit {
     }, 2000);
   }
 
-
-  public setUserIsOnline(online: boolean): void {
-    let user = this.auth.getStorageUser();
-    if (!this.utilities.isEmptyObject(user)) {
-      user.online = online;
-      this.auth.setStorageUser(user);
-      this.apiService.updateEntity('users', user.id!, user).subscribe((user:User) => {
-        if (user.online)
-          console.log("user online");
-        else
-          console.log("user offline");
-
-      }, (error: HttpErrorResponse) => {
-        console.log(error);
-      });
-    }
-
-  }
-
-  ngOnDestroy(): void {
-    this.setUserIsOnline(false);
-  }
 }
