@@ -6,8 +6,6 @@
     overflow: hidden;
     background-color: var(--dark-background);
     background-image: url(../../../assets/imgs/box-transparent-dark.svg);
-    background-repeat: space;
-
     background-size: 200px;
     background-position: center;
     top: 0;
@@ -49,4 +47,19 @@
             transform: rotate(360deg);
         }
     }
+    animation: asd 4s linear infinite;       
+}
+
+@keyframes asd {
+    100% {
+        background-position-y: 0;
+        background-position-x: 0;
+
+    }
+    0%{
+        background-position-y: 200px;
+        background-position-x: 200px;
+
+    }
+
 }

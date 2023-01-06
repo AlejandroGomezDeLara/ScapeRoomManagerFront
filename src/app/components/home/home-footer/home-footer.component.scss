@@ -2,7 +2,6 @@
     box-shadow:var(--item-box-shadow);
     background-color: var(--dark-background);
     background-image: url(../../../../assets/imgs/box-transparent-dark.svg);
-    background-repeat: space;
     background-size: 200px;
     z-index: 1;
     background-position: center;
@@ -12,6 +11,7 @@
     margin: 0;
     width: 100%;
     text-align: center;
+    
     .logo img{
         width: 225px;
         padding:20px;
@@ -24,4 +24,17 @@
         bottom: 15px;
         right: 15px;
     }
+    animation: spin 4s linear infinite;       
+}
+
+@keyframes spin {
+    100% {
+        background-position-x: 0;
+
+    }
+    0%{
+        background-position-x: 200px;
+
+    }
+
 }

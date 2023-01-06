@@ -1,7 +1,7 @@
 .profile-container {
     padding: 2vw 5vw;
     overflow-x: hidden;
-    
+
     .btn {
         background: var(--color-primary);
         border: none;
@@ -72,25 +72,24 @@
                 }
             }
             .user-avatar {
-                .banner{
+                .banner {
                     border-radius: 15px 15px 0 0;
                     background-color: var(--dark-background);
                     background-image: url(../../../assets/imgs/box-transparent-dark.svg);
-                    background-repeat: space;
                     cursor: pointer;
                     display: block;
+                    animation: spin 300s linear infinite;
                     background-size: 200px;
                     z-index: 1;
                     background-position: center;
                     height: 30vh;
                     position: absolute;
-                    i{
-                        color:white;
+                    i {
+                        color: white;
                         font-size: 24px;
-                        top:25px;
+                        top: 25px;
                         position: absolute;
-                        right:25px;
-
+                        right: 25px;
                     }
                     img {
                         border-radius: 15px 15px 0 0;
@@ -100,11 +99,11 @@
                         object-fit: cover;
                     }
                 }
-                #file-input{
+                #file-input {
                     display: none;
                 }
                 position: relative;
-                .avatar-content{
+                .avatar-content {
                     position: relative;
                     width: fit-content;
                     margin: 0 auto;
@@ -125,7 +124,7 @@
                     background: white;
                     margin-top: 15vh;
                     z-index: 2;
-                    border:10px solid white;
+                    border: 10px solid white;
                     position: relative;
                     width: 200px;
                     height: 200px;
@@ -172,13 +171,22 @@
     }
 
     .open-reservations-container {
-        
         padding: 20px 0px;
         background-color: var(--dark-background);
         background-image: url(../../../assets/imgs/box-transparent-dark.svg);
-        background-repeat: space;
         background-size: 200px;
         z-index: 1;
+        animation: spin 300s linear infinite;
+        @keyframes spin {
+            100% {
+                background-position-x: 0;
+                background-position-y: 0;
+            }
+            0% {
+                background-position-x: 10000px;
+                background-position-y: 10000px;
+            }
+        }
         background-position: center;
         margin-bottom: 35px;
         .open-reservations {
@@ -203,6 +211,7 @@
             color: white;
         }
     }
+  
 
     .completed-games,
     .open-reservations {
@@ -283,13 +292,13 @@
     }
 }
 @media (max-width: 902px) {
-    .user-container{
+    .user-container {
         padding: 0 !important;
     }
-    .user-data-content{
+    .user-data-content {
         padding: 0 !important;
     }
-    .item{
+    .item {
         border-radius: 0px !important;
     }
     .profile-container {

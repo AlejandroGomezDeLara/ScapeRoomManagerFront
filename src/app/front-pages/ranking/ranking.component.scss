@@ -1,27 +1,37 @@
 .ranking-header {
     background-color: var(--dark-background);
     background-image: url(../../../assets/imgs/box-transparent-dark.svg);
-    background-repeat: space;
     background-size: 200px;
     z-index: 1;
     background-position: center;
+
     .title {
         font-weight: bold;
         font-size: 28px;
         padding-top: 30px;
         color: white;
-        padding-left:20px;
-        padding-right:20px;
+        padding-left: 20px;
+        padding-right: 20px;
         text-align: center;
     }
-    .subtitle{
+    .subtitle {
         font-weight: bold;
         font-size: 18px;
         padding-bottom: 30px;
-        padding-left:20px;
-        padding-right:20px;
+        padding-left: 20px;
+        padding-right: 20px;
         color: white;
         text-align: center;
+    }
+    animation: spin 4s linear infinite;
+}
+
+@keyframes spin {
+    100% {
+        background-position-x: 0;
+    }
+    0% {
+        background-position-x: 200px;
     }
 }
 
@@ -34,37 +44,36 @@
     color: var(--color-danger) !important;
 }
 .ranking-container {
-    padding:0px 0px 50px 0px;
+    padding: 0px 0px 50px 0px;
     overflow-x: hidden;
-    .filters-labels-container{
-        padding:20px;
+    .filters-labels-container {
+        padding: 20px;
         margin-bottom: 20px;
-        .filter-label{
-            i{
+        .filter-label {
+            i {
                 font-size: 18px;
                 color: var(--color-primary);
             }
             font-weight: bold;
         }
     }
-    .top-users-title{
+    .top-users-title {
         text-align: center;
         font-size: 32px;
         font-weight: bold;
         margin-bottom: 30px;
-        i{
-            color:#FFD700;
+        i {
+            color: #ffd700;
         }
-        
     }
-    .top-users{
+    .top-users {
         background: #fafafa;
         position: relative;
-        padding:40px;
-        .winner-user{
-            padding:30px 30px 0px 30px;
+        padding: 40px;
+        .winner-user {
+            padding: 30px 30px 0px 30px;
             .user-avatar {
-                padding-top:20px;
+                padding-top: 20px;
                 img {
                     width: 250px;
                     height: 250px;
@@ -73,11 +82,8 @@
                     margin-bottom: 15px;
                     box-shadow: var(--item-box-shadow);
                 }
-            } 
+            }
         }
-        
-        
-        
     }
     .top-user-item {
         text-align: center;
@@ -88,7 +94,7 @@
         height: 0%;
         transition: 0.2s ease;
         .user-avatar {
-            .avatar-content{
+            .avatar-content {
                 position: relative;
                 width: fit-content;
                 margin: 0 auto;
@@ -104,7 +110,7 @@
                     z-index: 9;
                 }
             }
-            padding-top:20px;
+            padding-top: 20px;
             img {
                 width: 150px;
                 height: 150px;
@@ -132,161 +138,154 @@
             .user-summary-item {
                 padding-top: 10px;
                 padding-bottom: 10px;
-                color:var(--dark-background);
+                color: var(--dark-background);
                 font-weight: bold;
                 p {
-                    span{
+                    span {
                         font-size: 12px;
                     }
                     font-size: 24px;
-                    i{
+                    i {
                         font-size: 16px;
-                        color:var(--color-primary);
+                        color: var(--color-primary);
                     }
                 }
-                .position-first{
+                .position-first {
                     font-size: 26px;
-                    color:#FFD700;
+                    color: #ffd700;
 
-                    i{
+                    i {
                         font-size: 26px;
-                        color:#FFD700;
+                        color: #ffd700;
                     }
                 }
-                .position-second{
+                .position-second {
                     font-size: 26px;
-                    color:#C0C0C0;
+                    color: #c0c0c0;
 
-                    i{
+                    i {
                         font-size: 26px;
-                        color:#C0C0C0;
-
+                        color: #c0c0c0;
                     }
                 }
-                .position-third{
+                .position-third {
                     font-size: 26px;
-                    color:#CD7F32;
+                    color: #cd7f32;
 
-                    i{
+                    i {
                         font-size: 26px;
-                        color:#CD7F32;
+                        color: #cd7f32;
                     }
                 }
             }
-           
         }
     }
-  
+
     .top-user-item:hover {
         cursor: pointer;
         transform: scale(1.05);
     }
-    
-    .redeem-funly-points{
+
+    .redeem-funly-points {
         background-color: var(--dark-background);
         background-image: url(../../../assets/imgs/box-transparent-dark.svg);
-        background-repeat: space;
-
+        animation: spin 4s linear infinite;
         background-size: 150px;
         z-index: 1;
-        color:white;
-        padding:50px;
+        color: white;
+        padding: 50px;
         box-shadow: var(--item-box-shadow);
-        p{
+        p {
             font-size: 32px;
             font-weight: bold;
         }
-        .redeem-funly-points-button{
-            padding:10px 20px;
+        .redeem-funly-points-button {
+            padding: 10px 20px;
             border-radius: 25px;
             box-shadow: var(--item-box-shadow);
-            color:white;
+            color: white;
             font-size: 18px;
             font-weight: bold;
             background: var(--color-primary);
-            border:none;
+            border: none;
             transition: 0.2s ease;
-            span{
+            span {
                 font-size: 22px;
             }
         }
-        .redeem-funly-points-button:hover{
+        .redeem-funly-points-button:hover {
             transform: scale(1.05);
         }
     }
-    .ranking-users{
+    .ranking-users {
         padding: 50px 20px;
-        .ranking-users-title{
+        .ranking-users-title {
             text-align: center;
             font-size: 32px;
             font-weight: bold;
             margin-bottom: 30px;
-            i{
-                color:#C0C0C0;
+            i {
+                color: #c0c0c0;
             }
         }
-        .ranking-users-header{
-            .user-label{
-                p{
+        .ranking-users-header {
+            .user-label {
+                p {
                     text-align: left;
                 }
             }
-            p{
-                padding:10px;
-                color:rgb(103, 103, 103);
+            p {
+                padding: 10px;
+                color: rgb(103, 103, 103);
                 text-align: center;
             }
         }
-        .ranking-users-container{
-           
-          
-            .ranking-user{
+        .ranking-users-container {
+            .ranking-user {
                 margin-right: 40px;
-                padding:15px;
+                padding: 15px;
                 background: white;
                 box-shadow: var(--item-box-shadow);
                 border-radius: 10px;
                 margin-bottom: 15px !important;
-                transition: 0.2s ease; 
-                .ranking-position{
+                transition: 0.2s ease;
+                .ranking-position {
                     font-size: 18px;
                     color: #ccc;
                 }
-                p{
+                p {
                     text-align: center;
-                    margin:0;
+                    margin: 0;
                 }
-                .user-image{
-                    
+                .user-image {
                     text-align: center;
-                    img{
+                    img {
                         width: 50px;
                         height: 50px;
                         object-fit: cover;
                         border-radius: 50%;
                     }
-                    
                 }
-                .completed-events{
+                .completed-events {
                     margin-top: 10px !important;
-                    i{
-                        color:var(--color-primary);
+                    i {
+                        color: var(--color-primary);
                     }
-                    span{
+                    span {
                         font-size: 20px;
                         font-weight: bold;
                     }
                 }
-                .funly-points{
+                .funly-points {
                     margin-top: 10px !important;
-                    span{
+                    span {
                         font-size: 20px;
                         font-weight: bold;
                     }
                 }
 
-                .user{
-                    .avatar-content{
+                .user {
+                    .avatar-content {
                         position: relative;
                         overflow: hidden;
                         display: inline;
@@ -303,29 +302,28 @@
                             z-index: 9;
                         }
                     }
-                    img{
+                    img {
                         float: left;
                         width: 50px;
                         height: 50px;
                         object-fit: cover;
                         border-radius: 50%;
                     }
-                    
-                    .name{
+
+                    .name {
                         margin: 0;
                         font-size: 16px;
                         font-weight: bold;
                         margin-left: 10px;
                     }
-                    .user-alias{
+                    .user-alias {
                         margin: 0;
                         color: #ccc;
                         padding-left: 15px;
                         font-style: italic;
-                        font-size: 14px; 
+                        font-size: 14px;
                     }
                 }
-               
             }
             .ranking-user:hover {
                 cursor: pointer;
@@ -335,17 +333,16 @@
     }
 }
 
-
 @media (max-width: 902px) {
-    .second-user,.third-user{
+    .second-user,
+    .third-user {
         margin-top: 0px !important;
     }
-    .ranking-users{
-        .ranking-users-container{
-            .ranking-user{
+    .ranking-users {
+        .ranking-users-container {
+            .ranking-user {
                 margin-right: 0px !important;
             }
         }
     }
-    
 }

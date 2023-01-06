@@ -24,7 +24,7 @@ export class InteriorChatComponent {
   public selectedChat?: Chat;
   public recordedAudio?: any;
   public recorder: any;
-  public isLoading:boolean=false;
+  public isLoading: boolean = false;
   public actualMessage?: ChatMessage = {
     text: "",
   };
@@ -44,8 +44,8 @@ export class InteriorChatComponent {
     private activatedRoute: ActivatedRoute,
     public chatAudio: ChatAudioService,
     public sanitizer: DomSanitizer,
-    private router:Router,
-    private newMessages:NewMessagesService) {
+    private router: Router,
+    private newMessages: NewMessagesService) {
 
     this.chat_id = +activatedRoute.snapshot.paramMap.get('id')!;
 
@@ -68,22 +68,23 @@ export class InteriorChatComponent {
       this.getChatMessages();
     }, this.refreshMessagesTime);
   }
-  
+
 
   public getChat(): void {
     this.apiService.getEntity('chats', this.chat_id).subscribe((chat: Chat) => {
-      this.selectedChat = chat;
-      console.log(chat);
+      if (!this.selectedChat)
+        this.selectedChat = chat;
+      else
+        this.selectedChat.users = chat.users;
     }, (error: HttpErrorResponse) => {
       console.log(error);
     });
   }
 
 
-
   public getChatMessages(): void {
     let messagesContainer = document.getElementById('messages-container-scroll');
-    let dif=messagesContainer?.scrollHeight!;
+    let dif = messagesContainer?.scrollHeight!;
     this.apiService.getSubEntity('chats', this.chat_id!, 'messages?per_page=' + this.messages_count).subscribe((messages: ChatMessage[]) => {
       this.loading.stopLoading();
       messages.sort(function (a, b) {
@@ -94,18 +95,18 @@ export class InteriorChatComponent {
         this.messages = messages;
       }
       //NUEVO MENSAJE
-      if (!this.messages.some(x=> x.id == messages[messages.length-1].id)) {
+      if (!this.messages.some(x => x.id == messages[messages.length - 1].id)) {
 
-        this.messages=messages;
+        this.messages = messages;
 
         this.scrollToBottom();
       }
       //SCROLL 50 mensajes mas
       if (this.messages.length < messages.length) {
-        this.messages=messages;        
+        this.messages = messages;
         setTimeout(() => {
-          messagesContainer?.scroll({ top: messagesContainer?.scrollHeight! - dif, left: 0});
-          this.isLoading=false;
+          messagesContainer?.scroll({ top: messagesContainer?.scrollHeight! - dif, left: 0 });
+          this.isLoading = false;
         }, 100);
 
       }
@@ -261,7 +262,7 @@ export class InteriorChatComponent {
       if (this.messages?.length == this.messages_count) {
         //this.loading.startLoading();
         this.messages_count += 50;
-        this.isLoading=true;
+        this.isLoading = true;
 
       }
     }

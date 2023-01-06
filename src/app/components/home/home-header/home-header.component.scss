@@ -4,10 +4,20 @@
     height: 60vh;
     background-color: var(--dark-background);
     background-image: url(../../../../assets/imgs/box-transparent-dark.svg);
-    background-repeat: space;
     background-size: 200px;
     z-index: 1;
     background-position: center;
+    animation: spin 300s linear infinite;       
+    @keyframes spin {
+        100%{
+            background-position-x: 0;
+            background-position-y: 0;
+        }
+        0%{
+            background-position-x: 10000px;
+            background-position-y: 10000px;
+        }
+    }
     .city-selected{
 
         z-index: 999;
@@ -37,6 +47,9 @@
         flex-direction: column;
         margin-bottom: 30px;
         z-index: 99;
+        .title{
+            padding-top: 20px;
+        }
         .subtitle,.subtitle2{
             color:white;
             margin-bottom: 10px;
@@ -199,9 +212,6 @@
     .logo .subtitle{
         padding:0 20px;
     }
-    .header{
-        height: 50vh;
-    }
-   
+ 
     
 }
