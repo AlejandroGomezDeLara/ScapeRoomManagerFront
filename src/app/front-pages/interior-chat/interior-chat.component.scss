@@ -244,13 +244,13 @@
                     left: 0;
                     z-index: 9;
                     right: 0;
-
+                    padding:5px;
                     .loader {
-                        width: 50px;
-                        height: 50px;
-                        -moz-animation: spin 1.5s linear infinite;
-                        animation: spin 1.5s linear infinite;
-                        opacity: 1;
+                        width: 40px;
+                        height: 40px;
+                        -moz-animation: spin 1s linear infinite;
+                        animation: spin 1s linear infinite;
+                        opacity: 0.8;
                     }
                     @-moz-keyframes spin {
                         100% {
@@ -304,8 +304,8 @@
                                 border: 5px solid white;
                                 box-shadow: var(--item-box-shadow);
                                 border-radius: 50%;
-                                height: 75px;
-                                width: 75px;
+                                height: 60px;
+                                width: 60px;
                                 object-fit: cover;
                             }
                             .user-online {
@@ -328,7 +328,7 @@
 
                     .message {
                         padding: 10px 10px 5px 10px;
-                        border-radius: 20px;
+                        border-radius: 15px;
                         box-shadow: var(--item-box-shadow);
                         background: var(--color-primary-light);
                         color: white;
@@ -343,6 +343,7 @@
                         }
                         .message-username {
                             margin: 0;
+                            margin-top: -7px;
                             font-size: 14px;
                             font-weight: bold;
                             color: var(--chat-message-right-background);
@@ -400,12 +401,12 @@
 
                     .message-left {
                         float: left;
-                        border-radius: 5px 20px 20px 20px;
+                        border-radius: 5px 15px 15px 15px;
                         background: var(--chat-message-left-background);
                     }
                     .message-right {
                         float: right;
-                        border-radius: 20px 5px 20px 20px;
+                        border-radius: 15px 5px 15px 15px;
                         background: var(--chat-message-right-background);
                     }
                 }

@@ -7,19 +7,7 @@
         </p>
     </div>
 
-    <!--     <div class="offset-lg-6 col-lg-6 col-12 filters-labels-container">
-        <div class="row">
-            <div class="col-4 filter-label"><img style="width: 20px;margin-right: 5px;"
-                    src="assets/imgs/box-transparent-dark.svg" alt="">Puntos FUNLY
-                conseguidos</div>
-            <div class="col-4 filter-label"><img style="width: 20px;margin-right: 5px;"
-                    src="assets/imgs/box-transparent.svg" alt="">Puntos FUNLY
-                disponibles</div>
-            <div class="col-4 filter-label"><i class="fa fa-building"></i> Eventos realizados</div>
-        </div>
-    </div>
- -->
-
+    <!-- TOP 3 USUARIOS -->
     <div class="top-users justify-content-center row">
         <p class="top-users-title">Top <span><i class="fa fa-trophy"></i> 3 </span> FUNLY enjoyers</p>
         <ng-container *ngFor="let user of users;let i=index">
@@ -59,11 +47,9 @@
                 </div>
             </div>
         </ng-container>
-
-
-
     </div>
 
+    <!-- CUPON DE DESCUENTO -->
     <div class="row justify-content-center">
         <div class="redeem-funly-points col-12 my-auto row">
             <div class="col-lg-9 col-12">
@@ -80,12 +66,8 @@
 
     <div class="ranking-users justify-content-center row">
         <p class="ranking-users-title">Top <span><i class="fa fa-trophy"></i> 25 </span> FUNLY enjoyers</p>
-        <!-- <div class="ranking-users-header justify-content-center row">
-            <p>Ranking general usuarios FUNLY</p>
-        </div> -->
         <div class="ranking-users-container justify-content-center row">
             <ng-container *ngFor="let user of users;let i=index">
-
                 <div class="ranking-user col-lg-5  col-sm-12 row" *ngIf="i>=3" routerLink="/{{user.id}}/profile">
                     <div class="col-lg-1 col-3 my-auto">
                         <p class="ranking-position">{{i+1}} <i class="up fa fa-caret-up"></i>
@@ -118,11 +100,8 @@
                     </div>
                 </div>
             </ng-container>
-
-
-
-
         </div>
     </div>
 </div>
+
 <home-footer></home-footer>
