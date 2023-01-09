@@ -229,7 +229,7 @@
                 }
             }
             .messages-container {
-                padding: 50px 70px 20px 40px;
+                padding: 50px 25vw 20px 25vw;
                 overflow-y: scroll;
                 overflow-x: hidden;
                 position: fixed;
@@ -237,6 +237,26 @@
                 top: 110px;
                 height: calc(100vh - 180px) !important;
 
+                .btn-scroll{
+                    background: white;
+                    color: var(--color-primary);
+                    width: 50px;
+                    height: 50px;
+                    border-radius: 50%;
+                    border: none;
+                    box-shadow: var(--item-box-shadow);
+                    padding: 10px;
+                    position: fixed;
+                    bottom: 80px;
+                    font-size: 20px;
+                    right: 16px;
+                    z-index: 999;
+                }
+                .btn-scroll:hover{
+                    color:white;
+                    background:var(--color-primary);
+                   
+                }
                 .loader-container {
                     text-align: center;
                     position: fixed;
@@ -250,7 +270,6 @@
                         height: 40px;
                         -moz-animation: spin 1s linear infinite;
                         animation: spin 1s linear infinite;
-                        opacity: 0.8;
                     }
                     @-moz-keyframes spin {
                         100% {
@@ -270,146 +289,13 @@
                     }
                 }
 
-                @-moz-keyframes spin {
-                    100% {
-                        -moz-transform: rotate(360deg);
-                    }
-                }
-                @-webkit-keyframes spin {
-                    100% {
-                        -webkit-transform: rotate(360deg);
-                    }
-                }
-                @keyframes spin {
-                    100% {
-                        -webkit-transform: rotate(360deg);
-                        transform: rotate(360deg);
-                    }
-                }
+               
                 .no-messages-text {
                     text-align: center;
                     font-size: 22px;
                     margin-top: 50px;
                 }
-                .message-container {
-                    position: relative;
-                    margin-bottom: 0px;
-                    .user-image {
-                        .avatar-content {
-                            position: relative;
-                            overflow: hidden;
-                            display: inline;
-                            margin: 0 auto;
-                            img {
-                                border: 5px solid white;
-                                box-shadow: var(--item-box-shadow);
-                                border-radius: 50%;
-                                height: 60px;
-                                width: 60px;
-                                object-fit: cover;
-                            }
-                            .user-online {
-                                position: absolute;
-                                top: 15px;
-                                right: -2px;
-                                background: var(--color-open-reservation);
-                                height: 20px;
-                                width: 20px;
-                                border: 4px solid white;
-                                border-radius: 50px;
-                                z-index: 9;
-                            }
-                        }
-                        cursor: pointer;
-                        padding: 0;
-                        text-align: center;
-                        
-                    }
-
-                    .message {
-                        padding: 10px 10px 5px 10px;
-                        border-radius: 15px;
-                        box-shadow: var(--item-box-shadow);
-                        background: var(--color-primary-light);
-                        color: white;
-                        position: relative;
-                        margin-top: 15px;
-                        max-width: 350px;
-                        display: inline-block;
-                        img {
-                            border-radius: 10px;
-                            margin-bottom: 3px;
-                            width: 100%;
-                        }
-                        .message-username {
-                            margin: 0;
-                            margin-top: -7px;
-                            font-size: 14px;
-                            font-weight: bold;
-                            color: var(--chat-message-right-background);
-                        }
-                        .message-user {
-                            font-weight: bold;
-                            margin: 0;
-                        }
-                        .message-text {
-                            font-size: 16px;
-                        }
-                        .message-hour {
-                            margin: 0;
-                            float: right;
-                            margin-left: 10px;
-                            margin-top: 5px;
-                            font-size: 12px;
-                        }
-                    }
-                    .message-simple {
-                        margin-top: 2px;
-                        float: left;
-                        background: var(--chat-message-left-background);
-                    }
-                    .message-right-simple {
-                        margin: 2px;
-                        float: right;
-                        background: var(--chat-message-right-background);
-                    }
-                    .message-right:before {
-                        content: "";
-                        width: 0px;
-                        height: 0px;
-                        position: absolute;
-                        border-left: 10px solid var(--chat-message-right-background);
-                        border-right: 10px solid transparent;
-                        border-top: 10px solid var(--chat-message-right-background);
-                        border-bottom: 10px solid transparent;
-                        right: -10px;
-                        top: 0px;
-                    }
-
-                    .message-left:before {
-                        content: "";
-                        width: 0px;
-                        height: 0px;
-                        position: absolute;
-                        border-left: 10px solid transparent;
-                        border-right: 10px solid var(--chat-message-left-background);
-                        border-top: 10px solid var(--chat-message-left-background);
-                        border-bottom: 10px solid transparent;
-                        left: -10px;
-                        top: 0px;
-                    }
-
-                    .message-left {
-                        float: left;
-                        border-radius: 5px 15px 15px 15px;
-                        background: var(--chat-message-left-background);
-                    }
-                    .message-right {
-                        float: right;
-                        border-radius: 15px 5px 15px 15px;
-                        background: var(--chat-message-right-background);
-                    }
-                }
+              
             }
         }
     }

@@ -18,7 +18,7 @@ import { NewMessagesService } from 'src/app/services/new-messages.service';
 })
 export class InteriorChatComponent {
 
-  public messages?: ChatMessage[];
+  public messages: ChatMessage[] = [];
   public messages_count: number = 50;
   public chat_id?: number;
   public selectedChat?: Chat;
@@ -28,7 +28,7 @@ export class InteriorChatComponent {
   public actualMessage?: ChatMessage = {
     text: "",
   };
-
+  public messagesContainer: any;
   public user!: User;
   public messagesInterval: any;
   public chatInterval: any;
@@ -83,14 +83,14 @@ export class InteriorChatComponent {
 
 
   public getChatMessages(): void {
-    let messagesContainer = document.getElementById('messages-container-scroll');
-    let dif = messagesContainer?.scrollHeight!;
+    this.messagesContainer = document.getElementById('messages-container-scroll');
+    let dif = this.messagesContainer?.scrollHeight!;
     this.apiService.getSubEntity('chats', this.chat_id!, 'messages?per_page=' + this.messages_count).subscribe((messages: ChatMessage[]) => {
       this.loading.stopLoading();
       messages.sort(function (a, b) {
         return new Date(a.created_at!).getTime() - new Date(b.created_at!).getTime();
       });
-      if (!this.messages) {
+      if (this.messages.length<=0) {
         this.scrollToBottom();
         this.messages = messages;
       }
@@ -99,16 +99,14 @@ export class InteriorChatComponent {
 
         this.messages = messages;
 
-        this.scrollToBottom();
       }
       //SCROLL 50 mensajes mas
       if (this.messages.length < messages.length) {
-        this.messages = messages;
         setTimeout(() => {
-          messagesContainer?.scroll({ top: messagesContainer?.scrollHeight! - dif, left: 0 });
-          this.isLoading = false;
-        }, 100);
-
+          this.messagesContainer?.scroll({ top: this.messagesContainer?.scrollHeight! - dif, left: 0 });
+        });
+        this.messages = messages;
+        this.isLoading = false;
       }
 
 
@@ -131,7 +129,6 @@ export class InteriorChatComponent {
       this.messages?.push(message);
       this.selectedChat!.unread_messages_count = 0;
       console.log(this.selectedChat?.unread_messages_count);
-
       this.scrollToBottom();
       let audio = new Audio('assets/audio/send_message.mp3');
       audio.play();
@@ -145,14 +142,9 @@ export class InteriorChatComponent {
   }
 
   public scrollToBottom(): void {
-    let messagesContainer = document.getElementById('messages-container-scroll');
     setTimeout(() => {
-      messagesContainer?.scroll({ top: messagesContainer!.scrollHeight, left: 0, behavior: 'smooth' });
-    }, 100);
-
-    /* messagesContainer!.scrollTop = messagesContainer!.scrollHeight; */
-    console.log(messagesContainer);
-
+      this.messagesContainer?.scroll({ top: this.messagesContainer!.scrollHeight, left: 0, behavior: 'smooth' });
+    });
   }
 
   public ngOnDestroy(): void {
@@ -164,6 +156,7 @@ export class InteriorChatComponent {
     this.chatInterval = null;
   }
 
+
   public back(): void {
     this.router.navigateByUrl('/chats');
   }
@@ -173,8 +166,6 @@ export class InteriorChatComponent {
     this.recordedAudio = undefined;
     this.recorder = await this.chatAudio.startRecording();
     this.recorder.start();
-
-
   }
 
   public async stopRecordingAudio() {
@@ -263,14 +254,9 @@ export class InteriorChatComponent {
         //this.loading.startLoading();
         this.messages_count += 50;
         this.isLoading = true;
-
       }
     }
-
-
   }
-
-
 }
 
 

@@ -1,0 +1,87 @@
+<div class="message-container justify-content-center row" *ngFor="let message of messages;let i=index">
+
+    <div class="col-lg-1 col-2 user-image" *ngIf="user?.id != message?.user!.id"
+        routerLink="/{{message?.user!.id}}/profile">
+        <div class="avatar-content" *ngIf="messages[i-1]?.user?.id != message.user?.id">
+            <img [src]="message?.user!.avatar" alt="" onError="this.src='assets/imgs/avatar.png'">
+            <span class="user-online" *ngIf="message?.user!.online"></span>
+        </div>
+    </div>
+
+    <div [ngClass]="user?.id != message?.user!.id ? 'col-lg-11 col-10' : 'col-lg-11 col-11'">
+        <!-- SI EL MENSAJE ANTERIOR NO ES DEL MISMO USUARIO -->
+        <ng-container *ngIf="messages[i-1]?.user?.id != message?.user?.id">
+            <!-- TEXTO -->
+            <div [ngClass]="user?.id == message?.user!.id  ? 'message message-right' : 'message message-left'"
+                *ngIf="!message.audio">
+                <p class="message-username" *ngIf="user?.id != message?.user!.id">
+                    {{message?.user?.name}}
+                </p>
+                <img [src]="message.image" alt="" *ngIf="message.image">
+                <span class="message-text">{{message?.text}} </span>
+                <span class="message-hour"> {{message?.created_at | date:'HH:mm'}}</span>
+
+            </div>
+
+            <!-- AUDIO -->
+            <div [ngClass]="user?.id == message?.user!.id  ? 'chat-audio message-right' : 'chat-audio message-left'"
+                *ngIf="message.audio">
+                <div class="col-3 user-audio-avatar my-auto" routerLink="/{{message?.user!.id}}/profile">
+                    <img [src]="user?.avatar" alt="">
+                </div>
+                <div class="col-3 play-button my-auto" (click)="togglePlay(message)">
+                    <i class="fa fa-play" *ngIf="!message.is_playing_audio"></i>
+                    <i class="fa fa-pause" *ngIf="message.is_playing_audio"></i>
+                </div>
+
+                <div class="col time-range my-auto">
+                    <input type="range" step="0.1" [max]="message.audio.duration" [min]="0"
+                        [value]="message.audio.currentTime">
+                </div>
+                <span class="audio-duration" *ngIf="message.audio.currentTime==0">{{message.audio.duration*1000 |
+                    date:'m:ss'}}</span>
+                <span class="audio-duration" *ngIf="message.audio.currentTime>0">{{message.audio.duration*1000 |
+                    date:'m:ss'}}</span>
+                <span class="audio-hour"> {{message?.created_at | date:'HH:mm'}}</span>
+            </div>
+
+        </ng-container>
+
+        <!-- SI EL MENSAJE ANTERIOR SI ES DEL MISMO USUARIO -->
+        <ng-container *ngIf="messages[i-1]?.user?.id == message?.user?.id">
+            <!-- TEXTO -->
+
+            <div [ngClass]="user?.id == message?.user!.id  ? 'message-right-simple message' : 'message-simple message'"
+                *ngIf="!message.audio">
+                <img [src]="message.image" alt="" *ngIf="message.image">
+
+                <span class="message-text">{{message?.text}} </span>
+                <span class="message-hour"> {{message?.created_at | date:'HH:mm'}}</span>
+            </div>
+
+            <!-- AUDIO -->
+            <div [ngClass]="user?.id == message?.user!.id  ? 'chat-audio message-right-simple' : 'chat-audio message-simple'"
+                *ngIf="message.audio">
+                <div class="col-3 user-audio-avatar my-auto" routerLink="/{{message?.user!.id}}/profile">
+                    <img [src]="user?.avatar" alt="">
+                </div>
+                <div class="col-3 play-button my-auto" (click)="togglePlay(message)">
+                    <i class="fa fa-play" *ngIf="!message.is_playing_audio"></i>
+                    <i class="fa fa-pause" *ngIf="message.is_playing_audio"></i>
+                </div>
+
+                <div class="col time-range my-auto">
+                    <input type="range" step="0.1" [max]="message.audio.duration" [min]="0"
+                        [(ngModel)]="message.audio.currentTime">
+                </div>
+                <span class="audio-duration" *ngIf="message.audio.currentTime==0">{{message.audio.duration*1000 |
+                    date:'m:ss'}}</span>
+                <span class="audio-duration" *ngIf="message.audio.currentTime>0">{{message.audio.currentTime*1000 |
+                    date:'m:ss'}}</span>
+                <span class="audio-hour"> {{message?.created_at | date:'HH:mm'}}</span>
+            </div>
+        </ng-container>
+
+    </div>
+
+</div>
