@@ -5,6 +5,9 @@
     position: fixed;
     bottom: 0;
     width: 100%;
+    .logo {
+        width: 20px;
+    }
     .navbar-toggler {
         color: white;
     }
@@ -15,12 +18,17 @@
         list-style: none;
         padding: 0 !important;
     }
-    .nav-item a{
+    .active {
+        color: var(--color-primary);
+        font-size: 24px;
+        .logo {
+            width: 24px !important;
+        }
+    }
+    .nav-item a {
         padding: 20px !important;
     }
 
-   
-    
     .user {
         cursor: pointer;
         .avatar,
@@ -41,16 +49,16 @@
             margin-right: 20px;
         }
     }
-    .new-messages-count{
+    .new-messages-count {
         position: absolute;
-        top:5px;
+        top: 5px;
         right: 5px;
-        color:white;
+        color: white;
         font-size: 12px;
         border-radius: 5px;
         height: 20px;
         font-weight: bold;
-        padding:0px 6px;
+        padding: 0px 6px;
         background: var(--color-primary);
     }
 }

@@ -3,8 +3,8 @@
     <div class="container-fluid">
         <ng-container *ngIf="utilities.isEmptyObject(user)">
             <li class="nav-item" *ngFor="let page of pages">
-                <a class="nav-link active" data-bs-toggle="collapse" data-bs-target=".navbar-collapse.show"
-                    aria-current="page" [routerLink]="page?.route"><img [src]="page.image" style="width:20px ;"><i
+                <a [ngClass]="url == page.route ? 'nav-link active' : 'nav-link'" data-bs-toggle="collapse" data-bs-target=".navbar-collapse.show"
+                    aria-current="page" (click)="navigate(page.route)"><img [src]="url != page.route ? page.image : page.image_active" class="logo"><i
                         class="fa fa-{{page.icon}}" *ngIf="page.icon"></i>
                 </a>
             </li>
@@ -14,8 +14,8 @@
                 <span class="new-messages-count" *ngIf="page.name=='Chats' && (newMessagesService.newMessagesCount |
                 async)! >0 ">{{newMessagesService.newMessagesCount |
                     async}}</span>
-                <a class="nav-link active" data-bs-toggle="collapse" data-bs-target=".navbar-collapse.show"
-                    aria-current="page" [routerLink]="page?.route"><img [src]="page.image" style="width:20px ;"><i
+                <a [ngClass]="url == page.route ? 'nav-link active' : 'nav-link'" data-bs-toggle="collapse" data-bs-target=".navbar-collapse.show"
+                    aria-current="page" (click)="navigate(page.route)"><img [src]="url != page.route ? page.image : page.image_active" class="logo"><i
                         class="fa fa-{{page.icon}}"></i> </a>
             </li>
         </ng-container>

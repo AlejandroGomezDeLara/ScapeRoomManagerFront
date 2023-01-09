@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnChanges, SimpleChanges } from '@angular/core';
 import { Router } from '@angular/router';
 import { User } from 'src/app/models/User';
 import { AuthenticationService } from 'src/app/services/authentication.service';
@@ -12,13 +12,16 @@ import { UtilitiesService } from 'src/app/services/utilities.service';
   styleUrls: ['./app-tabs.component.scss']
 })
 export class AppTabsComponent {
+
+  public url: any;
+
   public pages = [
     {
       name: 'Home',
       route: '/',
       icon: 'home'
     },
-   
+
     {
       name: 'Ranking',
       route: '/ranking',
@@ -28,7 +31,8 @@ export class AppTabsComponent {
       name: 'Buscador',
       route: '/search',
       icon: '',
-      image:'assets/imgs/box-transparent-light.svg'
+      image: 'assets/imgs/box-transparent-light.svg',
+      image_active: 'assets/imgs/box-transparent.svg'
     },
     {
       name: 'Mapa',
@@ -44,7 +48,7 @@ export class AppTabsComponent {
   ];
 
   public authUserPages = [
-   
+
     {
       name: 'Ranking',
       route: '/ranking',
@@ -59,7 +63,8 @@ export class AppTabsComponent {
       name: 'Buscador',
       route: '/search',
       icon: '',
-      image:'assets/imgs/box-transparent-light.svg'
+      image: 'assets/imgs/box-transparent-light.svg',
+      image_active: 'assets/imgs/box-transparent.svg'
     },
     {
       name: 'Chats',
@@ -77,17 +82,19 @@ export class AppTabsComponent {
 
   constructor(private auth: AuthenticationService,
     public utilities: UtilitiesService,
-    public loading:LoadingService,
-    public router:Router,
-    public newMessagesService:NewMessagesService) {
-      
-     }
+    public loading: LoadingService,
+    public router: Router,
+    public newMessagesService: NewMessagesService) {
+
+  }
+
 
   ngAfterContentInit(): void {
     this.user = this.auth.getStorageUser();
   }
 
   ngOnInit(): void {
+    this.url = this.router.url;
     this.auth.userChanges.subscribe((user: User) => {
       this.user = user;
       console.log("usuario actualizado", user);
@@ -99,6 +106,10 @@ export class AppTabsComponent {
     this.auth.logout();
   }
 
+  public navigate(url: string): void {
+    this.url = url;
+    this.router.navigateByUrl(url);
+  }
 
 
 }
