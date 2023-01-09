@@ -162,6 +162,7 @@ export class InteriorChatComponent {
   }
 
   public readMessages(): void {
+    this.scrollToBottom();
     if (this.messagesContainer.scrollHeight - this.messagesContainer.scrollTop - this.messagesContainer?.clientHeight < 250) {
       this.apiService.deleteEntity('new-messages', this.selectedChat!.id).subscribe(() => {
         console.log("Mensajes vistos");

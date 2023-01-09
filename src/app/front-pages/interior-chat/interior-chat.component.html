@@ -40,8 +40,6 @@
                 <app-message-item [messages]="messages" [user]="user"
                     [unread_messages]="selectedChat?.unread_messages!"></app-message-item>
 
-
-
                 <div class="row" *ngIf=" messages && messages.length<=0 && !(loading.isLoading | async)">
                     <p class="no-messages-text">No hay mensajes aún</p>
                 </div>
