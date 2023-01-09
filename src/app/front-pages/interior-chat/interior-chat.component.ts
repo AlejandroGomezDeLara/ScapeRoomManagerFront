@@ -74,8 +74,14 @@ export class InteriorChatComponent {
     this.apiService.getEntity('chats', this.chat_id).subscribe((chat: Chat) => {
       if (!this.selectedChat)
         this.selectedChat = chat;
-      else
-        this.selectedChat.users = chat.users;
+      else {
+        for (let user of chat.users!) {
+          this.selectedChat.users!.map(x => {
+            if (x.id == user.id) x.online = user.online;
+            return x;
+          });
+        }
+      }
     }, (error: HttpErrorResponse) => {
       console.log(error);
     });
@@ -90,7 +96,7 @@ export class InteriorChatComponent {
       messages.sort(function (a, b) {
         return new Date(a.created_at!).getTime() - new Date(b.created_at!).getTime();
       });
-      if (this.messages.length<=0) {
+      if (this.messages.length <= 0) {
         this.scrollToBottom();
         this.messages = messages;
       }

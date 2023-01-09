@@ -5,11 +5,11 @@
         <div class="reservation-header">
             <h1 class="title">Reserva FUNLY <img src="assets/imgs/box-transparent.svg " style="width:25px ;"></h1>
         </div>
-        <div class="text-divider" [style.color]="game.category?.color">{{actual_date_str == target_date_str ? 'Hoy' : date | date}}
+        <div class="text-divider" [style.color]="game.category?.color">{{actual_date_str == target_date_str ? 'Hoy' :
+            date | date}}
             {{hour.hour| slice:0:5}}</div>
 
-        <div class="reservation-open" 
-            *ngIf="!closed">
+        <div class="reservation-open" *ngIf="!closed">
             <span class="reservation-countdown">
                 <span class="reservation-people-label">
                     <em class="fa fa-user-group"></em>0/{{game.max_people}} </span>
@@ -26,15 +26,15 @@
         </div>
         <div [ngClass]="closed ? 'people closed' : 'people' ">
 
-            <p class="remaining-people" >Quedan <span
-                    [style.color]="game.category?.color">{{game.min_people}} <i class="fa fa-user-group"></i> </span> para poder empezar</p>
+            <p class="remaining-people">Quedan <span [style.color]="game.category?.color">{{game.min_people}} <i
+                        class="fa fa-user-group"></i> </span> para poder empezar</p>
 
-           
+
 
             <div *ngIf="people?.length!>0">
-                <div class='user-open'
-                    *ngFor="let user of people;let i =index" (click)="openConfirmDialog()">
-                    <img class="avatar" [src]="user.avatar" alt="">
+                <div class='user-open' *ngFor="let user of people;let i =index" (click)="openConfirmDialog()">
+                    <img class="avatar" [src]="user.avatar" alt="" >
+
                     <p class="user-name">{{user.name}}</p>
                 </div>
 

@@ -31,7 +31,7 @@
             <div *ngIf="people?.length!>0">
                 <div [ngClass]="user.id == 0 ? reservation.closed ? 'user-closed'  : 'user-open' : 'user'"
                     *ngFor="let user of people;let i =index" (click)="!reservation.closed ? openConfirmDialog() : ''">
-                    <img class="avatar" [src]="user.avatar" alt="">
+                    <img class="avatar" [src]="user.avatar" alt="" onError="this.src='assets/imgs/avatar.png'">
                     <p class="user-name">{{user.name}}</p>
                 </div>
 
