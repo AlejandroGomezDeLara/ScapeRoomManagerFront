@@ -38,7 +38,7 @@
                 <p class="unread-messages" *ngIf="selectedChat?.unread_messages_count!>0">
                     {{selectedChat?.unread_messages_count}} mensajes sin leer</p>
 
-                <div class="row" *ngIf=" messages && messages.length<=0 ">
+                <div class="row" *ngIf=" messages && messages.length<=0 && !(loading.isLoading | async)">
                     <p class="no-messages-text">No hay mensajes aún</p>
                 </div>
 

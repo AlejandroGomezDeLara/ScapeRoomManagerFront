@@ -54,7 +54,7 @@ export class InteriorChatComponent {
   ngOnInit(): void {
     this.newMessages.clearNewMessagesListener();
     this.user = this.auth.getStorageUser();
-
+    this.loading.startLoading();
 
     this.getChat();
 
@@ -92,7 +92,6 @@ export class InteriorChatComponent {
     this.messagesContainer = document.getElementById('messages-container-scroll');
     let dif = this.messagesContainer?.scrollHeight!;
     this.apiService.getSubEntity('chats', this.chat_id!, 'messages?per_page=' + this.messages_count).subscribe((messages: ChatMessage[]) => {
-      this.loading.stopLoading();
       messages.sort(function (a, b) {
         return new Date(a.created_at!).getTime() - new Date(b.created_at!).getTime();
       });
@@ -115,6 +114,7 @@ export class InteriorChatComponent {
         this.isLoading = false;
       }
 
+      this.loading.stopLoading();
 
     }, (error: HttpErrorResponse) => {
       console.log(error);
