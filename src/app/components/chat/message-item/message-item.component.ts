@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ChatMessage } from 'src/app/models/ChatMessage';
 import { User } from 'src/app/models/User';
 
@@ -11,11 +11,13 @@ export class MessageItemComponent {
 
   @Input() messages!:ChatMessage[];
   @Input() user?:User;
+  @Input() unread_messages:number[]=[];
   public currentTime: number = 0;
 
   constructor(){
-
   }
+
+
 
   public togglePlay(message: ChatMessage): void {
     message.is_playing_audio ? message.audio!.pause() : message.audio!.play();
@@ -42,4 +44,5 @@ export class MessageItemComponent {
 
     });
   }
+
 }

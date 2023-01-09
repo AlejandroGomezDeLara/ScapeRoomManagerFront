@@ -1,6 +1,13 @@
 .message-container {
     position: relative;
     margin-bottom: 0px;
+    .unread-messages {
+        text-align: center;
+        padding: 10px;
+        background: rgba(0, 0, 0, 0.2);
+        margin-top: 10px;
+        font-weight: bold;
+    }
     .user-image {
         .avatar-content {
             position: relative;

@@ -1,5 +1,9 @@
 <div class="message-container justify-content-center row" *ngFor="let message of messages;let i=index">
 
+    <p class="unread-messages"
+        *ngIf="unread_messages.length>0 &&  (messages[i-1]?.unread == false && messages[i]?.unread== true)">
+        {{unread_messages.length}} mensajes sin leer</p>
+
     <div class="col-lg-1 col-2 user-image" *ngIf="user?.id != message?.user!.id"
         routerLink="/{{message?.user!.id}}/profile">
         <div class="avatar-content" *ngIf="messages[i-1]?.user?.id != message.user?.id">

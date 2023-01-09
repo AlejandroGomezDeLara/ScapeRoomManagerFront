@@ -25,9 +25,9 @@
             <div class="messages-container" id="messages-container-scroll" (scroll)="loadMoreMessages()">
 
                 <button class="btn-scroll" (click)="scrollToBottom()"
-                    *ngIf="this.messagesContainer.scrollHeight - this.messagesContainer.scrollTop - this.messagesContainer?.clientHeight > 250">
+                    *ngIf="messagesContainer?.scrollHeight - messagesContainer?.scrollTop - messagesContainer?.clientHeight > 250">
                     <i class="fa-solid fa-angles-down"></i>
-                    <span class="new-messages">{{selectedChat?.unread_messages_count}}</span>
+                    <span class="new-messages" *ngIf="selectedChat?.unread_messages_count!>0">{{selectedChat?.unread_messages_count}}</span>
 
                 </button>
 
@@ -37,10 +37,10 @@
                     </div>
                 </div>
 
-                <app-message-item [messages]="messages" [user]="user"></app-message-item>
+                <app-message-item [messages]="messages" [user]="user"
+                    [unread_messages]="selectedChat?.unread_messages!"></app-message-item>
 
-                <p class="unread-messages" *ngIf="selectedChat?.unread_messages_count!>0">
-                    {{selectedChat?.unread_messages_count}} mensajes sin leer</p>
+
 
                 <div class="row" *ngIf=" messages && messages.length<=0 && !(loading.isLoading | async)">
                     <p class="no-messages-text">No hay mensajes aún</p>
@@ -61,7 +61,7 @@
                 <img [src]="actualMessage?.image" alt="">
             </div>
             <input class="message-input" (keydown.enter)="sendMessage()" [(ngModel)]="actualMessage!.text" type="text"
-                placeholder="Escribe un mensaje">
+                placeholder="Escribe un mensaje" (focus)="readMessages()">
 
             <div class="upload-image-button">
                 <label for="file-upload" class="custom-file-upload">

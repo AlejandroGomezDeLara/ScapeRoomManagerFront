@@ -72,10 +72,12 @@ export class InteriorChatComponent {
 
   public getChat(): void {
     this.apiService.getEntity('chats', this.chat_id).subscribe((chat: Chat) => {
-      if (!this.selectedChat)
+      if (!this.selectedChat) {
         this.selectedChat = chat;
+      }
       else {
-        this.selectedChat.unread_messages_count=chat.unread_messages_count;
+        this.selectedChat.unread_messages_count = chat.unread_messages_count;
+        this.selectedChat.unread_messages = chat.unread_messages;
         for (let user of chat.users!) {
           this.selectedChat.users!.map(x => {
             if (x.id == user.id) x.online = user.online;
@@ -99,12 +101,14 @@ export class InteriorChatComponent {
       if (this.messages.length <= 0) {
         this.scrollToBottom();
         this.messages = messages;
+        this.setUnreadMessages();
+
       }
       //NUEVO MENSAJE
       if (!this.messages.some(x => x.id == messages[messages.length - 1].id)) {
 
         this.messages = messages;
-        if(this.messagesContainer.scrollHeight - this.messagesContainer.scrollTop - this.messagesContainer?.clientHeight < 250){
+        if (this.messagesContainer.scrollHeight - this.messagesContainer.scrollTop - this.messagesContainer?.clientHeight < 250) {
           this.scrollToBottom();
         }
 
@@ -155,12 +159,16 @@ export class InteriorChatComponent {
     setTimeout(() => {
       this.messagesContainer?.scroll({ top: this.messagesContainer!.scrollHeight, left: 0, behavior: 'smooth' });
     });
-    this.apiService.deleteEntity('new-messages',this.selectedChat!.id).subscribe(()=>{
-      console.log("Mensajes vistos");
-    },(error:HttpErrorResponse)=>{
-      console.log("No se pudieron ver los mensajes");
-      
-    });
+  }
+
+  public readMessages(): void {
+    if (this.messagesContainer.scrollHeight - this.messagesContainer.scrollTop - this.messagesContainer?.clientHeight < 250) {
+      this.apiService.deleteEntity('new-messages', this.selectedChat!.id).subscribe(() => {
+        console.log("Mensajes vistos");
+      }, (error: HttpErrorResponse) => {
+        console.log("No se pudieron ver los mensajes");
+      });
+    }
   }
 
   public ngOnDestroy(): void {
@@ -272,6 +280,18 @@ export class InteriorChatComponent {
         this.isLoading = true;
       }
     }
+  }
+  public setUnreadMessages(): void {
+    this.messages = this.messages.map(x => { x.unread = false; return x; });
+    for (let i = 0; i < this.selectedChat?.unread_messages?.length!; i++) {
+      let message = this.messages.find(x => x.id == this.selectedChat?.unread_messages![i]);
+      if(message){
+        message.unread=true;
+      }
+    }
+
+    console.log(this.messages);
+
   }
 }
 
