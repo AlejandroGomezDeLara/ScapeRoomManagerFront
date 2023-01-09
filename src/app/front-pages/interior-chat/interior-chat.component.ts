@@ -1,6 +1,6 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component } from '@angular/core';
-import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+import { DomSanitizer } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Chat } from 'src/app/models/Chat';
 import { ChatMessage } from 'src/app/models/ChatMessage';
@@ -162,7 +162,9 @@ export class InteriorChatComponent {
   }
 
   public readMessages(): void {
-    this.scrollToBottom();
+    setTimeout(() => {
+      this.messagesContainer?.scroll({ top: this.messagesContainer!.scrollHeight, left: 0, behavior: 'smooth' });
+    },1000);
     if (this.messagesContainer.scrollHeight - this.messagesContainer.scrollTop - this.messagesContainer?.clientHeight < 250) {
       this.apiService.deleteEntity('new-messages', this.selectedChat!.id).subscribe(() => {
         console.log("Mensajes vistos");
@@ -290,9 +292,7 @@ export class InteriorChatComponent {
         message.unread=true;
       }
     }
-
     console.log(this.messages);
-
   }
 }
 
