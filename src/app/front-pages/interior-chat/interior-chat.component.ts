@@ -75,6 +75,7 @@ export class InteriorChatComponent {
       if (!this.selectedChat)
         this.selectedChat = chat;
       else {
+        this.selectedChat.unread_messages_count=chat.unread_messages_count;
         for (let user of chat.users!) {
           this.selectedChat.users!.map(x => {
             if (x.id == user.id) x.online = user.online;
@@ -103,6 +104,9 @@ export class InteriorChatComponent {
       if (!this.messages.some(x => x.id == messages[messages.length - 1].id)) {
 
         this.messages = messages;
+        if(this.messagesContainer.scrollHeight - this.messagesContainer.scrollTop - this.messagesContainer?.clientHeight < 250){
+          this.scrollToBottom();
+        }
 
       }
       //SCROLL 50 mensajes mas
@@ -150,6 +154,12 @@ export class InteriorChatComponent {
   public scrollToBottom(): void {
     setTimeout(() => {
       this.messagesContainer?.scroll({ top: this.messagesContainer!.scrollHeight, left: 0, behavior: 'smooth' });
+    });
+    this.apiService.deleteEntity('new-messages',this.selectedChat!.id).subscribe(()=>{
+      console.log("Mensajes vistos");
+    },(error:HttpErrorResponse)=>{
+      console.log("No se pudieron ver los mensajes");
+      
     });
   }
 

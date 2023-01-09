@@ -24,9 +24,13 @@
 
             <div class="messages-container" id="messages-container-scroll" (scroll)="loadMoreMessages()">
 
-                <button class="btn-scroll" (click)="scrollToBottom()" *ngIf="this.messagesContainer.scrollHeight - this.messagesContainer.scrollTop - this.messagesContainer?.clientHeight > 250">
+                <button class="btn-scroll" (click)="scrollToBottom()"
+                    *ngIf="this.messagesContainer.scrollHeight - this.messagesContainer.scrollTop - this.messagesContainer?.clientHeight > 250">
                     <i class="fa-solid fa-angles-down"></i>
+                    <span class="new-messages">{{selectedChat?.unread_messages_count}}</span>
+
                 </button>
+
                 <div class="loader-container row" *ngIf="isLoading">
                     <div class="col-12">
                         <img class="loader " src="assets/imgs/box-transparent.png" alt="">

@@ -237,7 +237,7 @@
                 top: 110px;
                 height: calc(100vh - 180px) !important;
 
-                .btn-scroll{
+                .btn-scroll {
                     background: white;
                     color: var(--color-primary);
                     width: 50px;
@@ -251,11 +251,22 @@
                     font-size: 20px;
                     right: 16px;
                     z-index: 999;
+                    .new-messages {
+                        color: white;
+                        background: var(--color-primary);
+                        padding: 0px 5px;
+                        font-size: 12px;
+                        border-radius: 25px;
+                        position: fixed;
+                        bottom: 114px;
+                        box-shadow: var(--item-box-shadow);
+                        right: 14px;
+                        z-index: 9999;
+                    }
                 }
-                .btn-scroll:hover{
-                    color:white;
-                    background:var(--color-primary);
-                   
+                .btn-scroll:hover {
+                    color: white;
+                    background: var(--color-primary);
                 }
                 .loader-container {
                     text-align: center;
@@ -264,7 +275,7 @@
                     left: 0;
                     z-index: 9;
                     right: 0;
-                    padding:5px;
+                    padding: 5px;
                     .loader {
                         width: 40px;
                         height: 40px;
@@ -289,13 +300,11 @@
                     }
                 }
 
-               
                 .no-messages-text {
                     text-align: center;
                     font-size: 22px;
                     margin-top: 50px;
                 }
-              
             }
         }
     }
@@ -400,13 +409,11 @@
 
 @media (max-width: 902px) {
     .messages-container {
-        .avatar-content{
+        .avatar-content {
             .user-online {
-                
                 height: 15px !important;
                 width: 15px !important;
                 border: 2px solid white !important;
-               
             }
         }
         .user-image {
