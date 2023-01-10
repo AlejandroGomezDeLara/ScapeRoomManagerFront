@@ -167,15 +167,17 @@ export class InteriorChatComponent {
     this.selectedChat!.unread_messages_count = 0;
     console.log(this.selectedChat?.unread_messages_count);
     this.scrollToBottom();
-    let audio = new Audio('assets/audio/send_message.mp3');
-    audio.play();
+    
     this.apiService.addSubEntity('chats', this.selectedChat?.id!, 'messages', message).subscribe((message: ChatMessage) => {
       console.log(message);
       this.messages[this.messages.length - 1].pending = false;
+      let audio = new Audio('assets/audio/send_message.mp3');
+      audio.play();
       this.actualMessage!.text = "";
       this.pendingMessages.pop();
     }, (error: HttpErrorResponse) => {
       console.log(error);
+      //Si falla añadimos el mensaje a pendinetes
       this.pendingMessages.push(message);
     });
 
