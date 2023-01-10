@@ -51,6 +51,7 @@
         max-width: 80%;
         display: inline-block;
         img {
+            background: white;
             border-radius: 10px;
             margin-bottom: 3px;
             width: 100%;
@@ -69,6 +70,7 @@
             margin: 0;
         }
         .message-text {
+            color:white;
             font-size: 16px;
             overflow-wrap: break-word;
         }

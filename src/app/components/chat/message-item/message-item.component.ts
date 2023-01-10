@@ -46,13 +46,17 @@ export class MessageItemComponent {
   }
 
   isLink(text: string | undefined): boolean {
-    if(!text)return false;
+    if (!text) return false;
     try {
       const url = new URL(text);
       return true;
     } catch (err) {
       return false;
     }
+  }
+
+  openLink(link: string | undefined): void {
+    window.open(link,'_blank');
   }
 
 }
