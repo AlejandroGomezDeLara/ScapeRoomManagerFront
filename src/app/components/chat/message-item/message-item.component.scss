@@ -80,6 +80,27 @@
             margin-top: 5px;
             font-size: 12px;
         }
+        .message-sent {
+            margin: 0;
+            opacity: 0.8;
+            float: right;
+            margin-left: -10px;
+            margin-top: 5px;
+            font-size: 14px;
+        }
+        .square{
+            background:var(--chat-message-right-background);
+            width: 5px;
+            height: 5px;
+        }
+        .message-read {
+            margin: 0;
+            opacity: 0.8;
+            float: right;
+            margin-left: 5px;
+            margin-top: 5px;
+            font-size: 14px;
+        }
     }
     .message-simple {
         margin-top: 4px;

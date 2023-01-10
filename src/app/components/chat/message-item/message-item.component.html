@@ -4,33 +4,35 @@
         *ngIf="unread_messages.length>0 &&  (messages[i-1]?.unread == false && messages[i]?.unread== true)">
         {{unread_messages.length}} mensajes sin leer</p>
 
-    <div class="col-lg-1 col-2 user-image" *ngIf="user?.id != message?.user!.id"
-        routerLink="/{{message?.user!.id}}/profile">
+    <div class="col-lg-1 col-2 user-image" *ngIf="user?.id != message?.user?.id"
+        routerLink="/{{message?.user?.id}}/profile">
         <div class="avatar-content" *ngIf="messages[i-1]?.user?.id != message.user?.id">
-            <img [src]="message?.user!.avatar" alt="" onError="this.src='assets/imgs/avatar.png'">
-            <span class="user-online" *ngIf="message?.user!.online"></span>
+            <img [src]="message?.user?.avatar" alt="" onError="this.src='assets/imgs/avatar.png'">
+            <span class="user-online" *ngIf="message?.user?.online"></span>
         </div>
     </div>
 
-    <div [ngClass]="user?.id != message?.user!.id ? 'col-lg-11 col-10' : 'col-lg-11 col-11'">
+    <div [ngClass]="user?.id != message?.user?.id ? 'col-lg-11 col-10' : 'col-lg-11 col-11'">
         <!-- SI EL MENSAJE ANTERIOR NO ES DEL MISMO USUARIO -->
         <ng-container *ngIf="messages[i-1]?.user?.id != message?.user?.id">
             <!-- TEXTO -->
-            <div [ngClass]="user?.id == message?.user!.id  ? 'message message-right' : 'message message-left'"
+            <div [ngClass]="user?.id == message?.user?.id  ? 'message message-right' : 'message message-left'"
                 *ngIf="!message.audio">
-                <p class="message-username" *ngIf="user?.id != message?.user!.id">
+                <p class="message-username" *ngIf="user?.id != message?.user?.id">
                     {{message?.user?.name}}
                 </p>
                 <img [src]="message.image" alt="" *ngIf="message.image">
                 <span class="message-text">{{message?.text}} </span>
+                <span class="message-read" *ngIf="user?.id == message?.user?.id"><i class="{{message.pending ? 'fa-regular fa-clock' : 'fa-solid fa-check'}}"></i> </span>
+
                 <span class="message-hour"> {{message?.created_at | date:'HH:mm'}}</span>
 
             </div>
 
             <!-- AUDIO -->
-            <div [ngClass]="user?.id == message?.user!.id  ? 'chat-audio message-right' : 'chat-audio message-left'"
+            <div [ngClass]="user?.id == message?.user?.id  ? 'chat-audio message-right' : 'chat-audio message-left'"
                 *ngIf="message.audio">
-                <div class="col-3 user-audio-avatar my-auto" routerLink="/{{message?.user!.id}}/profile">
+                <div class="col-3 user-audio-avatar my-auto" routerLink="/{{message?.user?.id}}/profile">
                     <img [src]="user?.avatar" alt="">
                 </div>
                 <div class="col-3 play-button my-auto" (click)="togglePlay(message)">
@@ -55,18 +57,19 @@
         <ng-container *ngIf="messages[i-1]?.user?.id == message?.user?.id">
             <!-- TEXTO -->
 
-            <div [ngClass]="user?.id == message?.user!.id  ? 'message-right-simple message' : 'message-simple message'"
+            <div [ngClass]="user?.id == message?.user?.id  ? 'message-right-simple message' : 'message-simple message'"
                 *ngIf="!message.audio">
                 <img [src]="message.image" alt="" *ngIf="message.image">
 
                 <span class="message-text">{{message?.text}} </span>
+                <span class="message-read" *ngIf="user?.id == message?.user?.id"><i class="{{message.pending ? 'fa-regular fa-clock' : 'fa-solid fa-check'}}"></i> </span>
                 <span class="message-hour"> {{message?.created_at | date:'HH:mm'}}</span>
             </div>
 
             <!-- AUDIO -->
-            <div [ngClass]="user?.id == message?.user!.id  ? 'chat-audio message-right-simple' : 'chat-audio message-simple'"
+            <div [ngClass]="user?.id == message?.user?.id  ? 'chat-audio message-right-simple' : 'chat-audio message-simple'"
                 *ngIf="message.audio">
-                <div class="col-3 user-audio-avatar my-auto" routerLink="/{{message?.user!.id}}/profile">
+                <div class="col-3 user-audio-avatar my-auto" routerLink="/{{message?.user?.id}}/profile">
                     <img [src]="user?.avatar" alt="">
                 </div>
                 <div class="col-3 play-button my-auto" (click)="togglePlay(message)">

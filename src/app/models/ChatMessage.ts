@@ -11,6 +11,7 @@ export interface ChatMessage {
     audio_url?:string;
     audio_text?:string;
     image?:string;
+    pending?:boolean;
     unread?:boolean;
     created_at?:Date;
 }
