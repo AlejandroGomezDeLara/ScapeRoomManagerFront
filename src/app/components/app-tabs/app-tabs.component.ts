@@ -107,8 +107,8 @@ export class AppTabsComponent {
   }
 
   public navigate(url: string): void {
-    this.url = url;
     this.router.navigateByUrl(url);
+    this.url = url;
   }
 
 

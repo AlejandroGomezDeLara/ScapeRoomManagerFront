@@ -64,6 +64,8 @@
                 <img [src]="message.image" alt="" *ngIf="message.image">
 
                 <span class="message-text" *ngIf="!isLink(message?.text!)">{{message?.text}} </span>
+                <span class="message-read" *ngIf="user?.id == message?.user?.id"><i class="{{message.pending ? 'fa-regular fa-clock' : 'fa-solid fa-check'}}"></i> </span>
+
                 <a href="javascript:void(0)" (click)="openLink(message?.text)" class="message-text" *ngIf="isLink(message?.text)">{{message?.text}} </a>
                 <span class="message-hour"> {{message?.created_at | date:'HH:mm'}}</span>
             </div>
