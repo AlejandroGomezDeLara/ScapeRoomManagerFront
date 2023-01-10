@@ -9,12 +9,12 @@ import { User } from 'src/app/models/User';
 })
 export class MessageItemComponent {
 
-  @Input() messages!:ChatMessage[];
-  @Input() user?:User;
-  @Input() unread_messages:number[]=[];
+  @Input() messages!: ChatMessage[];
+  @Input() user?: User;
+  @Input() unread_messages: number[] = [];
   public currentTime: number = 0;
 
-  constructor(){
+  constructor() {
   }
 
 
@@ -43,6 +43,16 @@ export class MessageItemComponent {
       console.log("Audio duration: " + this.duration);
 
     });
+  }
+
+  isLink(text: string | undefined): boolean {
+    if(!text)return false;
+    try {
+      const url = new URL(text);
+      return true;
+    } catch (err) {
+      return false;
+    }
   }
 
 }
