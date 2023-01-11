@@ -175,9 +175,9 @@
                 height: 110px;
                 border-bottom: 0.5px solid #ccc;
                 padding: 20px;
-                position: fixed;
+                /* position: fixed; */
                 top: 0;
-                width: 110vw;
+                width: 100%;
                 z-index: 9999;
                 .chat-users {
                     margin-top: 10px;
@@ -189,11 +189,11 @@
                         margin: 0 auto;
                         .user-online {
                             position: absolute;
-                            top: 11px;
-                            right: -2px;
+                            top: 12px;
+                            right: 0px;
                             background: var(--color-open-reservation);
-                            height: 13px;
-                            width: 13px;
+                            height: 12px;
+                            width: 12px;
                             border: 2px solid white;
                             border-radius: 50px;
                             z-index: 9;
@@ -201,7 +201,6 @@
                         .user-avatar {
                             cursor: pointer;
                             width: 32px;
-                            border: 2px solid white;
                             margin-right: 2px;
                             height: 32px;
                             border-radius: 50%;
@@ -229,13 +228,13 @@
                 }
             }
             .messages-container {
-                padding: 50px 25vw 20px 25vw;
+                padding: 50px ;
                 overflow-y: scroll;
                 overflow-x: hidden;
-                position: fixed;
-                width: 105vw;
+                /* position: fixed; */
+                width: 100%;
                 top: 110px;
-                height: calc(100vh - 180px) !important;
+                height: calc(100vh - 180px - 90px);
 
                 .btn-scroll {
                     background: white;
@@ -270,7 +269,8 @@
                 }
                 .loader-container {
                     text-align: center;
-                    position: fixed;
+                    position: absolute;
+                    
                     overflow: hidden;
                     left: 0;
                     z-index: 9;
@@ -311,10 +311,10 @@
     .chat-footer {
         margin: 0 auto;
         padding-top: 10px;
-        position: fixed;
+       /*  position: fixed; */
         text-align: center;
-        left: 0;
-        right: 0;
+        
+        -webkit-transform: translateZ(0);
         bottom: 0px;
         padding-bottom: 10px;
         padding-top: 10px;
@@ -409,6 +409,7 @@
 
 @media (max-width: 902px) {
     .messages-container {
+        height: calc(100vh - 180px) !important;
         .avatar-content {
             .user-online {
                 height: 15px !important;
@@ -418,7 +419,6 @@
         }
         .user-image {
             img {
-                border: 3px solid white !important;
                 box-shadow: var(--item-box-shadow);
                 border-radius: 50%;
                 height: 55px !important;
@@ -426,8 +426,7 @@
                 object-fit: cover;
             }
         }
-        /*  height: calc(100vh - 182px) !important; */
-        padding: 20px 5px 50px 25px !important;
+        padding: 20px 20px 20px 40px !important;
         .message {
             max-width: 250px !important;
         }

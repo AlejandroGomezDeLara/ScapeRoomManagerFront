@@ -1,7 +1,7 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component } from '@angular/core';
+import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { fromEvent, Observable } from 'rxjs';
 import { Chat } from 'src/app/models/Chat';
 import { ChatMessage } from 'src/app/models/ChatMessage';
@@ -12,17 +12,19 @@ import { ChatAudioService } from 'src/app/services/chat-audio.service';
 import { LoadingService } from 'src/app/services/loading.service';
 import { NewMessagesService } from 'src/app/services/new-messages.service';
 
+
 @Component({
   selector: 'app-interior-chat',
   templateUrl: './interior-chat.component.html',
   styleUrls: ['./interior-chat.component.scss']
 })
-export class InteriorChatComponent {
+export class InteriorChatComponent implements OnChanges {
+
 
   public messages: ChatMessage[] = [];
   public pendingMessages: ChatMessage[] = [];
   public messages_count: number = 50;
-  public chat_id?: number;
+  @Input() chat_id?: number;
   public selectedChat?: Chat;
   public recordedAudio?: any;
   public recorder: any;
@@ -46,22 +48,16 @@ export class InteriorChatComponent {
   constructor(private apiService: ApiService,
     public loading: LoadingService,
     private auth: AuthenticationService,
-    private activatedRoute: ActivatedRoute,
     public chatAudio: ChatAudioService,
     public sanitizer: DomSanitizer,
     private router: Router,
     private newMessages: NewMessagesService) {
 
-    this.chat_id = +activatedRoute.snapshot.paramMap.get('id')!;
 
   }
-
-  ngOnInit(): void {
-    this.online = fromEvent(window, 'online');
-    this.newMessages.clearNewMessagesListener();
-    this.user = this.auth.getStorageUser();
-    this.loading.startLoading();
-
+  ngOnChanges(changes: SimpleChanges): void {
+    this.ngOnDestroy();
+    this.isLoading = true;
     this.getChat();
 
     this.chatInterval = setInterval(() => {
@@ -74,10 +70,17 @@ export class InteriorChatComponent {
       this.getChatMessages();
     }, this.refreshMessagesTime);
 
-    this.online.subscribe(e => {
+    this.online?.subscribe(e => {
       console.log("online", e);
       this.sendPendingMessages();
     });
+  }
+
+  ngOnInit(): void {
+    this.online = fromEvent(window, 'online');
+    this.newMessages.clearNewMessagesListener();
+    this.user = this.auth.getStorageUser();
+
   }
 
 
@@ -95,6 +98,8 @@ export class InteriorChatComponent {
 
   public getChat(): void {
     this.apiService.getEntity('chats', this.chat_id).subscribe((chat: Chat) => {
+      this.selectedChat = chat;
+/* 
       if (!this.selectedChat) {
         this.selectedChat = chat;
       }
@@ -108,6 +113,7 @@ export class InteriorChatComponent {
           });
         }
       }
+     */ this.isLoading = false;
     }, (error: HttpErrorResponse) => {
       console.log(error);
     });
@@ -167,7 +173,7 @@ export class InteriorChatComponent {
     this.selectedChat!.unread_messages_count = 0;
     console.log(this.selectedChat?.unread_messages_count);
     this.scrollToBottom();
-    
+
     this.apiService.addSubEntity('chats', this.selectedChat?.id!, 'messages', message).subscribe((message: ChatMessage) => {
       console.log(message);
       this.messages[this.messages.length - 1].pending = false;
@@ -193,9 +199,9 @@ export class InteriorChatComponent {
 
   public readMessages(): void {
     setTimeout(() => {
-      this.messagesContainer?.scroll({ top: this.messagesContainer!.scrollHeight, left: 0, behavior: 'smooth' });
+      this.messagesContainer?.scroll({ top: this.messagesContainer?.scrollHeight, left: 0, behavior: 'smooth' });
     }, 250);
-    if (this.messagesContainer.scrollHeight - this.messagesContainer.scrollTop - this.messagesContainer?.clientHeight < 250) {
+    if (this.messagesContainer?.scrollHeight - this.messagesContainer?.scrollTop - this.messagesContainer?.clientHeight < 250) {
       this.apiService.deleteEntity('new-messages', this.selectedChat!.id).subscribe(() => {
         console.log("Mensajes vistos");
       }, (error: HttpErrorResponse) => {
@@ -216,6 +222,7 @@ export class InteriorChatComponent {
     this.pendingMessagesInterval = null;
 
     this.readMessages();
+
   }
 
 
@@ -277,9 +284,6 @@ export class InteriorChatComponent {
     });
   }
 
-  floor(number: number): number {
-    return Math.floor(number);
-  }
 
   public uploadImage(e: any) {
     var file = e.dataTransfer ? e.dataTransfer.files[0] : e.target.files[0];

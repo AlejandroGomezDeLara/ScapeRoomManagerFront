@@ -1,5 +1,5 @@
 <nav [hidden]="(loading.isLoading | async)" class="app-navbar navbar sticky-bottom navbar-expand-lg"
-    *ngIf="!router.url.includes('interior-chat')">
+    *ngIf="!router.url.includes('chats/')">
     <div class="container-fluid">
         <ng-container *ngIf="utilities.isEmptyObject(user)">
             <li class="nav-item" *ngFor="let page of pages">

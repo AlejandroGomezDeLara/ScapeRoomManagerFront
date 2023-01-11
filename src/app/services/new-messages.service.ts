@@ -27,7 +27,7 @@ export class NewMessagesService {
       if (messages.count > this.newMessagesCount.value) {
 /*         parent.postMessage(messages.last_message?.chat_message, '*');
  */        console.log("Mensajes nuevos xd", messages);
-        if (!this.router.url.includes('interior-chat')) {
+        if (!this.router.url.includes('chats')) {
           let audio = new Audio('assets/audio/new_message.mp3');
           audio.play();
         }

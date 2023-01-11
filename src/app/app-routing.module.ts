@@ -7,7 +7,7 @@ const routes: Routes = [
   { path: 'search', loadChildren: () => import('./front-pages/game-list/game-list.module').then(m => m.GameListModule) },
   { path: 'search/:id/interior', loadChildren: () => import('./front-pages/interior/interior.module').then(m => m.InteriorModule) },
   { path: 'chats', canActivate: [AuthGuard], loadChildren: () => import('./front-pages/chats/chats.module').then(m => m.ChatsModule) },
-  { path: 'chats/:id/interior-chat', canActivate: [AuthGuard], loadChildren: () => import('./front-pages/interior-chat/interior-chat.module').then(m => m.InteriorChatModule) },
+  { path: 'chats/:id', canActivate: [AuthGuard], loadChildren: () => import('./front-pages/chats/chats.module').then(m => m.ChatsModule) },
 
   { path: 'login', loadChildren: () => import('./front-pages/login/login.module').then(m => m.LoginModule) },
 

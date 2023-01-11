@@ -1,10 +1,10 @@
-<div class="chat-container content">
+<div class="chat-container">
 
     <div class="chats-content row">
         <div class="interior-chat col-lg-12 col-12">
             <div class="chat-title-container row">
                 <button class="chats-sidebar-menu" (click)="back()">
-                    <i class="fa fa-arrow-left"></i>
+                    <i class="fa fa-bars"></i>
                 </button>
                 <p class="chat-title" *ngIf="selectedChat">{{selectedChat.name}} - {{selectedChat.open_reservation?.date
                     | date:'dd/MMM'}}
@@ -27,7 +27,8 @@
                 <button class="btn-scroll" (click)="scrollToBottom()"
                     *ngIf="messagesContainer?.scrollHeight - messagesContainer?.scrollTop - messagesContainer?.clientHeight > 250">
                     <i class="fa-solid fa-angles-down"></i>
-                    <span class="new-messages" *ngIf="selectedChat?.unread_messages_count!>0">{{selectedChat?.unread_messages_count}}</span>
+                    <span class="new-messages"
+                        *ngIf="selectedChat?.unread_messages_count!>0">{{selectedChat?.unread_messages_count}}</span>
 
                 </button>
 
@@ -40,9 +41,7 @@
                 <app-message-item [messages]="messages" [user]="user"
                     [unread_messages]="selectedChat?.unread_messages!"></app-message-item>
 
-                <div class="row" *ngIf=" messages && messages.length<=0 && !(loading.isLoading | async)">
-                    <p class="no-messages-text">No hay mensajes aún</p>
-                </div>
+                
 
             </div>
 
@@ -56,7 +55,9 @@
         <div class="input-container">
             <div class="upload-image" *ngIf="actualMessage?.image">
                 <i class="delete-image-button fa fa-close" (click)="deleteImage()"></i>
+
                 <img [src]="actualMessage?.image" alt="">
+
             </div>
             <input class="message-input" (keydown.enter)="sendMessage()" [(ngModel)]="actualMessage!.text" type="text"
                 placeholder="Escribe un mensaje" (focus)="readMessages()">
@@ -66,6 +67,8 @@
                     <i class="fa fa-camera"></i>
                 </label>
                 <input id="file-upload" type="file" (change)="uploadImage($event)" />
+
+
             </div>
 
 

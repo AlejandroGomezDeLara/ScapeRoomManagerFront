@@ -7,13 +7,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { HomeFooterModule } from 'src/app/components/home/home-footer/home-footer.module';
 import { AppLoadingModule } from 'src/app/components/app-loading/app-loading.module';
 import { MessageItemModule } from 'src/app/components/chat/message-item/message-item.module';
-
-const routes: Routes = [
-  {
-    path: '',
-    component: InteriorChatComponent
-  }
-];
+import { ImageCropperModule } from 'ngx-image-cropper';
 
 @NgModule({
   declarations: [InteriorChatComponent],
@@ -23,7 +17,8 @@ const routes: Routes = [
     HomeFooterModule,
     FormsModule,
     AppLoadingModule,
-    RouterModule.forChild(routes)
-  ]
+    ImageCropperModule
+  ],
+  exports:[InteriorChatComponent]
 })
 export class InteriorChatModule { }

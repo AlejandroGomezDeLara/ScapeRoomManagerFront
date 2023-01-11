@@ -1,10 +1,10 @@
-<div class="chat-container content">
+<div class="chat-container">
     <div class="no-chats" [hidden]="chats?.length!>0 || (loading.isLoading | async)">
         <p>No tienes ningún chat activo, realiza una reserva!</p>
         <button routerLink="/search">Reservar</button>
     </div>
     <div class="chats-content row">
-        <div class="chats-sidebar justify-content-center col-lg-4 col-12 row" *ngIf="chats?.length!>0">
+        <div class="chats-sidebar {{selected_chat_id ? 'selected' : ''}} justify-content-center col-md-4 col-12 " *ngIf="chats?.length!>0">
             <div class="chats-searchbar-container row justify-content-center">
                 <div class="col-12">
                     <input class="chats-searchbar col-12" type="searchbar" placeholder="Buscar chat">
@@ -12,7 +12,8 @@
                 </div>
             </div>
             <div class="chats-items-container col-12">
-                <div class="chats-item row" *ngFor="let chat of chats" routerLink="{{chat.id}}/interior-chat">
+                <div [ngClass]="selected_chat_id == chat.id ? 'chats-item row selected' :'chats-item row' "
+                    *ngFor="let chat of chats" (click)="selectChat(chat.id!)">
                     <div class="col-lg-2 col-3 my-auto text-center">
                         <img class="chat-image" [src]="chat.image" alt="">
                     </div>
@@ -35,90 +36,13 @@
             </div>
         </div>
 
-        <!-- <div class="interior-chat col-lg-12 col-12" *ngIf="selectedChat">
-            <div class="chat-title-container row">
-                <button class="chats-sidebar-menu" (click)="toggleShowMenu()">
-                    <i class="fa fa-bars"></i>
-                </button>
-                <p class="chat-title">{{selectedChat.name}} - {{selectedChat.open_reservation?.date | date:'dd/MMM'}} -
-                    {{selectedChat.open_reservation?.game_reservation_hour?.hour | slice:0:5}} </p>
-                <div class="chat-users">
-                    <span>Participantes </span>
-                    <ng-container *ngFor="let user of selectedChat.users;let i=index">
-                        <img class="user-avatar" [src]="user.avatar" alt="" *ngIf="i<6" onError="this.src='assets/imgs/avatar.png'">
-                        <span *ngIf="i==6">y {{selectedChat.users?.length! - 6}} más</span>
-                    </ng-container>
-                </div>
-            </div>
-
-            <div id="messages-container-scroll" class="messages-container">
-
-                <div class="message-container justify-content-center row" *ngFor="let message of messages;let i=index">
-
-                    <ng-container *ngIf="i==0">
-
-                        <div class="col-lg-1 col-2 user-image" *ngIf="user.id != message?.user!.id">
-                            <img [src]="message?.user!.avatar" alt="" onError="this.src='assets/imgs/avatar.png'"> 
-                        </div>
-                        <div [ngClass]="user.id != message?.user!.id ? 'col-lg-11 col-10' : 'col-lg-11 col-11'">
-                            <div
-                                [ngClass]="user.id == message?.user!.id  ? 'message message-right' : 'message message-left'">
-                                <p class="message-username" *ngIf="user.id != message?.user!.id">
-                                    {{message?.user?.name}}
-                                </p>
-                                <span class="message-text">{{message?.text}} </span>
-                                <span class="message-hour"> {{message?.created_at | date:'HH:mm'}}</span>
-                            </div>
 
 
-                        </div>
-
-                    </ng-container>
-
-                    <ng-container *ngIf="i>=1">
-
-                        <div class="col-lg-1 col-2 user-image" *ngIf="user.id != message?.user!.id">
-                            <img [src]="message?.user!.avatar" alt=""
-                                *ngIf="messages[i-1].user?.id != message.user?.id" onError="this.src='assets/imgs/avatar.png'">
-                        </div>
-                        <div [ngClass]="user.id != message?.user!.id ? 'col-lg-11 col-10' : 'col-lg-11 col-11'">
-                            <ng-container *ngIf="messages[i-1].user?.id != message?.user?.id">
-                                <div
-                                    [ngClass]="user.id == message?.user!.id  ? 'message message-right' : 'message message-left'">
-                                    <p class="message-username" *ngIf="user.id != message?.user!.id">
-                                        {{message?.user?.name}}
-                                    </p>
-                                    <span class="message-text">{{message?.text}} </span>
-                                    <span class="message-hour"> {{message?.created_at | date:'HH:mm'}}</span>
-                                </div>
-                            </ng-container>
-
-                            <ng-container *ngIf="messages[i-1].user?.id == message?.user?.id">
-                                <div
-                                    [ngClass]="user.id == message?.user!.id  ? 'message-right-simple message' : 'message-simple message'">
-
-                                    <span class="message-text">{{message?.text}} </span>
-                                    <span class="message-hour"> {{message?.created_at | date:'HH:mm'}}</span>
-                                </div>
-                            </ng-container>
-                        </div>
-
-                    </ng-container>
-
-
-
-                </div>
-
-                <div class="row" *ngIf="messages.length<=0">
-                    <p class="no-messages-text">No hay mensajes aún</p>
-                </div>
-
-            </div>
-
-
-        </div> -->
-        <div class="col-lg-8 col-12 void-text" *ngIf="chats?.length!>0">
+        <div class="col-lg-8 col-12 void-text" *ngIf="chats?.length!>0 && !selected_chat_id">
             <p>Selecciona un chat para ver sus mensajes</p>
+        </div>
+        <div class="col-md-8 col-12 interior-chat " *ngIf="selected_chat_id && chats?.length!>0">
+            <app-interior-chat [chat_id]="selected_chat_id"></app-interior-chat>
         </div>
     </div>
 

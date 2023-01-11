@@ -1,5 +1,6 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Chat } from 'src/app/models/Chat';
 import { ApiService } from 'src/app/services/api.service';
 import { AuthenticationService } from 'src/app/services/authentication.service';
@@ -14,13 +15,17 @@ import { NewMessagesService } from 'src/app/services/new-messages.service';
 export class ChatsComponent implements OnInit {
 
   public chats?: Chat[];
+  public selected_chat_id?: number;
   public chatsInterval: any;
   public refreshMessagesTime: number = 2000;
 
   constructor(private apiService: ApiService,
     public loading: LoadingService,
     private auth: AuthenticationService,
-    private newMessages:NewMessagesService) {
+    private newMessages: NewMessagesService,
+    private router:Router,
+    private activatedRoute:ActivatedRoute) {
+      this.selected_chat_id = +activatedRoute.snapshot.paramMap.get('id')!;
 
   }
 
@@ -54,12 +59,6 @@ export class ChatsComponent implements OnInit {
     });
   }
 
- 
-
-  
-
-  
-
   public scrollToBottom(): void {
     let messagesContainer = document.getElementById('messages-container-scroll');
     messagesContainer!.scrollTop = messagesContainer!.scrollHeight;
@@ -71,7 +70,13 @@ export class ChatsComponent implements OnInit {
     clearInterval(this.chatsInterval);
     this.chatsInterval = null;
     this.newMessages.setNewMessagesListener();
-   
+
+  }
+
+  public selectChat(chat_id: number): void {
+    console.log("chat seleccionado", chat_id);
+    this.router.navigate(['/chats/'+chat_id]);
+    this.selected_chat_id = chat_id;
   }
 
 
