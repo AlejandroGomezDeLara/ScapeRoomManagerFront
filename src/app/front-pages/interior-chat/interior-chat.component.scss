@@ -160,6 +160,7 @@
             position: relative;
 
             .chats-sidebar-menu {
+                display: none;
                 border: none;
                 background: none;
                 width: auto;
@@ -408,6 +409,9 @@
 }
 
 @media (max-width: 902px) {
+    .chats-sidebar-menu{
+        display: block !important;
+    }
     .messages-container {
         height: calc(100vh - 180px) !important;
         .avatar-content {

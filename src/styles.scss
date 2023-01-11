@@ -143,6 +143,14 @@ body {
     display: none;
   }
 }
+@media (min-width:902px) {
+  .web-navbar{
+    display: block;
+  }
+  .app-navbar{
+    display: none;
+  }
+}
 @media (max-width:902px) {
   
   .web-navbar{
